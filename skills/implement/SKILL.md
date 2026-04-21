@@ -1,4 +1,4 @@
-﻿---
+---
 name: implement
 description: "Implement documentation-first work from docs/<feature-name>/implement.md. Use when the user asks to implement, fix, build, or modify code for an active documented feature scope."
 ---

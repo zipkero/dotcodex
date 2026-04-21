@@ -1,4 +1,4 @@
-﻿---
+---
 name: verify
 description: "Verify documentation-first work and append evidence to docs/<feature-name>/verify.md. Use when the user asks to verify, review, validate, test, approve, reject, or record evidence for an implemented feature."
 ---

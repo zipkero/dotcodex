@@ -1,7 +1,10 @@
 /*
 
 !/.gitignore
+!/.editorconfig
+!/.gitattributes
 !/AGENTS.md
+!/README.md
 !/skills/
 
 /skills/*

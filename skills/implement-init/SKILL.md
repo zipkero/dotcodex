@@ -1,4 +1,4 @@
-﻿---
+---
 name: implement-init
 description: "Create or update docs/<feature-name>/implement.md from an existing plan.md. Use when the user asks to create an implementation checklist, prepare implementation tasks, define verification criteria, or run implement-init."
 ---

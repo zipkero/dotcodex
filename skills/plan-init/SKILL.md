@@ -1,4 +1,4 @@
-﻿---
+---
 name: plan-init
 description: "Create or update docs/<feature-name>/plan.md from an existing spec.md. Use when the user asks to create an implementation plan, design plan, technical plan, or run plan-init."
 ---

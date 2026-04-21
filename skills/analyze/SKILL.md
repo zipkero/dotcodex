@@ -1,4 +1,4 @@
-﻿---
+---
 name: analyze
 description: "Analyze code, debug behavior, explain architecture, identify root causes, and determine scope before documentation-first implementation. Use when the user asks for analysis, investigation, root cause, impact assessment, or system understanding."
 ---

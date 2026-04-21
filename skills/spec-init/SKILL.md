@@ -1,4 +1,4 @@
-﻿---
+---
 name: spec-init
 description: "Create or reset docs/<feature-name>/spec.md and README.md for documentation-first feature work. Use when the user asks to initialize a spec, start a feature documentation flow, define requirements, or run spec-init."
 ---
