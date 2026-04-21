@@ -18,7 +18,7 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 - 체크리스트는 검증 가능한 단위로 나눈다.
 - 각 항목에는 완료 조건과 검증 기준을 함께 둔다.
 - 구현 중 체크박스는 증거가 있을 때만 `[x]`로 변경한다.
-- 문서는 한국어로 작성한다.
+- 문서는 한국어, UTF-8, LF 기준으로 작성한다.
 
 ## implement.md 형식
 ```markdown

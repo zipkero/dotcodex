@@ -6,7 +6,7 @@ description: "Implement documentation-first work from docs/<feature-name>/implem
 # Implement
 
 ## 목적
-- `implement.md` 체크리스트를 기준으로 최소 범위의 코드를 변경한다.
+- `docs/<feature-name>/implement.md` 체크리스트를 기준으로 최소 범위의 코드를 변경한다.
 - 구현 상태는 문서에 남아야 하며, 체크박스는 완료 증거가 있을 때만 갱신한다.
 
 ## 선행 확인
@@ -19,6 +19,7 @@ description: "Implement documentation-first work from docs/<feature-name>/implem
 - 요청 범위 밖 리팩터링, 설계 변경, 새 의존성 추가를 피한다.
 - 설계 변경이 필요하면 먼저 `plan.md` 갱신이 필요하다고 보고한다.
 - 파일 수정 전 어떤 변경을 할지 짧게 설명한다.
+- 구현은 `implement.md`의 체크리스트 항목 단위로 진행할 수 있다.
 
 ## 문서 갱신
 - 완료한 `implement.md` 항목만 `[x]`로 변경한다.

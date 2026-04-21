@@ -19,6 +19,11 @@ description: "Verify documentation-first work and append evidence to docs/<featu
 - 새 검증 시도는 파일 끝에 append한다.
 - 실패 기록도 보존한다.
 
+## 단계별 검증
+- `implement.md`의 개별 체크리스트 항목 단위로 검증할 수 있다.
+- 단계별 검증 결과는 `verify.md`에 append-only로 기록한다.
+- 단계별 검증이 approved여도 전체 `README.md`의 `VERIFY`는 모든 구현 항목이 완료되고 필요한 검증이 승인된 뒤에만 `[x]`로 변경한다.
+
 ## 검증 항목 형식
 ```markdown
 ## <yyyy-MM-dd HH:mm> 검증

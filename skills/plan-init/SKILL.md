@@ -17,7 +17,7 @@ description: "Create or update docs/<feature-name>/plan.md from an existing spec
 ## 작성 규칙
 - `spec.md`의 요구사항과 수용 기준을 기준으로 작성한다.
 - 불확실한 설계 결정은 열린 질문 또는 결정 필요 항목으로 남긴다.
-- 문서는 한국어로 작성한다.
+- 문서는 한국어, UTF-8, LF 기준으로 작성한다.
 - 불필요한 리팩터링이나 범위 외 개선을 계획에 넣지 않는다.
 
 ## plan.md 형식
