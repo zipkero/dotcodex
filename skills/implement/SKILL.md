@@ -10,7 +10,7 @@ description: "Implement documentation-first work from docs/<feature-name>/implem
 - 구현 상태는 문서에 남아야 하며, 체크박스는 완료 증거가 있을 때만 갱신한다.
 
 ## 선행 확인
-- 문서 우선 대상 작업이면 `spec.md`, `plan.md`, `implement.md`가 있는지 확인한다.
+- 문서 우선 대상 작업이면 `spec.md`, `plan.md`, `implement.md`를 확인한다.
 - 문서가 없으면 구현하지 말고 필요한 init 단계를 안내한다.
 - 단순 오타나 아주 작은 요청은 사용자의 명시 범위 안에서 문서 플로우를 생략할 수 있다.
 

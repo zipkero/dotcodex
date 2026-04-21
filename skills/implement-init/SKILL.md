@@ -12,7 +12,7 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 ## 전제 조건
 - `docs/<feature-name>/spec.md`와 `docs/<feature-name>/plan.md`가 있어야 한다.
 - 둘 중 하나가 없으면 필요한 선행 단계가 무엇인지 보고하고 중단한다.
-- 기존 `verify.md`가 있으면 검증 기록과 충돌할 수 있으므로 overwrite 전에 사용자 확인을 받는다.
+- 기존 `verify.md`가 있으면 검증 기록과 충돌할 수 있으므로 overwrite 전에 사용자에게 확인한다.
 
 ## 작성 규칙
 - 체크리스트는 검증 가능한 단위로 나눈다.

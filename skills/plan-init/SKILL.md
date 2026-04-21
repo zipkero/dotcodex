@@ -12,7 +12,7 @@ description: "Create or update docs/<feature-name>/plan.md from an existing spec
 ## 전제 조건
 - `docs/<feature-name>/spec.md`가 있어야 한다.
 - spec이 없으면 먼저 `spec-init`이 필요하다고 보고하고 중단한다.
-- 기존 `implement.md` 또는 `verify.md`가 있으면 downstream 영향이 있으므로 overwrite 전에 사용자 확인을 받는다.
+- 기존 `implement.md` 또는 `verify.md`가 있으면 downstream 영향이 있으므로 overwrite 전에 사용자에게 확인한다.
 
 ## 작성 규칙
 - `spec.md`의 요구사항과 수용 기준을 기준으로 작성한다.

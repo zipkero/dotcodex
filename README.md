@@ -1,18 +1,21 @@
 # Codex 전역 설정
 
-이 디렉터리는 로컬 Codex 실행 상태가 아니라, Codex가 일관된 방식으로 작업하도록 만드는 사용자 정의 전역 설정만 관리한다.
+이 디렉터리는 Codex가 일관된 방식으로 작업하도록 만드는 사용자 정의 전역 설정만 관리한다. 로컬 실행 상태, 인증 정보, 로그, 캐시는 관리 대상이 아니다.
 
 ## 관리 대상
 
 - `AGENTS.md`: 모든 Codex 작업에 적용되는 전역 지침
 - `skills/*/SKILL.md`: 특정 작업 유형에서만 로드되는 사용자 정의 skill
-- `.gitignore`: 로컬 상태 파일을 제외하고 관리 대상만 허용하는 allowlist 규칙
-
-`config.toml`, 인증 정보, 세션, 로그, 캐시, sqlite 상태 파일은 개인 로컬 실행 설정이므로 관리하지 않는다.
+- `.editorconfig`, `.gitattributes`: 텍스트 포맷 기준
+- `.gitignore`: 로컬 상태 파일을 제외하는 allowlist 규칙
 
 ## 문서 우선 개발 플로우
 
 기능 개발, 동작 변경, 단순하지 않은 버그 수정, 다중 파일 수정, API/DB/auth/external integration 변경, 또는 증거가 중요한 작업은 `docs/<feature-name>/` 플로우를 사용한다.
+
+기본 순서:
+
+`analyze` -> `spec-init` -> `plan-init` -> `implement-init` -> `implement` -> `verify`
 
 필수 산출물은 다음과 같다.
 
@@ -22,7 +25,7 @@
 - `implement.md`: 구현 체크리스트와 항목별 검증 기준
 - `verify.md`: append-only 검증 증거 로그
 
-이 문서들은 범위, 결정 사항, 구현 상태, 검증 증거의 source of truth로 취급한다.
+이 문서들은 범위, 결정 사항, 구현 상태, 검증 증거의 source of truth이다.
 
 ## Skill 구성
 
@@ -33,9 +36,9 @@
 - `skills/plan-init`: `spec.md` 기반 `plan.md` 작성
 - `skills/implement-init`: `plan.md` 기반 `implement.md` 체크리스트 작성
 - `skills/implement`: `implement.md` 기반 구현 수행
-- `skills/verify`: 검증 수행 및 `verify.md`에 증거 append
+- `skills/verify`: 검증 수행 및 `verify.md`에 증거 append-only 기록
 
-`skills/.system`은 Codex가 제공하는 내장 skill 영역이다. 직접 수정하거나 관리 대상으로 포함하지 않는다.
+`skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
 
 ## 언어 기준
 
@@ -52,6 +55,8 @@
 추적 대상:
 
 - `.gitignore`
+- `.editorconfig`
+- `.gitattributes`
 - `README.md`
 - `AGENTS.md`
 - 사용자 정의 `skills/**`

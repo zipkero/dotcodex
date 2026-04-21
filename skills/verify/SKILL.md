@@ -12,7 +12,7 @@ description: "Verify documentation-first work and append evidence to docs/<featu
 ## 선행 확인
 - `spec.md`, `plan.md`, `implement.md`를 읽고 검증 기준을 확인한다.
 - 구현 체크리스트가 비어 있거나 완료되지 않았다면 그 상태를 보고한다.
-- 검증은 실제 명령 실행, 코드 확인, 산출물 확인 같은 근거를 기반으로 한다.
+- 검증은 명령 실행, 코드 확인, 산출물 확인 같은 실제 근거를 기반으로 한다.
 
 ## verify.md 규칙
 - 기존 내용을 절대 덮어쓰지 않는다.
