@@ -7,13 +7,13 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 
 ## 목적
 - `analysis.md`를 실행 가능한 구현 체크리스트로 변환한다.
-- `implement.md`는 구현 항목, 목적, 접근, 항목별 검증 기준의 source of truth이다.
+- `implement.md`는 구현 항목, 목적, 접근, 항목별 검증 기준의 기준 문서이다.
 - 설계 판단은 `analysis.md`에 두고, `implement.md`에는 실행 가능한 Task만 둔다.
 
 ## 전제 조건
 - `docs/<feature-name>/spec.md`와 `docs/<feature-name>/analysis.md`가 있어야 한다.
 - 둘 중 하나가 없으면 필요한 선행 단계가 무엇인지 보고하고 중단한다.
-- 기존 `implement.md`가 있으면 overwrite 전에 사용자에게 확인한다. 기존 체크박스 상태는 덮어쓰기 시 사라질 수 있다.
+- 기존 `implement.md`가 있으면 덮어쓰기 전에 사용자에게 확인한다. 기존 체크박스 상태는 덮어쓰기 시 사라질 수 있다.
 - `analysis.md`에 미해결 Decision Point가 있으면 사용자에게 알리고, 사용자가 명시적으로 진행을 원할 때만 계속한다.
 
 ## 작성 규칙
@@ -21,7 +21,6 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 - 각 항목은 최소 하나의 `spec.md` 완료 조건과 연결되어야 한다.
 - 각 항목에는 목적, 접근, 검증 조건을 둔다.
 - 테스트 Task 포함 기준은 `verify` skill의 테스트 규칙을 따른다. 여기서 별도의 테스트 규칙을 중복 정의하지 않는다.
-- 문서는 한국어, UTF-8, LF 기준으로 작성한다.
 
 ## implement.md 형식
 ```markdown
@@ -43,4 +42,7 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 
 ## 완료 조건
 - `implement.md`가 spec과 analysis에 근거해 생성 또는 갱신되어야 한다.
-- 응답에는 작업 항목 수와 검증 기준 요약만 간단히 보고한다.
+
+## 완료 보고
+- 작업 항목 수
+- 검증 기준 요약

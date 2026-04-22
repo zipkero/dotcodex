@@ -7,20 +7,19 @@ description: "Create or update docs/<feature-name>/analysis.md from an existing 
 
 ## 목적
 - `spec.md`를 근거로 분석과 설계 기준을 문서화한다.
-- `analysis.md`는 구조, 데이터 흐름, 인터페이스, 영향 범위, 리스크, 설계 결정의 source of truth이다.
+- `analysis.md`는 구조, 데이터 흐름, 인터페이스, 영향 범위, 리스크, 설계 결정의 기준 문서이다.
 - `analysis.md`는 요구사항을 새로 만들지 않는다. 새 요구사항은 먼저 `spec.md`에 반영한다.
 
 ## 전제 조건
 - `docs/<feature-name>/spec.md`가 있어야 한다.
 - spec이 없으면 먼저 `spec-init`이 필요하다고 보고하고 중단한다.
-- 기존 `implement.md`가 있으면 downstream 영향이 있으므로 overwrite 전에 사용자에게 확인한다.
+- 기존 `implement.md`가 있으면 하위 문서에 영향이 있으므로 덮어쓰기 전에 사용자에게 확인한다.
 
 ## 작성 규칙
 - `spec.md`의 범위와 완료 조건을 기준으로 작성한다.
 - 완료 조건을 복사해 반복하지 말고 필요한 곳에서 `SPEC 완료 조건 N`처럼 참조한다.
 - 실행 순서나 체크리스트는 작성하지 않는다. 해당 내용은 `implement.md`에 둔다.
 - 불확실한 설계 결정은 Decision Points 또는 열린 질문으로 남긴다.
-- 문서는 한국어, UTF-8, LF 기준으로 작성한다.
 - 불필요한 리팩터링이나 범위 외 개선을 분석에 넣지 않는다.
 
 ## analysis.md 형식
@@ -49,4 +48,8 @@ description: "Create or update docs/<feature-name>/analysis.md from an existing 
 
 ## 완료 조건
 - `analysis.md`가 spec에 근거해 생성 또는 갱신되어야 한다.
-- 응답에는 핵심 설계 결정, 영향 범위, 남은 질문만 간단히 보고한다.
+
+## 완료 보고
+- 핵심 설계 결정
+- 영향 범위
+- 남은 질문

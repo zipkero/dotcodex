@@ -6,8 +6,8 @@ description: "Execute the next Task from docs/<feature-name>/implement.md. Use w
 # Implement
 
 ## 목적
-- `docs/<feature-name>/implement.md` 체크리스트를 기준으로 최소 범위의 코드를 변경한다.
-- 구현은 Task 단위로 수행하되, 체크박스는 변경하지 않는다. 체크박스 갱신은 `verify` 승인 판단 뒤에만 이루어진다.
+- `docs/<feature-name>/implement.md`의 첫 번째 미완료 Task를 최소 범위로 구현한다.
+- 체크박스와 README 상태는 변경하지 않는다.
 
 ## 선행 확인
 - 문서 우선 대상 작업이면 `spec.md`, `analysis.md`, `implement.md`를 확인한다.
@@ -21,10 +21,6 @@ description: "Execute the next Task from docs/<feature-name>/implement.md. Use w
 - 파일 수정 전 어떤 변경을 할지 짧게 설명한다.
 - 구현은 `implement.md`의 첫 번째 미완료 Task 단위로 진행한다.
 - 테스트 코드는 `implement.md`에 테스트 Task가 있거나, `verify` skill의 테스트 규칙에서 허용하는 버그 회귀 예외에 해당할 때만 작성한다.
-
-## 문서 갱신
-- `implement`는 `implement.md` 체크박스와 README 상태를 변경하지 않는다.
-- 구현 완료 여부는 다음 `verify` 단계에서 판단한다.
 
 ## 완료 보고
 - 변경한 파일

@@ -7,7 +7,7 @@ description: "Create or reset docs/<feature-name>/spec.md and README.md for docu
 
 ## 목적
 - `docs/<feature-name>/` 범위를 만들고 요구사항의 기준 문서를 작성한다.
-- `spec.md`는 무엇을 해결해야 하는지, 어디까지가 범위인지, 어떤 조건이면 완료로 볼 수 있는지에 대한 source of truth이다.
+- `spec.md`는 요구사항, 범위, 완료 조건의 기준 문서이다.
 - `README.md`는 feature 문서 세트의 상태판이다.
 
 ## 입력 판단
@@ -17,9 +17,8 @@ description: "Create or reset docs/<feature-name>/spec.md and README.md for docu
 
 ## 생성/갱신 규칙
 - 대상 경로는 `docs/<feature-name>/`이다.
-- 기존 downstream 문서(`analysis.md`, `implement.md`)가 있으면 overwrite 전에 사용자에게 확인한다.
-- `spec.md`를 덮어쓰면 downstream 문서가 무효가 될 수 있음을 사용자에게 알린다.
-- 문서는 한국어, UTF-8, LF 기준으로 작성한다.
+- 기존 하위 문서(`analysis.md`, `implement.md`)가 있으면 덮어쓰기 전에 사용자에게 확인한다.
+- `spec.md`를 덮어쓰면 하위 문서가 무효가 될 수 있음을 사용자에게 알린다.
 
 ## README.md 형식
 ```markdown
@@ -60,7 +59,10 @@ description: "Create or reset docs/<feature-name>/spec.md and README.md for docu
 
 ## 완료 조건
 - `README.md`와 `spec.md`가 생성 또는 갱신되어야 한다.
-- `spec.md`의 `완료 조건`은 번호 목록으로 작성한다. downstream 문서는 `SPEC 완료 조건 N` 형식으로 이 번호를 참조한다.
+- `spec.md`의 `완료 조건`은 번호 목록으로 작성한다. 하위 문서는 `SPEC 완료 조건 N` 형식으로 이 번호를 참조한다.
 - 각 완료 조건은 사용자가 보거나 명령/테스트/API 응답/파일/DB row/로그 등으로 확인할 수 있는 관찰 가능한 결과여야 한다.
 - `spec.md`에는 설계, 구현 순서, 체크리스트를 넣지 않는다. 해당 내용은 `analysis.md` 또는 `implement.md`에 둔다.
-- 응답에는 생성/갱신된 파일과 남은 열린 질문만 간단히 보고한다.
+
+## 완료 보고
+- 생성/갱신된 파일
+- 남은 열린 질문

@@ -8,6 +8,7 @@
 - `SKILL.md` frontmatter의 `name`은 영어 ASCII kebab-case, `description`은 영어로 작성한다.
 - 파일명, 디렉터리명, skill 이름, config key는 영어 ASCII를 우선한다.
 - 사용자-facing 설명은 한국어로, 작업 분류용 짧은 메타데이터는 영어로 작성한다.
+- 설정/feature 문서는 한국어, UTF-8, LF 기준으로 작성한다.
 
 ## 일반 응답 정책
 - reasoning이 단순하지 않으면 구현보다 설명을 먼저 제공한다.
@@ -37,7 +38,7 @@
 - 기능 개발, 동작 변경, 단순하지 않은 버그 수정, 다중 파일 수정, API/DB/auth/external integration 변경, 또는 증거가 중요한 작업은 `docs/<feature-name>/` 플로우를 사용한다.
 - 기본 순서는 `spec-init` -> `analyze-init` -> `implement-init` -> `implement` -> `verify`이다.
 - `analyze` skill은 필요 시 사용하는 조사 도구이며 문서 단계가 아니다. 문서 단계의 분석 산출물은 `analyze-init`이 작성하는 `analysis.md`이다.
-- 문서는 범위, 결정 사항, 구현 상태의 source of truth이다. 검증 판단은 사용자에게 보고하며 별도 `verify.md`를 만들지 않는다.
+- 문서는 범위, 결정 사항, 구현 상태의 기준이다. 검증 판단은 사용자에게 보고하며 별도 `verify.md`를 만들지 않는다.
 - 필수 산출물은 `docs/<feature-name>/` 아래의 `README.md`, `spec.md`, `analysis.md`, `implement.md`이다.
 - 문서 우선 대상 작업은 활성 feature scope의 `spec.md`, `analysis.md`, `implement.md`가 존재하기 전까지 구현하지 않는다. 단, 사용자가 문서 플로우 우회를 명시적으로 요청한 경우는 예외로 한다.
 - `implement`는 구현만 수행하고 `implement.md` 체크박스를 변경하지 않는다. 체크박스는 `verify` 승인 판단 뒤에만 갱신한다.
