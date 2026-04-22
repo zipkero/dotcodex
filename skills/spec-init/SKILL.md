@@ -52,11 +52,15 @@ description: "Create or reset docs/<feature-name>/spec.md and README.md for docu
 ## 비범위
 
 ## 완료 조건
+1. <관찰 가능한 완료 조건>
+2. <관찰 가능한 완료 조건>
 
 ## 열린 질문
 ```
 
 ## 완료 조건
 - `README.md`와 `spec.md`가 생성 또는 갱신되어야 한다.
+- `spec.md`의 `완료 조건`은 번호 목록으로 작성한다. downstream 문서는 `SPEC 완료 조건 N` 형식으로 이 번호를 참조한다.
+- 각 완료 조건은 사용자가 보거나 명령/테스트/API 응답/파일/DB row/로그 등으로 확인할 수 있는 관찰 가능한 결과여야 한다.
 - `spec.md`에는 설계, 구현 순서, 체크리스트를 넣지 않는다. 해당 내용은 `analysis.md` 또는 `implement.md`에 둔다.
 - 응답에는 생성/갱신된 파일과 남은 열린 질문만 간단히 보고한다.
