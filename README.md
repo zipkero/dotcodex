@@ -15,17 +15,18 @@
 
 기본 순서:
 
-`analyze` -> `spec-init` -> `plan-init` -> `implement-init` -> `implement` -> `verify`
+`spec-init` -> `analyze-init` -> `implement-init` -> `implement` -> `verify`
 
 필수 산출물은 다음과 같다.
 
 - `README.md`: feature 상태와 이력
 - `spec.md`: 요구사항, 범위, 수용 기준
-- `plan.md`: 설계 결정, 영향 범위, 구현 전략
+- `analysis.md`: 분석, 설계 결정, 영향 범위, 리스크
 - `implement.md`: 구현 체크리스트와 항목별 검증 기준
-- `verify.md`: append-only 검증 증거 로그
 
-이 문서들은 범위, 결정 사항, 구현 상태, 검증 증거의 source of truth이다.
+이 문서들은 범위, 결정 사항, 구현 상태의 source of truth이다. 검증은 `verify` skill이 사용자에게 승인/거절 판단과 근거를 보고하며, 별도 `verify.md`를 만들지 않는다.
+
+`analyze` skill은 필요 시 사용하는 조사 도구이며 문서 단계가 아니다. 문서 단계의 분석 산출물은 `analyze-init`이 작성하는 `analysis.md`이다.
 
 ## Skill 구성
 
@@ -33,10 +34,10 @@
 
 - `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인
 - `skills/spec-init`: `spec.md`와 feature `README.md` 초기화
-- `skills/plan-init`: `spec.md` 기반 `plan.md` 작성
-- `skills/implement-init`: `plan.md` 기반 `implement.md` 체크리스트 작성
+- `skills/analyze-init`: `spec.md` 기반 `analysis.md` 작성
+- `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
 - `skills/implement`: `implement.md` 기반 구현 수행
-- `skills/verify`: 검증 수행 및 `verify.md`에 증거 append-only 기록
+- `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
 
 `skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
 

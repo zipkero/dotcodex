@@ -8,6 +8,7 @@ description: "Analyze code, debug behavior, explain architecture, identify root 
 ## 목적
 - 구현 전에 동작, 원인, 영향 범위를 근거 기반으로 파악한다.
 - 분석과 구현을 분리한다.
+- 이 skill은 조사 도구이며 문서 단계가 아니다. 문서 단계의 분석 산출물은 `analyze-init`이 작성하는 `analysis.md`이다.
 
 ## 원칙
 - 파일을 수정하지 않는다.
@@ -21,7 +22,7 @@ description: "Analyze code, debug behavior, explain architecture, identify root 
 - 근거: 확인한 파일, 로그, 명령, 관찰 사항.
 - 흐름: 관련 실행 흐름, 데이터 흐름, 상태 변화.
 - 원인: 확인된 root cause 또는 아직 좁혀지지 않은 지점.
-- 다음 단계: 필요한 문서 단계 또는 구현/검증 제안.
+- 다음 단계: 필요한 문서 단계(`spec-init`, `analyze-init`, `implement-init`) 또는 구현/검증 제안.
 
 ## Blocker
 - `scope undefined`: 분석 대상이 불명확함

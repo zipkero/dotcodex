@@ -35,12 +35,14 @@
 
 ## 문서 우선 개발 플로우
 - 기능 개발, 동작 변경, 단순하지 않은 버그 수정, 다중 파일 수정, API/DB/auth/external integration 변경, 또는 증거가 중요한 작업은 `docs/<feature-name>/` 플로우를 사용한다.
-- 기본 순서는 `analyze` -> `spec-init` -> `plan-init` -> `implement-init` -> `implement` -> `verify`이다.
-- 문서는 범위, 결정 사항, 구현 상태, 검증 증거의 source of truth이다.
-- 필수 산출물은 `docs/<feature-name>/` 아래의 `README.md`, `spec.md`, `plan.md`, `implement.md`, `verify.md`이다.
-- 문서 우선 대상 작업은 활성 feature scope의 `spec.md`, `plan.md`, `implement.md`가 존재하기 전까지 구현하지 않는다. 단, 사용자가 문서 플로우 우회를 명시적으로 요청한 경우는 예외로 한다.
-- `verify.md`는 append-only로 유지한다. 이전 검증 시도를 덮어쓰지 않는다.
-- 상태 체크박스는 대응되는 증거가 있을 때만 갱신한다.
+- 기본 순서는 `spec-init` -> `analyze-init` -> `implement-init` -> `implement` -> `verify`이다.
+- `analyze` skill은 필요 시 사용하는 조사 도구이며 문서 단계가 아니다. 문서 단계의 분석 산출물은 `analyze-init`이 작성하는 `analysis.md`이다.
+- 문서는 범위, 결정 사항, 구현 상태의 source of truth이다. 검증 판단은 사용자에게 보고하며 별도 `verify.md`를 만들지 않는다.
+- 필수 산출물은 `docs/<feature-name>/` 아래의 `README.md`, `spec.md`, `analysis.md`, `implement.md`이다.
+- 문서 우선 대상 작업은 활성 feature scope의 `spec.md`, `analysis.md`, `implement.md`가 존재하기 전까지 구현하지 않는다. 단, 사용자가 문서 플로우 우회를 명시적으로 요청한 경우는 예외로 한다.
+- `implement`는 구현만 수행하고 `implement.md` 체크박스를 변경하지 않는다. 체크박스는 `verify` 승인 판단 뒤에만 갱신한다.
+- `verify`가 rejected를 반환하면 실패 이유와 근거를 사용자에게 보고하고 중단한다. 자동 수정, 다음 Task 진행, 재시도는 하지 않는다.
+- README의 `IMPLEMENT` 상태는 체크리스트 작성이 아니라 구현 완료를 뜻한다. 모든 `implement.md` Task가 검증 승인되어 `[x]`가 되었을 때만 갱신한다.
 - 사용자가 필수 문서 생성을 건너뛰라고 요청하면 리스크를 설명하고, 요청이 명시적인 경우에만 진행한다.
 
 ## 코드 수정 규칙

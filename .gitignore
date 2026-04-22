@@ -14,8 +14,8 @@
 !/skills/implement/**
 !/skills/implement-init/
 !/skills/implement-init/**
-!/skills/plan-init/
-!/skills/plan-init/**
+!/skills/analyze-init/
+!/skills/analyze-init/**
 !/skills/spec-init/
 !/skills/spec-init/**
 !/skills/verify/

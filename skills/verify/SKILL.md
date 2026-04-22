@@ -1,55 +1,41 @@
 ---
 name: verify
-description: "Verify documentation-first work and append evidence to docs/<feature-name>/verify.md. Use when the user asks to verify, review, validate, test, approve, reject, or record evidence for an implemented feature."
+description: "Judge whether the most recent implement Task satisfies spec.md completion criteria and implement.md verification criteria. Use when the user asks to verify, review, validate, test, approve, or reject implemented work."
 ---
 
 # Verify
 
 ## 목적
-- 구현 결과를 spec, plan, implement 기준으로 검증한다.
-- `verify.md`는 append-only 검증 증거 로그이다.
+- 구현 결과를 spec, analysis, implement 기준으로 검증한다.
+- `verify`는 승인/거절 판단과 근거를 사용자에게 보고한다.
+- 별도 `verify.md`를 만들거나 갱신하지 않는다.
 
 ## 선행 확인
-- `spec.md`, `plan.md`, `implement.md`를 읽고 검증 기준을 확인한다.
-- 구현 체크리스트가 비어 있거나 완료되지 않았다면 그 상태를 보고한다.
+- `spec.md`, `analysis.md`, `implement.md`를 읽고 검증 기준을 확인한다.
+- 검증 대상은 가장 최근에 구현된 Task이다. 대상이 모호하면 판단하지 말고 사용자에게 특정 Task를 요청한다.
 - 검증은 명령 실행, 코드 확인, 산출물 확인 같은 실제 근거를 기반으로 한다.
 
-## verify.md 규칙
-- 기존 내용을 절대 덮어쓰지 않는다.
-- 새 검증 시도는 파일 끝에 append한다.
-- 실패 기록도 보존한다.
+## 판단 규칙
+- `approved`: Task가 spec 완료 조건, analysis 설계 의도, implement 검증 조건을 충족한다고 근거로 판단할 수 있다.
+- `rejected`: 충족하지 못하거나, 근거가 부족하거나, 범위를 벗어났거나, 설계 의도와 어긋난다.
+- rejected면 실패 이유와 근거를 사용자에게 보고하고 중단한다. 자동 수정, 다음 Task 진행, 재시도는 하지 않는다.
 
-## 단계별 검증
-- `implement.md`의 개별 체크리스트 항목 단위로 검증할 수 있다.
-- 단계별 검증 결과는 `verify.md`에 append-only로 기록한다.
-- 단계별 검증이 approved여도 전체 `README.md`의 `VERIFY`는 모든 구현 항목이 완료되고 필요한 검증이 승인된 뒤에만 `[x]`로 변경한다.
+## 체크박스 처리
+- `verify` skill 자체는 판단을 반환한다.
+- 판단이 `approved`이면 main이 해당 `implement.md` Task를 `[x]`로 변경한다.
+- 모든 Task가 `[x]`가 되면 main이 `README.md`의 `IMPLEMENT`를 `[x]`로 변경하고 이력에 `- <yyyy-MM-dd>: IMPLEMENT 완료`를 추가한다.
+- 판단이 `rejected`이면 대상 Task는 `[ ]` 상태로 유지한다. 이미 승인된 Task를 재검증해 실패한 경우에만 main이 `[x]`를 `[ ]`로 되돌린다.
 
-## 검증 항목 형식
-```markdown
-## <yyyy-MM-dd HH:mm> 검증
-
-### 대상
-
-### 실행한 확인
-
-### 결과
-
-### 판단
-- 상태: approved | rejected
-- 근거:
-
-### 남은 리스크
-```
-
-## 승인 처리
-- 검증이 승인되고 모든 `implement.md` 항목이 `[x]`이면 `README.md`의 `VERIFY`를 `[x]`로 변경한다.
-- 이력에 `- <yyyy-MM-dd>: VERIFY 완료`를 추가한다.
-
-## 거절 처리
-- 실패 원인과 재현 또는 확인 근거를 `verify.md`에 기록한다.
-- 실패로 인해 완료가 무효가 된 `implement.md` 항목은 `[ ]`로 되돌린다.
-- `README.md`의 `IMPLEMENT` 또는 `VERIFY` 상태가 더 이상 유효하지 않으면 체크를 해제한다.
+## 테스트 규칙
+- 테스트 관련 판단 기준은 이 skill이 소유한다. 다른 문서는 이 규칙을 중복 정의하지 않고 참조만 한다.
+- `analysis.md`의 리스크나 데이터 흐름이 상태 변경, 외부 I/O, 동시성, 새 경계를 포함하면 `implement.md`에 명시적 테스트 Task가 있는지 확인한다.
+- `implement`는 명시적 테스트 Task가 있거나 버그 수정의 단일 회귀 테스트 예외에 해당할 때만 테스트 코드를 작성한다.
+- Per-Request 성격의 작은 변경에서는 테스트를 조용히 추가하지 않는다. 회귀 리스크가 있으면 사용자에게 테스트 공백으로 보고한다.
+- 최소 근거는 코드 diff이다. 가능하면 테스트 실행 결과를 함께 사용한다.
+- 변경 범위에 기존 테스트가 있는데 실행하지 않았다면 제한 사항으로 보고한다.
+- 같은 변경에서 테스트도 수정했다면 그 테스트만으로 승인하지 않는다. assertion 완화나 케이스 삭제처럼 검증력을 낮춘 변경은 rejected로 판단한다.
+- 근거만으로 정확성을 판단할 수 없으면 rejected로 판단하고 부족한 근거를 명시한다.
 
 ## 완료 보고
 - 승인/거절 판단을 먼저 말한다.
-- 주요 근거, 실패 항목, 남은 리스크를 간단히 정리한다.
+- 대상 Task, 주요 근거, 실패 항목, 남은 리스크를 간단히 정리한다.
