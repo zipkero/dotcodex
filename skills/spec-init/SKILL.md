@@ -14,11 +14,13 @@ description: "Create or reset docs/<feature-name>/spec.md and README.md for docu
 - 사용자가 feature 이름을 명시하면 그대로 사용한다.
 - feature 이름이 없지만 대화에서 명확하면 kebab-case로 추론하고 가정을 밝힌다.
 - feature 이름이 불명확하면 구현하지 말고 짧게 질문한다.
+- 요구사항이 부족하면 임의로 채우지 말고 `열린 질문`에 남긴다.
 
 ## 생성/갱신 규칙
 - 대상 경로는 `docs/<feature-name>/`이다.
 - 기존 하위 문서(`analysis.md`, `implement.md`)가 있으면 덮어쓰기 전에 사용자에게 확인한다.
 - `spec.md`를 덮어쓰면 하위 문서가 무효가 될 수 있음을 사용자에게 알린다.
+- 사용자의 요청 밖 목표, 설계, 구현 방식을 새 요구사항으로 추가하지 않는다.
 
 ## README.md 형식
 ```markdown
@@ -61,6 +63,7 @@ description: "Create or reset docs/<feature-name>/spec.md and README.md for docu
 - `README.md`와 `spec.md`가 생성 또는 갱신되어야 한다.
 - `spec.md`의 `완료 조건`은 번호 목록으로 작성한다. 하위 문서는 `SPEC 완료 조건 N` 형식으로 이 번호를 참조한다.
 - 각 완료 조건은 사용자가 보거나 명령/테스트/API 응답/파일/DB row/로그 등으로 확인할 수 있는 관찰 가능한 결과여야 한다.
+- `비범위`에는 이번 작업에서 의도적으로 하지 않을 변경을 명확히 적는다.
 - `spec.md`에는 설계, 구현 순서, 체크리스트를 넣지 않는다. 해당 내용은 `analysis.md` 또는 `implement.md`에 둔다.
 
 ## 완료 보고

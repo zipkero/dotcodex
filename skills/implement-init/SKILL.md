@@ -18,8 +18,12 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 
 ## 작성 규칙
 - 체크리스트는 검증 가능한 단위로 나눈다.
+- 각 Task는 한 번에 구현하고 검증할 수 있는 최소 단위로 작성한다.
 - 각 항목은 최소 하나의 `spec.md` 완료 조건과 연결되어야 한다.
-- 각 항목에는 목적, 접근, 검증 조건을 둔다.
+- 각 항목에는 목적, 대상, 접근, 검증 조건을 둔다.
+- 대상 파일이나 모듈을 알 수 있으면 `대상`에 적는다.
+- 설계 결정이 필요한 항목은 Task로 만들지 말고 `analysis.md`의 Decision Points로 되돌린다.
+- `정리`, `개선`, `리팩터링`처럼 검증 기준이 불명확한 Task를 만들지 않는다.
 - 테스트 Task 포함 기준은 `verify` skill의 테스트 규칙을 따른다. 여기서 별도의 테스트 규칙을 중복 정의하지 않는다.
 
 ## implement.md 형식
@@ -30,6 +34,7 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 
 - [ ] <작업 항목>
   - 목적: SPEC 완료 조건 N / ANALYSIS 섹션명
+  - 대상:
   - 접근:
   - 검증 조건:
 
