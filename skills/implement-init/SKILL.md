@@ -19,6 +19,11 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 ## 작성 규칙
 - 체크리스트는 검증 가능한 단위로 나눈다.
 - 각 Task는 한 번에 구현하고 검증할 수 있는 최소 단위로 작성한다.
+- 각 Task 항목은 `TASK-001`, `TASK-002`처럼 3자리 zero-padding ID를 붙인다.
+- 새 `implement.md`를 작성할 때는 위에서부터 `TASK-001`부터 순서대로 증가시킨다.
+- 기존 `implement.md`를 갱신할 때는 기존 Task ID를 유지하고 재번호 매기기를 하지 않는다.
+- 새 Task를 추가할 때는 문서에 있는 가장 큰 Task ID의 다음 번호를 사용한다.
+- 삭제되거나 병합된 Task의 ID는 재사용하지 않는다.
 - 각 항목은 최소 하나의 `spec.md` 완료 조건과 연결되어야 한다.
 - 각 항목에는 목적, 대상, 접근, 검증 조건을 둔다.
 - 대상 파일이나 모듈을 알 수 있으면 `대상`에 적는다.
@@ -32,7 +37,7 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 
 ## 체크리스트
 
-- [ ] <작업 항목>
+- [ ] TASK-001: <작업 항목>
   - 목적: SPEC 완료 조건 N / ANALYSIS 섹션명
   - 대상:
   - 접근:

@@ -12,7 +12,9 @@ description: "Judge whether the most recent implement Task satisfies spec.md com
 
 ## 선행 확인
 - `spec.md`, `analysis.md`, `implement.md`를 읽고 검증 기준을 확인한다.
-- 검증 대상은 가장 최근에 구현된 Task이다. 대상이 모호하면 판단하지 말고 사용자에게 특정 Task를 요청한다.
+- 사용자가 `TASK-NNN` 형식의 Task ID를 지정하면 해당 Task를 검증 대상으로 한다.
+- Task ID가 지정되지 않으면 가장 최근에 구현된 Task를 검증 대상으로 한다.
+- 대상 Task가 없거나 모호하면 판단하지 말고 사용자에게 특정 Task를 요청한다.
 - 검증은 명령 실행, 코드 확인, 산출물 확인 같은 실제 근거를 기반으로 한다.
 
 ## 판단 규칙
