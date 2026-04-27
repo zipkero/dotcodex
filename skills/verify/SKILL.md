@@ -9,6 +9,7 @@ description: "Judge whether the most recent implement Task satisfies spec.md com
 - 구현 결과를 spec, analysis, implement 기준으로 검증한다.
 - `verify`는 승인/거절 판단과 근거를 사용자에게 보고한다.
 - 별도 `verify.md`를 만들거나 갱신하지 않는다.
+- `verify`는 별도 실행 주체가 아니라 현재 Codex가 따르는 검증 단계 지침이다.
 
 ## 선행 확인
 - `spec.md`, `analysis.md`, `implement.md`를 읽고 검증 기준을 확인한다.
@@ -17,18 +18,27 @@ description: "Judge whether the most recent implement Task satisfies spec.md com
 - 대상 Task가 없거나 모호하면 판단하지 말고 사용자에게 특정 Task를 요청한다.
 - 검증은 명령 실행, 코드 확인, 산출물 확인 같은 실제 근거를 기반으로 한다.
 
+## 근거 원칙
+- 판단은 대화 기억이 아니라 실제 산출물에 근거한다.
+- 유효한 근거는 관련 파일 내용, code diff, 테스트 결과, 빌드/lint/실행 결과, `spec.md` / `analysis.md` / `implement.md`의 명시 기준이다.
+- 유효하지 않은 근거는 "앞에서 논의했다", "구현 의도상 맞다", "보기에 충분하다", 실행하지 않은 테스트를 통과한 것으로 간주하는 것이다.
+- 근거만으로 정확성을 판단할 수 없으면 `approved`가 아니라 `rejected`로 판단하고 부족한 근거를 명시한다.
+
 ## 판단 규칙
 - `approved`: Task가 spec 완료 조건, analysis 설계 의도, implement 검증 조건을 충족한다고 근거로 판단할 수 있다.
 - `rejected`: 충족하지 못하거나, 근거가 부족하거나, 범위를 벗어났거나, 설계 의도와 어긋난다.
 - 실행하지 못한 검증은 성공으로 간주하지 않는다.
-- 확인 가능한 근거가 부족하면 `rejected`로 판단하고 부족한 근거를 명시한다.
 - rejected면 실패 이유와 근거를 사용자에게 보고하고 중단한다. 자동 수정, 다음 Task 진행, 재시도는 하지 않는다.
 
-## 체크박스 처리
-- `verify` skill 자체는 판단을 반환한다.
-- 판단이 `approved`이면 main이 해당 `implement.md` Task 하나만 `[x]`로 변경한다.
-- 모든 Task가 `[x]`가 되면 main이 `README.md`의 `IMPLEMENT`를 `[x]`로 변경하고 이력에 `- <yyyy-MM-dd>: IMPLEMENT 완료`를 추가한다.
-- 판단이 `rejected`이면 대상 Task는 `[ ]` 상태로 유지한다. 이미 승인된 Task를 재검증해 실패한 경우에만 main이 `[x]`를 `[ ]`로 되돌린다.
+## Rejected 사유
+- `rejected`이면 실패 이유를 정확성 문제, 범위 문제, 근거 부족 중 하나로 설명한다.
+- 자동 수정, 다음 Task 진행, 재시도는 하지 않는다.
+
+## 상태 전환
+- 검증 단계는 먼저 `approved` 또는 `rejected` 판단과 근거를 확정한다.
+- `approved`인 경우에만 그 다음 작업으로 해당 `implement.md` Task 하나를 `[x]`로 변경한다.
+- 모든 Task가 `[x]`가 되면 `README.md`의 `IMPLEMENT`를 `[x]`로 변경하고 이력에 `- <yyyy-MM-dd>: IMPLEMENT 완료`를 추가한다.
+- `rejected`인 경우에는 대상 Task를 `[ ]` 상태로 유지한다. 이미 승인된 Task를 재검증해 실패한 경우에만 `[x]`를 `[ ]`로 되돌린다.
 
 ## 테스트 규칙
 - 테스트 관련 판단 기준은 이 skill이 소유한다. 다른 문서는 이 규칙을 중복 정의하지 않고 참조만 한다.
@@ -44,4 +54,4 @@ description: "Judge whether the most recent implement Task satisfies spec.md com
 
 ## 완료 보고
 - 승인/거절 판단을 먼저 말한다.
-- 대상 Task, 주요 근거, 실패 항목, 남은 리스크를 간단히 정리한다.
+- 대상 Task, 주요 근거, 실패 사유, 남은 리스크를 간단히 정리한다.

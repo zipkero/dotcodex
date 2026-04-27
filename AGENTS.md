@@ -41,17 +41,23 @@
 - 파일 수정 전 변경 대상과 의도를 짧게 설명한다.
 - 구현 중 새 설계 판단이 필요해지면 임의로 결정하지 않고 필요한 문서 갱신 또는 사용자 결정을 먼저 보고한다.
 
-## 문서 우선 개발 플로우
-- 기능 개발, 동작 변경, 단순하지 않은 버그 수정, 다중 파일 수정, API/DB/auth/external integration 변경, 또는 증거가 중요한 작업은 `docs/<feature-name>/` 플로우를 사용한다.
-- 오타, 주석, 단일 문서 보정, 동작 변경 없는 명백한 설정 문구 보정처럼 매우 작은 변경은 사용자 요청 범위 안에서 문서 플로우를 생략할 수 있다.
-- 기본 순서는 `spec-init` -> `analyze-init` -> `implement-init` -> `implement` -> `verify`이다.
+## 실행 플로우
+- 작업은 `Phased` 또는 `Per-Request` 중 하나로 분류한다.
+- `Phased`는 기능 개발, 동작 변경, 단순하지 않은 버그 수정, 다중 파일 수정, API/DB/auth/external integration 변경, 후속 추적이나 검증 근거가 중요한 작업에 사용한다.
+- `Phased` 순서는 `spec-init` -> `analyze-init` -> `implement-init` -> `implement` -> `verify`이다.
+- `Phased`에서는 `docs/<feature-name>/` 문서를 단계 간 기준으로 사용한다.
+- 문서 우선 대상 작업은 필요한 feature 문서가 준비되기 전까지 구현하지 않는다. 사용자가 문서 플로우 우회를 명시적으로 요청한 경우에만 예외로 한다.
+- `Per-Request`는 오타, 주석, 단일 문서 보정, 동작 변경 없는 설정 문구 보정, 단일 파일의 명백하고 작은 변경에 사용한다.
+- `Per-Request`에서도 범위 확장, 새 의존성, 임의 리팩터링은 하지 않는다.
 - `analyze` skill은 필요 시 사용하는 조사 도구이며 문서 단계가 아니다. 문서 단계의 분석 산출물은 `analyze-init`이 작성하는 `analysis.md`이다.
-- 문서는 범위, 결정 사항, 구현 상태의 기준이다. 검증 판단은 사용자에게 보고하며 별도 `verify.md`를 만들지 않는다.
-- 필수 산출물은 `docs/<feature-name>/` 아래의 `README.md`, `spec.md`, `analysis.md`, `implement.md`이다.
-- 문서 우선 대상 작업은 활성 feature scope의 `spec.md`, `analysis.md`, `implement.md`가 존재하기 전까지 구현하지 않는다. 단, 사용자가 문서 플로우 우회를 명시적으로 요청한 경우는 예외로 한다.
-- `implement`는 구현만 수행하고 `implement.md` 체크박스를 변경하지 않는다. 체크박스는 `verify` 승인 판단 뒤에만 갱신한다.
-- `verify`가 rejected를 반환하면 실패 이유와 근거를 사용자에게 보고하고 중단한다. 자동 수정, 다음 Task 진행, 재시도는 하지 않는다.
-- README의 `IMPLEMENT` 상태는 체크리스트 작성이 아니라 구현 완료를 뜻한다. 모든 `implement.md` Task가 검증 승인되어 `[x]`가 되었을 때만 갱신한다.
+
+## 검증과 상태 전환
+- 문서는 범위, 결정 사항, 구현 상태의 기준이다.
+- 구현 단계에서는 `implement.md` 체크박스를 변경하지 않는다.
+- 검증 단계에서는 파일, diff, 테스트, 빌드, 실행 결과, feature 문서를 근거로 `approved` 또는 `rejected`를 먼저 판단한다.
+- `approved`로 판단한 뒤에만 해당 Task 하나를 `[x]`로 갱신한다.
+- 모든 `implement.md` Task가 `[x]`가 되었을 때만 README의 `IMPLEMENT` 상태를 `[x]`로 갱신한다.
+- `rejected`이면 실패 이유와 근거를 보고하고 중단한다. 자동 수정, 다음 Task 진행, 재시도는 하지 않는다.
 - 사용자가 필수 문서 생성을 건너뛰라고 요청하면 리스크를 설명하고, 요청이 명시적인 경우에만 진행한다.
 
 ## 코드 수정 규칙
@@ -64,3 +70,7 @@
 - 수동 파일 편집은 `apply_patch`를 사용한다.
 - 관련 없는 git 변경은 되돌리지 않는다.
 - 새 의존성이 필요하면 추가 전에 이유, 영향, 대안을 설명한다.
+
+## Subagent 사용 제한
+- 사용자가 명시적으로 subagent, delegation, parallel agent 작업을 요청한 경우에만 subagent를 사용한다.
+- 대량 탐색이 필요하더라도 명시 요청이 없으면 현재 Codex가 직접 `rg`, 파일 읽기, 명령 실행으로 조사한다.
