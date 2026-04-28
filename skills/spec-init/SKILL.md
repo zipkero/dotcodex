@@ -8,7 +8,7 @@ description: "Create or reset docs/<yyyy-MM-dd>-<feature-name>/spec.md and READM
 ## 목적
 - feature 문서 디렉터리를 만들고 요구사항의 기준 문서를 작성한다.
 - `spec.md`는 요구사항, 범위, 완료 조건의 기준 문서이다.
-- `README.md`는 feature 문서 세트의 상태판이다.
+- `README.md`는 feature 문서 세트의 개요와 상태판이다.
 
 ## 입력 판단
 - 사용자가 feature 이름이나 경로를 명시하면 그대로 사용하고, 없지만 대화에서 명확하면 kebab-case로 추론하고 가정을 밝힌다.
@@ -22,10 +22,14 @@ description: "Create or reset docs/<yyyy-MM-dd>-<feature-name>/spec.md and READM
 - 기존 하위 문서(`analysis.md`, `implement.md`)가 있으면 덮어쓰기 전에 사용자에게 확인한다.
 - `spec.md`를 덮어쓰면 하위 문서가 무효가 될 수 있음을 사용자에게 알린다.
 - 사용자의 요청 밖 목표, 설계, 구현 방식을 새 요구사항으로 추가하지 않는다.
+- README의 `개요`는 feature의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나 설계 판단은 반복하지 않는다.
 
 ## README.md 형식
 ```markdown
 # <기능명>
+
+## 개요
+<feature의 목적과 배경을 1-3문장으로 요약>
 
 ## 상태
 - [x] SPEC
