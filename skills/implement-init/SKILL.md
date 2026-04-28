@@ -1,6 +1,6 @@
 ---
 name: implement-init
-description: "Create or update docs/<feature-name>/implement.md from an existing analysis.md. Use when the user asks to create an implementation checklist, prepare implementation tasks, define verification criteria, or run implement-init."
+description: "Create or update docs/<feature-dir>/implement.md from an existing analysis.md. Use when the user asks to create an implementation checklist, prepare implementation tasks, define verification criteria, or run implement-init."
 ---
 
 # Implement Init
@@ -11,7 +11,7 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 - 설계 판단은 `analysis.md`에 두고, `implement.md`에는 실행 가능한 Task만 둔다.
 
 ## 전제 조건
-- `docs/<feature-name>/spec.md`와 `docs/<feature-name>/analysis.md`가 있어야 한다.
+- feature 문서 디렉터리에 `spec.md`와 `analysis.md`가 있어야 한다.
 - 둘 중 하나가 없으면 필요한 선행 단계가 무엇인지 보고하고 중단한다.
 - 기존 `implement.md`가 있으면 덮어쓰기 전에 사용자에게 확인한다. 기존 체크박스 상태는 덮어쓰기 시 사라질 수 있다.
 - `analysis.md`에 미해결 Decision Point가 있으면 사용자에게 알리고, 사용자가 명시적으로 진행을 원할 때만 계속한다.

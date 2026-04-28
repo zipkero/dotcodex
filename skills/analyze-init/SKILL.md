@@ -1,6 +1,6 @@
 ---
 name: analyze-init
-description: "Create or update docs/<feature-name>/analysis.md from an existing spec.md. Use when the user asks to create the analysis/design document for a documented feature scope."
+description: "Create or update docs/<feature-dir>/analysis.md from an existing spec.md. Use when the user asks to create the analysis/design document for a documented feature scope."
 ---
 
 # Analyze Init
@@ -11,7 +11,7 @@ description: "Create or update docs/<feature-name>/analysis.md from an existing 
 - `analysis.md`는 요구사항을 새로 만들지 않는다. 새 요구사항은 먼저 `spec.md`에 반영한다.
 
 ## 전제 조건
-- `docs/<feature-name>/spec.md`가 있어야 한다.
+- feature 문서 디렉터리에 `spec.md`가 있어야 한다.
 - spec이 없으면 먼저 `spec-init`이 필요하다고 보고하고 중단한다.
 - 기존 `implement.md`가 있으면 하위 문서에 영향이 있으므로 덮어쓰기 전에 사용자에게 확인한다.
 

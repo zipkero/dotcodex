@@ -1,12 +1,12 @@
 ---
 name: implement
-description: "Execute the next Task from docs/<feature-name>/implement.md. Use when the user asks to implement, fix, build, or modify code for an active documented feature scope."
+description: "Execute the next Task from docs/<feature-dir>/implement.md. Use when the user asks to implement, fix, build, or modify code for an active documented feature scope."
 ---
 
 # Implement
 
 ## 목적
-- `docs/<feature-name>/implement.md`의 지정된 Task 또는 첫 번째 미완료 Task를 최소 범위로 구현한다.
+- feature 문서 디렉터리의 `implement.md`에 있는 지정된 Task 또는 첫 번째 미완료 Task를 최소 범위로 구현한다.
 - 구현 단계에서는 체크박스와 README 상태를 변경하지 않는다.
 
 ## 선행 확인

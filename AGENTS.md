@@ -45,7 +45,7 @@
 - 작업은 `Phased` 또는 `Per-Request` 중 하나로 분류한다.
 - `Phased`는 기능 개발, 동작 변경, 단순하지 않은 버그 수정, 다중 파일 수정, API/DB/auth/external integration 변경, 후속 추적이나 검증 근거가 중요한 작업에 사용한다.
 - `Phased` 순서는 `spec-init` -> `analyze-init` -> `implement-init` -> `implement` -> `verify`이다.
-- `Phased`에서는 `docs/<feature-name>/` 문서를 단계 간 기준으로 사용한다.
+- `Phased`에서는 feature 문서 디렉터리를 단계 간 기준으로 사용한다.
 - 문서 우선 대상 작업은 필요한 feature 문서가 준비되기 전까지 구현하지 않는다. 사용자가 문서 플로우 우회를 명시적으로 요청한 경우에만 예외로 한다.
 - `Per-Request`는 오타, 주석, 단일 문서 보정, 동작 변경 없는 설정 문구 보정, 단일 파일의 명백하고 작은 변경에 사용한다.
 - `Per-Request`에서도 범위 확장, 새 의존성, 임의 리팩터링은 하지 않는다.
