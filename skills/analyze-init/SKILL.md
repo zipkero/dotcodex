@@ -12,7 +12,7 @@ description: "Create or update docs/<feature-dir>/analysis.md from an existing s
 
 ## 전제 조건
 - feature 문서 디렉터리에 `spec.md`가 있어야 한다.
-- spec이 없으면 먼저 `spec-init`이 필요하다고 보고하고 중단한다.
+- spec이 없으면 `spec-init`이 필요하다고 보고하고 중단한다.
 - 기존 `implement.md`가 있으면 하위 문서에 영향이 있으므로 덮어쓰기 전에 사용자에게 확인한다.
 
 ## 작성 규칙
@@ -22,8 +22,7 @@ description: "Create or update docs/<feature-dir>/analysis.md from an existing s
 - 완료 조건을 복사해 반복하지 말고 필요한 곳에서 `SPEC 완료 조건 N`처럼 참조한다.
 - 실행 순서나 체크리스트는 작성하지 않는다. 해당 내용은 `implement.md`에 둔다.
 - 불확실한 설계 결정은 Decision Points 또는 열린 질문으로 남긴다.
-- 설계 변경이 필요하지만 결정되지 않았으면 구현 계획으로 확정하지 않는다.
-- 불필요한 리팩터링이나 범위 외 개선을 분석에 넣지 않는다.
+- 결정되지 않은 설계 변경, 불필요한 리팩터링, 범위 외 개선은 구현 계획으로 확정하지 않는다.
 
 ## analysis.md 형식
 ```markdown

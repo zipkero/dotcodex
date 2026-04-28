@@ -9,6 +9,7 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 - `analysis.md`를 실행 가능한 구현 체크리스트로 변환한다.
 - `implement.md`는 구현 항목, 실제 목적, 접근, 항목별 검증 조건의 기준 문서이다.
 - 설계 판단은 `analysis.md`에 두고, `implement.md`에는 실행 가능한 Task만 둔다.
+- 공통 안전 기준은 `AGENTS.md`의 불변 규칙을 따른다.
 
 ## 전제 조건
 - feature 문서 디렉터리에 `spec.md`와 `analysis.md`가 있어야 한다.
@@ -19,25 +20,20 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 ## 작성 규칙
 - 체크리스트는 검증 가능한 단위로 나눈다.
 - 각 Task는 한 번에 구현하고 검증할 수 있는 최소 단위로 작성한다.
-- 각 Task 항목은 `TASK-001`, `TASK-002`처럼 3자리 zero-padding ID를 붙인다.
-- 새 `implement.md`를 작성할 때는 위에서부터 `TASK-001`부터 순서대로 증가시킨다.
-- 기존 `implement.md`를 갱신할 때는 기존 Task ID를 유지하고 재번호 매기기를 하지 않는다.
-- 새 Task를 추가할 때는 문서에 있는 가장 큰 Task ID의 다음 번호를 사용한다.
-- 삭제되거나 병합된 Task의 ID는 재사용하지 않는다.
+- Task ID는 `TASK-001`처럼 3자리 zero-padding을 사용하고, 신규 문서는 `TASK-001`부터 순서대로 작성한다.
+- 기존 문서 갱신 시 Task ID는 재번호 매기지 않는다. 새 Task는 가장 큰 ID의 다음 번호를 사용하고, 삭제/병합된 ID는 재사용하지 않는다.
 - 각 항목은 최소 하나의 `spec.md` 완료 조건을 근거 문서로 연결해야 한다.
 - 각 항목에는 목적, 근거 문서, 대상, 접근, 검증 조건을 둔다.
 - `목적`에는 문서 매핑이 아니라 사용자가 얻는 결과나 Task가 완성해야 하는 동작을 적는다.
 - `검증 조건`은 `verify`가 1차로 확인할 수 있도록 구체적인 관찰 결과, 테스트, 실행 조건, diff 확인 기준으로 작성한다.
 - 대상 파일이나 모듈을 알 수 있으면 `대상`에 적는다.
-- 테스트 Task 포함 기준은 `verify` skill의 테스트 규칙을 따른다. 여기서 별도의 테스트 규칙을 중복 정의하지 않는다.
+- 테스트 Task 포함 기준은 `verify` skill의 테스트 규칙을 따른다.
 
 ## 금지 사항
 - Decision Point를 `implement.md`에 두지 않는다. 설계 결정은 `analysis.md`에 둔다.
 - `spec.md` 완료 조건에 매핑되지 않은 Task를 만들지 않는다.
 - `spec.md` 완료 조건을 `implement.md`에서 약화하거나 확장하지 않는다.
-- `정리`, `개선`, `리팩터링`처럼 검증 기준이 불명확한 Task를 만들지 않는다.
-- 목적, 근거 문서, 대상, 접근, 검증 조건으로 설명할 수 없는 작업은 Task로 만들지 않는다.
-- `목적`을 `SPEC 완료 조건 N / ANALYSIS 섹션명` 같은 문서 매핑만으로 작성하지 않는다.
+- `정리`, `개선`, `리팩터링`처럼 목적, 대상, 접근, 검증 조건이 불명확한 Task를 만들지 않는다.
 
 ## implement.md 형식
 ```markdown
@@ -60,7 +56,7 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 - 이 단계에서는 `IMPLEMENT`를 `[x]`로 변경하지 않는다. `IMPLEMENT`는 실제 구현 완료를 뜻한다.
 
 ## 완료 조건
-- `implement.md`가 spec과 analysis에 근거해 생성 또는 갱신되어야 한다.
+- `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.
 
 ## 완료 보고
 - 작업 항목 수
