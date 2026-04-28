@@ -38,6 +38,7 @@ description: "Judge whether the most recent implement Task satisfies spec.md com
 
 ## Rejected 사유
 - `rejected`이면 실패 이유를 정확성 문제, 범위 문제, 근거 부족 중 하나로 설명한다.
+- 오류, 실패, `rejected` 사유는 문서 번호만으로 설명하지 말고 실제 관찰된 문제와 근거를 함께 설명한다.
 - 자동 수정, 다음 Task 진행, 재시도는 하지 않는다.
 
 ## 상태 전환
