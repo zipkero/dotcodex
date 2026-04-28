@@ -7,7 +7,7 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 
 ## 목적
 - `analysis.md`를 실행 가능한 구현 체크리스트로 변환한다.
-- `implement.md`는 구현 항목, 목적, 접근, 항목별 검증 기준의 기준 문서이다.
+- `implement.md`는 구현 항목, 실제 목적, 접근, 항목별 검증 조건의 기준 문서이다.
 - 설계 판단은 `analysis.md`에 두고, `implement.md`에는 실행 가능한 Task만 둔다.
 
 ## 전제 조건
@@ -24,8 +24,10 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 - 기존 `implement.md`를 갱신할 때는 기존 Task ID를 유지하고 재번호 매기기를 하지 않는다.
 - 새 Task를 추가할 때는 문서에 있는 가장 큰 Task ID의 다음 번호를 사용한다.
 - 삭제되거나 병합된 Task의 ID는 재사용하지 않는다.
-- 각 항목은 최소 하나의 `spec.md` 완료 조건과 연결되어야 한다.
-- 각 항목에는 목적, 대상, 접근, 검증 조건을 둔다.
+- 각 항목은 최소 하나의 `spec.md` 완료 조건을 근거 문서로 연결해야 한다.
+- 각 항목에는 목적, 근거 문서, 대상, 접근, 검증 조건을 둔다.
+- `목적`에는 문서 매핑이 아니라 사용자가 얻는 결과나 Task가 완성해야 하는 동작을 적는다.
+- `검증 조건`은 `verify`가 1차로 확인할 수 있도록 구체적인 관찰 결과, 테스트, 실행 조건, diff 확인 기준으로 작성한다.
 - 대상 파일이나 모듈을 알 수 있으면 `대상`에 적는다.
 - 테스트 Task 포함 기준은 `verify` skill의 테스트 규칙을 따른다. 여기서 별도의 테스트 규칙을 중복 정의하지 않는다.
 
@@ -34,7 +36,8 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 - `spec.md` 완료 조건에 매핑되지 않은 Task를 만들지 않는다.
 - `spec.md` 완료 조건을 `implement.md`에서 약화하거나 확장하지 않는다.
 - `정리`, `개선`, `리팩터링`처럼 검증 기준이 불명확한 Task를 만들지 않는다.
-- 목적, 대상, 접근, 검증 조건으로 설명할 수 없는 작업은 Task로 만들지 않는다.
+- 목적, 근거 문서, 대상, 접근, 검증 조건으로 설명할 수 없는 작업은 Task로 만들지 않는다.
+- `목적`을 `SPEC 완료 조건 N / ANALYSIS 섹션명` 같은 문서 매핑만으로 작성하지 않는다.
 
 ## implement.md 형식
 ```markdown
@@ -43,7 +46,8 @@ description: "Create or update docs/<feature-name>/implement.md from an existing
 ## 체크리스트
 
 - [ ] TASK-001: <작업 항목>
-  - 목적: SPEC 완료 조건 N / ANALYSIS 섹션명
+  - 목적:
+  - 근거 문서: SPEC 완료 조건 N, ANALYSIS <섹션명>
   - 대상:
   - 접근:
   - 검증 조건:

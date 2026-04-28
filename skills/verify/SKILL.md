@@ -6,13 +6,15 @@ description: "Judge whether the most recent implement Task satisfies spec.md com
 # Verify
 
 ## 목적
-- 구현 결과를 spec, analysis, implement 기준으로 검증한다.
+- 구현 결과가 `implement.md`의 검증 조건을 충족하는지 먼저 검증한다.
+- `spec.md`와 `analysis.md`는 상위 요구사항, 설계 제약, 범위 확인 기준으로 사용한다.
 - `verify`는 승인/거절 판단과 근거를 사용자에게 보고한다.
 - 별도 `verify.md`를 만들거나 갱신하지 않는다.
 - `verify`는 별도 실행 주체가 아니라 현재 Codex가 따르는 검증 단계 지침이다.
 
 ## 선행 확인
-- `spec.md`, `analysis.md`, `implement.md`를 읽고 검증 기준을 확인한다.
+- `implement.md`에서 대상 Task의 목적, 근거 문서, 검증 조건을 확인한다.
+- `spec.md`와 `analysis.md`를 읽고 대상 Task가 상위 요구사항과 설계 제약을 벗어나지 않는지 확인한다.
 - 사용자가 `TASK-NNN` 형식의 Task ID를 지정하면 해당 Task를 검증 대상으로 한다.
 - Task ID가 지정되지 않으면 가장 최근에 구현된 Task를 검증 대상으로 한다.
 - 대상 Task가 없거나 모호하면 판단하지 말고 사용자에게 특정 Task를 요청한다.
@@ -25,8 +27,12 @@ description: "Judge whether the most recent implement Task satisfies spec.md com
 - 근거만으로 정확성을 판단할 수 없으면 `approved`가 아니라 `rejected`로 판단하고 부족한 근거를 명시한다.
 
 ## 판단 규칙
-- `approved`: Task가 spec 완료 조건, analysis 설계 의도, implement 검증 조건을 충족한다고 근거로 판단할 수 있다.
+- 1차 기준은 대상 Task의 `검증 조건`이다.
+- 2차 기준은 `spec.md` 완료 조건을 위반하지 않는지 여부이다.
+- 3차 기준은 `analysis.md`의 설계 결정, 리스크, 제외 범위를 벗어나지 않는지 여부이다.
+- `approved`: Task가 `implement.md` 검증 조건을 충족하고, `spec.md`와 `analysis.md`의 상위 기준을 위반하지 않는다고 근거로 판단할 수 있다.
 - `rejected`: 충족하지 못하거나, 근거가 부족하거나, 범위를 벗어났거나, 설계 의도와 어긋난다.
+- 문서 매핑이 맞는지만으로 승인하지 않는다.
 - 실행하지 못한 검증은 성공으로 간주하지 않는다.
 - rejected면 실패 이유와 근거를 사용자에게 보고하고 중단한다. 자동 수정, 다음 Task 진행, 재시도는 하지 않는다.
 

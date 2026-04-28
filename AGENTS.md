@@ -54,7 +54,7 @@
 ## 검증과 상태 전환
 - 문서는 범위, 결정 사항, 구현 상태의 기준이다.
 - 구현 단계에서는 `implement.md` 체크박스를 변경하지 않는다.
-- 검증 단계에서는 파일, diff, 테스트, 빌드, 실행 결과, feature 문서를 근거로 `approved` 또는 `rejected`를 먼저 판단한다.
+- 검증 단계에서는 `implement.md`의 검증 조건을 1차 기준으로 삼고, 파일, diff, 테스트, 빌드, 실행 결과, feature 문서를 근거로 `approved` 또는 `rejected`를 먼저 판단한다.
 - `approved`로 판단한 뒤에만 해당 Task 하나를 `[x]`로 갱신한다.
 - 모든 `implement.md` Task가 `[x]`가 되었을 때만 README의 `IMPLEMENT` 상태를 `[x]`로 갱신한다.
 - `rejected`이면 실패 이유와 근거를 보고하고 중단한다. 자동 수정, 다음 Task 진행, 재시도는 하지 않는다.
