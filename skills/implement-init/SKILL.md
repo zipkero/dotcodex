@@ -25,7 +25,7 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 - 각 항목은 최소 하나의 `spec.md` 완료 조건을 근거 문서로 연결해야 한다.
 - 각 항목에는 목적, 근거 문서, 대상, 접근, 검증 조건을 둔다.
 - `목적`에는 문서 매핑이 아니라 사용자가 얻는 결과나 Task가 완성해야 하는 동작을 적는다.
-- `검증 조건`은 `verify`가 1차로 확인할 수 있도록 구체적인 관찰 결과, 테스트, 실행 조건, diff 확인 기준으로 작성한다.
+- `검증 조건`은 `결과`와 `확인`으로 작성한다. `결과`에는 Task 완료 후 성립해야 하는 동작, 출력, 파일 내용, 설정 상태를 적고, `확인`에는 테스트, 빌드, lint, diff, 수동 확인 등 해당 결과를 검증하는 방법을 적는다.
 - 대상 파일이나 모듈을 알 수 있으면 `대상`에 적는다.
 - 테스트 Task 포함 기준은 `verify` skill의 테스트 규칙을 따른다.
 
@@ -47,6 +47,8 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
   - 대상:
   - 접근:
   - 검증 조건:
+    - 결과:
+    - 확인:
 
 ## 제외 항목
 ```
