@@ -14,7 +14,8 @@ description: "Execute the next Task from docs/<feature-dir>/implement.md. Use wh
 - 문서가 없거나 활성 feature scope를 특정할 수 없으면 구현하지 말고 필요한 init 단계나 범위를 요청한다.
 - 사용자가 `TASK-NNN`을 지정하면 해당 Task, 아니면 `implement.md`의 첫 번째 미완료 Task를 대상으로 한다.
 - 대상 Task가 없거나, 이미 완료되었거나, 모호하면 구현하지 않고 명확화가 필요하다고 보고한다.
-- 단순 오타, 주석, 단일 문서 보정, 동작 변경 없는 명백한 설정 문구 보정은 사용자의 명시 범위 안에서 문서 플로우를 생략할 수 있다.
+- `AGENTS.md` 기준으로 `Per-Request`에 해당하는 작은 변경은 활성 feature scope가 없어도 사용자의 명시 범위 안에서 처리할 수 있다.
+- 단, 범위 확장, 새 의존성, 임의 리팩터링, 설계 판단이 필요한 변경은 문서 플로우를 따른다.
 
 ## 구현 규칙
 - 기존 코드 패턴과 프로젝트 관례를 우선한다.
