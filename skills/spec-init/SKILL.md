@@ -14,6 +14,7 @@ description: "Create or reset docs/<yyyyMMdd>-<nnn>-<feature-name>/spec.md and R
 - 사용자가 feature 이름을 명시하면 사용하고, 없지만 대화에서 명확하면 kebab-case로 추론하고 가정을 밝힌다.
 - feature 이름이 불명확하면 구현하지 말고 짧게 질문한다.
 - 요구사항이 부족하면 임의로 채우지 말고 `열린 질문`에 남긴다.
+- 요구사항의 출처나 정리 방식이 아니라 사용자가 기대하는 최종 사용 가능 상태를 기준으로 spec 범위를 판단한다.
 
 ## 생성/갱신 규칙
 - 새 feature 디렉터리는 `docs/<yyyyMMdd>-<nnn>-<feature-name>/` 형식을 사용한다.
@@ -22,6 +23,7 @@ description: "Create or reset docs/<yyyyMMdd>-<nnn>-<feature-name>/spec.md and R
 - 기존 하위 문서(`analysis.md`, `implement.md`)가 있으면 덮어쓰기 전에 사용자에게 확인한다.
 - `spec.md`를 덮어쓰면 하위 문서가 무효가 될 수 있음을 사용자에게 알린다.
 - 사용자의 요청 밖 목표, 설계, 구현 방식을 새 요구사항으로 추가하지 않는다.
+- `spec.md`의 `범위`와 `완료 조건`은 구현 순서가 아니라 최종적으로 사용자가 관찰할 수 있는 작동 상태를 기준으로 작성한다.
 - README의 `개요`는 feature의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나 설계 판단은 반복하지 않는다.
 
 ## README.md 형식
