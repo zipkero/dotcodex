@@ -1,6 +1,6 @@
 ---
 name: verify
-description: "Judge whether the most recent implement Task satisfies spec.md completion criteria and implement.md verification criteria. Use when the user asks to verify, review, validate, test, approve, or reject implemented work."
+description: "Judge whether the most recent implement Task satisfies SPEC completion criteria and implement.md verification criteria. Use when the user asks to verify, review, validate, test, approve, or reject implemented work."
 ---
 
 # Verify
@@ -26,7 +26,7 @@ description: "Judge whether the most recent implement Task satisfies spec.md com
 
 ## 판단 규칙
 - 1차 기준은 대상 Task의 `검증 조건`이다.
-- 2차 기준은 `spec.md` 완료 조건을 위반하지 않는지 여부이다.
+- 2차 기준은 `SPEC 완료 조건`을 위반하지 않는지 여부이다.
 - 3차 기준은 `analysis.md`의 설계 결정, 리스크, 제외 범위를 벗어나지 않는지 여부이다.
 - `approved`: Task가 `implement.md` 검증 조건을 충족하고, `spec.md`와 `analysis.md`의 상위 기준을 위반하지 않는다고 근거로 판단할 수 있다.
 - `rejected`: 충족하지 못하거나, 근거가 부족하거나, 범위나 설계 의도를 벗어난다.
@@ -36,7 +36,7 @@ description: "Judge whether the most recent implement Task satisfies spec.md com
 ## 상태 전환
 - 검증 단계는 먼저 `approved` 또는 `rejected` 판단과 근거를 확정한다.
 - `approved`인 경우에만 그 다음 작업으로 해당 `implement.md` Task 하나를 `[x]`로 변경한다.
-- 모든 Task가 `[x]`가 되면 README의 `IMPLEMENT`를 `[x]`로 변경하고 `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
+- 모든 Task가 `[x]`가 되면 `docs/<feature-dir>/README.md`의 `IMPLEMENT`를 `[x]`로 변경하고 `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
 - `rejected`이면 대상 Task를 `[ ]`로 유지한다. 이미 승인된 Task를 재검증해 실패한 경우에만 `[x]`를 `[ ]`로 되돌린다.
 
 ## 테스트 규칙

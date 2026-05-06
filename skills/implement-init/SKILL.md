@@ -15,14 +15,16 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 - feature 문서 디렉터리에 `spec.md`와 `analysis.md`가 있어야 한다.
 - 둘 중 하나가 없으면 필요한 선행 단계가 무엇인지 보고하고 중단한다.
 - 기존 `implement.md`가 있으면 덮어쓰기 전에 사용자에게 확인한다. 기존 체크박스 상태는 덮어쓰기 시 사라질 수 있다.
-- `analysis.md`에 미해결 Decision Point가 있으면 사용자에게 알리고, 사용자가 명시적으로 진행을 원할 때만 계속한다.
+- `analysis.md`에 미해결 Decision Point나 구현 범위, 설계, 검증에 영향을 주는 열린 질문이 있으면 사용자에게 알리고, 사용자가 명시적으로 진행을 원할 때만 계속한다.
 
 ## 작성 규칙
 - 체크리스트는 검증 가능한 단위로 나눈다.
 - 각 Task는 한 번에 구현하고 검증할 수 있는 최소 단위로 작성하되, 도메인 모델, 저장소 경계, 서비스 흐름, API/UI, 테스트처럼 검증 기준이 다른 작업은 필요하면 분리한다.
 - Task ID는 `TASK-001`처럼 3자리 zero-padding을 사용하고, 신규 문서는 `TASK-001`부터 순서대로 작성한다.
 - 기존 문서 갱신 시 Task ID는 재번호 매기지 않는다. 새 Task는 가장 큰 ID의 다음 번호를 사용하고, 삭제/병합된 ID는 재사용하지 않는다.
-- 각 항목은 최소 하나의 `spec.md` 완료 조건을 근거 문서로 연결해야 한다.
+- 각 항목은 최소 하나의 `SPEC 완료 조건`을 근거 문서로 연결해야 한다.
+- `implement.md`의 전체 Task 집합은 모든 `SPEC 완료 조건`을 빠짐없이 커버해야 한다.
+- 특정 `SPEC 완료 조건`을 아직 Task로 확정할 수 없으면 임의로 생략하지 말고 `analysis.md` 갱신 필요 사항 또는 열린 질문으로 보고한다.
 - 각 항목에는 목적, 근거 문서, 대상, 접근, 검증 조건을 둔다.
 - `목적`에는 문서 매핑이 아니라 사용자가 얻는 결과나 Task가 완성해야 하는 동작을 적는다.
 - `근거 문서`에는 관련 `SPEC 완료 조건 N`과 `ANALYSIS`의 실제 섹션명을 함께 적어 검증자가 기준을 찾을 수 있게 한다.
@@ -33,8 +35,8 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 
 ## 금지 사항
 - Decision Point를 `implement.md`에 두지 않는다. 설계 결정은 `analysis.md`에 둔다.
-- `spec.md` 완료 조건에 매핑되지 않은 Task를 만들지 않는다.
-- `spec.md` 완료 조건을 `implement.md`에서 약화하거나 확장하지 않는다.
+- `SPEC 완료 조건`에 매핑되지 않은 Task를 만들지 않는다.
+- `SPEC 완료 조건`을 `implement.md`에서 약화하거나 확장하지 않는다.
 - `analysis.md`에 없는 설계 판단이 필요한 항목은 Task로 확정하지 말고 `analysis.md` 갱신 필요 사항으로 보고한다.
 - `정리`, `개선`, `리팩터링`처럼 목적, 대상, 접근, 검증 조건이 불명확한 Task를 만들지 않는다.
 
@@ -56,12 +58,13 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 ## 제외 항목
 ```
 
-## README.md 갱신
+## feature README.md 갱신
 - 이력에 `- <yyyy-MM-dd>: IMPLEMENT 체크리스트 작성`을 추가한다.
 - 이 단계에서는 `IMPLEMENT`를 `[x]`로 변경하지 않는다. `IMPLEMENT`는 실제 구현 완료를 뜻한다.
 
-## 완료 조건
+## 스킬 완료 조건
 - `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.
+- `docs/<feature-dir>/README.md`의 이력이 갱신되어야 한다.
 
 ## 완료 보고
 - 작업 항목 수

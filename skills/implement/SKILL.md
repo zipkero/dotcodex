@@ -10,7 +10,7 @@ description: "Execute the next Task from docs/<feature-dir>/implement.md. Use wh
 - 공통 안전 기준은 `AGENTS.md`의 불변 규칙을 따른다.
 
 ## 선행 확인
-- 문서 우선 대상 작업이면 `spec.md`, `analysis.md`, `implement.md`를 확인한다.
+- `Phased(문서 우선)` 대상 작업이면 `spec.md`, `analysis.md`, `implement.md`를 확인한다.
 - 문서가 없거나 활성 feature scope를 특정할 수 없으면 구현하지 말고 필요한 init 단계나 범위를 요청한다.
 - 사용자가 `TASK-NNN`을 지정하면 해당 Task, 아니면 `implement.md`의 첫 번째 미완료 Task를 대상으로 한다.
 - 대상 Task가 없거나, 이미 완료되었거나, 모호하면 구현하지 않고 명확화가 필요하다고 보고한다.
@@ -26,7 +26,7 @@ description: "Execute the next Task from docs/<feature-dir>/implement.md. Use wh
 - Task 밖에서 발견한 문제는 수정하지 말고 보고만 한다.
 - 테스트 코드는 `implement.md`에 테스트 Task가 있거나, `verify` skill의 테스트 규칙에서 허용하는 버그 회귀 예외에 해당할 때만 작성한다.
 - 테스트, 포맷, 빌드 명령은 변경 범위를 확인하는 데 필요한 수준으로 실행한다.
-- 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와 README의 `IMPLEMENT` 상태를 변경하지 않는다.
+- 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와 `docs/<feature-dir>/README.md`의 `IMPLEMENT` 상태를 변경하지 않는다.
 
 ## 완료 보고
 - 변경한 파일
