@@ -10,7 +10,7 @@ description: "Judge whether the most recent implement Task satisfies SPEC comple
 - `spec.md`와 `analysis.md`는 상위 요구사항, 설계 제약, 범위 확인 기준으로 사용한다.
 - `verify`는 승인/거절 판단과 근거를 사용자에게 보고한다.
 - 별도 `verify.md`를 만들거나 갱신하지 않는다.
-- 공통 안전 기준은 `AGENTS.md`의 불변 규칙을 따른다.
+- 공통 안전 기준은 `AGENTS.md`의 언어, 판단과 변경 원칙, 도구와 안전을 따른다.
 
 ## 선행 확인
 - `implement.md`에서 대상 Task의 목적, 근거 문서, 검증 조건을 확인한다.

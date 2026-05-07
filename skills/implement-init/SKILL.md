@@ -9,7 +9,7 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 - `analysis.md`를 실행 가능한 구현 체크리스트로 변환한다.
 - `implement.md`는 구현 항목, 실제 목적, 접근, 항목별 검증 조건의 기준 문서이다.
 - 설계 판단은 `analysis.md`에 두고, `implement.md`에는 확정된 설계를 실행 가능한 Task로 나눈 내용만 둔다.
-- 공통 안전 기준은 `AGENTS.md`의 불변 규칙을 따른다.
+- 공통 안전 기준은 `AGENTS.md`의 언어, 판단과 변경 원칙, 도구와 안전을 따른다.
 
 ## 전제 조건
 - feature 문서 디렉터리에 `spec.md`와 `analysis.md`가 있어야 한다.

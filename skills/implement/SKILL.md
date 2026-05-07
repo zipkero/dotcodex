@@ -7,7 +7,7 @@ description: "Execute the next Task from docs/<feature-dir>/implement.md. Use wh
 
 ## 목적
 - feature 문서 디렉터리의 `implement.md`에 있는 지정된 Task 또는 첫 번째 미완료 Task를 최소 범위로 구현한다.
-- 공통 안전 기준은 `AGENTS.md`의 불변 규칙을 따른다.
+- 공통 안전 기준은 `AGENTS.md`의 언어, 판단과 변경 원칙, 도구와 안전을 따른다.
 
 ## 선행 확인
 - `Phased(문서 우선)` 대상 작업이면 `spec.md`, `analysis.md`, `implement.md`를 확인한다.
