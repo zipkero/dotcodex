@@ -22,8 +22,9 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 - 각 Task는 한 번에 구현하고 검증할 수 있는 최소 단위로 작성하되, 도메인 모델, 저장소 경계, 서비스 흐름, API/UI, 테스트처럼 검증 기준이 다른 작업은 필요하면 분리한다.
 - Task ID는 `TASK-001`처럼 3자리 zero-padding을 사용하고, 신규 문서는 `TASK-001`부터 순서대로 작성한다.
 - 기존 문서 갱신 시 Task ID는 재번호 매기지 않는다. 새 Task는 가장 큰 ID의 다음 번호를 사용하고, 삭제/병합된 ID는 재사용하지 않는다.
-- 각 항목은 최소 하나의 `SPEC 완료 조건`을 근거 문서로 연결해야 한다.
+- 각 항목은 최소 하나의 `SPEC 완료 조건`과 `analysis.md`의 실제 섹션 또는 `SPEC 추적` 항목을 근거 문서로 연결해야 한다.
 - `implement.md`의 전체 Task 집합은 모든 `SPEC 완료 조건`을 빠짐없이 커버해야 한다.
+- `analysis.md`에서 확정된 구현 영향 내용은 `implement.md`의 Task 또는 `제외 항목`으로 빠짐없이 연결해야 한다.
 - 특정 `SPEC 완료 조건`을 아직 Task로 확정할 수 없으면 임의로 생략하지 말고 `analysis.md` 갱신 필요 사항 또는 열린 질문으로 보고한다.
 - 각 항목에는 목적, 근거 문서, 대상, 접근, 검증 조건을 둔다.
 - `목적`에는 문서 매핑이 아니라 사용자가 얻는 결과나 Task가 완성해야 하는 동작을 적는다.
@@ -64,8 +65,11 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 
 ## 스킬 완료 조건
 - `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.
+- 모든 `SPEC 완료 조건`이 하나 이상의 Task 또는 제외 항목으로 추적되어야 한다.
+- `analysis.md`의 구현 영향 내용이 하나 이상의 Task 또는 제외 항목으로 추적되어야 한다.
 - `docs/<feature-dir>/README.md`의 이력이 갱신되어야 한다.
 
 ## 완료 보고
 - 작업 항목 수
 - 검증 기준 요약
+- `analysis.md 갱신 필요`로 되돌린 항목이 있으면 관련 `SPEC 완료 조건`, 부족한 결정, Task 작성에 미치는 영향
