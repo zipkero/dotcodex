@@ -28,6 +28,7 @@ description: "Create or reset docs/<yyyyMMdd>-<nnn>-<feature-name>/spec.md and f
 - 최종 사용 가능 상태를 판단하되, 입력 근거에서 확인되지 않은 목표를 요구사항 범위에 추가하지 않는다.
 - 요구사항 범위가 불명확하면 임의로 축소하거나 확장하지 말고 `열린 질문`에 남긴다.
 - `spec.md`의 `범위`, `목표`, `제약`, `비범위`, `완료 조건`은 최종 사용 가능 상태를 기준으로 작성한다.
+- `spec.md`는 독자가 요구사항과 완료 기준을 바로 판단할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
 - 구현 단위, 내부 설계, 진행 순서는 후속 문서로 분리한다.
 - `docs/<feature-dir>/README.md`의 `개요`는 feature의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나 설계 판단은 반복하지 않는다.
 
@@ -54,7 +55,7 @@ description: "Create or reset docs/<yyyyMMdd>-<nnn>-<feature-name>/spec.md and f
 
 ## spec.md 형식
 ```markdown
-# <기능명> Spec
+# <기능명> 명세
 
 ## 범위
 
