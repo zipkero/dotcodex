@@ -27,4 +27,4 @@ description: "Audit global Codex configuration for rule consistency, ambiguity, 
 - 위치
 - 현재 문제
 - 제안 방향
-- cascade가 필요한 파일
+- 영향받는 파일
