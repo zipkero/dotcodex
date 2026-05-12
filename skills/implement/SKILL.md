@@ -24,7 +24,7 @@ description: "Execute the next Task from docs/<feature-dir>/implement.md. Use wh
 - 파일 수정 전 어떤 변경을 할지 짧게 설명한다.
 - 구현은 대상 Task 단위로 진행하고, 한 턴에 하나의 Task만 구현한다.
 - Task 밖에서 발견한 문제는 수정하지 말고 보고만 한다.
-- 테스트 코드는 임의로 추가하지 않는다. `implement.md`에 명시된 테스트 Task를 수행하거나, `verify` skill의 테스트 규칙이 허용하는 버그 수정 회귀 테스트 예외에 해당할 때만 작성한다.
+- `implement.md`에 명시된 테스트 Task를 수행하거나, `verify` skill의 테스트 규칙이 허용하는 버그 수정 회귀 테스트 예외에 해당할 때만 테스트 코드를 작성한다.
 - 테스트, 포맷, 빌드 명령은 변경 범위를 확인하는 데 필요한 수준으로 실행한다.
 - 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와 `docs/<feature-dir>/README.md`의 `IMPLEMENT` 상태를 변경하지 않는다.
 
