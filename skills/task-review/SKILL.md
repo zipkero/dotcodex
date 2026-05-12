@@ -25,8 +25,9 @@ description: "Explain a completed documented implementation task, including code
 - Task의 목표와 실제 구현 범위
 - 변경 파일별 역할과 구성요소 간 연결 관계
 - 주요 type, function, method의 역할, 입력, 출력, 상태 변화, 오류 경계
+- 주요 함수와 method의 정상 경로, 오류 경로, 재시도, 조건 분기를 코드 순서에 맞춘 설명
 - 호출 순서와 데이터 흐름
-- 테스트가 검증한 계약과 연결된 코드 경로
+- 테스트 case와 assertion이 검증한 계약, 연결된 코드 경로, 막는 회귀
 - 설계상 trade-off, 이번 Task에서 제외한 범위, 남은 리스크
 - 실행한 검증 명령과 결과
 
@@ -37,9 +38,10 @@ description: "Explain a completed documented implementation task, including code
 - 요약
 - 대상 Task와 변경 파일
 - 주요 코드 상세
+- 주요 함수별 내부 분기
 - 실행 흐름과 데이터 흐름
 - 오류 처리와 경계 조건
-- 테스트와 검증 근거
+- 테스트 assertion과 검증 근거
 - 설계 trade-off
 - 남은 리스크와 후속 범위
 
