@@ -20,3 +20,7 @@
 !/skills/spec-init/**
 !/skills/verify/
 !/skills/verify/**
+!/skills/global-review/
+!/skills/global-review/**
+!/skills/task-review/
+!/skills/task-review/**

@@ -6,7 +6,7 @@ description: "Audit global Codex configuration for rule consistency, ambiguity, 
 # Global Review
 
 ## 목적
-`AGENTS.md`, `README.md`, `skills/**`를 읽고 전역 설정의 정합성을 점검한다. 파일은 수정하지 않고 분석 결과만 보고한다.
+`AGENTS.md`, `README.md`, 사용자 정의 `skills/*/SKILL.md`를 읽고 전역 설정의 정합성을 점검한다. 파일은 수정하지 않고 분석 결과만 보고한다.
 
 ## 범위
 - 규칙 간 의미 충돌

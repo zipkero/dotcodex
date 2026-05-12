@@ -11,7 +11,7 @@
 
 ## 문서 우선 개발 플로우
 
-기능 개발, 동작 변경, 단순하지 않은 버그 수정, 다중 파일 수정, API/DB/auth/external integration 변경, 또는 증거가 중요한 작업은 `docs/<feature-name>/` 플로우를 사용한다.
+요구사항 확정, 설계 판단, 다중 단계 검증이 필요한 작업은 `docs/<feature-dir>/` 문서 플로우를 사용한다. 새 feature 디렉터리는 `spec-init` 기준에 따라 `docs/<yyyyMMdd>-<nnn>-<feature-name>/` 형식으로 만든다.
 
 기본 순서:
 
@@ -30,7 +30,7 @@
 
 ## Skill 구성
 
-사용자 정의 skill은 `skills/.system` 밖에 둔다.
+사용자 정의 skill은 `skills/.system` 밖에 둔다. 실제 관리 대상은 `SKILL.md`가 있는 사용자 정의 skill 디렉터리이다.
 
 - `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인
 - `skills/spec-init`: `spec.md`와 feature `README.md` 초기화
@@ -38,8 +38,11 @@
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
 - `skills/implement`: `implement.md` 기반 구현 수행
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
+- `skills/global-review`: 전역 설정과 사용자 정의 skill 정합성 점검
+- `skills/task-review`: 완료된 구현 Task 설명과 리스크 정리
 
 `skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
+`SKILL.md`가 없는 런타임/캐시성 디렉터리는 관리 대상 skill로 보지 않는다.
 
 ## 프롬프트 정책 기준
 
@@ -49,7 +52,7 @@
 - 분석 요청에서는 파일을 수정하지 않고, 구현 요청에서는 변경 대상과 의도를 먼저 밝힌다.
 - 문서 우선 대상 작업은 `spec-init` -> `analyze-init` -> `implement-init` -> `implement` -> `verify` 순서를 따른다.
 - 작은 오타, 주석, 단일 문서 보정, 동작 변경 없는 명백한 설정 문구 보정은 문서 플로우를 생략할 수 있다.
-- 구현은 `implement.md`의 첫 번째 미완료 Task 하나만 수행하고, 체크박스는 `verify` 승인 뒤에만 갱신한다.
+- 구현은 `implement.md`의 첫 번째 미완료 Task 하나만 수행하고, 구현 완료 상태는 `verify` 승인 뒤에만 갱신한다.
 - 검증은 실제 근거를 기준으로 승인/거절하며, 근거가 부족하면 성공으로 간주하지 않는다.
 
 ## 언어 기준

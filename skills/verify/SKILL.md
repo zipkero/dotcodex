@@ -1,6 +1,6 @@
 ---
 name: verify
-description: "Judge whether the most recent implement Task satisfies SPEC completion criteria and implement.md verification criteria. Use when the user asks to verify, review, validate, test, approve, or reject implemented work."
+description: "Judge whether an implemented Task should be approved or rejected against SPEC and implement.md verification criteria. Use when the user asks to verify, validate, approve, reject, or make a pass/fail judgment on implemented work."
 ---
 
 # Verify
@@ -16,8 +16,8 @@ description: "Judge whether the most recent implement Task satisfies SPEC comple
 - `implement.md`에서 대상 Task의 목적, 근거 문서, 검증 조건을 확인한다.
 - `spec.md`와 `analysis.md`를 읽고 대상 Task가 상위 요구사항과 설계 제약을 벗어나지 않는지 확인한다.
 - 사용자가 `TASK-NNN` 형식의 Task ID를 지정하면 해당 Task를 검증 대상으로 한다.
-- Task ID가 지정되지 않으면 가장 최근에 구현된 Task를 검증 대상으로 한다.
-- 대상 Task가 없거나 모호하면 판단하지 말고 사용자에게 특정 Task를 요청한다.
+- Task ID가 지정되지 않으면 현재 변경 내용, `implement.md` 상태, 대화 근거로 하나의 Task가 명확할 때만 검증 대상으로 추론한다.
+- 대상 Task가 없거나 둘 이상 가능하거나 실제 산출물만으로 특정할 수 없으면 판단하지 말고 사용자에게 `TASK-NNN` 지정을 요청한다.
 - 검증은 명령 실행, 코드 확인, 산출물 확인 같은 실제 근거를 기반으로 한다.
 
 ## 근거 원칙
@@ -40,7 +40,7 @@ description: "Judge whether the most recent implement Task satisfies SPEC comple
 - `rejected`이면 대상 Task를 `[ ]`로 유지한다. 이미 승인된 Task를 재검증해 실패한 경우에만 `[x]`를 `[ ]`로 되돌린다.
 
 ## 테스트 규칙
-- 테스트 관련 판단 기준은 이 skill이 소유한다. 다른 문서는 이 규칙을 중복 정의하지 않고 참조만 한다.
+- 테스트 관련 판단 기준은 이 skill이 소유한다. `verify`는 테스트 필요성, 실행 근거의 충분성, 승인/거절 여부를 판단하며, 테스트 코드를 직접 작성하지 않는다.
 - 테스트는 기본 검증 방법이 아니라, 리스크가 있거나 기존 테스트 체계가 있는 경우의 검증 방법이다.
 - `analysis.md`의 리스크나 데이터 흐름이 상태 변경, 외부 I/O, 동시성, 새 경계를 포함하면 `implement.md`에 명시적 테스트 Task가 있는지 확인한다.
 - `implement`는 명시적 테스트 Task가 있거나 버그 수정의 단일 회귀 테스트 예외에 해당할 때만 테스트 코드를 작성한다.
