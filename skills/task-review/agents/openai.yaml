@@ -1,4 +1,4 @@
 interface:
   display_name: "Task Review"
-  short_description: "구현된 Task를 검토 가능한 상세 설명으로 정리"
-  default_prompt: "방금 완료한 implement.md Task의 구현 상세 설명을 작성해줘."
+  short_description: "구현된 Task를 코드별 상세 해설로 정리"
+  default_prompt: "방금 완료한 implement.md Task를 코드별로 상세 분석해서 쉽게 설명해줘."

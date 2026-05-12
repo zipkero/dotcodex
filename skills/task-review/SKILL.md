@@ -1,6 +1,6 @@
 ---
 name: task-review
-description: "Explain a completed documented implementation task, including code behavior, verification evidence, trade-offs, and remaining risks, without making an approval or rejection decision. Use when the user asks for a task review, implementation explanation, or review-style walkthrough."
+description: "Explain a completed documented implementation task as a code-by-code walkthrough, including implementation flow, tests, trade-offs, and remaining risks, without making an approval or rejection decision. Use when the user asks for a task review, implementation explanation, code walkthrough, or detailed code-based review."
 ---
 
 # Task Review
@@ -18,32 +18,26 @@ description: "Explain a completed documented implementation task, including code
 
 ## 작성 기준
 
-설명은 파일 변경 목록보다 실제 코드 동작을 우선한다. 대상 Task의 변경 파일, 관련 interface, caller, test를 확인하고, 근거가 부족한 부분은 추측하지 않는다.
+단순 변경 요약이나 평가표가 아니라, 코드를 처음 읽는 사람이 구현을 따라갈 수 있는 코드별 상세 해설로 작성한다. 대상 Task의 변경 파일, 관련 interface, caller, test를 확인하고, 근거가 부족한 부분은 추측하지 않는다.
 
-다음 관점을 포함한다.
-
-- Task의 목표와 실제 구현 범위
-- 변경 파일별 역할과 구성요소 간 연결 관계
-- 주요 type, function, method의 역할, 입력, 출력, 상태 변화, 오류 경계
-- 주요 함수와 method의 정상 경로, 오류 경로, 재시도, 조건 분기를 코드 순서에 맞춘 설명
-- 호출 순서와 데이터 흐름
-- 테스트 case와 assertion이 검증한 계약, 연결된 코드 경로, 막는 회귀
-- 설계상 trade-off, 이번 Task에서 제외한 범위, 남은 리스크
-- 실행한 검증 명령과 결과
+- 먼저 전체 구조와 기존 interface 또는 caller와의 관계를 설명한다.
+- 변경 파일별 역할을 설명한 뒤, 핵심 파일은 type, function, method 단위로 나누어 설명한다.
+- 각 함수 설명은 쉬운 말로 입력, 처리 순서, 주요 분기, 오류 처리, 반환값을 코드 흐름대로 풀어쓴다.
+- 테스트는 테스트 이름 나열이 아니라 어떤 동작을 어떤 조건에서 확인하는지 설명한다.
+- 저장, 조회, 검색, 실행 같은 주요 흐름은 필요한 경우 짧은 text flow로 정리한다.
+- 설계 선택, 이번 Task에서 제외한 범위, 남은 리스크는 코드에서 확인되는 근거와 연결해 설명한다.
 
 ## 출력 구조
 
 사용자가 짧게 요청하지 않은 한 다음 섹션을 기본으로 작성한다.
 
 - 요약
-- 대상 Task와 변경 파일
-- 주요 코드 상세
-- 주요 함수별 내부 분기
-- 실행 흐름과 데이터 흐름
-- 오류 처리와 경계 조건
-- 테스트 assertion과 검증 근거
-- 설계 trade-off
-- 남은 리스크와 후속 범위
+- 전체 구조
+- 변경 파일별 역할
+- 코드별 상세 분석
+- 테스트가 확인하는 동작
+- 한 번에 보는 실행 흐름
+- 설계 선택과 남은 리스크
 
 ## 형식
 
