@@ -1,33 +1,51 @@
 ---
 name: task-review
-description: "Explain a completed documented implementation task as a code-by-code walkthrough, including implementation flow, tests, trade-offs, and remaining risks, without making an approval or rejection decision. Use when the user asks for a task review, implementation explanation, code walkthrough, or detailed code-based review."
+description: "Explain a completed documented implementation task as a source-by-source and method-by-method walkthrough, focusing on implementation flow, method responsibilities, tests, trade-offs, and remaining risks without making an approval or rejection decision. Use when the user asks for a task review, implementation explanation, code walkthrough, or detailed code-based review."
 ---
 
 # Task Review
 
 ## 목적
 
-완료된 `implement.md` Task를 사람이 검토할 수 있는 형태로 설명한다. 이 skill은 구현이나 승인 판단을 하지 않는다.
+완료된 `implement.md` Task 하나를 코드 흐름 중심으로 설명한다.
+
+이 skill은 승인 또는 반려 판단을 하지 않는다. `verify`처럼 SPEC 충족 여부를 판정하지 않고, 구현된 코드가 어떤 소스와 메소드 흐름으로 동작하는지 사용자가 이해할 수 있게 설명한다.
 
 ## 범위
 
-- 방금 완료했거나 사용자가 지정한 `implement.md` Task 하나를 대상으로 한다.
-- `verify`처럼 SPEC 충족 여부를 승인 또는 반려하지 않는다.
-- 새 코드 변경, 리팩터링, 문서 상태 변경을 수행하지 않는다.
-- 정보가 부족하면 추측하지 말고 확인한 근거와 남은 불확실성을 구분한다.
+- 사용자가 지정한 `implement.md` Task 하나를 대상으로 한다.
+- 관련 소스 파일, 주요 타입, 주요 메소드, 테스트를 설명한다.
+- 코드 변경, 리팩터링, 문서 상태 변경은 수행하지 않는다.
+- 정보가 부족하면 추측하지 말고 확인한 근거와 불확실한 부분을 구분한다.
 
-## 검토 기준
+## 출력 형식
 
-- Task의 목적과 구현 범위를 먼저 요약한다.
-- 단순 변경 요약에 그치지 않고, 코드를 처음 읽는 사람이 이해할 수 있도록 코드별 역할과 의도를 설명한다.
-- 변경된 파일별로 코드가 맡는 역할과 실행 흐름을 상세히 설명한다.
-- 테스트나 검증 명령이 있으면 무엇을 확인했는지 설명하고, 없으면 확인하지 못한 범위를 밝힌다.
-- 구현 중 선택한 trade-off와 대안을 구분한다.
-- 남은 위험, 테스트 공백, 후속 확인이 필요한 부분을 확인된 근거와 함께 설명한다.
+한국어로 작성한다.
 
-## 형식
+권장 구조:
 
-- 한국어로 작성한다. 단, 코드 식별자, 파일명, 명령, config key는 원문을 유지한다.
-- 관련 파일은 클릭 가능한 절대 경로 링크로 연결하고, 필요한 경우 line reference를 포함한다.
-- 필요한 경우 짧은 코드 조각이나 실행 흐름 예시를 포함한다.
-- “승인”, “반려”, “완료 조건 충족” 같은 verify 판단은 하지 않는다.
+```md
+**Task N 리뷰**
+
+Task의 목적과 구현 범위를 짧게 설명한다.
+
+**전체 플로우**
+
+사용자 요청 또는 실행 진입점에서 시작해 주요 메소드와 계층을 거쳐 결과가 만들어지는 흐름을 단계로 설명한다.
+
+**소스별 설명**
+
+관련 파일별로 이 파일이 전체 플로우에서 맡는 역할을 설명한다.
+파일 안의 주요 타입과 메소드는 책임, 입력, 처리, 출력, 다음 단계 연결을 중심으로 설명한다.
+
+**테스트와 검증**
+
+테스트가 어떤 플로우, 경계 조건, 오류 처리를 보장하는지 설명한다.
+검증 명령을 실행했다면 결과를 함께 적는다.
+
+**Trade-off와 남은 리스크**
+
+구현 중 선택한 방식, 그 선택이 현재 Task 범위에서 적절한 이유, 후속 Task나 추가 검증이 필요한 부분을 설명한다.
+```
+
+라인 번호를 따라가는 설명은 피한다. 파일 링크와 라인 링크는 근거가 필요한 첫 언급에만 사용하고, 같은 파일 링크를 반복하지 않는다.
