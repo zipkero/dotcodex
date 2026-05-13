@@ -39,7 +39,6 @@
 - `skills/implement`: `implement.md` 기반 구현 수행
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
 - `skills/global-review`: 전역 설정과 사용자 정의 skill 정합성 점검
-- `skills/task-review`: 완료된 구현 Task 설명과 리스크 정리
 
 `skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
 `SKILL.md`가 없는 런타임/캐시성 디렉터리는 관리 대상 skill로 보지 않는다.
