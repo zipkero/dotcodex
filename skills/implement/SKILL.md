@@ -1,6 +1,6 @@
 ---
 name: implement
-description: "Execute the next Task from docs/<feature-dir>/implement.md. Use when the user asks to implement, fix, build, or modify code for an active documented feature scope."
+description: "Execute the next Task from a feature implement.md file. Use when the user asks to implement, fix, build, or modify code for an active documented feature scope."
 ---
 
 # Implement
@@ -24,6 +24,11 @@ description: "Execute the next Task from docs/<feature-dir>/implement.md. Use wh
 - 파일 수정 전 어떤 변경을 할지 짧게 설명한다.
 - 구현은 대상 Task 단위로 진행하고, 한 턴에 하나의 Task만 구현한다.
 - Task 밖에서 발견한 문제는 수정하지 말고 보고만 한다.
+- 핵심 타입, 메서드, 함수에는 역할 주석을 남긴다. 역할 주석은 구현 절차가 아니라 전체 흐름에서 맡는 책임, 호출 시점, 입력과 출력의 의미를 설명한다.
+- 핵심 로직 내부에는 필요한 블록 주석을 남긴다. 내부 주석은 코드가 무엇을 처리하는지 설명하고, 코드만으로 의도가 드러나지 않는 경우 왜 그렇게 처리하는지까지 설명한다.
+- 주석은 핵심 로직에 집중한다. 도메인 규칙, 분기 기준, 상태 전이, 데이터 변환, 외부 연동, 오류 분류, 순서가 중요한 처리처럼 흐름을 놓치기 쉬운 지점을 우선한다.
+- 자명한 대입, 단순 반복, 함수명 그대로의 호출, 작은 getter/setter에는 억지로 주석을 달지 않는다.
+- 로직을 수정하면 관련 주석도 함께 갱신하고, 기존 프로젝트의 주석 언어와 스타일을 따른다.
 - `implement.md`에 명시된 테스트 Task를 수행하거나, `verify` skill의 테스트 규칙이 허용하는 버그 수정 회귀 테스트 예외에 해당할 때만 테스트 코드를 작성한다.
 - 테스트, 포맷, 빌드 명령은 변경 범위를 확인하는 데 필요한 수준으로 실행한다.
 - 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와 `docs/<feature-dir>/README.md`의 `IMPLEMENT` 상태를 변경하지 않는다.
