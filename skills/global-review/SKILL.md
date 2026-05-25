@@ -23,7 +23,8 @@ description: "Audit global Codex configuration for rule consistency, ambiguity, 
 - 권위 위치 불일치
   - `AGENTS.md`는 전역 원칙만 소유한다.
   - phase별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
-  - 테스트 작성, 승인 판단, Task 완료 후처리는 `verify` skill이 소유한다.
+  - 테스트 작성 범위는 `implement-init`과 `implement`가 소유한다.
+  - 승인 판단, evidence 기준, Task 완료 후처리는 `verify` skill이 소유한다.
 - Codex 실행 모델과 맞지 않는 역할·절차 전제
 - `SKILL.md` frontmatter의 `description`과 본문 역할 불일치
 - 사용자-facing 한국어 문서와 작업 분류용 영어 메타데이터의 언어 기준 위반

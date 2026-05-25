@@ -5,7 +5,7 @@
 ## 관리 대상
 
 - `AGENTS.md`: 모든 Codex 작업에 적용되는 전역 지침
-- `skills/*/SKILL.md`: 특정 작업 유형에서만 로드되는 사용자 정의 skill
+- allowlist에 포함된 `skills/*/`: 특정 작업 유형에서만 로드되는 사용자 정의 skill
 - `.editorconfig`, `.gitattributes`: 텍스트 포맷 기준
 - `.gitignore`: 로컬 상태 파일을 제외하는 allowlist 규칙
 
@@ -38,9 +38,11 @@
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
 - `skills/implement`: `implement.md` 기반 구현 수행
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
+- `skills/flow`: 선택된 코드의 실행 흐름, 데이터 흐름, 책임 흐름 설명
 - `skills/global-review`: 전역 설정과 사용자 정의 skill 정합성 점검
 
 `skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
+`skills/hatch-pet`처럼 `.gitignore` allowlist에 포함되지 않은 로컬 skill은 현재 전역 설정 관리 대상이 아니다.
 `SKILL.md`가 없는 런타임/캐시성 디렉터리는 관리 대상 skill로 보지 않는다.
 
 ## 프롬프트 정책 기준

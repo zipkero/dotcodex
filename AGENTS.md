@@ -38,7 +38,7 @@
 - 관련 있는 경우 현재 best practice와 기존 프로젝트 관례를 따른다.
 - 로그, 주석, 테스트, 설정값은 명백한 근거 없이 삭제하지 않는다.
 - 성공 기준은 요청된 산출물이 만들어졌고, 필요한 경우 파일, diff, 로그, 테스트, 빌드, 실행 결과 같은 실제 근거로 확인 가능한 상태이다. 검증 근거가 부족하면 성공으로 판단하지 않는다.
-- 테스트 작성과 승인 판단의 세부 기준은 `verify` skill의 테스트 규칙을 따른다. `AGENTS.md`에는 중복 정의하지 않는다.
+- 테스트 작성 범위는 `implement-init`과 `implement`의 규칙을 따르고, 승인 판단, evidence 기준, Task 완료 후처리는 `verify` skill의 규칙을 따른다. `AGENTS.md`에는 중복 정의하지 않는다.
 - `implement.md`의 Task 완료 체크와 feature `README.md`의 `IMPLEMENT` 완료 표시는 `verify`의 `approved` 판단 뒤에만 변경한다.
 
 ## 작업 분류
