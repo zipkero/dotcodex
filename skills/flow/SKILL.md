@@ -29,6 +29,13 @@ description: Explain the runtime, data, and responsibility flow of selected or r
 - Task 또는 최근 작업: `implement.md`, `git diff`, `git log --name-only -n 5`를 확인해 최근 변경 범위를 잡는다.
 - 범위가 모호하면 본문을 쓰기 전에 한 번 질문한다.
 
+사용자가 범위를 지정하지 않았으면 최근 구현 흐름을 기본 범위로 잡는다.
+
+1. 활성 feature의 `implement.md`가 있으면 가장 최근 `[x]` Task 1-3개의 `접근` 필드에 언급된 파일을 후보로 잡는다.
+2. 후보가 없으면 `git status`와 `git diff`의 변경 파일을 본다.
+3. 변경 파일도 없으면 `git log --name-only -n 5`의 최근 변경 파일을 본다.
+4. 그래도 후보가 없으면 범위를 질문한다.
+
 범위가 넓으면 먼저 이번 회차에서 볼 흐름을 좁힌다. 한 응답 안에서 모든 파일을 낭독하려 하지 말고, 사용자가 이해해야 할 주요 흐름을 기준으로 나눈다.
 
 ## 작성 절차
@@ -39,6 +46,14 @@ description: Explain the runtime, data, and responsibility flow of selected or r
 4. 흐름을 `입력/상황 -> 처리 주체 -> 상태나 데이터 변화 -> 다음 호출 -> 결과` 형태로 정리한다.
 5. 흐름을 설명하는 데 필요한 경우에만 짧은 코드 식별자와 `file:line`을 인용한다.
 6. 코드 블록을 길게 붙이지 않는다. 코드 읽기는 근거 수집이고, 출력은 흐름 설명이어야 한다.
+
+## 다이어그램 기준
+
+- 흐름 성격에 맞을 때만 Mermaid를 사용한다.
+- 호출과 메시지 순서는 `sequenceDiagram`, 분기 로직은 `flowchart`, 상태 전이는 `stateDiagram-v2`를 우선한다.
+- 분기 없는 짧은 호출 사슬은 텍스트 화살표로 충분하다.
+- 노드 이름은 실제 메서드명, 타입명, 모듈명을 사용하고 임의의 은유적 이름을 붙이지 않는다.
+- 다이어그램은 텍스트 해설을 보조해야 하며, 다이어그램만으로 설명을 끝내지 않는다.
 
 ## 출력 구조
 
@@ -103,6 +118,7 @@ description: Explain the runtime, data, and responsibility flow of selected or r
 - 먼저 흐름의 시작점과 끝점을 말한다.
 - 함수나 타입 이름을 나열하지 말고, 각 구성 요소가 앞뒤 단계와 어떻게 연결되는지 설명한다.
 - “무엇을 하는 함수인지”보다 “이 단계가 흐름에서 왜 필요하고 무엇을 다음 단계에 넘기는지”를 우선한다.
+- 정상 경로를 먼저 설명하고, 코드나 테스트로 확인되는 실패, 재시도, timeout 경로가 있으면 같은 깊이로 설명한다.
 - 데이터가 구조체, DTO, request, response, event, command처럼 모양을 바꾸면 변경 전후 의미를 설명한다.
 - 상태가 바뀌는 흐름은 변경 주체, 변경 시점, 이후 관찰되는 결과를 분리해 설명한다.
 - 외부 연동, DB, 파일 시스템, 네트워크, 큐, LLM provider 같은 경계는 별도 단계로 드러낸다.
@@ -115,6 +131,7 @@ description: Explain the runtime, data, and responsibility flow of selected or r
 - 긴 코드 발췌를 중심으로 설명하지 않는다.
 - 라인별 코드 낭독을 하지 않는다.
 - 읽지 않은 호출 관계를 확정적으로 말하지 않는다.
+- 코드나 테스트에서 확인되지 않는 실패 모드를 추측해서 넣지 않는다.
 - 설명 범위를 벗어난 리팩터링 제안이나 구현 제안을 본문 중심으로 끌고 오지 않는다.
 
 ## 핵심 질문

@@ -1,42 +1,47 @@
 ---
 name: implement
-description: "Execute the next Task from a feature implement.md file. Use when the user asks to implement, fix, build, or modify code for an active documented feature scope."
+description: "Execute the next Task from docs/<feature-dir>/implement.md, or handle a small Per-Request code/config/doc change when no feature scope is active."
 ---
 
 # Implement
 
 ## 목적
-- feature 문서 디렉터리의 `implement.md`에 있는 지정된 Task 또는 첫 번째 미완료 Task를 최소 범위로 구현한다.
-- 공통 안전 기준은 `AGENTS.md`의 언어, 판단과 변경 원칙, 도구와 안전을 따른다.
+- Phased mode에서는 `implement.md`의 Task 하나를 최소 범위로 구현한다.
+- Per-Request mode에서는 사용자가 요청한 작은 변경을 문서 플로우 없이 처리한다.
 
-## 선행 확인
-- `Phased(문서 우선)` 대상 작업이면 `spec.md`, `analysis.md`, `implement.md`를 확인한다.
-- 문서가 없거나 활성 feature scope를 특정할 수 없으면 구현하지 말고 필요한 init 단계나 범위를 요청한다.
-- 사용자가 `TASK-NNN`을 지정하면 해당 Task, 아니면 `implement.md`의 첫 번째 미완료 Task를 대상으로 한다.
-- 대상 Task가 없거나, 이미 완료되었거나, 모호하면 구현하지 않고 명확화가 필요하다고 보고한다.
-- `AGENTS.md` 기준으로 `Per-Request`에 해당하는 작은 변경은 활성 feature scope가 없어도 사용자의 명시 범위 안에서 처리할 수 있다.
-- 단, 범위 확장, 새 의존성, 임의 리팩터링, 설계 판단이 필요한 변경은 문서 플로우를 따른다.
+## 컨텍스트 로딩
+1. Phased mode로 진입하는 경우:
+   - 사용자가 `docs/<feature-dir>/` 또는 `docs/<feature-dir>/implement.md`를 지정했다.
+   - 현재 대화에서 해당 feature에 대해 `spec-init`, `analyze-init`, `implement-init`이 실행되었거나, 사용자가 구현 의도로 feature를 명시했다.
+2. Phased mode 동작:
+   - `spec.md`, `analysis.md`, `implement.md`를 읽는다.
+   - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 잡고, 지정하지 않으면 위에서부터 첫 미완료 Task를 잡는다.
+   - Task가 없거나 이미 완료되었거나 둘 이상으로 해석되면 구현하지 않고 범위를 요청한다.
+3. Per-Request mode:
+   - Phased mode 조건이 없고 요청이 작고 명확하며 되돌리기 쉬운 변경이면 바로 처리한다.
+   - `docs/<feature-dir>/`를 만들지 않는다.
+   - 범위 확장, 새 의존성, 공개 API 변경, 설계 판단이 필요하면 진행 전 사용자 결정을 요청한다.
 
 ## 구현 규칙
 - 기존 코드 패턴과 프로젝트 관례를 우선한다.
-- 요청 범위 밖 리팩터링, 설계 변경, 새 의존성 추가를 피한다.
-- 설계 변경이 필요하면 먼저 `analysis.md` 갱신이 필요하다고 보고한다.
 - 파일 수정 전 어떤 변경을 할지 짧게 설명한다.
 - 구현은 대상 Task 단위로 진행하고, 한 턴에 하나의 Task만 구현한다.
 - Task 밖에서 발견한 문제는 수정하지 말고 보고만 한다.
-- 핵심 타입, 메서드, 함수에는 역할 주석을 남긴다. 역할 주석은 구현 절차가 아니라 전체 흐름에서 맡는 책임, 호출 시점, 입력과 출력의 의미를 설명한다.
-- package, namespace, module 단위 주석은 기본으로 추가하지 않는다. 언어 규칙, lint/doc 요구사항, 기존 프로젝트 관례, 또는 사용자의 명시 요청이 있을 때만 작성한다.
-- 핵심 로직 내부에는 필요한 블록 주석을 남긴다. 내부 주석은 코드가 무엇을 처리하는지 설명하고, 코드만으로 의도가 드러나지 않는 경우 왜 그렇게 처리하는지까지 설명한다.
-- 주석은 핵심 로직에 집중한다. 도메인 규칙, 분기 기준, 상태 전이, 데이터 변환, 외부 연동, 오류 분류, 순서가 중요한 처리처럼 흐름을 놓치기 쉬운 지점을 우선한다.
-- 자명한 대입, 단순 반복, 함수명 그대로의 호출, 작은 getter/setter에는 억지로 주석을 달지 않는다.
-- 로직을 수정하면 관련 주석도 함께 갱신하고, 기존 프로젝트의 주석 언어와 스타일을 따른다.
-- `implement.md`에 명시된 테스트 Task를 수행하거나, `verify` skill의 테스트 규칙이 허용하는 버그 수정 회귀 테스트 예외에 해당할 때만 테스트 코드를 작성한다.
+- 요청이나 Task가 요구하지 않는 신규 인터페이스, 추상화, public API, 경계, 의존성, 인접 리팩터링은 추가하지 않는다.
+- 이 확장이 요청 충족에 필요하면 코드를 쓰기 전에 이유, 영향, 대안을 보고하고 사용자 결정을 받는다.
+- Phased mode에서 설계 변경이 필요하면 `analysis.md` 갱신 필요 사항으로 보고하고 구현을 멈춘다.
+- 주석은 코드와 수명을 같이할 의도만 남긴다. 이름으로 충분한 코드에는 추가하지 않는다.
+- 역할 주석은 이름만으로 입력, 출력, 호출 시점, 책임이 드러나지 않는 타입, 메서드, 함수에만 단다.
+- 블록 주석은 도메인 규칙, 상태 전이, 외부 연동, 오류 분류, 순서 의존처럼 흐름을 놓치기 쉬운 핵심 로직에 둔다.
+- 로직을 수정하면 관련 주석도 함께 갱신한다.
+- 테스트 코드는 명시적 테스트 Task가 있거나, 버그 수정의 단일 회귀 테스트 예외에 해당할 때만 작성한다.
+- Per-Request mode에서는 테스트를 조용히 추가하지 않는다. 회귀 위험은 완료 보고의 한계로 남긴다.
 - 테스트, 포맷, 빌드 명령은 변경 범위를 확인하는 데 필요한 수준으로 실행한다.
 - 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와 `docs/<feature-dir>/README.md`의 `IMPLEMENT` 상태를 변경하지 않는다.
 
 ## 완료 보고
 - 변경한 파일
-- 실행한 Task
+- 실행한 Task 또는 Per-Request 요청
 - 실행한 확인
 - 남은 항목 또는 리스크
-- 다음 단계로 해당 Task 검증이 필요함을 알린다.
+- Phased mode에서는 다음 단계로 해당 Task 검증이 필요함을 알린다.
