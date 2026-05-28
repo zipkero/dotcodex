@@ -6,7 +6,8 @@ description: "Audit global Codex configuration for consistency, ownership, READM
 # Global Review
 
 ## 목적
-`AGENTS.md`, `README.md`, 사용자 정의 `skills/*/SKILL.md`를 읽고 전역 설정의 정합성을 점검한다.
+`AGENTS.md`, `README.md`, allowlist에 포함된 사용자 정의 `skills/*/SKILL.md`를 읽고
+전역 설정의 정합성을 점검한다.
 파일은 수정하지 않고 분석 결과만 보고한다.
 
 이 skill의 근본 목적은 Codex 전역 설정이 모델의 자율 실행 성향 때문에 요청 범위를 과하게 확장하거나,

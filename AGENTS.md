@@ -48,9 +48,6 @@
   검증 근거가 부족하면 성공으로 판단하지 않는다.
 - 테스트 작성 범위는 `implement-init`과 `implement`의 규칙을 따르고,
   승인 판단, evidence 기준, Task 완료 후처리는 `verify` skill의 규칙을 따른다.
-  `AGENTS.md`에는 중복 정의하지 않는다.
-- `implement.md`의 Task 완료 체크와 feature `README.md`의 `IMPLEMENT` 완료 표시는
-  `verify`의 `approved` 판단 뒤에만 변경한다.
 
 ## 작업 분류
 - 작업은 `Phased(문서 우선)` 또는 `Per-Request`로 분류한다.

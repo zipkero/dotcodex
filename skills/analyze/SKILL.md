@@ -29,7 +29,7 @@ description: "Analyze code, debug behavior, architecture, root causes, and scope
 ## 출력 구조
 - 요약: 1-2문장 결론.
 - 근거: 확인한 파일, 로그, 명령, 관찰 사항.
-- 흐름 또는 원인: 관련 실행 흐름, 데이터 흐름, 상태 변화, root cause.
+- 관련 흐름: 실행 흐름, 데이터 흐름, 상태 변화.
 - 원인: 확인된 root cause 또는 아직 좁혀지지 않은 지점.
 - 분류: `Phased(문서 우선)` 대상 / Per-Request 가능 / 추가 입력 필요 중 하나. 구현 범위에 영향이 있을 때만 포함한다.
 - 다음 단계: 필요한 문서 단계(`spec-init`, `analyze-init`, `implement-init`) 또는 구현/검증 제안.

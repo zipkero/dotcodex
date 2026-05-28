@@ -34,7 +34,8 @@
 
 ## Skill 구성
 
-사용자 정의 skill은 `skills/.system` 밖에 둔다. 실제 관리 대상은 `SKILL.md`가 있는 사용자 정의 skill 디렉터리이다.
+사용자 정의 skill은 `skills/.system` 밖에 둔다.
+실제 관리 대상은 `.gitignore` allowlist에 포함되고 `SKILL.md`가 있는 사용자 정의 skill 디렉터리이다.
 
 - `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인
 - `skills/spec-init`: `spec.md`와 feature `README.md` 초기화
@@ -47,6 +48,7 @@
 
 `skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
 `skills/hatch-pet`처럼 `.gitignore` allowlist에 포함되지 않은 로컬 skill은 현재 전역 설정 관리 대상이 아니다.
+다만 로컬 Codex 런타임에는 활성 skill로 노출될 수 있다.
 `SKILL.md`가 없는 런타임/캐시성 디렉터리는 관리 대상 skill로 보지 않는다.
 
 ## 정책 소유 위치
@@ -69,7 +71,7 @@
 - `.gitattributes`
 - `README.md`
 - `AGENTS.md`
-- 사용자 정의 `skills/**`
+- `.gitignore` allowlist에 포함된 사용자 정의 `skills/*/**`
 
 비추적 대상:
 
