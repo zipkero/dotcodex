@@ -1,6 +1,6 @@
 ---
 name: implement
-description: "Execute the next Task from docs/<feature-dir>/implement.md, or handle a small Per-Request code/config/doc change when no feature scope is active."
+description: "Execute one documented Task or a small per-request code change within the requested scope."
 ---
 
 # Implement
@@ -12,7 +12,8 @@ description: "Execute the next Task from docs/<feature-dir>/implement.md, or han
 ## 컨텍스트 로딩
 1. Phased mode로 진입하는 경우:
    - 사용자가 `docs/<feature-dir>/` 또는 `docs/<feature-dir>/implement.md`를 지정했다.
-   - 현재 대화에서 해당 feature에 대해 `spec-init`, `analyze-init`, `implement-init`이 실행되었거나, 사용자가 구현 의도로 feature를 명시했다.
+   - 현재 대화에서 해당 feature에 대해 `spec-init`, `analyze-init`, `implement-init`이 실행되었거나,
+     사용자가 구현 의도로 feature를 명시했다.
 2. Phased mode 동작:
    - `spec.md`, `analysis.md`, `implement.md`를 읽는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 잡고, 지정하지 않으면 위에서부터 첫 미완료 Task를 잡는다.
@@ -36,10 +37,13 @@ description: "Execute the next Task from docs/<feature-dir>/implement.md, or han
 - 로직을 수정하면 관련 주석도 함께 갱신한다.
 - 테스트 코드는 명시적 테스트 Task가 있거나, 버그 수정의 단일 회귀 테스트 예외에 해당할 때만 작성한다.
 - Per-Request mode에서는 테스트를 조용히 추가하지 않는다. 회귀 위험은 완료 보고의 한계로 남긴다.
-- 테스트 실패를 해결할 때도 테스트가 기대하는 내부 구조에 운영 코드를 맞추지 말고, 외부 관찰 가능한 동작, 공개 contract, `analysis.md`의 설계 결정을 기준으로 원인을 판단한다.
-- 테스트를 통과하려면 구조, 경계, API, 상태 소유권 변경이 필요해 보이는 경우에는 구현하지 말고 설계 변경 필요 사항으로 보고한다.
+- 테스트 실패를 해결할 때도 테스트가 기대하는 내부 구조에 운영 코드를 맞추지 말고,
+  외부 관찰 가능한 동작, 공개 contract, `analysis.md`의 설계 결정을 기준으로 원인을 판단한다.
+- 테스트를 통과하려면 구조, 경계, API, 상태 소유권 변경이 필요해 보이는 경우에는
+  구현하지 말고 설계 변경 필요 사항으로 보고한다.
 - 테스트, 포맷, 빌드 명령은 변경 범위를 확인하는 데 필요한 수준으로 실행한다.
-- 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와 `docs/<feature-dir>/README.md`의 `IMPLEMENT` 상태를 변경하지 않는다.
+- 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와
+  `docs/<feature-dir>/README.md`의 `IMPLEMENT` 상태를 변경하지 않는다.
 
 ## 완료 보고
 - 변경한 파일

@@ -1,6 +1,6 @@
 ---
 name: flow
-description: Explain the runtime, data, and responsibility flow of selected or recently changed code without rewriting files. Use when the user asks how code moves through functions, classes, structs, packages, tasks, or implementation changes, and wants the flow rather than line-by-line code explanation.
+description: Explain runtime, data, and responsibility flow for selected code without rewriting files.
 ---
 
 # Flow
@@ -9,7 +9,9 @@ description: Explain the runtime, data, and responsibility flow of selected or r
 
 선택된 코드 범위의 실행 흐름, 데이터 흐름, 책임 흐름을 대화 안에서 설명한다.
 
-이 skill은 코드를 읽고 흐름을 정리하는 용도이다. 파일을 만들거나 수정하지 않는다. 코드별 상세 설명이나 학습용 주석 추가는 이 skill의 역할이 아니다.
+이 skill은 코드를 읽고 흐름을 정리하는 용도이다.
+파일을 만들거나 수정하지 않는다.
+코드별 상세 설명이나 학습용 주석 추가는 이 skill의 역할이 아니다.
 
 ## 전제 조건
 
@@ -17,7 +19,8 @@ description: Explain the runtime, data, and responsibility flow of selected or r
 - 대상 코드가 실제로 존재하는지 먼저 확인한다.
 - 읽지 않은 파일, 함수, 타입, 호출 관계를 추정으로 채우지 않는다.
 - 흐름 설명에 필요한 위치는 실제로 읽은 `file:line`으로만 언급한다.
-- 구현 요약이 아니라 “어떤 입력이나 상황이 들어오면 어떤 코드가 어떤 순서로 반응하고 결과가 어디로 이동하는지”를 설명한다.
+- 구현 요약이 아니라 “어떤 입력이나 상황이 들어오면 어떤 코드가 어떤 순서로 반응하고,
+  결과가 어디로 이동하는지”를 설명한다.
 
 ## 범위 처리
 
@@ -36,7 +39,8 @@ description: Explain the runtime, data, and responsibility flow of selected or r
 3. 변경 파일도 없으면 `git log --name-only -n 5`의 최근 변경 파일을 본다.
 4. 그래도 후보가 없으면 범위를 질문한다.
 
-범위가 넓으면 먼저 이번 회차에서 볼 흐름을 좁힌다. 한 응답 안에서 모든 파일을 낭독하려 하지 말고, 사용자가 이해해야 할 주요 흐름을 기준으로 나눈다.
+범위가 넓으면 먼저 이번 회차에서 볼 흐름을 좁힌다.
+한 응답 안에서 모든 파일을 낭독하려 하지 말고, 사용자가 이해해야 할 주요 흐름을 기준으로 나눈다.
 
 ## 작성 절차
 
@@ -136,4 +140,6 @@ description: Explain the runtime, data, and responsibility flow of selected or r
 
 ## 핵심 질문
 
-> 이 흐름은 어디서 시작해서 어디서 끝나는가? 각 단계는 무엇을 받아 무엇을 바꿔 어디로 넘기는가? 그 책임은 왜 그 위치에 있는가?
+> 이 흐름은 어디서 시작해서 어디서 끝나는가?
+> 각 단계는 무엇을 받아 무엇을 바꿔 어디로 넘기는가?
+> 그 책임은 왜 그 위치에 있는가?

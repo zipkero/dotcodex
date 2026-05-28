@@ -1,6 +1,6 @@
 ---
 name: spec-init
-description: "Create or reset docs/<yyyyMMdd>-<nnn>-<feature-name>/spec.md and feature README.md for documentation-first feature work. Use when the user asks to initialize a spec, start a feature documentation flow, define requirements, or run spec-init."
+description: "Create or reset docs/<feature-dir>/spec.md and feature README.md for documentation-first work."
 ---
 
 # Spec Init
@@ -15,7 +15,8 @@ description: "Create or reset docs/<yyyyMMdd>-<nnn>-<feature-name>/spec.md and f
 - 사용자가 feature 이름을 명시하면 사용하고, 없지만 대화에서 명확하면 kebab-case로 추론하고 가정을 밝힌다.
 - feature 이름이 불명확하면 문서 생성을 진행하지 말고 짧게 질문한다.
 - feature 이름은 산출물의 디렉터리명일 뿐이며 요구사항 범위를 결정하는 근거로 쓰지 않는다.
-- 요구사항의 출처나 정리 방식이 아니라 사용자가 요청했거나 입력 근거에서 확인되는 최종 사용 가능 상태를 기준으로 spec 범위를 판단한다.
+- 요구사항의 출처나 정리 방식이 아니라 사용자가 요청했거나 입력 근거에서 확인되는
+  최종 사용 가능 상태를 기준으로 spec 범위를 판단한다.
 - 입력 문서에 나타난 구현 단위나 진행 순서를 그대로 spec 범위로 채택하지 않는다.
 - 요구사항 범위가 불명확하면 문서를 만들기 전에 질문한다.
 
@@ -30,7 +31,8 @@ description: "Create or reset docs/<yyyyMMdd>-<nnn>-<feature-name>/spec.md and f
 - 최종 사용 가능 상태를 판단하되, 입력 근거에서 확인되지 않은 목표를 요구사항 범위에 추가하지 않는다.
 - `spec.md`의 `범위`, `목표`, `제약`, `제외 범위`, `완료 조건`은 최종 사용 가능 상태를 기준으로 작성한다.
 - `spec.md`는 독자가 요구사항과 완료 기준을 바로 판단할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
-- `docs/<feature-dir>/README.md`의 `개요`는 feature의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나 설계 판단은 반복하지 않는다.
+- `docs/<feature-dir>/README.md`의 `개요`는 feature의 목적과 배경을 1-3문장으로 요약하고,
+  세부 요구사항이나 설계 판단은 반복하지 않는다.
 
 ## feature README.md 형식
 ```markdown
@@ -72,7 +74,9 @@ description: "Create or reset docs/<yyyyMMdd>-<nnn>-<feature-name>/spec.md and f
 
 ## 완료 조건 작성 기준
 - 완료 조건은 feature가 완성되었음을 외부에서 확인할 수 있는 관찰 가능한 결과로 쓴다.
-- UI는 화면과 상호작용, CLI는 stdout/stderr/exit code, API는 응답과 status code, library는 반환값과 예외, data pipeline은 파일·DB row·event, infra는 health endpoint·metric·log signal처럼 대상 유형에 맞는 관찰 지점을 사용한다.
+- UI는 화면과 상호작용, CLI는 stdout/stderr/exit code, API는 응답과 status code,
+  library는 반환값과 예외, data pipeline은 파일·DB row·event,
+  infra는 health endpoint·metric·log signal처럼 대상 유형에 맞는 관찰 지점을 사용한다.
 - 완료 조건 번호는 영구 식별자다. 하위 문서는 `SPEC §5.N`으로 참조한다.
 - 기존 완료 조건을 재배열, 삭제, 재번호하지 않는다. 새 조건은 마지막 번호 뒤에 추가한다.
 - 내부 실행 절차를 완료 조건으로 쓰지 않는다. 내부 설계와 구현 순서는 `analysis.md` 또는 `implement.md`로 분리한다.

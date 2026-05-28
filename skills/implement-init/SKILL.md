@@ -1,6 +1,6 @@
 ---
 name: implement-init
-description: "Create or update docs/<feature-dir>/implement.md from an existing analysis.md. Use when the user asks to create an implementation checklist, prepare implementation tasks, define verification criteria, or run implement-init."
+description: "Create or update docs/<feature-dir>/implement.md with executable Tasks and verification criteria."
 ---
 
 # Implement Init
@@ -14,7 +14,8 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 - feature 문서 디렉터리에 `spec.md`와 `analysis.md`가 있어야 한다.
 - 둘 중 하나가 없으면 필요한 선행 단계가 무엇인지 보고하고 중단한다.
 - 기존 `implement.md`가 있으면 덮어쓰기 전에 사용자에게 확인한다. 기존 체크박스 상태는 덮어쓰기 시 사라질 수 있다.
-- `analysis.md`의 `Decision Points`에 채택안이 없거나 미정/TBD/보류로 남은 항목이 있으면 사용자에게 알리고, 사용자가 명시적으로 진행을 원할 때만 계속한다.
+- `analysis.md`의 `Decision Points`에 채택안이 없거나 미정/TBD/보류로 남은 항목이 있으면
+  사용자에게 알리고, 사용자가 명시적으로 진행을 원할 때만 계속한다.
 
 ## 작성 규칙
 - Task는 파일, 함수, 레이어, 구현 순서가 아니라 외부에서 확인 가능한 동작과 그 검증 기준을 기준으로 나눈다.
@@ -22,17 +23,23 @@ description: "Create or update docs/<feature-dir>/implement.md from an existing 
 - 검증 기준, 사용자 가치, 실패 조건이 달라지면 Task를 분리한다.
 - 각 Task는 한 번의 `verify`로 승인 또는 거절을 판단할 수 있어야 한다.
 - Task ID는 `task-001`처럼 3자리 zero-padding을 사용하고, 신규 문서는 `task-001`부터 순서대로 작성한다.
-- 기존 문서 갱신 시 Task ID는 재번호 매기지 않는다. 새 Task는 가장 큰 ID의 다음 번호를 사용하고, 삭제/병합된 ID는 재사용하지 않는다.
-- 의존성 순서는 `implement.md`의 항목 위치로 표현한다. ID 숫자를 순서 의미로 사용하거나 순서 변경 때문에 재번호하지 않는다.
+- 기존 문서 갱신 시 Task ID는 재번호 매기지 않는다.
+  새 Task는 가장 큰 ID의 다음 번호를 사용하고, 삭제/병합된 ID는 재사용하지 않는다.
+- 의존성 순서는 `implement.md`의 항목 위치로 표현한다.
+  ID 숫자를 순서 의미로 사용하거나 순서 변경 때문에 재번호하지 않는다.
 - 각 항목은 최소 하나의 `SPEC §5.N`에 매핑한다.
 - `ANALYSIS §X.Y` 참조는 해당 Task가 따르는 구조나 설계 결정이 있을 때만 둔다.
 - `implement.md`의 전체 Task 집합은 모든 `SPEC §5.N`을 빠짐없이 커버해야 한다.
 - 특정 `SPEC §5.N`을 Task로 확정할 수 없으면 임의로 생략하지 말고, 필요한 결정과 영향을 보고하고 저장하지 않는다.
 - 각 항목에는 목적, 접근, 검증 조건, 참조만 둔다.
 - `목적`에는 문서 매핑이 아니라 사용자가 얻는 결과나 Task가 완성해야 하는 외부 관찰 가능한 동작을 적는다.
-- `접근`에는 `analysis.md`에서 확정된 설계를 구현하는 방법만 적고, 새로운 타입, 상태값, 저장소 경계, API 계약, 데이터 흐름을 새로 결정하지 않는다.
-- `검증 조건`은 `결과`와 `확인`으로 작성한다. `결과`에는 Task 완료 후 성립해야 하는 동작, 출력, 파일 내용, 설정 상태를 적고, `확인`에는 테스트, 빌드, lint, diff, 수동 확인 등 해당 결과를 검증하는 방법을 적는다.
-- `implement.md`는 구현자가 목적, 접근, 검증 방법을 바로 실행할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
+- `접근`에는 `analysis.md`에서 확정된 설계를 구현하는 방법만 적는다.
+  새로운 타입, 상태값, 저장소 경계, API 계약, 데이터 흐름을 새로 결정하지 않는다.
+- `검증 조건`은 `결과`와 `확인`으로 작성한다.
+  `결과`에는 Task 완료 후 성립해야 하는 동작, 출력, 파일 내용, 설정 상태를 적는다.
+  `확인`에는 테스트, 빌드, lint, diff, 수동 확인 등 해당 결과를 검증하는 방법을 적는다.
+- `implement.md`는 구현자가 목적, 접근, 검증 방법을 바로 실행할 수 있게 쓰고,
+  용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
 
 ## 테스트 Task 기준
 - 회귀 테스트는 보통 구현 Task의 `확인` 필드에 둔다.

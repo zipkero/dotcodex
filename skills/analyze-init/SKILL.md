@@ -1,6 +1,6 @@
 ---
 name: analyze-init
-description: "Create or update docs/<feature-dir>/analysis.md from an existing spec.md. Use when the user asks to create the analysis/design document for a documented feature scope."
+description: "Create or update docs/<feature-dir>/analysis.md from spec.md for documented feature design."
 ---
 
 # Analyze Init
@@ -27,12 +27,14 @@ description: "Create or update docs/<feature-dir>/analysis.md from an existing s
 - 구현 순서, 작업 목록, 체크리스트는 작성하지 않는다. 해당 내용은 `implement.md`에 둔다.
 - 구현 Task에 필요한 API, 상태, 데이터 흐름, 저장 경계, 외부 연동, 설정은 본문 섹션이나 `Decision Points`에 확정한다.
 - 구조는 변경을 어디에 둘지뿐 아니라 책임 경계, 데이터 소유권, 호출 방향, 실패 처리 위치가 일관되는지 기준으로 판단한다.
-- 기존 구조를 따르는 경우에도 요구사항의 정확성, 확장 범위, 검증 가능성을 해치면 대안을 비교해 `Decision Points`에 남긴다.
+- 기존 구조를 따르는 경우에도 요구사항의 정확성, 확장 범위, 검증 가능성을 해치면
+  대안을 비교해 `Decision Points`에 남긴다.
 - 새 경계, 상태, 저장 위치, 외부 contract를 만들 때는 필요한 이유, 대안, 영향 범위를 함께 적는다.
 - 단순 구현 편의가 아니라 완료 조건을 안정적으로 만족하는 구조인지 확인한다.
 - 불확실하거나 합의되지 않은 설계 결정은 `Decision Points`에 선택지, 트레이드오프, 필요한 결정으로 남긴다.
 - 불필요한 리팩터링, 범위 외 개선, `spec.md`에 없는 요구사항은 설계 결정이나 구현 전제로 확정하지 않는다.
-- `analysis.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
+- `analysis.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓰고,
+  용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
 
 ## analysis.md 형식
 ```markdown
@@ -57,7 +59,8 @@ description: "Create or update docs/<feature-dir>/analysis.md from an existing s
 - `2. 데이터 흐름`: 진입점부터 응답 또는 산출물까지의 경로, 상태 전이, 외부 연동, 실패 경로를 적는다.
 - `3. 인터페이스`: API, event, 인접 모듈 계약처럼 경계를 가로지르는 인터페이스만 적는다.
 - `4. 영향 범위`: 실제로 변경되는 기존 모듈, 파일, 저장소, 외부 contract와 확인한 의존 관계만 적는다.
-- `5. Decision Points`: 구조, 데이터 모델, 인터페이스, 정확성에 영향을 주는 실행 순서 선택을 옵션, 트레이드오프, 채택안, 근거와 함께 적는다. 판단 거리가 없으면 `해당 없음`으로 적는다.
+- `5. Decision Points`: 구조, 데이터 모델, 인터페이스, 정확성에 영향을 주는 실행 순서 선택을
+  옵션, 트레이드오프, 채택안, 근거와 함께 적는다. 판단 거리가 없으면 `해당 없음`으로 적는다.
 
 ## feature README.md 갱신
 - `docs/<feature-dir>/README.md`의 `ANALYSIS`를 `[x]`로 변경한다.
