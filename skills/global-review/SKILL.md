@@ -1,12 +1,12 @@
 ---
 name: global-review
-description: "Audit global Codex configuration for consistency, ownership, README accuracy, and trimming opportunities."
+description: "Audit global Codex configuration for consistency, ownership, and trimming opportunities."
 ---
 
 # Global Review
 
 ## 목적
-`AGENTS.md`, `README.md`, allowlist에 포함된 사용자 정의 `skills/*/SKILL.md`를 읽고
+`AGENTS.md`, allowlist에 포함된 사용자 정의 `skills/*/SKILL.md`를 읽고
 전역 설정의 정합성을 점검한다.
 파일은 수정하지 않고 분석 결과만 보고한다.
 
@@ -21,7 +21,6 @@ description: "Audit global Codex configuration for consistency, ownership, READM
 - bullet 하나에 서로 다른 독립 규칙이 묶인 항목
 - 구체 예시나 도구 나열이 원칙보다 커져 적용 범위를 좁히는 항목
 - 의미 없이 부정형을 반복해 읽기 비용을 늘리는 항목
-- README의 실제 구조 불일치
 - 현재 설정에 없는 기능이나 폐기된 설명
 - Markdown 문서의 한 줄 표시폭 120칸 초과
 - 권위 위치 불일치
@@ -29,13 +28,19 @@ description: "Audit global Codex configuration for consistency, ownership, READM
   - phase별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
   - 테스트 작성 범위는 `implement-init`과 `implement`가 소유한다.
   - 승인 판단, evidence 기준, Task 완료 후처리는 `verify` skill이 소유한다.
+- context health 저하 신호
+  - 같은 규칙이 `AGENTS.md`와 여러 `SKILL.md`에 반복 정의되어 있다.
+  - 특정 skill에서만 필요한 운영 상세가 `AGENTS.md`처럼 항상 로드되는 파일에 있다.
+  - `SKILL.md`가 자기 trigger 밖의 정책까지 설명한다.
+  - 오래된 handoff, 임시 메모, 실험 기록이 공식 규칙처럼 남아 있다.
 - Codex 실행 모델과 맞지 않는 역할·절차 전제
 - `SKILL.md` frontmatter의 `description`과 본문 역할 불일치
 - 사용자-facing 한국어 문서와 작업 분류용 영어 메타데이터의 언어 기준 위반
 
 ## 제외
 - 요청 없는 자동 수정
-- agents 또는 외부 플로우 설계 확장. 단, README나 규칙이 실제 Codex 동작과 어긋나게 설명하면 부정확 항목으로 보고한다.
+- agents 또는 외부 플로우 설계 확장
+- README 감사. README는 프로젝트 안내용 문서로 보고 전역 규칙 정합성 대상에서 제외한다.
 - 선호나 일반론만 근거로 한 문구 변경 제안
 
 ## 출력
