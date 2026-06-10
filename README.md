@@ -56,7 +56,7 @@
 전역 지침과 사용자 정의 skill은 요청 범위가 과하게 확장되지 않도록 소유 위치를 나눈다.
 
 - 작업 분류, 변경 원칙, 언어 기준은 `AGENTS.md`가 소유한다.
-- Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
+- `docs/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
 - 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
 - README는 관리 대상 파일, 구조, 설계 의도만 설명한다.
 
