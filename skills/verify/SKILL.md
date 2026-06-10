@@ -62,8 +62,7 @@ description: "Judge implemented work against SPEC and implement.md verification 
 ## 상태 전환
 - 검증 단계는 먼저 `approved` 또는 `rejected` 판단과 근거를 확정한다.
 - Phased mode에서 `approved`인 경우에만 대상 Task 하나를 `[x]`로 변경한다.
-- 모든 Task가 `[x]`가 되면 `docs/<feature-dir>/README.md`의 `IMPLEMENT`를 `[x]`로 변경하고
-  `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
+- 모든 Task가 `[x]`가 되면 `docs/<feature-dir>/README.md`의 `IMPLEMENT`를 `[x]`로 변경하고 `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
 - `rejected`이면 대상 Task를 `[ ]`로 유지한다. 이미 승인된 Task를 재검증해 실패한 경우에만 `[x]`를 `[ ]`로 되돌린다.
 - Per-Request mode는 문서나 체크박스를 갱신하지 않는다.
 
@@ -72,8 +71,7 @@ description: "Judge implemented work against SPEC and implement.md verification 
 - 문서, 오타, 정적 설정 문구처럼 동작 변경이 없는 작업은 diff 확인만으로 승인할 수 있다.
 - 상태 변경, 외부 I/O, 동시성, 새 경계를 포함하는 작업은 테스트 또는 명확한 실행 근거가 필요하다.
 - 변경 범위에 기존 테스트가 있는데 실행하지 않았다면 제한 사항으로 보고한다.
-- 같은 변경 안에 추가 또는 수정된 테스트는 통과만으로 evidence가 되지 않는다.
-  구현 diff와 함께 회귀 케이스를 실제로 다루는지 확인한다.
+- 같은 변경 안에 추가 또는 수정된 테스트는 통과만으로 evidence가 되지 않는다. 구현 diff와 함께 회귀 케이스를 실제로 다루는지 확인한다.
 - assertion 완화나 케이스 삭제처럼 검증력을 낮춘 변경은 `correctness`로 reject한다.
 
 ## 완료 보고
