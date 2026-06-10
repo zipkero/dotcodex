@@ -24,13 +24,15 @@ description: "Create or reset docs/<feature-dir>/spec.md and feature README.md f
 - 날짜는 `spec-init` 시작일 기준이고, `nnn`은 해당 날짜의 feature 생성 순번이다.
 - 같은 날짜의 기존 feature 디렉터리를 확인해 가장 큰 `nnn`의 다음 번호를 사용한다.
 - 같은 날짜의 같은 `<feature-name>` 디렉터리가 이미 있으면 새 번호를 만들지 않고 기존 디렉터리를 재사용한다.
-- 기존 하위 문서(`analysis.md`, `implement.md`)가 있으면 덮어쓰기 전에 사용자에게 확인한다.
-- `spec.md`를 덮어쓰면 하위 문서가 무효가 될 수 있음을 사용자에게 알린다.
+- 기존 `spec.md`가 있으면 덮어쓰기 전에 사용자에게 확인한다.
+- 기존 하위 문서(`analysis.md`, `implement.md`)가 있으면 `spec.md` 덮어쓰기가 하위 문서를 무효화할 수 있음을 알리고 사용자 확인을 받는다.
+- 기존 `README.md`가 있으면 상태와 문서 섹션은 보존하고, 필요한 이력만 추가한다.
 - 사용자의 요청 밖 목표, 설계, 구현 방식을 새 요구사항으로 추가하지 않는다.
 - 최종 사용 가능 상태를 판단하되, 입력 근거에서 확인되지 않은 목표를 요구사항 범위에 추가하지 않는다.
 - `spec.md`의 `범위`, `목표`, `제약`, `제외 범위`, `완료 조건`은 최종 사용 가능 상태를 기준으로 작성한다.
 - `spec.md`는 독자가 요구사항과 완료 기준을 바로 판단할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
 - `docs/<feature-dir>/README.md`의 `개요`는 feature의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나 설계 판단은 반복하지 않는다.
+- `spec.md`를 다시 작성하는 경우라도 README의 `[x] SPEC` 상태는 유지한다.
 
 ## feature README.md 형식
 ```markdown

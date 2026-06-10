@@ -8,8 +8,9 @@ description: "Create or update docs/<feature-dir>/analysis.md from spec.md for d
 ## 목적
 - `spec.md`를 근거로 분석과 설계 기준을 문서화한다.
 - `analysis.md`는 구조, 데이터 흐름, 인터페이스, 영향 범위, 설계 결정의 기준 문서이다.
+- `analysis.md`는 정적 설계 기준 문서이며 진행 상태를 추적하지 않는다.
 - `analysis.md`는 요구사항을 새로 만들지 않는다. 새 요구사항은 먼저 `spec.md`에 반영한다.
-- 구현 Task와 진행 상태는 `implement.md`가 소유한다.
+- 구현 Task, 진행 상태, Task별 검증 조건은 `implement.md`가 소유한다.
 
 ## 전제 조건
 - feature 문서 디렉터리에 `spec.md`가 있어야 한다.
@@ -27,6 +28,8 @@ description: "Create or update docs/<feature-dir>/analysis.md from spec.md for d
 - 확인하지 않은 구조나 동작은 추정으로 표시한다.
 - `SPEC §5.N` 본문을 복사해 반복하지 말고, 해당 설계가 어떤 완료 조건에 기여하는지 본문에 인라인으로 참조한다.
 - 구현 순서, 작업 목록, 체크리스트는 작성하지 않는다. 해당 내용은 `implement.md`에 둔다.
+- 독립 `SPEC 추적` 매트릭스, 독립 `리스크` 섹션, 독립 `검증 관점` 섹션, `열린 질문` 섹션은 만들지 않는다.
+  SPEC 연결은 관련 설계 본문에 `SPEC §5.N`으로 인라인 표기하고, 설계를 막는 리스크는 `Decision Points`에 선택지와 함께 둔다.
 - 구현 Task에 필요한 API, 상태, 데이터 흐름, 저장 경계, 외부 연동, 설정은 본문 섹션이나 `Decision Points`에 확정한다.
 - 구조는 변경을 어디에 둘지뿐 아니라 책임 경계, 데이터 소유권, 호출 방향, 실패 처리 위치가 일관되는지 기준으로 판단한다.
 - 기존 구조를 따르는 경우에도 요구사항의 정확성, 확장 범위, 검증 가능성을 해치면 대안을 비교해 `Decision Points`에 남긴다.

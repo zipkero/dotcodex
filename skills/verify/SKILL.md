@@ -7,6 +7,7 @@ description: "Judge implemented work against SPEC and implement.md verification 
 
 ## 목적
 - 방금 구현한 단일 Task 또는 Per-Request 변경이 완료 기준을 만족하는지 판단한다.
+- Phased mode의 verify는 Task-level 판단 도구이며, feature 단위 통합 검증 단계가 아니다.
 - 판단은 `approved` 또는 `rejected`로 반환하고, 근거를 함께 보고한다.
 - 별도 `verify.md`를 만들지 않는다.
 
@@ -63,7 +64,9 @@ description: "Judge implemented work against SPEC and implement.md verification 
 - 검증 단계는 먼저 `approved` 또는 `rejected` 판단과 근거를 확정한다.
 - Phased mode에서 `approved`인 경우에만 대상 Task 하나를 `[x]`로 변경한다.
 - 모든 Task가 `[x]`가 되면 `docs/<feature-dir>/README.md`의 `IMPLEMENT`를 `[x]`로 변경하고 `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
-- `rejected`이면 대상 Task를 `[ ]`로 유지한다. 이미 승인된 Task를 재검증해 실패한 경우에만 `[x]`를 `[ ]`로 되돌린다.
+- `rejected`이면 대상 Task를 `[ ]`로 유지한다.
+- 이미 승인된 Task를 재검증해 실패한 경우에는 `[x]`를 `[ ]`로 되돌린다.
+- 그 결과 모든 Task 완료 상태가 아니게 되면 README의 `[x] IMPLEMENT`를 `[ ] IMPLEMENT`로 되돌리고, 이력에 재검증 실패로 IMPLEMENT 상태를 되돌렸다는 한 줄을 추가한다.
 - Per-Request mode는 문서나 체크박스를 갱신하지 않는다.
 
 ## 테스트 evidence 규칙

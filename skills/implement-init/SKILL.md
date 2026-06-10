@@ -27,8 +27,8 @@ description: "Create or update docs/<feature-dir>/implement.md with executable T
 - 의존성 순서는 `implement.md`의 항목 위치로 표현한다. ID 숫자를 순서 의미로 사용하거나 순서 변경 때문에 재번호하지 않는다.
 - 각 항목은 최소 하나의 `SPEC §5.N`에 매핑한다.
 - `ANALYSIS §X.Y` 참조는 해당 Task가 따르는 구조나 설계 결정이 있을 때만 둔다.
-- `implement.md`의 전체 Task 집합은 모든 `SPEC §5.N`을 빠짐없이 커버해야 한다.
-- 특정 `SPEC §5.N`을 Task로 확정할 수 없으면 임의로 생략하지 말고, 필요한 결정과 영향을 보고하고 저장하지 않는다.
+- `implement.md`의 전체 Task 집합은 모든 `SPEC §5.N`을 빠짐없이 Task로 커버해야 한다.
+- 특정 `SPEC §5.N`을 Task로 확정할 수 없으면 임의로 생략하거나 `implement.md`의 제외 항목으로 옮기지 않는다.
 - 미매핑 `SPEC §5.N`이 있으면 사용자에게 선택지를 제시한다. 선택지는 해당 기준을 다루는 Task 추가, `spec.md` 완료 조건 제거,
   `spec.md` 제외 범위로 명시적 보류 중 하나다. 사용자가 결정하기 전에는 `implement.md`를 확정하지 않는다.
 - 각 항목에는 목적, 접근, 검증 조건, 참조만 둔다.
@@ -56,8 +56,6 @@ description: "Create or update docs/<feature-dir>/implement.md with executable T
     - 결과: <Task 완료 후 성립해야 하는 동작·출력·파일 내용·상태>
     - 확인: <테스트 / 빌드 / lint / diff / 수동 확인>
   - 참조: SPEC §5.N, ANALYSIS §X.Y
-
-## 제외 항목
 ```
 
 ## feature README.md 갱신
@@ -66,7 +64,7 @@ description: "Create or update docs/<feature-dir>/implement.md with executable T
 
 ## 스킬 완료 조건
 - `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.
-- 모든 `SPEC §5.N`이 하나 이상의 Task 또는 제외 항목으로 추적되어야 한다.
+- 모든 `SPEC §5.N`이 하나 이상의 Task로 추적되어야 한다.
 - `docs/<feature-dir>/README.md`의 이력이 갱신되어야 한다.
 
 ## 완료 보고
