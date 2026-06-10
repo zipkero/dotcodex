@@ -22,7 +22,7 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 - 구체 예시나 도구 나열이 원칙보다 커져 적용 범위를 좁히는 항목
 - 의미 없이 부정형을 반복해 읽기 비용을 늘리는 항목
 - 현재 설정에 없는 기능이나 폐기된 설명
-- `docs/**` 밖 Markdown 문서에 120칸 제한을 전역 규칙처럼 적용하는 항목
+- `docs/**` 밖 Markdown 문서에 150칸 제한을 전역 규칙처럼 적용하는 항목
 - 권위 위치 불일치
   - `AGENTS.md`는 전역 원칙만 소유한다.
   - phase별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
