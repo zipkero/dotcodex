@@ -28,6 +28,18 @@ description: "Audit global Codex configuration for consistency, ownership, and t
   - phase별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
   - 테스트 작성 범위는 `implement-init`과 `implement`가 소유한다.
   - 승인 판단, evidence 기준, Task 완료 후처리는 `verify` skill이 소유한다.
+- 문서 우선 흐름의 단계 실행 기준
+  - 다음 단계가 사용자 요청 없이 실행되도록 쓰여 있지 않은지 확인한다.
+  - 사용자가 자동 진행을 명시 요청할 수 있는 여지는 막지 않는다.
+- 구현 품질 가드 위치
+  - 기본 설계 원칙은 `implement`가 소유한다.
+  - 테스트 통과용 하드코딩, fixture 전용 특수분기, assertion 맞춤 동작 축소 금지는 `implement`에 있어야 한다.
+  - 주석 작성 기준은 과도하게 보강하지 않고 현재 `implement` 기준과 충돌하지 않아야 한다.
+- 문서 산출물 완결성
+  - `analyze-init`은 이전 대화 맥락 없이 `spec.md`와 `analysis.md`만으로
+    구현 체크리스트를 만들 수 있게 하는 기준을 가져야 한다.
+  - `implement-init`은 미매핑 `SPEC §5.N`을 조용히 넘기지 않고
+    Task 추가, 완료 조건 제거, 제외 범위 보류 중 하나로 결정하게 해야 한다.
 - context health 저하 신호
   - 같은 규칙이 `AGENTS.md`와 여러 `SKILL.md`에 반복 정의되어 있다.
   - 특정 skill에서만 필요한 운영 상세가 `AGENTS.md`처럼 항상 로드되는 파일에 있다.
@@ -40,7 +52,9 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 ## 제외
 - 요청 없는 자동 수정
 - agents 또는 외부 플로우 설계 확장
-- README 감사. README는 프로젝트 안내용 문서로 보고 전역 규칙 정합성 대상에서 제외한다.
+- README 본문 자체의 정합성 감사는 제외한다.
+  다만 전역 설정 수정 제안이 README의 관리 대상, skill 목록, 정책 소유 위치 설명과 어긋날 수 있으면
+  README 동기화 필요성을 영향받는 파일에 함께 안내한다.
 - 선호나 일반론만 근거로 한 문구 변경 제안
 
 ## 출력
@@ -50,4 +64,5 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 - 현재 문제
 - 제안 방향
 - 영향받는 파일
+- README 동기화 필요 여부
 - 필요한 경우 before/after 수정안

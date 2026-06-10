@@ -31,6 +31,10 @@ description: "Create or update docs/<feature-dir>/implement.md with executable T
 - `ANALYSIS §X.Y` 참조는 해당 Task가 따르는 구조나 설계 결정이 있을 때만 둔다.
 - `implement.md`의 전체 Task 집합은 모든 `SPEC §5.N`을 빠짐없이 커버해야 한다.
 - 특정 `SPEC §5.N`을 Task로 확정할 수 없으면 임의로 생략하지 말고, 필요한 결정과 영향을 보고하고 저장하지 않는다.
+- 미매핑 `SPEC §5.N`이 있으면 사용자에게 선택지를 제시한다.
+  선택지는 해당 기준을 다루는 Task 추가, `spec.md` 완료 조건 제거,
+  `spec.md` 제외 범위로 명시적 보류 중 하나다.
+  사용자가 결정하기 전에는 `implement.md`를 확정하지 않는다.
 - 각 항목에는 목적, 접근, 검증 조건, 참조만 둔다.
 - `목적`에는 문서 매핑이 아니라 사용자가 얻는 결과나 Task가 완성해야 하는 외부 관찰 가능한 동작을 적는다.
 - `접근`에는 `analysis.md`에서 확정된 설계를 구현하는 방법만 적는다.

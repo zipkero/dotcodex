@@ -19,6 +19,8 @@ description: "Create or update docs/<feature-dir>/analysis.md from spec.md for d
 
 ## 작성 규칙
 - `analysis.md`는 `spec.md`의 범위, 목표, 제약, 제외 범위, `SPEC §5.N`을 기준으로 작성한다.
+- `analysis.md`는 새 대화에서 이전 대화 맥락 없이 읽어도 구현 체크리스트를 만들 수 있게 작성한다.
+  `spec.md`와 `analysis.md`만으로 구조, 흐름, 경계, 설계 결정을 판단할 수 있어야 한다.
 - `analysis.md`는 특정 구현 단계가 아니라 `SPEC §5.N` 전체를 달성하기 위한 구조, 흐름, 경계, 설계 결정을 다룬다.
 - `analysis.md`는 `spec.md`의 요구사항을 새로 만들거나 누락하거나 약화하지 않는다.
 - 기존 코드, 문서, 명령 결과처럼 확인한 근거를 기준으로 작성한다.
@@ -33,6 +35,8 @@ description: "Create or update docs/<feature-dir>/analysis.md from spec.md for d
 - 단순 구현 편의가 아니라 완료 조건을 안정적으로 만족하는 구조인지 확인한다.
 - 불확실하거나 합의되지 않은 설계 결정은 `Decision Points`에 선택지, 트레이드오프, 필요한 결정으로 남긴다.
 - 불필요한 리팩터링, 범위 외 개선, `spec.md`에 없는 요구사항은 설계 결정이나 구현 전제로 확정하지 않는다.
+- 일반 보안, 성능, 컴플라이언스, 호환성 우려는 spec, 코드, 명령 결과에서 확인된 경우에만 적는다.
+  확인되지 않은 일반 체크리스트나 가설적 실패 모드를 독립 섹션으로 만들지 않는다.
 - `analysis.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓰고,
   용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
 
