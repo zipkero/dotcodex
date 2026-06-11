@@ -41,6 +41,14 @@ description: "Create or update docs/<feature-dir>/analysis.md from spec.md for d
   확인되지 않은 일반 체크리스트나 가설적 실패 모드를 독립 섹션으로 만들지 않는다.
 - `analysis.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
 
+## 승인 전 확인 기준
+- 사용자가 ANALYSIS 승인 전에 답해야 할 feature 고유의 판단 질문을 만들 수 있을 때만 `근거` 앞에 `승인 전 확인` 섹션을 둔다.
+- 어느 feature에나 성립하는 일반 확인 질문은 두지 않는다.
+- Decision Point 개수, 채택 옵션 재서술처럼 본문에서 파생 가능한 미러 정보는 두지 않는다.
+- 항목은 `- <판단 질문>. 관련 본문: §N` 형식으로 쓴다.
+- 질문에는 그 feature에서 무엇이 걸려 있는지가 드러나야 한다.
+- 미해결 결정 자체는 `Decision Points`가 소유한다. 이 섹션에는 판단 질문만 둔다.
+
 ## analysis.md 형식
 ```markdown
 # <기능명> 분석

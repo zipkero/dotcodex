@@ -55,6 +55,13 @@ description: "Create or reset docs/<feature-dir>/spec.md and feature README.md f
 - <yyyy-MM-dd>: SPEC 작성
 ```
 
+## 승인 전 확인 기준
+- 사용자가 SPEC 승인 전에 답해야 할 feature 고유의 판단 질문을 만들 수 있을 때만 `범위` 앞에 `승인 전 확인` 섹션을 둔다.
+- 어느 feature에나 성립하는 일반 확인 질문은 두지 않는다.
+- 본문 요약, 파생 수치, 문서 타입 상수는 두지 않는다.
+- 항목은 `- <판단 질문>. 관련 본문: §N` 형식으로 쓴다.
+- 범위를 결정하지 못한 모호함은 문서에 남기지 말고 생성 전에 질문한다.
+
 ## spec.md 형식
 ```markdown
 # <기능명> 명세
@@ -82,7 +89,7 @@ description: "Create or reset docs/<feature-dir>/spec.md and feature README.md f
 
 ## 스킬 완료 조건
 - `docs/<feature-dir>/README.md`와 `spec.md`가 생성 또는 갱신되어야 한다.
-- `spec.md`에는 위 형식의 5개 섹션만 둔다.
+- `spec.md`에는 선택 `승인 전 확인`과 위 형식의 5개 섹션만 둔다.
 - 각 `SPEC §5.N`은 관찰 가능한 결과여야 한다.
 - `제외 범위`에는 의도적으로 하지 않을 변경을 적는다.
 
