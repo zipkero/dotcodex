@@ -16,6 +16,8 @@ description: "Create or update docs/<feature-dir>/implement.md with executable T
 - 기존 `implement.md`가 있으면 덮어쓰기 전에 사용자에게 확인한다. 기존 체크박스 상태는 덮어쓰기 시 사라질 수 있다.
 - `analysis.md`의 `Decision Points`에 채택안이 없거나 미정/TBD/보류로 남은 항목이 있으면
   사용자에게 알리고, 사용자가 명시적으로 진행을 원할 때만 계속한다.
+- Task 작성 전에 완료 기준, Task 경계, 검증 조건이 여러 방향으로 해석될 수 있으면 질문으로 해소한다.
+- 미확정 판단을 임의로 Task 범위나 검증 조건으로 변환하지 않는다.
 
 ## 작성 규칙
 - Task는 파일, 함수, 레이어, 구현 순서가 아니라 외부에서 확인 가능한 동작과 그 검증 기준을 기준으로 나눈다.
