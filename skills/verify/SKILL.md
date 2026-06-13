@@ -28,7 +28,7 @@ description: "Judge implemented work against SPEC and implement.md verification 
 - 최소 근거는 변경 diff이다. 동작 변경이 있으면 가능한 한 테스트나 실행 결과를 함께 확인한다.
 - 내부 계산, 조건, 변환만 바뀌고 정확성이 diff에서 확인되는 경우에는 diff 기반 추론도 근거가 될 수 있다.
 - “전에 논의했음”은 근거가 아니다. 필요한 파일이나 테스트를 다시 확인한다.
-- `SPEC §5.N`과 `ANALYSIS §X.Y`는 추적 메타데이터이며, 승인 evidence는 실제 산출물에서 가져온다.
+- `SPEC §5.N`과 `ANALYSIS §X.Y`는 추적 메타데이터이며, 승인 근거는 실제 산출물에서 가져온다.
 - 근거만으로 정확성을 판단할 수 없으면 `rejected`로 판단하고 부족한 근거를 명시한다.
 
 ## 판단 규칙
@@ -47,7 +47,7 @@ description: "Judge implemented work against SPEC and implement.md verification 
 3. Validation:
    - 기준 일치
    - 범위와 동작 정확성
-   - Evidence
+   - 검증 근거
 4. `rejected`인 경우 Issues:
    - Category: `style/minor` | `correctness` | `design/scope`
    - 실제 근거와 함께 구체적 문제를 적는다.
@@ -69,12 +69,12 @@ description: "Judge implemented work against SPEC and implement.md verification 
 - 그 결과 모든 Task 완료 상태가 아니게 되면 README의 `[x] IMPLEMENT`를 `[ ] IMPLEMENT`로 되돌리고, 이력에 재검증 실패로 IMPLEMENT 상태를 되돌렸다는 한 줄을 추가한다.
 - Per-Request mode는 문서나 체크박스를 갱신하지 않는다.
 
-## 테스트 evidence 규칙
-- `verify`는 evidence 수집 목적으로만 테스트를 실행한다. 테스트, 운영 코드, 문서는 수정하지 않는다.
+## 테스트 검증 근거 규칙
+- `verify`는 검증 근거 수집 목적으로만 테스트를 실행한다. 테스트, 운영 코드, 문서는 수정하지 않는다.
 - 문서, 오타, 정적 설정 문구처럼 동작 변경이 없는 작업은 diff 확인만으로 승인할 수 있다.
 - 상태 변경, 외부 I/O, 동시성, 새 경계를 포함하는 작업은 테스트 또는 명확한 실행 근거가 필요하다.
 - 변경 범위에 기존 테스트가 있는데 실행하지 않았다면 제한 사항으로 보고한다.
-- 같은 변경 안에 추가 또는 수정된 테스트는 통과만으로 evidence가 되지 않는다. 구현 diff와 함께 회귀 케이스를 실제로 다루는지 확인한다.
+- 같은 변경 안에 추가 또는 수정된 테스트는 통과만으로 검증 근거가 되지 않는다. 구현 diff와 함께 회귀 케이스를 실제로 다루는지 확인한다.
 - assertion 완화나 케이스 삭제처럼 검증력을 낮춘 변경은 `correctness`로 reject한다.
 
 ## 완료 보고

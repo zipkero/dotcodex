@@ -12,7 +12,8 @@
 
 ## 문서 우선 개발 플로우
 
-요구사항 확정, 설계 판단, 다중 단계 검증이 필요한 작업은 `docs/<feature-dir>/` 문서 플로우를 사용한다.
+새 feature, 공개 contract 변경, 되돌리기 어려운 데이터/외부 영향, 또는 여러 Task로 나눠야 검증 가능한 작업은
+`docs/<feature-dir>/` 문서 플로우를 사용한다.
 새 feature 디렉터리는 `spec-init` 기준에 따라 `docs/<yyyyMMdd>-<nnn>-<feature-name>/` 형식으로 만든다.
 
 기본 순서:
