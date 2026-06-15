@@ -12,6 +12,11 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 이 skill의 근본 목적은 Codex 전역 설정이 모델의 자율 실행 성향 때문에 요청 범위를 과하게 확장하거나,
 같은 절차를 여러 문서에 중복 정의하거나, Codex 실행 모델과 맞지 않는 역할·절차를 전제하는 일을 막는 것이다.
 
+## 컨텍스트 로딩
+- 사용자가 특정 파일이나 skill을 대상으로 지정하면 해당 대상과 판단에 직접 필요한 참조만 읽는다.
+- 사용자가 전역 감사 또는 전체 점검을 요청한 경우에만 `AGENTS.md`, 루트 `README.md`,
+  `.gitignore`, allowlist에 포함된 사용자 정의 `skills/*/SKILL.md` 전체를 읽는다.
+
 ## 범위
 - 규칙 간 의미 충돌
 - 모호한 표현
