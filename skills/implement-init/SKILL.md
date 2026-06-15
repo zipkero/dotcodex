@@ -45,7 +45,8 @@ description: "Create or update docs/<feature-dir>/implement.md with executable T
 ## 테스트 Task 기준
 - 회귀 테스트는 보통 구현 Task의 `확인` 필드에 둔다.
 - 별도 테스트 Task는 여러 구현 흐름을 묶거나 독립적인 검증 산출물이 필요할 때만 둔다.
-- 테스트 코드 작성 범위와 검증 evidence 판단은 `implement`와 `verify` skill이 소유한다.
+- 새 테스트 코드가 필요하면 Task의 `접근`이나 `검증 조건`에 명시한다.
+- 테스트 코드 작성 범위는 `implement`, 검증 근거 판단은 `verify`가 소유한다.
 
 ## implement.md 형식
 ```markdown
