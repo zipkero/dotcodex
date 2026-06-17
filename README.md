@@ -38,7 +38,7 @@
 사용자 정의 skill은 `skills/.system` 밖에 둔다.
 실제 관리 대상은 `.gitignore` allowlist에 포함되고 `SKILL.md`가 있는 사용자 정의 skill 디렉터리이다.
 
-- `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인
+- `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인, 설계 선택지 비교
 - `skills/spec-init`: `spec.md`와 feature `README.md` 초기화
 - `skills/analyze-init`: `spec.md` 기반 `analysis.md` 작성
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성

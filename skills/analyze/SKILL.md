@@ -1,12 +1,13 @@
 ---
 name: analyze
-description: "Analyze code, debug behavior, architecture, root causes, and scope without writing files."
+description: "Analyze code, debug behavior, architecture, design options, root causes, and scope without writing files."
 ---
 
 # Analyze
 
 ## 목적
 - 즉석 조사, 디버깅, 코드 이해를 대화 안에서 수행한다.
+- 설계·구조 요청에서는 구현 전에 선택지, trade-off, 추천안을 대화 안에서 정리한다.
 - 파일을 만들거나 수정하지 않는다.
 - `analyze-init`과 다르다. 이 skill은 문서 단계가 아니며, `analysis.md`는 `analyze-init`이 작성한다.
 
@@ -19,8 +20,11 @@ description: "Analyze code, debug behavior, architecture, root causes, and scope
 ## 분석 원칙
 - 이 skill이 활성화된 턴에서는 사용자가 수정 가능성을 언급했더라도 먼저 분석 결과와 수정 범위를 보고한다.
 - 실제 코드, 로그, 에러, 문서를 근거로 삼고 추정은 근거와 분리해 명시한다.
-- root cause, 영향 범위, 미확인 가정을 분리한다.
-- 일반 보안, 성능, 컴플라이언스, SLO 체크리스트를 대상에 투사하지 않는다. 보고 전에 이 프로젝트의 코드, spec, 로그로 확인한다.
+- 디버깅 요청에서는 확인된 원인, 영향 범위, 아직 확인되지 않은 가정을 분리한다.
+- 설계·구조 분석 요청에서는 문제 크기에 맞게 가능한 구조 선택지들을 펼치고,
+  각 선택지의 장점, 단점, 유지보수 영향, 구현 난이도, 검증 기준을 비교한다.
+- 마지막에는 추천안을 하나로 수렴하되, 채택하지 않은 주요 대안의 trade-off도 남긴다.
+- 코드, spec, 로그에서 확인되지 않은 일반론적 우려를 개선안처럼 제시하지 않는다.
 - 구현이 필요해 보여도 바로 수정하지 않고 다음 단계를 제안한다.
 
 ## 출력 구조
@@ -28,6 +32,7 @@ description: "Analyze code, debug behavior, architecture, root causes, and scope
 - 근거: 확인한 파일, 로그, 명령, 관찰 사항.
 - 관련 흐름: 실행 흐름, 데이터 흐름, 상태 변화.
 - 원인: 확인된 root cause 또는 아직 좁혀지지 않은 지점.
+- 설계 선택지: 설계·구조 요청일 때 가능한 선택지, trade-off, 추천안을 적는다.
 - 분류: `Phased(문서 우선)` 대상 / Per-Request 가능 / 추가 입력 필요 중 하나. 구현 범위에 영향이 있을 때만 포함한다.
 - 다음 단계: 필요한 문서 단계(`spec-init`, `analyze-init`, `implement-init`) 또는 구현/검증 제안.
 
