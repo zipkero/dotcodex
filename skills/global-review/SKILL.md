@@ -57,7 +57,7 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 
 ## 제외
 - 요청 없는 자동 수정
-- agents 또는 외부 플로우 설계 확장
+- `AGENTS.md` 정책 체계나 외부 플로우 설계 확장
 - README에는 룰 정합성 기준을 적용하지 않는다. 다만 README가 실제 구조와 기능을 정확히 설명하는지는 별도 항목으로 점검한다.
 - 전역 설정 수정 제안이 README의 관리 대상, skill 목록, 정책 소유 위치 설명과 어긋날 수 있으면 README 동기화 필요성을 영향받는 파일에 함께 안내한다.
 - 선호나 일반론만 근거로 한 문구 변경 제안

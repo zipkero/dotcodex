@@ -42,7 +42,7 @@
 - `skills/spec-init`: `spec.md`와 feature `README.md` 초기화
 - `skills/analyze-init`: `spec.md` 기반 `analysis.md` 작성
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
-- `skills/implement`: `implement.md` 기반 구현 수행
+- `skills/implement`: 문서화된 Task 또는 작은 Per-Request 변경 구현
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
 - `skills/flow`: 선택된 코드의 실행 흐름, 데이터 흐름, 책임 흐름 설명
 - `skills/global-review`: 전역 설정과 사용자 정의 skill 정합성 점검
@@ -59,6 +59,7 @@
 - 작업 분류, 변경 원칙, 언어 기준은 `AGENTS.md`가 소유한다.
 - `docs/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
 - 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
+- 테스트 Task 작성은 `implement-init`, 테스트 코드 작성은 `implement`, 승인 판단과 Task 완료 후처리는 `verify`가 소유한다.
 - README는 관리 대상 파일, 구조, 설계 의도만 설명한다.
 
 ## Git 관리 정책
