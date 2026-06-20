@@ -12,6 +12,9 @@
 
 ## 문서 우선 개발 플로우
 
+프로젝트를 처음 시작하거나 최상위 제품·도구 범위를 정리할 때는 `project-init`으로 루트 `README.md`와
+`ROADMAP.md`를 먼저 만든다. 이후 개별 feature는 `spec-init`부터 문서화한다.
+
 새 feature, 공개 contract 변경, 되돌리기 어려운 데이터/외부 영향, 또는 여러 Task로 나눠야 검증 가능한 작업은
 `docs/<feature-dir>/` 문서 플로우를 사용한다.
 새 feature 디렉터리는 `spec-init` 기준에 따라 `docs/<yyyyMMdd>-<nnn>-<feature-name>/` 형식으로 만든다.
@@ -39,6 +42,7 @@
 실제 관리 대상은 `.gitignore` allowlist에 포함되고 `SKILL.md`가 있는 사용자 정의 skill 디렉터리이다.
 
 - `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인, 설계 선택지 비교
+- `skills/project-init`: 프로젝트 루트 `README.md`와 `ROADMAP.md` 초기화
 - `skills/spec-init`: `spec.md`와 feature `README.md` 초기화
 - `skills/analyze-init`: `spec.md` 기반 `analysis.md` 작성
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
