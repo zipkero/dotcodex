@@ -16,8 +16,8 @@
 `ROADMAP.md`를 먼저 만든다. 이후 개별 feature는 `spec-init`부터 문서화한다.
 
 새 feature, 공개 contract 변경, 되돌리기 어려운 데이터/외부 영향, 또는 여러 Task로 나눠야 검증 가능한 작업은
-`docs/<feature-dir>/` 문서 플로우를 사용한다.
-새 feature 디렉터리는 `spec-init` 기준에 따라 `docs/<yyyyMMdd>-<nnn>-<feature-name>/` 형식으로 만든다.
+`features/<feature-dir>/` 문서 플로우를 사용한다.
+새 feature 디렉터리는 `spec-init` 기준에 따라 `features/<yyyyMMdd>-<nnn>-<feature-name>/` 형식으로 만든다.
 
 기본 순서:
 
@@ -61,7 +61,7 @@
 전역 지침과 사용자 정의 skill은 요청 범위가 과하게 확장되지 않도록 소유 위치를 나눈다.
 
 - 작업 분류, 변경 원칙, 언어 기준은 `AGENTS.md`가 소유한다.
-- `docs/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
+- `docs/**`와 `features/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
 - 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
 - 테스트 Task 작성은 `implement-init`, 테스트 코드 작성은 `implement`, 승인 판단과 Task 완료 후처리는 `verify`가 소유한다.
 - README는 관리 대상 파일, 구조, 설계 의도만 설명한다.

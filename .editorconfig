@@ -11,3 +11,6 @@ trim_trailing_whitespace = false
 
 [docs/**/*.md]
 max_line_length = 150
+
+[features/**/*.md]
+max_line_length = 150

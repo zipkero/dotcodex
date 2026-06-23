@@ -31,7 +31,7 @@ description: "Create or update project-level README.md and ROADMAP.md at the sta
 - 기술 선택, 명령어, 현재 동작은 확인한 파일이나 실행 결과에 근거해서만 단정한다.
 - 확인되지 않은 설치 방법, 실행 명령, 지원 기능, 성능 목표, 운영 보장은 추정으로 쓰지 않는다.
 - `ROADMAP.md`의 단계는 구현 순서의 기준일 뿐이며, feature별 완료 조건과 검증 기준은 이후 `spec-init`에서 확정한다.
-- 새 feature 문서 후보를 만들 수는 있지만 `docs/<feature-dir>/` 디렉터리는 생성하지 않는다.
+- 새 feature 문서 후보를 만들 수는 있지만 `features/<feature-dir>/` 디렉터리는 생성하지 않는다.
 - 문서 갱신이 기존 feature 문서의 기준을 바꿀 수 있으면 영향 범위를 보고하고 사용자 확인을 받는다.
 
 ## README.md 기준

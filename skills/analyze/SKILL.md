@@ -12,7 +12,7 @@ description: "Analyze code, debug behavior, architecture, design options, root c
 - `analyze-init`과 다르다. 이 skill은 문서 단계가 아니며, `analysis.md`는 `analyze-init`이 작성한다.
 
 ## 컨텍스트 로딩
-- 사용자가 `docs/<feature-dir>/` 또는 하위 파일을 지정하면 feature 범위로 보고, 질문에 필요한 `spec.md`, `analysis.md`, `implement.md`만 읽는다.
+- 사용자가 `features/<feature-dir>/` 또는 하위 파일을 지정하면 feature 범위로 보고, 질문에 필요한 `spec.md`, `analysis.md`, `implement.md`만 읽는다.
 - 사용자가 특정 파일, 심볼, 에러, 로그를 지정하면 그 대상과 필요한 주변 맥락을 읽는다.
 - 범위가 비어 있으면 대화 맥락에서 충분한 신호가 있을 때만 명시적 가정으로 진행한다.
 - 대상 시스템이나 영역을 결정할 수 없으면 `scope undefined`로 중단한다.

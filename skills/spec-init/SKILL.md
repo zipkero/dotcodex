@@ -1,6 +1,6 @@
 ---
 name: spec-init
-description: "Create or reset docs/<feature-dir>/spec.md and feature README.md for documentation-first work."
+description: "Create or reset features/<feature-dir>/spec.md and feature README.md for documentation-first work."
 ---
 
 # Spec Init
@@ -8,7 +8,7 @@ description: "Create or reset docs/<feature-dir>/spec.md and feature README.md f
 ## 목적
 - feature 문서 디렉터리를 만들고 요구사항의 기준 문서를 작성한다.
 - `spec.md`는 요구사항 레벨에서 범위, 목표, 제약, 제외 범위, 완료 조건을 고정하는 기준 문서이다.
-- `docs/<feature-dir>/README.md`는 feature 문서 세트의 개요와 상태판이다.
+- `features/<feature-dir>/README.md`는 feature 문서 세트의 개요와 상태판이다.
 - 설계, 데이터 흐름, 구현 순서, 체크리스트는 다루지 않는다.
 
 ## 입력 판단
@@ -45,7 +45,7 @@ description: "Create or reset docs/<feature-dir>/spec.md and feature README.md f
 - 대화와 조사만으로 확정할 수 없는 feature 고유 판단은 문서 생성 전에 질문한다.
 
 ## 생성/갱신 규칙
-- 새 feature 디렉터리는 `docs/<yyyyMMdd>-<nnn>-<feature-name>/` 형식을 사용한다.
+- 새 feature 디렉터리는 `features/<yyyyMMdd>-<nnn>-<feature-name>/` 형식을 사용한다.
 - 날짜는 `spec-init` 시작일 기준이고, `nnn`은 해당 날짜의 feature 생성 순번이다.
 - 같은 날짜의 기존 feature 디렉터리를 확인해 가장 큰 `nnn`의 다음 번호를 사용한다.
 - 같은 날짜의 같은 `<feature-name>` 디렉터리가 이미 있으면 새 번호를 만들지 않고 기존 디렉터리를 재사용한다.
@@ -62,7 +62,7 @@ description: "Create or reset docs/<feature-dir>/spec.md and feature README.md f
 - `spec.md`의 `범위`, `목표`, `제약`, `제외 범위`, `완료 조건`은 최종 사용 가능 상태를 기준으로 작성한다.
 - `spec.md`는 독자가 요구사항과 완료 기준을 바로 판단할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을
   따른다.
-- `docs/<feature-dir>/README.md`의 `개요`는 feature의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나
+- `features/<feature-dir>/README.md`의 `개요`는 feature의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나
   설계 판단은 반복하지 않는다.
 - `spec.md`를 다시 작성하는 경우라도 README의 `[x] SPEC` 상태는 유지한다.
 
@@ -121,7 +121,7 @@ description: "Create or reset docs/<feature-dir>/spec.md and feature README.md f
 - 내부 실행 절차를 완료 조건으로 쓰지 않는다. 내부 설계와 구현 순서는 `analysis.md` 또는 `implement.md`로 분리한다.
 
 ## 스킬 완료 조건
-- `docs/<feature-dir>/README.md`와 `spec.md`가 생성 또는 갱신되어야 한다.
+- `features/<feature-dir>/README.md`와 `spec.md`가 생성 또는 갱신되어야 한다.
 - `spec.md`에는 선택 `승인 전 확인`과 위 형식의 5개 섹션만 둔다.
 - 각 `SPEC §5.N`은 관찰 가능한 결과여야 한다.
 - `제외 범위`에는 의도적으로 하지 않을 변경을 적는다.

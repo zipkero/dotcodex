@@ -1,6 +1,6 @@
 ---
 name: implement-init
-description: "Create or update docs/<feature-dir>/implement.md with executable Tasks and verification criteria."
+description: "Create or update features/<feature-dir>/implement.md with executable Tasks and verification criteria."
 ---
 
 # Implement Init
@@ -73,7 +73,7 @@ description: "Create or update docs/<feature-dir>/implement.md with executable T
 ## 스킬 완료 조건
 - `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.
 - 모든 `SPEC §5.N`이 하나 이상의 Task로 추적되어야 한다.
-- `docs/<feature-dir>/README.md`의 이력이 갱신되어야 한다.
+- `features/<feature-dir>/README.md`의 이력이 갱신되어야 한다.
 
 ## 완료 보고
 - 작업 항목 수

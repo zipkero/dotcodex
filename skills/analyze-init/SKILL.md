@@ -1,6 +1,6 @@
 ---
 name: analyze-init
-description: "Create or update docs/<feature-dir>/analysis.md from spec.md for documented feature design."
+description: "Create or update features/<feature-dir>/analysis.md from spec.md for documented feature design."
 ---
 
 # Analyze Init
@@ -84,14 +84,14 @@ description: "Create or update docs/<feature-dir>/analysis.md from spec.md for d
   옵션, trade-off, 채택안, 근거와 함께 적는다. 판단 거리가 없으면 `해당 없음`으로 적는다.
 
 ## feature README.md 갱신
-- `docs/<feature-dir>/README.md`의 `ANALYSIS`를 `[x]`로 변경한다.
+- `features/<feature-dir>/README.md`의 `ANALYSIS`를 `[x]`로 변경한다.
 - 이력에 `- <yyyy-MM-dd>: ANALYSIS 작성`을 추가한다.
 - `IMPLEMENT`는 이 단계에서 체크하지 않는다.
 
 ## 스킬 완료 조건
 - `analysis.md`가 spec에 근거해 생성 또는 갱신되어야 한다.
 - 관련 설계 본문에서 필요한 `SPEC §5.N` 참조가 확인되어야 한다.
-- `docs/<feature-dir>/README.md`의 상태와 이력이 갱신되어야 한다.
+- `features/<feature-dir>/README.md`의 상태와 이력이 갱신되어야 한다.
 
 ## 완료 보고
 - 핵심 설계 결정

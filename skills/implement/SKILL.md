@@ -11,7 +11,7 @@ description: "Execute one documented Task or a small per-request code change wit
 
 ## 컨텍스트 로딩
 1. Phased mode로 진입하는 경우:
-   - 사용자가 `docs/<feature-dir>/` 또는 `docs/<feature-dir>/implement.md`를 지정했다.
+   - 사용자가 `features/<feature-dir>/` 또는 `features/<feature-dir>/implement.md`를 지정했다.
    - 현재 대화에서 해당 feature에 대해 `spec-init`, `analyze-init`, `implement-init`이 실행되었거나, 사용자가 구현 의도로 feature를 명시했다.
 2. Phased mode 동작:
    - `spec.md`, `analysis.md`, `implement.md`를 읽는다.
@@ -23,7 +23,7 @@ description: "Execute one documented Task or a small per-request code change wit
      여러 방향으로 해석될 수 있으면 먼저 질문한다.
    - 질문이 필요한 상태에서는 파일을 수정하지 않는다.
    - 조사로 해소 가능한 불확실성은 먼저 코드, 테스트, 로그, 기존 문서에서 확인한다.
-   - `docs/<feature-dir>/`를 만들지 않는다.
+   - `features/<feature-dir>/`를 만들지 않는다.
    - 범위 확장, 새 의존성, 공개 API 변경, 요청 범위를 바꾸는 설계 판단이 필요하면 진행 전 사용자 결정을 요청한다.
    - 요청 범위 안의 구현 선택지는 기존 코드 패턴과 `analysis.md`가 있으면 그 결정을 따른다.
 
@@ -49,7 +49,7 @@ description: "Execute one documented Task or a small per-request code change wit
   테스트와 구현이 충돌하면 완료 조건과 공개 contract 기준으로 어느 쪽이 틀렸는지 먼저 판단한다.
 - 테스트를 통과하려면 구조, 경계, API, 상태 소유권 변경이 필요해 보이는 경우에는 구현하지 말고 설계 변경 필요 사항으로 보고한다.
 - 테스트, 포맷, 빌드 명령은 변경 범위를 확인하는 데 필요한 수준으로 실행한다.
-- 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와 `docs/<feature-dir>/README.md`의 `IMPLEMENT` 상태를 변경하지 않는다.
+- 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와 `features/<feature-dir>/README.md`의 `IMPLEMENT` 상태를 변경하지 않는다.
 
 ## 주석 작성 기준
 - 단순 유틸, 얇은 위임, 이름 그대로의 절차 설명 주석은 생략할 수 있다.
