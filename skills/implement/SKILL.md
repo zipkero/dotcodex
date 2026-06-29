@@ -35,6 +35,7 @@ description: "Execute one documented Task or a small per-request code change wit
 - Phased mode에서는 `analysis.md`에 확정된 설계를 해당 언어와 프로젝트 관례에 맞춰 구현한다.
 - 파일 수정 전 어떤 변경을 할지 짧게 설명한다.
 - 구현은 대상 Task 단위로 진행하고, 한 턴에 하나의 Task만 구현한다.
+- 잡은 Task가 닫힌 동작이 아니라 코드 조각 수준이면, 구현하지 말고 Task 재분해 필요성을 보고한다.
 - Task 밖에서 발견한 문제는 수정하지 말고 보고만 한다.
 - 요청이나 Task가 요구하지 않는 신규 인터페이스, 추상화, 공개 API, 경계, 의존성, 인접 리팩터링은 추가하지 않는다.
 - 이 확장이 요청 충족에 필요하면 코드를 쓰기 전에 이유, 영향, 대안을 보고하고 사용자 결정을 받는다.
