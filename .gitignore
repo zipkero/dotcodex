@@ -5,6 +5,8 @@
 !/.gitattributes
 !/AGENTS.md
 !/README.md
+!/agents/
+!/agents/*.toml
 !/skills/
 
 /skills/*
