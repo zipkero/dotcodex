@@ -50,7 +50,9 @@ description: "Create or update features/<feature-dir>/analysis.md from spec.md f
 - `analysis.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
 
 ## 승인 전 확인 기준
-- 사용자가 ANALYSIS 승인 전에 답해야 할 feature 고유의 판단 질문을 만들 수 있을 때만 `근거` 앞에 `승인 전 확인` 섹션을 둔다.
+- `승인 전 확인`에는 ANALYSIS 승인 전에 사용자가 확인해야 하는 feature 고유 판단만 둔다.
+- 공개 contract, 저장 형식, 외부 연동 의미, 사용자 관찰 결과, 완료 조건 충족 여부를 바꾸는 판단은
+  이 섹션에 남기지 말고 문서 작성 전에 해소한다.
 - 어느 feature에나 성립하는 일반 확인 질문은 두지 않는다.
 - Decision Point 개수, 채택 옵션 재서술처럼 본문에서 파생 가능한 미러 정보는 두지 않는다.
 - 항목은 `- <판단 질문>. 관련 본문: §N` 형식으로 쓴다.

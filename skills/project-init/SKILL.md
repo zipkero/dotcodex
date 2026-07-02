@@ -1,6 +1,6 @@
 ---
 name: project-init
-description: "Create or update project-level README.md and ROADMAP.md at the start of a project or when defining top-level product scope, final outcomes, staged delivery, deferred scope, and feature documentation entry points."
+description: "Create or update project-level README.md and ROADMAP.md for top-level project scope, roadmap, and feature entry points."
 ---
 
 # Project Init

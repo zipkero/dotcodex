@@ -12,31 +12,16 @@
 - `.editorconfig`, `.gitattributes`: 텍스트 포맷 기준
 - `.gitignore`: 로컬 상태 파일을 제외하는 allowlist 규칙
 
-## 문서 우선 개발 플로우
+## Feature 문서 구조
 
-프로젝트를 처음 시작하거나 최상위 제품·도구 범위를 정리할 때는 `project-init`으로 루트 `README.md`와
-`ROADMAP.md`를 먼저 만든다. 이후 개별 feature는 `spec-init`부터 문서화한다.
-
-새 feature, 공개 contract 변경, 되돌리기 어려운 데이터/외부 영향, 또는 여러 Task로 나눠야 검증 가능한 작업은
-`features/<feature-dir>/` 문서 플로우를 사용한다.
-새 feature 디렉터리는 `spec-init` 기준에 따라 `features/<yyyyMMdd>-<nnn>-<feature-name>/` 형식으로 만든다.
-
-기본 순서:
-
-`spec-init` -> `analyze-init` -> `implement-init` -> `implement` -> `verify`
-
-필수 산출물은 다음과 같다.
+문서 우선 작업에서 생성되는 feature 문서 세트는 `features/<feature-dir>/` 아래 다음 산출물로 구성된다.
 
 - `README.md`: feature 상태와 이력
 - `spec.md`: 요구사항, 범위, 완료 조건
 - `analysis.md`: 분석, 설계 결정, 영향 범위
 - `implement.md`: 구현 체크리스트와 항목별 검증 기준
 
-이 문서들은 범위, 결정 사항, 구현 상태의 기준이다.
-검증은 `verify` skill이 사용자에게 승인/거절 판단과 근거를 보고하며, 별도 `verify.md`를 만들지 않는다.
-
-`analyze` skill은 필요 시 사용하는 조사 도구이며 문서 단계가 아니다.
-문서 단계의 분석 산출물은 `analyze-init`이 작성하는 `analysis.md`이다.
+별도 `verify.md`는 만들지 않는다.
 
 ## Skill 구성
 
@@ -62,8 +47,7 @@
 custom agent는 `agents/*.toml`에 둔다.
 실제 관리 대상은 `.gitignore` allowlist에 포함된 standalone TOML 파일이다.
 
-- `agents/verifier.toml`: 자연어 `verify` 요청이나 독립 검증 컨텍스트가 필요한 경우 main이 사용할 수 있는 읽기 전용 검증 subagent.
-  세부 판단 기준과 상태 전환은 `skills/verify`가 소유한다.
+- `agents/verifier.toml`: `skills/verify`가 필요할 때 사용할 수 있는 읽기 전용 검증 subagent 정의
 
 ## 정책 소유 위치
 
@@ -75,7 +59,6 @@ custom agent는 `agents/*.toml`에 둔다.
 - 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
 - custom subagent의 역할과 실행 성격은 각 `agents/*.toml`이 소유한다.
 - 테스트 Task 작성은 `implement-init`, 테스트 코드 작성은 `implement`, 승인 판단과 Task 완료 후처리는 `verify`가 소유한다.
-- `agents/verifier.toml`은 `verify` 기준을 복제하지 않고, 필요 시 독립 검증 후보 판단만 반환한다.
 - 구현 중 네이밍, 주석, 테스트 작성 범위, 구현 품질 가드는 `implement`가 소유한다.
 - README는 관리 대상 파일, 구조, 설계 의도만 설명한다.
 

@@ -23,6 +23,14 @@ description: "Judge implemented work against SPEC and implement.md verification 
    - 사용자 요청, 변경 diff, 실행 결과를 기준으로 판단한다.
 3. 대상이 모호하면 판단하지 않고 식별 가능한 후보와 필요한 입력을 요청한다.
 
+## verifier agent 사용 기준
+- `agents/verifier.toml`은 읽기 전용 독립 검증 subagent이며, 이 skill의 판단 기준을 기준 소스로 따른다.
+- Phased mode Task 구현 결과가 여러 파일에 걸치거나 동작 변경, 상태 변경, 외부 I/O, 동시성, 새 경계를 포함하면 verifier agent를 사용한다.
+- Per-Request 변경이라도 main의 diff 확인만으로 정확성을 판단하기 어렵거나 독립 검증 컨텍스트가 필요하면 verifier agent 사용을 고려한다.
+- 문서, 오타, 정적 설정 문구처럼 diff만으로 판단 가능한 변경은 main이 직접 검증할 수 있다.
+- verifier agent 사용 여부는 검증 근거를 수집하기 전에 판단한다.
+- verifier agent의 결과는 후보 판단이며, 최종 승인/거절과 상태 전환은 main이 이 skill의 기준으로 수행한다.
+
 ## 근거 원칙
 - 판단은 대화 기억이나 구현 의도가 아니라 파일, diff, 테스트 결과, 실행 로그, 산출물 확인에 근거한다.
 - 최소 근거는 변경 diff이다. 동작 변경이 있으면 가능한 한 테스트나 실행 결과를 함께 확인한다.
@@ -76,7 +84,7 @@ description: "Judge implemented work against SPEC and implement.md verification 
 - 상태 변경, 외부 I/O, 동시성, 새 경계를 포함하는 작업은 테스트 또는 명확한 실행 근거가 필요하다.
 - 변경 범위에 기존 테스트가 있는데 실행하지 않았다면 제한 사항으로 보고한다.
 - 같은 변경 안에 추가 또는 수정된 테스트는 통과만으로 검증 근거가 되지 않는다. 구현 diff와 함께 회귀 케이스를 실제로 다루는지 확인한다.
-- assertion 완화나 케이스 삭제처럼 검증력을 낮춘 변경은 `correctness`로 reject한다.
+- 검증 조건 완화나 케이스 삭제처럼 검증력을 낮춘 변경은 `correctness`로 reject한다.
 
 ## 완료 보고
 - 출력 구조에 따라 승인/거절 판단을 먼저 말한다.
