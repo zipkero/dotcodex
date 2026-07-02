@@ -6,6 +6,7 @@
 ## 관리 대상
 
 - `AGENTS.md`: 모든 Codex 작업에 적용되는 전역 지침
+- `docs/**`: 전역 지침에서 참조하는 보조 기준 문서
 - allowlist에 포함된 `agents/*.toml`: 특정 역할의 custom subagent 정의
 - allowlist에 포함된 `skills/*/`: 특정 작업 유형에서만 로드되는 사용자 정의 skill
 - `.editorconfig`, `.gitattributes`: 텍스트 포맷 기준
@@ -53,34 +54,30 @@
 - `skills/global-review`: 전역 설정과 사용자 정의 skill 정합성 점검
 
 `skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
-`skills/hatch-pet`처럼 `.gitignore` allowlist에 포함되지 않은 로컬 skill은 현재 전역 설정 관리 대상이 아니다.
+`.gitignore` allowlist에 포함되지 않은 로컬 skill이나 런타임/캐시성 디렉터리는 현재 전역 설정 관리 대상이 아니다.
 다만 로컬 Codex 런타임에는 활성 skill로 노출될 수 있다.
-`SKILL.md`가 없는 런타임/캐시성 디렉터리는 관리 대상 skill로 보지 않는다.
 
 ## Custom Agent 구성
 
 custom agent는 `agents/*.toml`에 둔다.
 실제 관리 대상은 `.gitignore` allowlist에 포함된 standalone TOML 파일이다.
 
-- `agents/verifier.toml`: 구현 결과, diff, 검증 근거를 독립적으로 확인하는 검증 전용 subagent
+- `agents/verifier.toml`: 자연어 `verify` 요청이나 독립 검증 컨텍스트가 필요한 경우 main이 사용할 수 있는 읽기 전용 검증 subagent.
+  세부 판단 기준과 상태 전환은 `skills/verify`가 소유한다.
 
 ## 정책 소유 위치
 
 전역 지침과 사용자 정의 skill은 요청 범위가 과하게 확장되지 않도록 소유 위치를 나눈다.
 
-- 작업 분류, 변경 원칙, 언어 기준은 `AGENTS.md`가 소유한다.
+- `AGENTS.md`는 항상 적용되어야 하는 언어, 응답, 요청 해석, 범위, 안전, skill 라우팅 원칙만 소유한다.
+- `docs/languages.md`는 언어별 작업 기준의 진입점을 소유하고, 세부 기준은 `docs/languages/*.md`가 소유한다.
 - `docs/**`와 `features/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
 - 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
 - custom subagent의 역할과 실행 성격은 각 `agents/*.toml`이 소유한다.
 - 테스트 Task 작성은 `implement-init`, 테스트 코드 작성은 `implement`, 승인 판단과 Task 완료 후처리는 `verify`가 소유한다.
+- `agents/verifier.toml`은 `verify` 기준을 복제하지 않고, 필요 시 독립 검증 후보 판단만 반환한다.
+- 구현 중 네이밍, 주석, 테스트 작성 범위, 구현 품질 가드는 `implement`가 소유한다.
 - README는 관리 대상 파일, 구조, 설계 의도만 설명한다.
-
-## 운영 개선 예정
-
-- 문서 우선 플로우에서 subagent 사용 기준을 정리한다.
-- `spec.md`, `analysis.md`, `implement.md`를 공유 기준으로 두고, Task별 구현과 검증 컨텍스트를 분리하는 운영 방식을 검토한다.
-- 특히 `verify`는 구현 맥락과 분리된 컨텍스트에서 문서 기준, diff, 테스트 결과를 보고 승인/거절을 판단하는 방향을 우선 검토한다.
-- 여러 agent가 동시에 코드를 수정하지 않도록 Task 경계, 파일 소유, 통합 책임을 명확히 하는 기준을 함께 정리한다.
 
 ## Git 관리 정책
 
@@ -93,6 +90,7 @@ custom agent는 `agents/*.toml`에 둔다.
 - `.gitattributes`
 - `README.md`
 - `AGENTS.md`
+- `.gitignore` allowlist에 포함된 `docs/**`
 - `.gitignore` allowlist에 포함된 `agents/*.toml`
 - `.gitignore` allowlist에 포함된 사용자 정의 `skills/*/**`
 
