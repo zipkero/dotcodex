@@ -11,8 +11,8 @@ description: "Execute one documented Task or a small per-request code change wit
 
 ## 컨텍스트 로딩
 1. Phased mode로 진입하는 경우:
-   - 사용자가 `features/<feature-dir>/` 또는 `features/<feature-dir>/implement.md`를 지정했다.
-   - 현재 대화에서 해당 feature에 대해 `spec-init`, `analyze-init`, `implement-init`이 실행되었거나, 사용자가 구현 의도로 feature를 명시했다.
+   - 사용자가 구현 의도를 밝히고 `features/<feature-dir>/` 또는 `features/<feature-dir>/implement.md`를 지정했다.
+   - feature 경로만 언급한 경우에는 구현하지 않고 요청 의도에 맞춰 분석, 설명, 검토로 처리한다.
 2. Phased mode 동작:
    - `spec.md`, `analysis.md`, `implement.md`를 읽는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 잡고, 지정하지 않으면 위에서부터 첫 미완료 Task를 잡는다.

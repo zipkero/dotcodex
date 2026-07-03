@@ -25,7 +25,7 @@ description: "Judge implemented work against SPEC and implement.md verification 
 
 ## verifier agent 사용 기준
 - `agents/verifier.toml`은 읽기 전용 독립 검증 subagent이며, 이 skill의 판단 기준을 기준 소스로 따른다.
-- Phased mode Task 구현 결과가 여러 파일에 걸치거나 동작 변경, 상태 변경, 외부 I/O, 동시성, 새 경계를 포함하면 verifier agent를 사용한다.
+- Phased mode Task 구현 결과가 여러 파일에 걸치고 동작, 상태, 외부 I/O, 동시성, 경계 중 하나 이상에 영향을 주면 verifier agent를 사용한다.
 - Per-Request 변경이라도 main의 diff 확인만으로 정확성을 판단하기 어렵거나 독립 검증 컨텍스트가 필요하면 verifier agent 사용을 고려한다.
 - 문서, 오타, 정적 설정 문구처럼 diff만으로 판단 가능한 변경은 main이 직접 검증할 수 있다.
 - verifier agent 사용 여부는 검증 근거를 수집하기 전에 판단한다.
