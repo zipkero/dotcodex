@@ -29,6 +29,7 @@ description: "Create or update features/<feature-dir>/analysis.md from spec.md f
 - `analysis.md`를 만들기 전, spec 범위나 완료 조건을 바꾸는 판단은 질문으로 해소한다.
 - spec 범위 안의 구조, 데이터 흐름, 인터페이스, 저장 경계, 실패 처리 위치는 확인한 근거를 바탕으로
   채택안을 제시하고, 채택안이 있는 주요 대안과 trade-off를 `Decision Points`에 남긴다.
+  이 중 되돌리기 비용이 큰 데이터 모델, 공개 인터페이스, UX 흐름, 저장 형식, 외부 연동 방식은 우선 판단한다.
 - 다만 선택지가 공개 contract, 저장 형식, 외부 연동 의미, 사용자 관찰 결과, `SPEC §5.N`의 충족 여부를
   바꾸는 경우에는 문서 작성 전에 질문한다.
 - 채택안이 없는 미해결 결정은 사용자가 명시적으로 선택 보류를 원한 경우에만 `Decision Points`에 남기고,
