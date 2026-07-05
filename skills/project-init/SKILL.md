@@ -1,18 +1,18 @@
 ---
 name: project-init
-description: "Create or update project-level README.md and ROADMAP.md for top-level project scope, roadmap, and feature entry points."
+description: "Create initial project-level README.md and ROADMAP.md for a new project's top-level scope, roadmap, and feature entry points."
 ---
 
 # Project Init
 
 ## 목적
-- 프로젝트 시작 시 루트 `README.md`와 `ROADMAP.md`를 만들거나 갱신한다.
+- 프로젝트 최초 생성 시 루트 `README.md`와 `ROADMAP.md`를 초기 생성한다.
 - `README.md`는 프로젝트의 정체성, 목적, 현재 사용 방법, 문서 진입점을 소유한다.
 - `ROADMAP.md`는 최종 결과물, 단계별 범위, 보류·제외 범위, feature 문서 후보를 소유한다.
 - feature별 `spec.md`, `analysis.md`, `implement.md`는 만들지 않는다.
 
 ## 범위 판단
-- 사용자가 새 프로젝트 시작, 제품/도구 방향 정리, 루트 README/ROADMAP 작성, 최상위 범위 고정을 요청하면 이 skill을 사용한다.
+- 사용자가 새 프로젝트의 최초 문서 생성 또는 루트 README/ROADMAP 초기 작성을 요청하면 이 skill을 사용한다.
 - 기능 추가, 공개 contract 변경, 여러 Task로 나눠야 하는 구현 작업은 `spec-init`부터 시작한다.
 - 이미 `ROADMAP.md`가 있고 특정 feature만 구체화하려는 요청이면 `spec-init`이 필요하다고 보고한다.
 - README 문구만 고치는 작고 명확한 변경은 Per-Request로 처리할 수 있다.
@@ -26,7 +26,7 @@ description: "Create or update project-level README.md and ROADMAP.md for top-le
 
 ## 작성 규칙
 - `README.md`와 `ROADMAP.md`는 다음 세션에서 이전 대화 없이 읽어도 프로젝트 목표와 현재 기준을 복원할 수 있게 쓴다.
-- 최종 결과물과 단계별 실행 범위를 분리한다.
+- 최종 결과물과 단계별 실행 범위를 분리하고, 초기 구현 가능 범위를 최종 목표로 축소해 쓰지 않는다.
 - 보류하거나 제외하는 항목은 이유와 재검토 조건을 함께 남긴다.
 - 기술 선택, 명령어, 현재 동작은 확인한 파일이나 실행 결과에 근거해서만 단정한다.
 - 확인되지 않은 설치 방법, 실행 명령, 지원 기능, 성능 목표, 운영 보장은 추정으로 쓰지 않는다.
@@ -59,7 +59,7 @@ description: "Create or update project-level README.md and ROADMAP.md for top-le
 보류 항목은 단순 목록이 아니라 재진입 기준을 가진 판단 기록으로 작성한다.
 
 ## 산출물 형식
-새 문서를 만들 때 기본 형식은 다음을 따른다. 기존 문서가 있으면 의미 있는 구조를 보존하고 필요한 섹션만 갱신한다.
+새 문서를 만들 때 기본 형식은 다음을 따른다. 일부 문서가 이미 있으면 의미 있는 구조를 보존하고 필요한 섹션만 작성한다.
 
 ```markdown
 # <프로젝트명>
