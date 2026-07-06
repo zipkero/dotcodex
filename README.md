@@ -35,8 +35,7 @@
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
 - `skills/implement`: 문서화된 Task 또는 작은 Per-Request 변경 구현
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
-- `skills/flow`: 선택된 코드의 실행 흐름, 데이터 흐름, 책임 흐름 설명
-- `skills/global-review`: 전역 설정과 사용자 정의 skill 정합성 점검
+- `skills/global-review`: 전역 설정과 allowlist 관리 대상 사용자 정의 skill 정합성 점검
 
 `skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
 `.gitignore` allowlist에 포함되지 않은 로컬 skill이나 런타임/캐시성 디렉터리는 현재 전역 설정 관리 대상이 아니다.
@@ -55,11 +54,11 @@ custom agent는 `agents/*.toml`에 둔다.
 
 - `AGENTS.md`는 항상 적용되어야 하는 언어, 응답, 요청 해석, 범위, 안전, skill 라우팅 원칙만 소유한다.
 - `docs/languages.md`는 언어별 작업 기준의 진입점을 소유하고, 세부 기준은 `docs/languages/*.md`가 소유한다.
-- `docs/**`와 `features/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
+- `features/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
 - 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
 - custom subagent의 역할과 실행 성격은 각 `agents/*.toml`이 소유한다.
 - 테스트 Task 작성은 `implement-init`, 테스트 코드 작성은 `implement`, 승인 판단과 Task 완료 후처리는 `verify`가 소유한다.
-- 구현 중 네이밍, 주석, 테스트 작성 범위, 구현 품질 가드는 `implement`가 소유한다.
+- 구현 중 네이밍, 주석, 공개 contract 보존, 구현 품질 가드는 `implement`가 소유한다.
 - README는 관리 대상 파일, 구조, 설계 의도만 설명한다.
 
 ## Git 관리 정책

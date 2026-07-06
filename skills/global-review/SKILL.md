@@ -6,7 +6,8 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 # Global Review
 
 ## 목적
-`AGENTS.md`, `README.md`, `docs/**`, allowlist에 포함된 `agents/*.toml`, 사용자 정의 `skills/*/SKILL.md`를 읽고 전역 설정의 정합성을 점검한다.
+`AGENTS.md`, `README.md`, `.gitignore`, `docs/**`, allowlist 관리 대상인 `agents/*.toml`과 `skills/*/SKILL.md`를 읽고
+전역 설정의 정합성을 점검한다.
 파일은 수정하지 않고 분석 결과만 보고한다.
 
 이 skill의 근본 목적은 Codex 전역 설정이 모델의 자율 실행 성향 때문에 요청 범위를 과하게 확장하거나,
@@ -15,7 +16,8 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 ## 컨텍스트 로딩
 - 사용자가 특정 파일이나 skill을 대상으로 지정하면 해당 대상과 판단에 직접 필요한 참조만 읽는다.
 - 사용자가 전역 감사 또는 전체 점검을 요청한 경우에만 `AGENTS.md`, 루트 `README.md`,
-  `.gitignore`, `docs/**`, allowlist에 포함된 `agents/*.toml`, 사용자 정의 `skills/*/SKILL.md` 전체를 읽는다.
+  `.gitignore`, `docs/**`, allowlist 관리 대상인 `agents/*.toml`과 `skills/*/SKILL.md` 전체를 읽는다.
+- allowlist 관리 대상은 `.gitignore`의 추적 허용 규칙을 기준으로 판단한다.
 
 ## 범위
 - 규칙 간 의미 충돌
@@ -26,7 +28,7 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 - 구체 예시나 도구 나열이 원칙보다 커져 적용 범위를 좁히는 항목
 - 의미 없이 부정형을 반복해 읽기 비용을 늘리는 항목
 - 현재 설정에 없는 기능이나 폐기된 설명
-- `docs/**`와 `features/**` 밖 Markdown 문서에 150칸 제한을 전역 규칙처럼 적용하는 항목
+- `features/**` 밖 Markdown 문서에 150칸 제한을 전역 규칙처럼 적용하는 항목
 - 권위 위치 불일치
   - `AGENTS.md`는 전역 원칙만 소유한다.
   - `docs/languages.md`는 언어별 작업 기준의 진입점만 소유하고, 세부 기준은 `docs/languages/*.md`가 소유한다.
@@ -62,7 +64,7 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 
 ## 제외
 - 요청 없는 자동 수정
-- `AGENTS.md` 정책 체계나 외부 플로우 설계 확장
+- `AGENTS.md` 정책 체계나 새 워크플로우 설계 확장
 - README에는 룰 정합성 기준을 적용하지 않는다. 다만 README가 실제 구조와 기능을 정확히 설명하는지는 별도 항목으로 점검한다.
 - 전역 설정 수정 제안이 README의 관리 대상, skill 목록, 정책 소유 위치 설명과 어긋날 수 있으면 README 동기화 필요성을 영향받는 파일에 함께 안내한다.
 - 선호나 일반론만 근거로 한 문구 변경 제안
@@ -71,10 +73,6 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 - 요약
 - 전체 판정: `정상`, `과함`, `부족`, `충돌` 중 하나로 적고, 충돌이 없어도 context health가 나쁘면 `과함`으로 판단한다.
 - 우선순위별 발견 사항
-- 위치
-- 현재 문제
-- 제안 방향
-- 영향받는 파일
-- README 동기화 필요 여부
+- 각 발견 사항에는 위치, 현재 문제, 제안 방향, 영향받는 파일, README 동기화 필요 여부를 포함한다.
 - 필요한 경우 before/after 수정안
 - 발견 사항이 없으면 그렇게 말하되, 확인한 파일 범위와 남은 리스크를 함께 적는다.
