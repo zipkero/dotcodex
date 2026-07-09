@@ -82,7 +82,7 @@ description: "Create or update features/<feature-dir>/analysis.md from spec.md f
 - `2. 데이터 흐름`: 진입점부터 응답 또는 산출물까지의 경로, 상태 전이, 외부 연동, 실패 경로를 적는다.
 - `3. 인터페이스`: API, event, 인접 모듈 계약처럼 경계를 가로지르는 인터페이스만 적는다.
 - `4. 영향 범위`: 실제로 변경되는 기존 모듈, 파일, 저장소, 외부 contract와 확인한 의존 관계만 적는다.
-- `5. Decision Points`: 구조, 데이터 모델, 인터페이스, 정확성에 영향을 주는 실행 순서 선택을
+- `5. Decision Points`: 구조, 데이터 모델, 인터페이스, 정확성에 영향을 주는 런타임 처리 순서 선택을
   옵션, trade-off, 채택안, 근거와 함께 적는다. 판단 거리가 없으면 `해당 없음`으로 적는다.
 
 ## feature README.md 갱신

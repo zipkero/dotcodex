@@ -52,13 +52,14 @@ custom agent는 `agents/*.toml`에 둔다.
 
 전역 지침과 사용자 정의 skill은 요청 범위가 과하게 확장되지 않도록 소유 위치를 나눈다.
 
-- `AGENTS.md`는 항상 적용되어야 하는 언어, 응답, 요청 해석, 범위, 안전, skill 라우팅 원칙만 소유한다.
+- `AGENTS.md`는 항상 적용되어야 하는 언어, 응답, 요청 해석, 범위, 안전, 공통 네이밍·주석 원칙과
+  skill·언어별 기준 라우팅을 소유한다.
 - `docs/languages.md`는 언어별 작업 기준의 진입점을 소유하고, 세부 기준은 `docs/languages/*.md`가 소유한다.
 - `features/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
 - 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
 - custom subagent의 역할과 실행 성격은 각 `agents/*.toml`이 소유한다.
 - 테스트 Task 작성은 `implement-init`, 테스트 코드 작성은 `implement`, 승인 판단과 Task 완료 후처리는 `verify`가 소유한다.
-- 구현 중 네이밍, 주석, 공개 contract 보존, 구현 품질 가드는 `implement`가 소유한다.
+- 구현 단계의 세부 네이밍·주석 기준, 공개 contract 보존과 구현 품질 가드는 `implement`가 소유한다.
 - README는 관리 대상 파일, 구조, 설계 의도만 설명한다.
 
 ## Git 관리 정책
