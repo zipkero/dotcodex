@@ -35,7 +35,7 @@
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
 - `skills/implement`: 문서화된 Task 또는 작은 Per-Request 변경 구현
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
-- `skills/global-review`: 전역 설정과 allowlist 관리 대상 사용자 정의 skill 정합성 점검
+- `skills/config-review`: 전역 설정, 역할 프롬프트, 책임 경계, allowlist 관리 대상 사용자 정의 skill 정합성 점검
 
 `skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
 `.gitignore` allowlist에 포함되지 않은 로컬 skill이나 런타임/캐시성 디렉터리는 현재 전역 설정 관리 대상이 아니다.

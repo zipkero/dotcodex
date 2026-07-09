@@ -1,17 +1,18 @@
 ---
-name: global-review
-description: "Audit global Codex configuration for consistency, ownership, and trimming opportunities."
+name: config-review
+description: "Audit global Codex configuration for role prompt sufficiency, responsibility boundaries, consistency, ownership, and trimming opportunities."
 ---
 
-# Global Review
+# Config Review
 
 ## 목적
 `AGENTS.md`, `README.md`, `.gitignore`, `docs/**`, allowlist 관리 대상인 `agents/*.toml`과 `skills/*/SKILL.md`를 읽고
-전역 설정의 정합성을 점검한다.
+역할 프롬프트의 충분성, 책임 경계, 전역 설정의 정합성을 점검한다.
 파일은 수정하지 않고 분석 결과만 보고한다.
 
 이 skill의 근본 목적은 Codex 전역 설정이 모델의 자율 실행 성향 때문에 요청 범위를 과하게 확장하거나,
-같은 절차를 여러 문서에 중복 정의하거나, Codex 실행 모델과 맞지 않는 역할·절차를 전제하는 일을 막는 것이다.
+각 역할이 필요한 판단 기준 없이 모델 재량에 기대거나, 같은 절차를 여러 문서에 중복 정의하거나,
+Codex 실행 모델과 맞지 않는 역할·절차를 전제하는 일을 막는 것이다.
 
 ## 컨텍스트 로딩
 - 사용자가 특정 파일이나 skill을 대상으로 지정하면 해당 대상과 판단에 직접 필요한 참조만 읽는다.
@@ -19,7 +20,25 @@ description: "Audit global Codex configuration for consistency, ownership, and t
   `.gitignore`, `docs/**`, allowlist 관리 대상인 `agents/*.toml`과 `skills/*/SKILL.md` 전체를 읽는다.
 - allowlist 관리 대상은 `.gitignore`의 추적 허용 규칙을 기준으로 판단한다.
 
+## 검토 우선순위
+1. 역할 프롬프트 충분성
+2. 책임 경계 명확성
+3. 권위 위치와 소유권
+4. 문서 우선 흐름 정합성
+5. 중복 제거와 context health
+
 ## 범위
+- 역할 프롬프트 충분성
+  - 각 `skills/*/SKILL.md`와 `agents/*.toml`이 자기 역할의 책임, 필수 입력, 판단 기준, evidence 기준, 출력,
+    중단 조건, 제외 범위를 충분히 정의하는지 확인한다.
+  - 실행 절차는 있어도 판단 기준, 실패 처리, 근거 부족 시 처리, 제외 범위가 없으면 역할 프롬프트가 불충분한 것으로 본다.
+  - 역할 설명이 짧거나 추상적이어서 핵심 판단을 모델 자율성에 맡기면 `부족`으로 판단한다.
+  - `SKILL.md` frontmatter의 `description`이 실제 trigger와 역할 범위를 충분히 드러내는지 확인한다.
+- 책임 경계 명확성
+  - 각 역할이 소유하는 결정과 소유하지 않는 결정을 구분하는지 확인한다.
+  - main agent, subagent, skill 사이의 파일 수정 권한, 상태 전환 권한, 최종 판단 권한이 섞여 있지 않은지 확인한다.
+  - 다음 단계로 넘기는 조건, 사용자 추가 요청이 필요한 조건, 중단해야 하는 조건이 구분되어 있는지 확인한다.
+  - 다른 skill이나 agent의 소유 기준을 재정의하거나 암묵적으로 대체하는 문구를 발견 사항으로 보고한다.
 - 규칙 간 의미 충돌
 - 모호한 표현
 - 같은 규칙의 중복 정의
@@ -71,7 +90,12 @@ description: "Audit global Codex configuration for consistency, ownership, and t
 
 ## 출력
 - 요약
-- 전체 판정: `정상`, `과함`, `부족`, `충돌` 중 하나로 적고, 충돌이 없어도 context health가 나쁘면 `과함`으로 판단한다.
+- 전체 판정: `정상`, `과함`, `부족`, `충돌` 중 하나로 적는다.
+  역할 프롬프트가 불충분하면 충돌이 없어도 `부족`, context health가 나쁘면 충돌이 없어도 `과함`으로 판단한다.
+- 역할 프롬프트 판정:
+  - `충분`: 책임, 입력, 판단 기준, 출력, 중단 조건, 제외 범위가 명확하다.
+  - `부분 부족`: 기본 역할은 보이나 판단 기준, evidence 기준, 실패 처리, 책임 경계 중 일부가 약하다.
+  - `부족`: 역할이 추상적이거나 실행 가능한 기준 없이 모델 재량에 크게 의존한다.
 - 우선순위별 발견 사항
 - 각 발견 사항에는 위치, 현재 문제, 제안 방향, 영향받는 파일, README 동기화 필요 여부를 포함한다.
 - 필요한 경우 before/after 수정안

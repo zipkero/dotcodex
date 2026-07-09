@@ -24,7 +24,7 @@
 !/skills/spec-init/**
 !/skills/verify/
 !/skills/verify/**
-!/skills/global-review/
-!/skills/global-review/**
+!/skills/config-review/
+!/skills/config-review/**
 !/skills/project-init/
 !/skills/project-init/**
