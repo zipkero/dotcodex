@@ -17,10 +17,12 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
    - `spec.md` 완료 조건과 필요한 `analysis.md` 설계 결정을 확인한다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 검증한다.
    - 지정이 없으면 직전 구현 대상이 단일하게 식별될 때만 검증한다.
+   - 검증할 변경 범위는 기본적으로 아직 커밋하지 않은 작업 디렉터리 변경분이다.
+   - 변경이 이미 커밋된 경우에는 사용자가 지정한 Task와 함께 커밋 식별자, 파일 목록, 또는 비교 범위를 확인해 검증한다.
    - 대상 Task를 `[x]`로 가정했을 때 참조된 `SPEC §5.N`의 매핑 Task가 모두 `[x]`가 되는지 계산한다.
 2. Per-Request mode:
    - feature 문서를 읽거나 갱신하지 않는다.
-   - 사용자 요청, 변경 diff, 실행 결과를 기준으로 판단한다.
+   - 사용자 요청, 위와 같은 변경 범위, 실행 결과를 기준으로 판단한다.
 3. 대상이 모호하면 판단하지 않고 식별 가능한 후보와 필요한 입력을 요청한다.
 
 ## verifier agent 사용 기준

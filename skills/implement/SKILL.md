@@ -75,4 +75,12 @@ description: "Execute one documented Task or a small per-request code change wit
 - 실행한 Task 또는 Per-Request 요청
 - 실행한 확인
 - 남은 항목 또는 리스크
+- Phased mode에서 실제 구현이 Task의 `접근`과 달라졌다면 완료 보고에 다음을 분리해 적는다.
+  - 단순 구현 상세 차이인지, 설계 변경 필요인지
+  - 관련 `SPEC §5.N` / `ANALYSIS §X.Y`
+  - `목적`, `검증 조건`, `참조` 변경 없이 `접근`만 갱신해도 되는 근거
+- 단순 구현 상세 차이이고 `analysis.md`, `목적`, `검증 조건`, `참조`를 바꾸지 않아도 되는 경우에만
+  같은 작업 안에서 해당 Task의 `접근`을 실제 구현 방식으로 갱신할 수 있다.
+- 설계 결정, 목적, 검증 조건, 참조가 바뀌는 경우에는 문서를 갱신하지 말고 `analysis.md` 또는
+  `implement.md` 재작성 필요 사항으로 보고한다.
 - Phased mode에서는 다음 단계로 해당 Task 검증이 필요함을 알린다.
