@@ -8,7 +8,6 @@ description: "Analyze code, debug behavior, architecture, design options, root c
 ## 목적
 - 즉석 조사, 디버깅, 코드 이해를 대화 안에서 수행한다.
 - 설계·구조 요청에서는 구현 전에 선택지, trade-off, 추천안을 대화 안에서 정리한다.
-- 파일을 만들거나 수정하지 않는다.
 - `analyze-init`과 다르다. 이 skill은 문서 단계가 아니며, `analysis.md`는 `analyze-init`이 작성한다.
 
 ## 컨텍스트 로딩
@@ -18,7 +17,8 @@ description: "Analyze code, debug behavior, architecture, design options, root c
 - 대상 시스템이나 영역을 결정할 수 없으면 `scope undefined`로 중단한다.
 
 ## 분석 원칙
-- 이 skill이 활성화된 턴에서는 사용자가 수정 가능성을 언급했더라도 먼저 분석 결과와 수정 범위를 보고한다.
+- 사용자가 수정 가능성을 언급했더라도 이 턴에는 분석 결과와 수정 범위만 보고하며 파일을 만들거나 수정하지 않는다.
+  구현이 필요하면 다음 단계를 제안한다.
 - 실제 코드, 로그, 에러, 문서를 근거로 삼고 추정은 근거와 분리해 명시한다.
 - 사용자가 낯선 코드 영역, 익숙하지 않은 도메인, 설계 방향 탐색을 요청하면 구현안부터 확정하지 않는다.
   조사로 좁힐 수 있는 불확실성은 먼저 확인하고, 사용자 의도·범위·성공 기준에 따라 결과가 달라지는
@@ -28,7 +28,6 @@ description: "Analyze code, debug behavior, architecture, design options, root c
   각 선택지의 장점, 단점, 유지보수 영향, 구현 난이도, 검증 기준을 비교한다.
 - 마지막에는 추천안을 하나로 수렴하되, 채택하지 않은 주요 대안의 trade-off도 남긴다.
 - 코드, spec, 로그에서 확인되지 않은 일반론적 우려를 개선안처럼 제시하지 않는다.
-- 구현이 필요해 보여도 바로 수정하지 않고 다음 단계를 제안한다.
 
 ## 출력 구조
 - 요약: 1-2문장 결론.
