@@ -84,4 +84,5 @@ description: "Execute one documented Task or a small per-request code change wit
   같은 작업 안에서 해당 Task의 `접근`을 실제 구현 방식으로 갱신할 수 있다.
 - 설계 결정, 목적, 검증 조건, 참조가 바뀌는 경우에는 문서를 갱신하지 말고 `analysis.md` 또는
   `implement.md` 재작성 필요 사항으로 보고한다.
-- Phased mode에서는 다음 단계로 해당 Task 검증이 필요함을 알린다.
+- 사용자가 구현이나 전체 완료를 요청한 Phased mode에서는 해당 Task 구현 후 `verify`를 연속해서 진행한다.
+- 사용자가 구현 단계까지만 요청한 경우에는 다음 단계로 해당 Task 검증이 필요함을 알린다.
