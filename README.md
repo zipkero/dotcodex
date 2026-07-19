@@ -29,6 +29,7 @@
 실제 관리 대상은 `.gitignore` allowlist에 포함되고 `SKILL.md`가 있는 사용자 정의 skill 디렉터리이다.
 
 - `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인, 설계 선택지 비교
+- `skills/explain-change`: 코드 변경의 배경, 핵심 생각, 관련 흐름과 구현 판단 설명
 - `skills/project-init`: 프로젝트 루트 `README.md`와 `ROADMAP.md` 초기화
 - `skills/spec-init`: `spec.md`와 feature `README.md` 초기화
 - `skills/analyze-init`: `spec.md` 기반 `analysis.md` 작성
@@ -59,6 +60,7 @@ custom agent는 `agents/*.toml`에 둔다.
 - 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
 - custom subagent의 역할과 실행 성격은 각 `agents/*.toml`이 소유한다.
 - 테스트 Task 작성은 `implement-init`, 테스트 코드 작성은 `implement`, 승인 판단과 Task 완료 후처리는 `verify`가 소유한다.
+- 특정 코드 변경의 배경과 동작 이해를 돕는 해설은 `explain-change`가 소유한다.
 - 구현 단계의 세부 네이밍·주석 기준, 공개 contract 보존과 구현 품질 가드는 `implement`가 소유한다.
 - README는 관리 대상 파일, 구조, 설계 의도만 설명한다.
 

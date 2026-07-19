@@ -14,6 +14,8 @@
 /skills/*
 !/skills/analyze/
 !/skills/analyze/**
+!/skills/explain-change/
+!/skills/explain-change/**
 !/skills/implement/
 !/skills/implement/**
 !/skills/implement-init/

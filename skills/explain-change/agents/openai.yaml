@@ -1,0 +1,4 @@
+interface:
+  display_name: "변경 해설"
+  short_description: "코드 변경의 배경과 흐름을 이해하기 쉽게 설명"
+  default_prompt: "$explain-change로 이 코드 변경의 배경과 핵심 흐름을 설명해 주세요."
