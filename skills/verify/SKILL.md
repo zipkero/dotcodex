@@ -14,7 +14,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 1. Phased mode:
    - 진입 조건은 `implement` skill의 Phased mode와 동일하다.
    - `implement.md`에서 대상 Task의 목적, 검증 조건, 참조를 읽는다.
-   - `spec.md` 완료 조건과 필요한 `analysis.md` 설계 결정을 확인한다.
+   - `spec.md`의 완료 조건·제약·제외 범위와 필요한 `analysis.md` 설계 결정을 확인한다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 검증한다.
    - 지정이 없으면 직전 구현 대상이 단일하게 식별될 때만 검증한다.
    - 검증할 변경 범위는 기본적으로 아직 커밋하지 않은 작업 디렉터리 변경분이다.
@@ -42,8 +42,8 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 
 ## 판단 규칙
 - 1차 기준은 대상 Task의 `검증 조건`이다.
-- 2차 기준은 관련 `SPEC §5.N`을 위반하지 않는지 여부이다.
-- 3차 기준은 `analysis.md`의 설계 결정과 제외 범위를 벗어나지 않는지 여부이다.
+- 2차 기준은 관련 `SPEC §5.N`과 `spec.md`의 제약·제외 범위를 충족하는지 여부이다.
+- 3차 기준은 `analysis.md`의 설계 결정을 벗어나지 않는지 여부이다.
 - 이번 승인으로 완료되는 `SPEC §5.N`은 매핑된 Task들의 변경이 합쳐져서 완료 조건 문장 자체를 만족하는지 판단한다.
 - 완료되는 요구사항이 하나라도 불성립이면 대상 Task 검증 조건 충족 여부와 무관하게 `correctness`로 reject한다.
 - Per-Request mode에서는 사용자 요청과 변경 diff만 기준으로 삼는다.

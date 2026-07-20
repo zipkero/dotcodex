@@ -26,6 +26,7 @@ description: "Create or update features/<feature-dir>/analysis.md from spec.md f
 - `analysis.md`는 `spec.md`의 요구사항을 새로 만들거나 누락하거나 약화하지 않는다.
 - 기존 코드, 문서, 명령 결과처럼 확인한 근거를 기준으로 작성한다.
 - 확인하지 않은 구조나 동작은 추정으로 표시한다.
+- `spec.md`의 `입력 맥락`은 조사 출발점으로 사용하고, 조사 결과는 `근거`에 확인 사실과 추정으로 구분해 기록한다.
 - `analysis.md`를 만들기 전, spec 범위나 완료 조건을 바꾸는 판단은 질문으로 해소한다.
 - spec 범위 안의 구조, 데이터 흐름, 인터페이스, 저장 경계, 실패 처리 위치는 확인한 근거를 바탕으로
   채택안을 제시하고, 채택안이 있는 주요 대안과 trade-off를 `Decision Points`에 남긴다.

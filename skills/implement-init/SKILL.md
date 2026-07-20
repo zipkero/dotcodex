@@ -46,6 +46,7 @@ description: "Create or update features/<feature-dir>/implement.md with executab
 - `접근`에는 `analysis.md`에서 확정된 설계를 구현하는 방법만 적는다. 새로운 타입, 상태값, 저장소 경계, API 계약, 데이터 흐름을 새로 결정하지 않는다.
 - `검증 조건`은 `결과`와 `확인`으로 작성한다. `결과`에는 Task 완료 후 성립해야 하는 동작, 출력, 파일 내용, 설정 상태를 적는다.
   `확인`에는 테스트, 빌드, lint, diff, 수동 확인 등 해당 결과를 검증하는 방법을 적는다.
+- `spec.md`의 `제약`에 사용자가 지정한 검증 근거가 있으면 관련 Task의 `확인`에 빠짐없이 반영한다.
 - `implement.md`는 구현자가 목적, 접근, 검증 방법을 바로 실행할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
 
 ## 테스트 Task 기준
