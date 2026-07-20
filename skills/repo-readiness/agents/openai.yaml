@@ -1,7 +1,0 @@
-interface:
-  display_name: "Repo Readiness"
-  short_description: "새 세션에서 저장소 맥락 복원 가능 여부 점검"
-  default_prompt: "$repo-readiness로 이 저장소가 새 세션에서도 작업 가능한 상태인지 점검해 주세요."
-
-policy:
-  allow_implicit_invocation: false

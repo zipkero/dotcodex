@@ -31,7 +31,6 @@
 - `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인, 설계 선택지 비교
 - `skills/explain-change`: 코드 변경의 배경, 핵심 생각, 관련 흐름과 구현 판단 설명
 - `skills/project-init`: 프로젝트 루트 `README.md`와 `ROADMAP.md` 초기화
-- `skills/repo-readiness`: 새 세션에서 저장소 맥락과 작업 기준을 복원할 수 있는지 읽기 전용으로 점검
 - `skills/spec-init`: `spec.md`와 feature `README.md` 초기화
 - `skills/analyze-init`: `spec.md` 기반 `analysis.md` 작성
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
@@ -59,7 +58,6 @@ custom agent는 `agents/*.toml`에 둔다.
 - `docs/languages.md`는 언어별 작업 기준의 진입점을 소유하고, 세부 기준은 `docs/languages/*.md`가 소유한다.
 - `features/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
 - 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
-- 저장소의 새 세션 복원 가능성 점검은 `repo-readiness`가 소유하며 문서 수정은 수행하지 않는다.
 - custom subagent의 역할과 실행 성격은 각 `agents/*.toml`이 소유한다.
 - 테스트 Task 작성은 `implement-init`, 테스트 코드 작성은 `implement`, 승인 판단과 Task 완료 후처리는 `verify`가 소유한다.
 - 특정 코드 변경의 배경과 동작 이해를 돕는 해설은 `explain-change`가 소유한다.
