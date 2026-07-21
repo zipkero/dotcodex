@@ -1,0 +1,7 @@
+interface:
+  display_name: "Context Save"
+  short_description: "현재 작업 맥락과 다음 작업을 CONTEXT.md에 저장"
+  default_prompt: "$context-save를 사용해 현재 작업 맥락을 CONTEXT.md에 저장해 주세요."
+
+policy:
+  allow_implicit_invocation: false
