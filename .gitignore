@@ -30,3 +30,7 @@
 !/skills/config-review/**
 !/skills/project-init/
 !/skills/project-init/**
+!/skills/context-save/
+!/skills/context-save/**
+!/skills/context-restore/
+!/skills/context-restore/**

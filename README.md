@@ -37,6 +37,8 @@
 - `skills/implement`: 문서화된 Task 또는 작은 Per-Request 변경 구현
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
 - `skills/config-review`: 전역 설정, 역할 프롬프트, 책임 경계, allowlist 관리 대상 사용자 정의 skill 정합성 점검
+- `skills/context-save`: 현재 작업 맥락과 다음 작업을 프로젝트 루트 `CONTEXT.md`에 저장
+- `skills/context-restore`: `CONTEXT.md`와 원본 문서를 대조해 저장된 작업 맥락을 읽기 전용으로 복원
 
 `skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
 `.gitignore` allowlist에 포함되지 않은 로컬 skill이나 런타임/캐시성 디렉터리는 현재 전역 설정 관리 대상이 아니다.
