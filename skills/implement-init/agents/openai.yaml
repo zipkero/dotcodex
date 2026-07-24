@@ -1,0 +1,4 @@
+interface:
+  display_name: "구현 계획 초기화"
+  short_description: "분석 문서를 실행 가능한 Task와 검증 기준으로 구체화"
+  default_prompt: "$implement-init으로 분석 문서를 실행 가능한 Task와 검증 기준으로 정리해 주세요."

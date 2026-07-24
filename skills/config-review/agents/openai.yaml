@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex 설정 검토"
+  short_description: "Codex 전역 설정의 역할 경계와 일관성을 변경 없이 점검"
+  default_prompt: "$config-review로 Codex 전역 설정의 역할 경계와 일관성을 점검해 주세요."

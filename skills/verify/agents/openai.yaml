@@ -1,0 +1,4 @@
+interface:
+  display_name: "구현 검증"
+  short_description: "구현 결과를 Task와 SPEC 요구사항에 맞춰 독립적으로 검증"
+  default_prompt: "$verify로 구현 결과가 Task와 SPEC 요구사항을 충족하는지 검증해 주세요."

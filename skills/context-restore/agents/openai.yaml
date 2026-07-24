@@ -1,5 +1,5 @@
 interface:
-  display_name: "Context Restore"
+  display_name: "컨텍스트 복원"
   short_description: "CONTEXT.md에서 작업 맥락을 읽기 전용으로 복원"
   default_prompt: "$context-restore를 사용해 CONTEXT.md에서 작업 맥락을 복원해 주세요."
 

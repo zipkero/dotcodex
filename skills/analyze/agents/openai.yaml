@@ -1,0 +1,4 @@
+interface:
+  display_name: "분석"
+  short_description: "코드·동작·설계의 원인과 선택지를 변경 없이 분석"
+  default_prompt: "$analyze로 이 코드의 원인과 설계 선택지를 변경 없이 분석해 주세요."

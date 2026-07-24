@@ -1,0 +1,4 @@
+interface:
+  display_name: "요구사항 문서 초기화"
+  short_description: "기능 요구사항과 완료 조건을 spec.md와 README에 정리"
+  default_prompt: "$spec-init으로 기능 요구사항과 완료 조건을 문서화해 주세요."

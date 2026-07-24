@@ -1,0 +1,4 @@
+interface:
+  display_name: "분석 문서 초기화"
+  short_description: "spec.md를 바탕으로 기능 분석과 설계 기준을 문서화"
+  default_prompt: "$analyze-init으로 spec.md를 바탕으로 기능 분석 문서를 작성해 주세요."
