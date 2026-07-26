@@ -58,7 +58,7 @@ description: "Execute one documented Task or a small per-request code change wit
 - 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와 `features/<feature-dir>/README.md`의 `IMPLEMENT` 상태를 변경하지 않는다.
 
 ## 주석 작성 기준
-- 주석의 대상, 형식과 배치는 `docs/languages.md`, 해당 언어 문서와 프로젝트 관례를 적용한다.
+- 주석의 대상, 형식과 배치는 `AGENTS.md`가 지정한 언어 문서와 프로젝트 관례를 적용한다.
 - 코드만으로 충분히 드러나지 않는 역할, 책임, 이유, 제약과 계약을 설명한다. 공개 경계와 잘못 이해하면 결함으로 이어지는
   동작에는 호출자가 알아야 하는 보장, 오류 조건과 사용 조건을 포함한다.
 - 테스트의 이름, 구조와 검증 코드만으로 보장하려는 계약, 회귀 조건이나 전제가 드러나지 않으면 주석으로 설명한다.
