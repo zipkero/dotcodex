@@ -35,6 +35,7 @@
 - `skills/analyze-init`: `spec.md` 기반 `analysis.md` 작성
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
 - `skills/implement`: 문서화된 Task 또는 작은 Per-Request 변경 구현
+- `skills/implement-loop`: 남은 Task를 구현, 검증, 상태 전환 순서로 반복하고 사용자 판단이 필요하면 중단
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
 - `skills/config-review`: 전역 설정, 역할 프롬프트, 책임 경계, allowlist 관리 대상 사용자 정의 skill 정합성 점검
 - `skills/context-save`: 현재 작업 맥락과 다음 작업을 프로젝트 루트 `CONTEXT.md`에 저장

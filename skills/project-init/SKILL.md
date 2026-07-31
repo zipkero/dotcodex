@@ -31,7 +31,8 @@ description: "Create initial project-level README.md and ROADMAP.md that define 
 - 최종 관문은 목표 제공 수준에 별도 관문이 필요한 경우에만 작성하고, 근거 없는 운영 환경 요구사항을 관례적으로 추가하지 않는다.
 - 마일스톤별 feature 문서 후보는 kebab-case 이름으로만 제시하고, `features/<feature-dir>/` 경로를 확정하거나 디렉터리를 생성하지 않는다.
 - 보류·제외 범위는 사용자가 언급했거나 최종 결과물과 직접 경계를 이루는 항목만 기록한다.
-- 기존 `README.md`, `ROADMAP.md` 또는 feature 문서의 기준을 바꾸는 갱신은 영향 범위를 보고하고 사용자 확인을 받는다.
+- 기존 `README.md`, `ROADMAP.md` 또는 feature 문서의 기준을 바꾸는 갱신은 영향 범위를 보고한다.
+  현재 요청이 해당 기준 변경을 명시하지 않았으면 사용자 확인을 받는다.
 
 ## README.md 기준
 `README.md`에는 다음 정보를 프로젝트 성격에 맞게 간결하게 둔다.

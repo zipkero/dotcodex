@@ -46,7 +46,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 - 3차 기준은 `analysis.md`의 설계 결정을 벗어나지 않는지 여부이다.
 - 이번 승인으로 완료되는 `SPEC §5.N`은 매핑된 Task들의 변경이 합쳐져서 완료 조건 문장 자체를 만족하는지 판단한다.
 - 완료되는 요구사항이 하나라도 불성립이면 대상 Task 검증 조건 충족 여부와 무관하게 `correctness`로 reject한다.
-- Per-Request mode에서는 사용자 요청과 변경 diff만 기준으로 삼는다.
+- Per-Request mode에서는 사용자 요청, 변경 diff와 관련 실행 결과를 기준으로 삼는다.
 - `approved`: 검증 조건을 충족하고 상위 기준을 위반하지 않는다고 근거로 판단할 수 있다.
 - `rejected`: 충족하지 못하거나, 근거가 부족하거나, 범위나 설계 의도를 벗어난다.
 - 문서 매핑이 맞는지만으로 승인하지 않는다.

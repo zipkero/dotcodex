@@ -13,7 +13,8 @@ description: "Create or update features/<feature-dir>/implement.md with executab
 ## 전제 조건
 - feature 문서 디렉터리에 `spec.md`와 `analysis.md`가 있어야 한다.
 - 둘 중 하나가 없으면 필요한 선행 단계가 무엇인지 보고하고 중단한다.
-- 기존 `implement.md`가 있으면 덮어쓰기 전에 사용자에게 확인한다. 기존 체크박스 상태는 덮어쓰기 시 사라질 수 있다.
+- 기존 `implement.md`가 있으면 체크박스 상태가 사라질 수 있음을 알린다.
+  현재 요청이 재작성이나 초기화를 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - `analysis.md`에 `승인 전 확인`이 있고 미확인 항목이 남아 있으면 사용자에게 확인을 요청하고 중단한다.
 - 다만 사용자가 해당 확인 항목을 명시적으로 보류하고 진행하라고 한 경우에만, 그 항목이 영향을 주지 않는 Task까지 작성한다.
 - `analysis.md`의 `Decision Points`에 채택안이 없는 미해결 결정이 있으면 사용자에게 알리고 원칙적으로 중단한다.

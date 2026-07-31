@@ -1,0 +1,4 @@
+interface:
+  display_name: "구현 반복"
+  short_description: "남은 Task를 구현·독립 검증·상태 전환 순서로 반복"
+  default_prompt: "$implement-loop로 feature의 남은 Task를 순서대로 구현하고 검증해 주세요."

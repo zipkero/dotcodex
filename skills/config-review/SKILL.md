@@ -7,8 +7,8 @@ description: "Audit global Codex configuration for role prompt sufficiency, resp
 
 ## 목적
 `AGENTS.md`, `README.md`, `.gitignore`, `.editorconfig`, `.gitattributes`, `docs/**`,
-allowlist 관리 대상인 `agents/*.toml`과 `skills/*/SKILL.md`를 읽고 역할 프롬프트의 충분성, 책임 경계,
-전역 설정의 정합성을 점검한다.
+allowlist 관리 대상인 `agents/*.toml`, `skills/*/SKILL.md`와 존재하는 `skills/*/agents/openai.yaml`을
+읽고 역할 프롬프트의 충분성, 책임 경계, 전역 설정의 정합성을 점검한다.
 파일은 수정하지 않고 분석 결과만 보고한다.
 
 이 skill의 근본 목적은 Codex 전역 설정이 요청 범위를 과하게 확장하거나, 반대로 불필요한 절차와 제약으로
@@ -19,7 +19,7 @@ allowlist 관리 대상인 `agents/*.toml`과 `skills/*/SKILL.md`를 읽고 역�
 - 사용자가 특정 파일이나 skill을 대상으로 지정하면 해당 대상과 판단에 직접 필요한 참조만 읽는다.
 - 사용자가 전역 감사 또는 전체 점검을 요청한 경우에만 `AGENTS.md`, 루트 `README.md`,
   `.gitignore`, `.editorconfig`, `.gitattributes`, `docs/**`, allowlist 관리 대상인 `agents/*.toml`과
-  `skills/*/SKILL.md` 전체를 읽는다.
+  `skills/*/SKILL.md`, 존재하는 `skills/*/agents/openai.yaml` 전체를 읽는다.
 - allowlist 관리 대상은 `.gitignore`의 추적 허용 규칙을 기준으로 판단한다.
 
 ## 공식 기준 참조
@@ -27,12 +27,16 @@ allowlist 관리 대상인 `agents/*.toml`과 `skills/*/SKILL.md`를 읽고 역�
   제품 버전이나 공식 권장 방식에 따라 판단이 달라질 수 있는 항목은 최신 공식 문서를 확인한다.
 - Codex 전반의 동작과 설정은 `openai-docs` skill의 Codex 공식 문서 경로를 우선 사용한다.
   프롬프트 품질은 현재 공식 프롬프트 작성 지침과 `AGENTS.md` 지침을 함께 확인한다.
+- 설계 배경, 운영 사례, 실증 결과가 판단에 필요한 경우에는 관련된 최신 OpenAI 공식 블로그,
+  Engineering, Research, System Card를 보조 근거로 확인한다.
+- 공식 블로그와 연구 자료는 게시일과 적용 대상을 확인하고, 현재 설정의 실제 문제와 연결되는 내용만 사용한다.
+  제품 소개나 사례만으로 새로운 규칙을 일반화하거나 공식 문서의 명시적 동작을 대체하지 않는다.
 - 중복, 모호한 표현, 파일 소유권, 로컬 문서 정합성처럼 현재 파일만으로 판단할 수 있는 항목에는
   외부 문서 조회를 요구하지 않는다.
-- 공식 문서는 제품 동작과 일반 권장 방식의 기준으로 사용하되, 사용자가 확정한 목적과 작업 방식,
+- 출처가 충돌하면 현재 환경에서 직접 검증된 동작, 최신 공식 문서, 공식 블로그·연구 자료 순으로 판단하고
+  차이와 자료의 게시일을 보고한다.
+- 공식 자료는 제품 동작과 일반 권장 방식의 기준으로 사용하되, 사용자가 확정한 목적과 작업 방식,
   프로젝트 고유 제약을 자동으로 대체하는 상위 규칙으로 취급하지 않는다.
-- 공식 문서와 현재 환경에서 직접 확인한 동작이 다르면 차이를 보고하고,
-  해당 환경에서 검증된 동작을 기준으로 판단한다.
 
 ## 검토 우선순위
 1. 역할 프롬프트 충분성
@@ -50,6 +54,8 @@ allowlist 관리 대상인 `agents/*.toml`과 `skills/*/SKILL.md`를 읽고 역�
     제외 범위가 없으면 역할 프롬프트가 불충분한 것으로 본다.
   - 역할 설명이 짧거나 추상적이어서 핵심 판단을 모델 자율성에 맡기면 `부족`으로 판단한다.
   - `SKILL.md` frontmatter의 `description`이 실제 호출 조건과 역할 범위를 충분히 드러내는지 확인한다.
+  - `agents/openai.yaml`이 있으면 표시 정보, 기본 프롬프트, 호출 정책과 도구 의존성이 `SKILL.md`의
+    역할과 호출 조건에 맞는지 확인한다.
 - 책임 경계 명확성
   - 각 역할이 소유하는 결정과 소유하지 않는 결정을 구분하는지 확인한다.
   - main agent, subagent, skill 사이의 파일 수정 권한, 상태 전환 권한, 최종 판단 권한이 섞여 있지 않은지 확인한다.

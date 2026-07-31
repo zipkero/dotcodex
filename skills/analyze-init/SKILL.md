@@ -9,21 +9,21 @@ description: "Create or update features/<feature-dir>/analysis.md from spec.md f
 - `spec.md`를 근거로 분석과 설계 기준을 문서화한다.
 - `analysis.md`는 구조, 데이터 흐름, 인터페이스, 영향 범위, 설계 결정의 기준 문서이다.
 - `analysis.md`는 정적 설계 기준 문서이며 진행 상태를 추적하지 않는다.
-- `analysis.md`는 요구사항을 새로 만들지 않는다. 새 요구사항은 먼저 `spec.md`에 반영한다.
-- 구현 Task, 진행 상태, Task별 검증 조건은 `implement.md`가 소유한다.
+- `analysis.md`는 요구사항을 추가·누락·약화하지 않으며, 새 요구사항은 먼저 `spec.md`에 반영한다.
+- 구현 Task, 진행 상태, 구현 순서와 Task별 검증 조건은 `implement.md`가 소유한다.
 
 ## 전제 조건
 - feature 문서 디렉터리에 `spec.md`가 있어야 한다.
 - spec이 없으면 `spec-init`이 필요하다고 보고하고 중단한다.
-- 기존 `analysis.md`가 있으면 덮어쓰기 전에 사용자에게 확인한다.
-- 기존 `implement.md`가 있으면 하위 문서에 영향이 있으므로 덮어쓰기 전에 사용자에게 확인한다.
+- 기존 `analysis.md`가 있고 현재 요청이 갱신이나 재작성을 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
+- 기존 `implement.md`가 있으면 하위 문서에 미치는 영향을 알린다.
+  현재 요청이 `implement.md`의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
 
 ## 작성 규칙
 - `analysis.md`는 `spec.md`의 범위, 목표, 제약, 제외 범위, `SPEC §5.N`을 기준으로 작성한다.
 - `analysis.md`는 새 대화에서 이전 대화 맥락 없이 읽어도 구현 체크리스트를 만들 수 있게 작성한다.
   `spec.md`와 `analysis.md`만으로 구조, 흐름, 경계, 설계 결정을 판단할 수 있어야 한다.
 - `analysis.md`는 특정 구현 단계가 아니라 `SPEC §5.N` 전체를 달성하기 위한 구조, 흐름, 경계, 설계 결정을 다룬다.
-- `analysis.md`는 `spec.md`의 요구사항을 새로 만들거나 누락하거나 약화하지 않는다.
 - 기존 코드, 문서, 명령 결과처럼 확인한 근거를 기준으로 작성한다.
 - 확인하지 않은 구조나 동작은 추정으로 표시한다.
 - `spec.md`의 `입력 맥락`은 조사 출발점으로 사용하고, 조사 결과는 `근거`에 확인 사실과 추정으로 구분해 기록한다.
@@ -36,7 +36,6 @@ description: "Create or update features/<feature-dir>/analysis.md from spec.md f
 - 채택안이 없는 미해결 결정은 사용자가 명시적으로 선택 보류를 원한 경우에만 `Decision Points`에 남기고,
   선택지, trade-off, 필요한 결정을 함께 적는다.
 - `SPEC §5.N` 본문을 복사해 반복하지 말고, 해당 설계가 어떤 완료 조건에 기여하는지 본문에 인라인으로 참조한다.
-- 구현 순서, 작업 목록, 체크리스트는 작성하지 않는다. 해당 내용은 `implement.md`에 둔다.
 - 독립 `SPEC 추적` 매트릭스, 독립 `리스크` 섹션, 독립 `검증 관점` 섹션, `열린 질문` 섹션은 만들지 않는다.
   SPEC 연결은 관련 설계 본문에 `SPEC §5.N`으로 인라인 표기하고, 설계를 막는 리스크는 `Decision Points`에 선택지와 함께 둔다.
 - 구현 Task에 필요한 API, 상태, 데이터 흐름, 저장 경계, 외부 연동, 설정은 본문 섹션이나 `Decision Points`에 확정한다.
