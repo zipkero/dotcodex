@@ -49,6 +49,8 @@
   `Phased(문서 우선)`로 다룬다.
 - 작고 명확하며 되돌리기 쉬운 단일 요청은 `Per-Request`로 다룬다.
 - 문서 우선 작업은 `spec-init` -> `analyze-init` -> `implement-init` -> `implement` -> `verify` 순서로 진행한다.
+- 이 흐름에서 main은 진행과 상태를 소유하고, `analyze-init`·`implement-init`은 `analyzer`,
+  Task 구현은 내장 `worker`에 맡긴다. 독립 검증 agent 사용 여부는 `verify` skill 기준을 따른다.
 - 사용자가 특정 단계나 산출물만 요청하면 해당 단계까지만 진행한다.
 - 사용자가 구현이나 전체 완료를 요청하면 결과에 필요한 단계를 순서대로 연속해서 진행한다.
 - 단계 사이에 결과를 실질적으로 바꾸는 미확정 판단이 없으면 별도의 진행 승인을 요청하지 않는다.

@@ -51,6 +51,7 @@ custom agent는 `agents/*.toml`에 둔다.
 실제 관리 대상은 `.gitignore` allowlist에 포함된 standalone TOML 파일이다.
 
 - `agents/verifier.toml`: `skills/verify`가 필요할 때 사용할 수 있는 읽기 전용 검증 subagent 정의
+- `agents/analyzer.toml`: Phased 분석·설계 문서 본문을 만드는 읽기 전용 subagent 정의
 
 ## 정책 소유 위치
 
