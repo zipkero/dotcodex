@@ -34,7 +34,8 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 
 ## 근거 원칙
 - 판단은 대화 기억이나 구현 의도가 아니라 파일, diff, 테스트 결과, 실행 로그, 산출물 확인에 근거한다.
-- 최소 근거는 변경 diff이다. 동작 변경은 가능한 한 테스트나 실행 결과를 함께 확인한다.
+- 최소 근거는 변경 diff이다.
+- 외부 관찰 가능한 동작 변경은 테스트 또는 명확한 실행 결과로 확인한다.
 - 내부 계산, 조건, 변환만 바뀌고 정확성이 diff에서 확인되는 경우에는 diff 기반 추론도 근거가 될 수 있다.
 - “전에 논의했음”은 근거가 아니다. 필요한 파일이나 테스트를 다시 확인한다.
 - `SPEC §5.N`과 `ANALYSIS §X.Y`는 추적 메타데이터이며, 승인 근거는 실제 산출물에서 가져온다.
@@ -44,6 +45,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 - 1차 기준은 대상 Task의 `검증 조건`이다.
 - 2차 기준은 관련 `SPEC §5.N`과 `spec.md`의 제약·제외 범위를 충족하는지 여부이다.
 - 3차 기준은 `analysis.md`의 설계 결정을 벗어나지 않는지 여부이다.
+- 명시적으로 변경하기로 한 범위를 제외하고 기존 동작과 적용되는 공개 contract를 유지해야 한다.
 - 이번 승인으로 완료되는 `SPEC §5.N`은 매핑된 Task들의 변경이 합쳐져서 완료 조건 문장 자체를 만족하는지 판단한다.
 - 완료되는 요구사항이 하나라도 불성립이면 대상 Task 검증 조건 충족 여부와 무관하게 `correctness`로 reject한다.
 - Per-Request mode에서는 사용자 요청, 변경 diff와 관련 실행 결과를 기준으로 삼는다.
@@ -88,11 +90,10 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 - `verify`는 검증 근거 수집 중 테스트, 운영 코드, 문서를 수정하지 않는다.
 - 판단 후 상태 갱신 문서 수정은 `상태 전환` 기준만 따른다.
 - 문서, 오타, 정적 설정 문구처럼 동작 변경이 없는 작업은 diff 확인만으로 승인할 수 있다.
-- 상태 변경, 외부 I/O, 동시성, 새 경계를 포함하는 작업은 사용자 요청, 관련 Task와 `spec.md`·`analysis.md`,
-  기존 동작과 공개 contract를 바탕으로 검증해야 할 정상·실패 사례를 먼저 정하고, 테스트 또는 명확한 실행 근거로 확인한다.
+- 검증 사례는 `판단 규칙`의 각 기준을 바탕으로 먼저 정한 뒤 변경 diff와 대조한다.
 - 변경 범위에 기존 테스트가 있는데 실행하지 않았다면 제한 사항으로 보고한다.
 - 같은 변경 안에 추가 또는 수정된 테스트는 통과만으로 검증 근거가 되지 않는다.
-  구현 diff와 함께 앞에서 정한 사례를 실제로 검증하는지 확인한다.
+  구현 diff와 함께 정한 사례를 실제로 검증하는지 확인한다.
 - 검증 조건 완화나 케이스 삭제처럼 검증력을 낮춘 변경은 `correctness`로 reject한다.
 - 변경 diff의 주석이 `skills/implement/SKILL.md`의 주석 작성 기준을 위반하거나, 언어 문서 또는 프로젝트 관례상 필요한 주석이 누락되면 `style/minor`로 reject한다.
 
