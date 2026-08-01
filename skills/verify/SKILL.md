@@ -92,7 +92,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 - 변경 범위에 기존 테스트가 있는데 실행하지 않았다면 제한 사항으로 보고한다.
 - 같은 변경 안에 추가 또는 수정된 테스트는 통과만으로 검증 근거가 되지 않는다. 구현 diff와 함께 회귀 케이스를 실제로 다루는지 확인한다.
 - 검증 조건 완화나 케이스 삭제처럼 검증력을 낮춘 변경은 `correctness`로 reject한다.
-- 변경 diff의 주석이 `skills/implement/SKILL.md`의 주석 작성 기준을 위반하면 `style/minor`로 reject한다.
+- 변경 diff의 주석이 `skills/implement/SKILL.md`의 주석 작성 기준을 위반하거나, 언어 문서 또는 프로젝트 관례상 필요한 주석이 누락되면 `style/minor`로 reject한다.
 
 ## 완료 보고
 - 출력 구조에 따라 승인/거절 판단을 먼저 말한다.
