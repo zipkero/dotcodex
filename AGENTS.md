@@ -52,7 +52,7 @@
 - main은 단계 진행, verifier 후보 판단 검토, 최종 승인·거절, 상태 전환과 `rejected` 뒤 재작업 순서를 소유한다.
   Issues가 식별한 가장 이른 수정 소유 단계로 재진입한다.
 - `analyze-init`과 `implement-init`의 문서 본문 작성은 읽기 전용 `analyzer`, `verify-analysis`의 독립 조사는 읽기 전용 `verifier`,
-  Task 구현은 내장 `worker`에 맡긴다. 구현 `verify`의 verifier 사용 여부는 해당 skill 기준을 따른다.
+  Task 구현은 `implementer` custom agent에 맡긴다. 구현 `verify`의 verifier 사용 여부는 해당 skill 기준을 따른다.
 - `spec-init`은 `SPEC`을 완료하고 `analyze-init`은 `ANALYSIS`를 승인하지 않는다. `implement-init`은 승인된 `SPEC`과 `ANALYSIS`만 기준으로 사용한다.
 - feature 상태는 `SPEC` → `ANALYSIS` → `IMPLEMENT`의 승인 접두 상태를 유지한다.
   상위 문서 변경은 하위 승인과 기존 Task 체크박스를 무효화하되 문서와 Task 내용·ID·순서는 보존한다.
