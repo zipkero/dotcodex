@@ -14,7 +14,10 @@ description: "Execute one documented Task or a small per-request code change wit
    - 사용자가 구현 의도를 밝히고 `features/<feature-dir>/` 또는 `features/<feature-dir>/implement.md`를 지정했다.
    - feature 경로만 언급한 경우에는 구현하지 않고 요청 의도에 맞춰 분석, 설명, 검토로 처리한다.
 2. Phased mode 동작:
-   - `spec.md`, `analysis.md`, `implement.md`를 읽는다.
+   - feature 디렉터리에 `README.md`, `spec.md`, `analysis.md`, `implement.md`가 있어야 한다.
+   - feature `README.md`의 `SPEC`, `ANALYSIS`, `TASKS`가 모두 `[x]`여야 한다.
+     하나라도 승인되지 않았으면 필요한 문서 작성 또는 검증 단계를 보고하고 구현하지 않는다.
+   - 파일 존재만으로 승인을 추정하지 않고 승인된 `spec.md`, `analysis.md`, `implement.md`를 읽는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 잡고, 지정하지 않으면 위에서부터 첫 미완료 Task를 잡는다.
    - Task가 없거나 이미 완료되었거나 둘 이상으로 해석되면 구현하지 않고 범위를 요청한다.
 3. Per-Request mode:
@@ -55,6 +58,9 @@ description: "Execute one documented Task or a small per-request code change wit
 - 테스트 통과만을 목적으로 운영 로직에 하드코딩, fixture 전용 특수분기, 근거 없는 상수값 고정, 검증 코드에 맞춘 동작 축소를 넣지 않는다.
   테스트와 구현이 충돌하면 완료 조건과 공개 contract 기준으로 어느 쪽이 틀렸는지 먼저 판단한다.
 - 테스트, 포맷, 빌드 명령은 변경 범위를 확인하는 데 필요한 수준으로 실행한다.
+- 구현 중에는 승인된 `SPEC`, `ANALYSIS`, `TASKS` 상태를 유지하고 `IMPLEMENT`는 모든 Task가 승인될 때까지 `[ ]`로 둔다.
+- Task 체크박스는 현재 승인된 `spec.md`와 `analysis.md` 기준의 구현 검증 상태를 뜻한다.
+  상위 문서 무효화로 체크박스가 초기화됐다면 기존 구현 결과가 남아 있어도 각 Task를 현재 기준으로 다시 검증해야 한다.
 - 검증 단계에서 `approved`로 판단하기 전에는 `implement.md` 체크박스와 `features/<feature-dir>/README.md`의 `IMPLEMENT` 상태를 변경하지 않는다.
 
 ## 주석 작성 기준

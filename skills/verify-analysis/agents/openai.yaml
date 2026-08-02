@@ -1,0 +1,4 @@
+interface:
+  display_name: "분석 문서 검증"
+  short_description: "설계 분석의 추적성과 구현 준비도를 독립 검증"
+  default_prompt: "$verify-analysis를 사용해 현재 feature의 analysis.md를 독립 검증해 주세요."

@@ -56,7 +56,7 @@ description: >-
 - 기존 `spec.md`가 있고 현재 요청이 재작성이나 초기화를 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - 기존 하위 문서(`analysis.md`, `implement.md`)가 있으면 `spec.md` 덮어쓰기가 하위 문서를 무효화할 수 있음을 알린다.
   현재 요청이 하위 문서의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
-- 기존 `README.md`가 있으면 상태와 문서 섹션은 보존하고, 필요한 이력만 추가한다.
+- 기존 `README.md`가 있으면 문서 섹션은 보존하고, 상태는 아래 무효화 규칙에 따라 갱신하며 필요한 이력을 추가한다.
 - 질문으로 해소했거나 대화에서 확정된 요청은 대화에만 남기지 않는다. 목표는 `목표`, 조사 출발점은
   `범위 > 입력 맥락`, 완료 기준은 `완료 조건`, 행동 경계는 `제약` 또는 `제외 범위`에 반영한다.
 - 기능이 만들어야 하는 산출물은 `완료 조건`, 사용자가 지정한 검증 근거와 작업 보고 형식은 `제약`에 둔다.
@@ -65,7 +65,12 @@ description: >-
   따른다.
 - `features/<feature-dir>/README.md`의 `개요`는 feature의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나
   설계 판단은 반복하지 않는다.
-- `spec.md`를 다시 작성하는 경우라도 README의 `[x] SPEC` 상태는 유지한다.
+- 새 `spec.md`를 작성하면 `SPEC`, `ANALYSIS`, `TASKS`, `IMPLEMENT`를 모두 `[ ]`로 둔다.
+- `spec.md`를 다시 작성하면 기존 승인 여부와 관계없이 `SPEC`과 모든 하위 상태인 `ANALYSIS`, `TASKS`, `IMPLEMENT`를
+  `[ ]`로 되돌리고 `- <yyyy-MM-dd>: SPEC 재작성으로 하위 승인 상태 초기화` 이력을 추가한다.
+- 작성 또는 재작성 시 기존 `implement.md`가 있으면 파일과 각 Task의 내용·ID·순서는 보존하고,
+  Task 항목의 체크박스만 모두 `[ ]`로 바꾼다. 기존 구현 결과가 남아 있어도 현재 SPEC 기준의 승인으로 간주하지 않는다.
+- 작성 또는 재작성만으로 `SPEC`을 `[x]`로 바꾸지 않는다. `SPEC` 승인은 `verify-spec` 검증 뒤 main이 소유한다.
 
 ## feature README.md 형식
 ```markdown
@@ -75,14 +80,15 @@ description: >-
 <feature의 목적과 배경을 1-3문장으로 요약>
 
 ## 상태
-- [x] SPEC
+- [ ] SPEC
 - [ ] ANALYSIS
+- [ ] TASKS
 - [ ] IMPLEMENT
 
 ## 문서
 - [spec.md](./spec.md)
 - [analysis.md](./analysis.md) (ANALYSIS 단계에서 생성)
-- [implement.md](./implement.md) (IMPLEMENT 단계에서 생성)
+- [implement.md](./implement.md) (TASKS 단계에서 생성)
 
 ## 이력
 - <yyyy-MM-dd>: SPEC 작성
@@ -125,6 +131,8 @@ description: >-
 
 ## 스킬 완료 조건
 - `features/<feature-dir>/README.md`와 `spec.md`가 생성 또는 갱신되어야 한다.
+- feature 상태판의 `SPEC`, `ANALYSIS`, `TASKS`, `IMPLEMENT`가 모두 `[ ]`이어야 한다.
+- 기존 `implement.md`가 있으면 파일과 Task 내용·ID는 보존되고 모든 Task 체크박스가 `[ ]`이어야 한다.
 - `spec.md`에는 선택 `승인 전 확인`과 위 형식의 5개 섹션만 둔다.
 - 각 `SPEC §5.N`은 관찰 가능한 결과여야 한다.
 - `제외 범위`에는 의도적으로 하지 않을 변경을 적는다.
@@ -136,3 +144,4 @@ description: >-
 - 생성/갱신된 파일
 - 사용한 ROADMAP 마일스톤과 프로젝트 기준 문서, 없으면 없음
 - 문서 생성을 막은 미확정 요구사항이 있었다면 질문한 내용
+- `SPEC`은 미승인 상태이며 다음 단계 전에 `verify-spec` 검증이 필요하다는 안내

@@ -16,12 +16,18 @@
 
 문서 우선 작업에서 생성되는 feature 문서 세트는 `features/<feature-dir>/` 아래 다음 산출물로 구성된다.
 
+단계는
+`spec-init` → `verify-spec` → `analyze-init` → `verify-analysis` → `tasks-init` → `verify-tasks` → `implement` → `verify`
+순서로 진행한다.
+
 - `README.md`: feature 상태와 이력
 - `spec.md`: 요구사항, 범위, 완료 조건
 - `analysis.md`: 분석, 설계 결정, 영향 범위
-- `implement.md`: 구현 체크리스트와 항목별 검증 기준
+- `implement.md`: 승인된 분석에서 파생한 구현 Task 체크리스트와 항목별 검증 기준
 
-별도 `verify.md`는 만들지 않는다.
+상태판의 `SPEC`, `ANALYSIS`, `TASKS`는 각각 현재 `spec.md`, `analysis.md`, `implement.md`가 대응 검증에서 승인됐음을 뜻한다.
+`IMPLEMENT`는 승인된 Task가 모두 구현되고 구현 검증을 통과했음을 뜻한다. 검증 상세를 저장하는 별도 Markdown 문서는 만들지 않는다.
+단계별 문서·Task 보존, 체크박스, 상태와 이력 전이는 해당 작성·검증 skill이 소유하고 feature README 상태판은 결과와 이력만 기록한다.
 
 ## Skill 구성
 
@@ -32,8 +38,11 @@
 - `skills/explain-change`: 코드 변경의 배경, 핵심 생각, 관련 흐름과 구현 판단 설명
 - `skills/project-init`: 프로젝트 루트 `README.md`와 `ROADMAP.md` 초기화
 - `skills/spec-init`: `spec.md`와 feature `README.md` 초기화
-- `skills/analyze-init`: `spec.md` 기반 `analysis.md` 작성
-- `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
+- `skills/verify-spec`: 사용자 요청과 프로젝트 근거에 따른 `spec.md` 승인·거절 후보 판단
+- `skills/analyze-init`: 승인된 `spec.md` 기반 `analysis.md` 작성
+- `skills/verify-analysis`: 코드·설정 직접 조사에 따른 `analysis.md` 승인·거절 후보 판단
+- `skills/tasks-init`: 승인된 `spec.md`와 `analysis.md` 기반 `implement.md` 체크리스트 작성
+- `skills/verify-tasks`: `implement.md`의 요구사항 매핑, Task 경계와 검증 가능성 승인·거절 후보 판단
 - `skills/implement`: 문서화된 Task 또는 작은 Per-Request 변경 구현
 - `skills/implement-loop`: 남은 Task를 구현, 검증, 상태 전환 순서로 반복하고 사용자 판단이 필요하면 중단
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
@@ -50,8 +59,8 @@
 custom agent는 `agents/*.toml`에 둔다.
 실제 관리 대상은 `.gitignore` allowlist에 포함된 standalone TOML 파일이다.
 
-- `agents/verifier.toml`: `skills/verify`가 필요할 때 사용할 수 있는 읽기 전용 검증 subagent 정의
-- `agents/analyzer.toml`: Phased 분석·설계 문서 본문을 만드는 읽기 전용 subagent 정의
+- `agents/verifier.toml`: 네 검증 skill 중 지정된 기준에 따라 원본을 조사하고 후보 판단만 반환하는 읽기 전용 subagent 정의
+- `agents/analyzer.toml`: `analyze-init`과 `tasks-init`의 전체 문서 본문을 만드는 읽기 전용 subagent 정의
 
 ## 정책 소유 위치
 
@@ -63,7 +72,10 @@ custom agent는 `agents/*.toml`에 둔다.
 - `features/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
 - 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
 - custom subagent의 역할과 실행 성격은 각 `agents/*.toml`이 소유한다.
-- 테스트 Task 작성은 `implement-init`, 테스트 코드 작성은 `implement`, 승인 판단과 Task 완료 후처리는 `verify`가 소유한다.
+- 문서 작성은 `spec-init`, `analyze-init`, `tasks-init`이 각각 소유하고 대응 승인의 세부 기준은
+  `verify-spec`, `verify-analysis`, `verify-tasks`가 각각 소유한다.
+- 테스트 Task 작성은 `tasks-init`, 테스트 코드 작성은 `implement`, 구현 승인 기준과 Task 완료 후처리 절차는 `verify`가 소유한다.
+- main은 verifier의 후보 판단을 검토한 최종 승인·거절과 feature 상태 전환을 소유한다.
 - 특정 코드 변경의 배경과 동작 이해를 돕는 해설은 `explain-change`가 소유한다.
 - 구현 단계의 세부 네이밍·주석 기준, 공개 contract 보존과 구현 품질 가드는 `implement`가 소유한다.
 - README는 관리 대상 파일, 구조, 설계 의도만 설명한다.

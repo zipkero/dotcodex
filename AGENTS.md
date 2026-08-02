@@ -48,12 +48,25 @@
 - 새 feature, 공개 contract 변경, 되돌리기 어려운 데이터/외부 영향, 여러 Task로 나눠야 검증 가능한 작업은
   `Phased(문서 우선)`로 다룬다.
 - 작고 명확하며 되돌리기 쉬운 단일 요청은 `Per-Request`로 다룬다.
-- 문서 우선 작업은 `spec-init` -> `analyze-init` -> `implement-init` -> `implement` -> `verify` 순서로 진행한다.
-- 이 흐름에서 main은 진행과 상태를 소유하고, `analyze-init`·`implement-init`은 `analyzer`,
-  Task 구현은 내장 `worker`에 맡긴다. 독립 검증 agent 사용 여부는 `verify` skill 기준을 따른다.
+- 문서 우선 작업은
+  `spec-init` → `verify-spec` → `analyze-init` → `verify-analysis` → `tasks-init` → `verify-tasks` → `implement` → `verify`
+  순서로 진행한다.
+- `spec-init`, `analyze-init`, `tasks-init`은 문서를 작성하되 승인 상태를 완료로 표시하지 않는다.
+  각 후속 단계는 대응 검증에서 승인된 선행 문서만 기준으로 사용한다.
+- main은 단계 진행, verifier 후보 판단 검토, 최종 승인·거절과 모든 상태 전환을 소유한다.
+- `analyze-init`과 `tasks-init`의 문서 본문 작성은 읽기 전용 `analyzer`에 맡긴다.
+- `verify-spec`, `verify-analysis`, `verify-tasks`의 문서 독립 조사는 읽기 전용 `verifier`가 수행한다.
+  구현 `verify`도 해당 skill의 사용 기준에 따라 같은 `verifier`를 사용하며, 모두 지정된 기준의 후보 판단만 main에 반환한다.
+- Task 구현은 내장 `worker`에 맡기고, `worker`는 `implement` 기준에 따른 결과만 main에 반환한다.
+- feature 상태는 `SPEC` → `ANALYSIS` → `TASKS` → `IMPLEMENT`의 승인 접두 상태를 유지하며,
+  상위 기준 변경은 모든 하위 승인을 무효화한다.
+- 단계별 문서·Task 보존, 체크박스, 상태와 이력 전이는 해당 작성·검증 skill이 소유한다.
+- `verify`가 모든 구현 Task를 현재 승인된 문서 기준으로 승인한 경우에만 `IMPLEMENT`를 `[x]`로 전환한다.
+- 검증 상세를 저장하는 별도 Markdown 문서는 만들지 않는다.
 - 사용자가 특정 단계나 산출물만 요청하면 해당 단계까지만 진행한다.
 - 사용자가 구현이나 전체 완료를 요청하면 결과에 필요한 단계를 순서대로 연속해서 진행한다.
-- 단계 사이에 결과를 실질적으로 바꾸는 미확정 판단이 없으면 별도의 진행 승인을 요청하지 않는다.
+- 단계 사이에 결과를 실질적으로 바꾸는 미확정 판단이 없으면 대응 문서 검증을 포함해 다음 단계로 연속 진행하며,
+  별도의 사용자 진행 승인을 요청하지 않는다.
 - 확정된 범위나 설계를 바꾸거나 되돌리기 어렵거나 외부에 영향을 주는 판단이 필요하면 진행을 중단하고 사용자에게 확인한다.
 - 단계별 세부 절차와 완료 기준은 해당 skill의 `SKILL.md`를 따른다.
 - 단계별 구현 계획은 `spec.md`가 아니라 `analysis.md` 또는 `implement.md`에 둔다.
