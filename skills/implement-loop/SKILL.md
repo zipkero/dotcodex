@@ -21,7 +21,8 @@ description: "Run the remaining Tasks in a documented feature through implementa
 
 1. 위에서부터 첫 `[ ]` Task를 선택한다.
 2. Task의 `확인`이 테스트, 빌드, lint, 명령 출력이나 명확한 diff처럼 실행 가능한 근거를 가리키는지 확인한다.
-3. `implement` 기준으로 해당 Task 하나를 구현한다.
+3. main은 Task, 수정 범위와 검증 조건을 내장 `worker`에게 전달한다.
+   `worker`는 `implement` 기준으로 구현하고 결과만 반환한다.
 4. `verify` 기준으로 독립 검증하고 상태 전환까지 처리한다.
 5. `approved`이면 다음 `[ ]` Task로 진행한다.
 6. `rejected`이면 재시도 또는 정지를 판단한다.
