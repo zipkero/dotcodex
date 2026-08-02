@@ -12,9 +12,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 
 ## 컨텍스트 로딩
 1. Phased mode:
-   - feature `README.md`의 `SPEC`, `ANALYSIS`, `TASKS`가 모두 `[x]`여야 한다.
-     하나라도 승인되지 않았으면 필요한 문서 작성 또는 검증 단계를 보고하고 중단한다.
-   - 파일 존재만으로 승인을 추정하지 않으며, 나머지 진입 조건은 `implement` skill의 Phased mode와 동일하다.
+   - 진입 조건은 `implement` skill의 Phased mode와 동일하다.
    - `implement.md`의 대상 Task와 참조된 `spec.md`, `analysis.md`를 읽는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 검증한다.
    - 지정이 없으면 직전 구현 대상이 단일하게 식별될 때만 검증한다.
@@ -73,7 +71,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 4. Completed requirements: Phased mode에서 이번 승인으로 완료되는 `SPEC §5.N`의 성립/불성립 또는 `없음`
 5. `rejected`인 경우 Issues:
    - Category: `style/minor` | `correctness` | `design/scope`
-   - Repair stage: 구현 수정은 `implement`, Task 기준 수정은 `tasks-init`, 설계 수정은 `analyze-init`,
+   - Repair stage: 구현 수정은 `implement`, Task 기준 수정은 `implement-init`, 설계 수정은 `analyze-init`,
      승인된 요구사항 수정은 `spec-init` 중 가장 이른 수정 소유 단계
    - 실제 근거와 함께 구체적 문제를 적는다.
 6. `approved`인 경우 Explanation:
@@ -89,10 +87,9 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 
 ## 상태 전환
 - 검증 단계는 먼저 `approved` 또는 `rejected` 판단과 근거를 확정한다.
-- main은 Phased mode에서 현재 승인된 `spec.md`와 `analysis.md` 기준으로 `approved`인 경우에만 대상 Task 하나를 `[x]`로 변경한다.
+- main은 현재 승인된 `spec.md`와 `analysis.md` 기준으로 `approved`인 경우에만 대상 Task 하나를 `[x]`로 변경한다.
 - 모든 Task가 현재 승인된 문서 기준으로 `approved`되어 `[x]`가 된 경우에만 main이
-  `features/<feature-dir>/README.md`의 `IMPLEMENT`를 `[x]`로 변경하고
-  `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
+  `features/<feature-dir>/README.md`의 `IMPLEMENT`를 `[x]`로 변경하고 `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
 - `rejected`이면 대상 Task를 `[ ]`로 유지한다.
 - 완료되는 요구사항 불성립으로 rejected된 경우도 대상 Task만 `[ ]`로 유지하고, 앞선 `[x]` Task는 되돌리지 않는다.
 - 이미 승인된 Task를 재검증해 실패한 경우에는 `[x]`를 `[ ]`로 되돌린다.

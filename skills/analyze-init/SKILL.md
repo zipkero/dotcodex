@@ -13,9 +13,8 @@ description: "Create or update features/<feature-dir>/analysis.md from spec.md f
 - 구현 Task, 진행 상태, 구현 순서와 Task별 검증 조건은 `implement.md`가 소유한다.
 
 ## 전제 조건
-- feature 문서 디렉터리에 `spec.md`와 `README.md`가 있어야 하며, feature 상태판의 `SPEC`이 `[x]`여야 한다.
-- `spec.md` 또는 `README.md`가 없으면 `spec-init`이 필요하다고 보고하고 중단한다.
-- `SPEC`이 `[ ]`이면 `verify-spec` 승인이 필요하다고 보고하고 중단한다. 파일 존재만으로 승인을 추정하지 않는다.
+- feature 문서 디렉터리에 `spec.md`와 `README.md`가 있어야 하며 상태판의 `SPEC`이 `[x]`여야 한다.
+- 문서가 없거나 `SPEC`이 `[ ]`이면 `spec-init`이 필요하다고 보고하고 중단한다.
 - 기존 `analysis.md`가 있고 현재 요청이 갱신이나 재작성을 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - 기존 `implement.md`가 있으면 하위 문서에 미치는 영향을 알린다.
   현재 요청이 `implement.md`의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
@@ -87,23 +86,20 @@ description: "Create or update features/<feature-dir>/analysis.md from spec.md f
   옵션, trade-off, 채택안, 근거와 함께 적는다. 판단 거리가 없으면 `해당 없음`으로 적는다.
 
 ## feature README.md 갱신
-- 승인된 `SPEC`은 `[x]`로 유지하고 `ANALYSIS`, `TASKS`, `IMPLEMENT`를 모두 `[ ]`로 둔다.
-- 기존 `implement.md`가 있으면 파일과 각 Task의 내용·ID·순서는 보존하고, Task 항목의 체크박스만 모두 `[ ]`로 바꾼다.
-  기존 구현 결과가 남아 있어도 현재 ANALYSIS 기준의 승인으로 간주하지 않는다.
-- 새로 작성하면 이력에 `- <yyyy-MM-dd>: ANALYSIS 작성`을 추가한다.
-- 다시 작성하면 `- <yyyy-MM-dd>: ANALYSIS 재작성으로 하위 승인 상태 초기화` 이력을 추가한다.
-- 작성 또는 재작성만으로 `ANALYSIS`를 `[x]`로 바꾸지 않는다. `ANALYSIS` 승인은 `verify-analysis` 검증 뒤 main이 소유한다.
+- `SPEC`은 `[x]`로 유지하고 `ANALYSIS`, `IMPLEMENT`를 `[ ]`로 둔다.
+- 기존 `implement.md`는 파일과 Task 내용·ID·순서를 보존하고 모든 Task 체크박스만 `[ ]`로 바꾼다.
+- 새로 작성하면 `- <yyyy-MM-dd>: ANALYSIS 작성`, 다시 작성하면
+  `- <yyyy-MM-dd>: ANALYSIS 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
+- 작성만으로 `ANALYSIS`를 `[x]`로 바꾸지 않는다. 승인은 `verify-analysis` 뒤 main이 수행한다.
 
 ## 스킬 완료 조건
 - `analysis.md`가 spec에 근거해 생성 또는 갱신되어야 한다.
 - 관련 설계 본문에서 필요한 `SPEC §5.N` 참조가 확인되어야 한다.
-- `features/<feature-dir>/README.md`의 `SPEC`은 `[x]`로 유지되고 `ANALYSIS`, `TASKS`, `IMPLEMENT`는
-  모두 `[ ]`로 갱신되어야 한다.
-- 기존 `implement.md`가 있으면 파일과 Task 내용·ID는 보존되고 모든 Task 체크박스가 `[ ]`이어야 한다.
+- feature 상태판의 `SPEC`은 `[x]`, `ANALYSIS`와 `IMPLEMENT`는 `[ ]`여야 한다.
 - 작성 또는 재작성 이력이 추가되어야 한다.
 
 ## 완료 보고
 - 핵심 설계 결정
 - 영향 범위
 - 남은 Decision Point
-- `ANALYSIS`는 미승인 상태이며 다음 단계 전에 `verify-analysis` 검증이 필요하다는 안내
+- `ANALYSIS`는 미승인 상태이며 다음 단계 전에 `verify-analysis`가 필요하다는 안내

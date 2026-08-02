@@ -2,27 +2,27 @@
 name: verify-analysis
 description: >-
   Independently verify a feature analysis.md against its approved spec.md, project sources,
-  implementation code, and configuration. Use before tasks-init or when revalidating an approved
-  ANALYSIS.
+  implementation code, and configuration. Use before implement-init or when revalidating an
+  approved ANALYSIS.
 ---
 
 # Verify Analysis
 
 ## 목적
-- 현재 `analysis.md`가 승인된 `spec.md` 전체를 실제 구현 구조에 맞는 설계 기준으로 충분히 구체화했는지 독립 검증한다.
-- 문서 검증 중 가장 넓은 범위의 원본 코드·설정을 직접 조사하고, 하나라도 불충분하거나 근거가 부족하면 거절한다.
+- 현재 `analysis.md`가 `spec.md` 전체를 실제 구현 구조에 맞는 설계 기준으로 충분히 구체화했는지 독립 검증한다.
+- 원본 코드·설정을 직접 조사하고 하나라도 불충분하거나 근거가 부족하면 거절한다.
 - 분석 작성과 승인을 분리해 `approved` 또는 `rejected` 후보와 근거만 main에 반환한다.
 - 구현 Task를 작성하거나 별도 검증 결과 Markdown 문서를 만들지 않는다.
 
 ## 전제 조건과 입력
 - 대상 feature에 현재 `spec.md`, `analysis.md`, `README.md`가 있어야 하며 상태판의 `SPEC`이 `[x]`여야 한다.
-- `SPEC`이 승인되지 않았으면 `verify-spec`이 필요하다고 보고하고 검증을 중단한다.
-- 승인된 `spec.md`, 현재 `analysis.md`, 관련 프로젝트 기준 문서와 실제 구현 코드·테스트·설정을 직접 확인한다.
-- `spec.md`의 입력 맥락과 `analysis.md`의 근거는 조사 출발점으로만 사용하고, 작성자의 요약을 원본 근거로 대신하지 않는다.
+- 문서가 없거나 `SPEC`이 `[ ]`이면 `spec-init`이 필요하다고 보고하고 중단한다.
+- `spec.md`, 현재 `analysis.md`, 관련 프로젝트 기준 문서와 실제 구현 코드·테스트·설정을 직접 확인한다.
+- `spec.md`의 입력 맥락과 `analysis.md`의 근거는 조사 출발점으로만 사용하고 작성자의 요약을 원본 근거로 대신하지 않는다.
 - 재검증이면 현재 승인 상태와 승인 뒤 바뀐 문서, 코드, 설정의 범위를 함께 확인한다.
 
 ## verifier agent 사용
-- `agents/verifier.toml`의 읽기 전용 verifier에게 이 skill의 전체 경로, 대상 feature, 승인된 `spec.md`와 현재 `analysis.md`,
+- `agents/verifier.toml`의 읽기 전용 verifier에게 이 skill의 전체 경로, 대상 feature, `spec.md`와 현재 `analysis.md`,
   프로젝트 기준 문서·코드·테스트·설정의 조사 출발점, 재검증 상태와 변경 범위를 전달한다.
 - verifier는 이 skill의 기준을 재정의하지 않고 원본을 독립적으로 조사해 후보 판단만 반환한다.
 - main은 반환된 기준별 근거를 검토해 최종 승인·거절과 상태 전환을 결정한다.
@@ -41,8 +41,8 @@ description: >-
 
 ## 검증 절차
 1. 모든 `SPEC §5.N`과 분석의 구조, 데이터 흐름, 인터페이스, 영향 범위, Decision Points를 기준 목록으로 만든다.
-2. 관련 프로젝트 기준 문서와 실제 코드·테스트·설정을 직접 조사해 현재 책임 경계, 흐름, contract와 의존 관계를 확인한다.
-   다른 문서 검증보다 넓은 원본 조사 범위를 적용하며, 분석 본문의 주장만으로 사실을 확정하지 않는다.
+2. 관련 프로젝트 기준 문서와 실제 코드·테스트·설정을 조사해 현재 책임 경계, 흐름, contract와 의존 관계를 확인한다.
+   분석 본문의 주장만으로 사실을 확정하지 않는다.
 3. 기준마다 출처와 독립적으로 판정 가능한 Criterion을 만들고 직접 확인한 원본을 Evidence로 연결한다.
 4. 기준마다 누락, 모순, 근거 없는 설계 확정과 다음 단계에서 새로 결정해야 하는 사항이 있는지 확인한다.
 5. 각 Criterion을 `충족`, `불충족`, `근거 부족`으로 판정한다.
@@ -63,11 +63,13 @@ description: >-
 
 ## 상태 전환
 - main은 후보 판단과 근거를 검토한 뒤에만 최종 상태를 전환한다.
-- 최종 `approved`이면 feature `README.md`의 `ANALYSIS`만 `[x]`로 바꾸고
+- 최초 검증이 최종 `approved`이면 feature `README.md`의 `ANALYSIS`만 `[x]`로 바꾸고
   `- <yyyy-MM-dd>: ANALYSIS 승인` 이력을 추가한다.
-- 최종 `rejected`이면 `ANALYSIS`를 `[ ]`로 유지하며 `tasks-init`으로 진행하지 않는다.
-- 이미 승인된 ANALYSIS의 재검증이 `rejected`이면 승인된 `SPEC`은 유지하고 `ANALYSIS`, `TASKS`, `IMPLEMENT`를
-  모두 `[ ]`로 되돌린 뒤 `- <yyyy-MM-dd>: ANALYSIS 재검증 거절로 하위 승인 상태 초기화` 이력을 추가한다.
-- 이 재검증 거절 시 기존 `implement.md`가 있으면 파일과 각 Task의 내용·ID·순서는 보존하고,
-  Task 항목의 체크박스만 모두 `[ ]`로 바꾼다.
+- 승인된 ANALYSIS를 내용 변경 없이 재검증해 `approved`이면 현재 Task 체크박스와 `IMPLEMENT` 상태를 보존한다.
+- 승인 상태를 초기화하지 않은 채 `analysis.md` 내용이 바뀐 재검증이 `approved`이면 `ANALYSIS`는 `[x]`로 유지하고
+  `IMPLEMENT`와 기존 Task 체크박스를 `[ ]`로 되돌린 뒤 `- <yyyy-MM-dd>: ANALYSIS 변경 재승인으로 구현 상태 초기화` 이력을 추가한다.
+- 최종 `rejected`이면 `ANALYSIS`를 `[ ]`로 유지하며 `implement-init`으로 진행하지 않는다.
+- 이미 승인된 ANALYSIS의 재검증이 `rejected`이면 `SPEC`은 유지하고 `ANALYSIS`, `IMPLEMENT`를 `[ ]`로 되돌린 뒤
+  `- <yyyy-MM-dd>: ANALYSIS 재검증 거절로 구현 승인 상태 초기화` 이력을 추가한다.
+- 이 재검증 거절 시 기존 `implement.md`의 파일과 각 Task의 내용·ID·순서는 보존하고 체크박스만 모두 `[ ]`로 바꾼다.
 - 검증 상세는 대화에 보고하며 별도 결과 Markdown 문서로 저장하지 않는다.

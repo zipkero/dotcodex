@@ -37,8 +37,7 @@ description: "Analyze code, debug behavior, architecture, design options, root c
 - 설계 선택지: 설계·구조 요청일 때 가능한 선택지, trade-off, 추천안을 적는다.
 - 미확정 판단: 조사로 좁힌 내용과 남은 사용자 결정 사항을 구분하고, 결과에 영향을 주는 질문은 권장안과 함께 적는다.
 - 분류: `Phased(문서 우선)` 대상 / Per-Request 가능 / 추가 입력 필요 중 하나. 구현 범위에 영향이 있을 때만 포함한다.
-- 다음 단계: 필요한 문서 단계(`spec-init`, `verify-spec`, `analyze-init`, `verify-analysis`, `tasks-init`, `verify-tasks`)
-  또는 구현·검증 제안.
+- 다음 단계: 필요한 문서 단계(`spec-init`, `analyze-init`, `verify-analysis`, `implement-init`) 또는 구현/검증 제안.
 
 ## Blocker
 - `scope undefined`: 분석 대상이 불명확함

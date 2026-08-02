@@ -1,22 +1,20 @@
 ---
-name: tasks-init
-description: >-
-  Create or update a feature implement.md with executable Tasks and verification criteria from an
-  approved spec.md and analysis.md. Use before verify-tasks and implementation.
+name: implement-init
+description: "Create or update features/<feature-dir>/implement.md with executable Tasks and verification criteria."
 ---
 
-# Tasks Init
+# Implement Init
 
 ## 목적
-- 승인된 `analysis.md`를 실행 가능한 구현 체크리스트로 변환한다.
+- `analysis.md`를 실행 가능한 구현 체크리스트로 변환한다.
 - `implement.md`는 구현 단계의 진행 상황과 Task별 검증 조건을 소유하는 실행 체크리스트이다.
 - 설계 판단은 `analysis.md`에 두고, `implement.md`에는 확정된 설계를 실행 가능한 Task로 나눈 내용만 둔다.
 
 ## 전제 조건
 - feature 문서 디렉터리에 `spec.md`, `analysis.md`, `README.md`가 있어야 한다.
 - feature 상태판의 `SPEC`과 `ANALYSIS`가 모두 `[x]`여야 한다.
-- 문서가 없으면 필요한 작성 단계를 보고하고, 승인 상태가 `[ ]`이면 대응하는 `verify-spec` 또는 `verify-analysis`가
-  필요하다고 보고한 뒤 중단한다. 파일 존재만으로 승인을 추정하지 않는다.
+- 문서가 없으면 필요한 작성 단계를 보고하고, `ANALYSIS`가 `[ ]`이면 `verify-analysis`가 필요하다고 보고한 뒤 중단한다.
+  파일 존재만으로 승인을 추정하지 않는다.
 - 기존 `implement.md`가 있으면 체크박스 상태가 사라질 수 있음을 알린다.
   현재 요청이 재작성이나 초기화를 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - `analysis.md`에 `승인 전 확인`이 있고 미확인 항목이 남아 있으면 사용자에게 확인을 요청하고 중단한다.
@@ -36,7 +34,7 @@ description: >-
 - 자체 동작 검증 없이 빌드·정적검사·기존 검증 유지만 확인하는 작업은 독립 Task로 만들지 않는다.
 - 각 Task는 한 번의 `verify`로 승인 또는 거절을 판단할 수 있어야 한다.
 - Task ID는 `task-001`처럼 3자리 zero-padding을 사용하고, 신규 문서는 `task-001`부터 순서대로 작성한다.
-- 기존 문서 갱신 시 Task ID는 재번호 매기지 않는다. 새 Task는 가장 큰 ID의 다음 번호를 사용하고, 삭제·병합된 ID는 재사용하지 않는다.
+- 기존 문서 갱신 시 Task ID는 재번호 매기지 않는다. 새 Task는 가장 큰 ID의 다음 번호를 사용하고, 삭제/병합된 ID는 재사용하지 않는다.
 - 의존성 순서는 `implement.md`의 항목 위치로 표현한다. ID 숫자를 순서 의미로 사용하거나 순서 변경 때문에 재번호하지 않는다.
 - 각 항목은 최소 하나의 `SPEC §5.N`에 매핑한다.
 - `ANALYSIS §X.Y` 참조는 해당 Task가 따르는 구조나 설계 결정이 있을 때만 둔다.
@@ -48,8 +46,7 @@ description: >-
 - Task의 `목적`, `접근`, `검증 조건`은 다음 세션에서 이전 대화 없이도 작업 단위, 설계 근거,
   완료 판단을 복원할 수 있게 작성한다.
 - `목적`에는 문서 매핑이 아니라 사용자가 얻는 결과나 Task가 완성해야 하는 외부 관찰 가능한 동작을 적는다.
-- `접근`에는 `analysis.md`에서 확정된 설계를 구현하는 방법만 적는다.
-  새로운 타입, 상태값, 저장소 경계, API 계약, 데이터 흐름을 새로 결정하지 않는다.
+- `접근`에는 `analysis.md`에서 확정된 설계를 구현하는 방법만 적는다. 새로운 타입, 상태값, 저장소 경계, API 계약, 데이터 흐름을 새로 결정하지 않는다.
 - `검증 조건`은 `결과`와 `확인`으로 작성한다. `결과`에는 Task 완료 후 성립해야 하는 동작, 출력, 파일 내용, 설정 상태를 적는다.
   `확인`에는 테스트, 빌드, lint, diff, 수동 확인 등 해당 결과를 검증하는 방법을 적는다.
 - `spec.md`의 `제약`에 사용자가 지정한 검증 근거가 있으면 관련 Task의 `확인`에 빠짐없이 반영한다.
@@ -78,20 +75,19 @@ description: >-
 ```
 
 ## feature README.md 갱신
-- 승인된 `SPEC`과 `ANALYSIS`는 `[x]`로 유지하고 `TASKS`, `IMPLEMENT`를 모두 `[ ]`로 둔다.
-- 새로 작성하면 이력에 `- <yyyy-MM-dd>: TASKS 체크리스트 작성`을 추가한다.
-- 다시 작성하면 `- <yyyy-MM-dd>: TASKS 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
-- 작성 또는 재작성만으로 `TASKS`를 `[x]`로 바꾸지 않는다. `TASKS` 승인은 `verify-tasks` 검증 뒤 main이 소유한다.
+- `SPEC`과 `ANALYSIS`는 `[x]`, `IMPLEMENT`는 `[ ]`로 유지한다.
+- 새로 작성하면 `- <yyyy-MM-dd>: IMPLEMENT 체크리스트 작성`, 다시 작성하면
+  `- <yyyy-MM-dd>: IMPLEMENT 체크리스트 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
+- 이 단계에서는 `IMPLEMENT`를 `[x]`로 변경하지 않는다. `IMPLEMENT`는 실제 구현 완료를 뜻한다.
 
 ## 스킬 완료 조건
 - `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.
 - 모든 Task가 `[ ]` 상태여야 한다.
 - 모든 `SPEC §5.N`이 하나 이상의 Task로 추적되어야 한다.
-- feature 상태판의 `SPEC`, `ANALYSIS`는 `[x]`, `TASKS`, `IMPLEMENT`는 `[ ]`여야 한다.
+- feature 상태판의 `SPEC`과 `ANALYSIS`는 `[x]`, `IMPLEMENT`는 `[ ]`여야 한다.
 - 작성 또는 재작성 이력이 추가되어야 한다.
 
 ## 완료 보고
 - 작업 항목 수
 - 검증 기준 요약
 - `analysis.md` 갱신이 필요한 항목이 있으면 관련 `SPEC §5.N`, 부족한 결정, Task 작성에 미치는 영향
-- `TASKS`는 미승인 상태이며 구현 전에 `verify-tasks` 검증이 필요하다는 안내

@@ -83,18 +83,15 @@ allowlist 관리 대상인 `agents/*.toml`, `skills/*/SKILL.md`와 존재하는 
   - `docs/languages.md`는 언어별 작업 기준의 진입점만 소유하고, 세부 기준은 `docs/languages/*.md`가 소유한다.
   - `agents/*.toml`은 custom subagent의 역할, 모델·추론·sandbox 성격, developer instructions를 소유한다.
   - phase별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
-  - 테스트 Task 작성 범위는 `tasks-init`, 테스트 코드 작성 범위는 `implement`가 소유한다.
-  - 문서별 승인 기준은 `verify-spec`, `verify-analysis`, `verify-tasks`, 구현 승인 기준과 Task 완료 후처리 절차는 `verify`가 소유한다.
-  - analyzer는 문서 초안, worker는 대상 Task 구현, verifier는 지정된 skill에 따른 읽기 전용 후보 판단만 수행하고,
+  - 테스트 Task 작성 범위는 `implement-init`, 테스트 코드 작성 범위는 `implement`가 소유한다.
+  - 분석 승인 기준은 `verify-analysis`, 구현 승인 기준과 Task 완료 후처리는 `verify`가 소유한다.
+  - analyzer는 문서 초안, verifier는 지정된 skill에 따른 읽기 전용 후보 판단만 수행하고,
     최종 승인·거절, 상태 전환과 검증 거절 후 재진입 순서는 main이 소유하는지 확인한다.
 - 문서 우선 흐름의 단계 실행 기준
-  - 전역 흐름이
-    `spec-init` → `verify-spec` → `analyze-init` → `verify-analysis` → `tasks-init` → `verify-tasks` → `implement` → `verify`
-    순서와 일치하는지 확인한다.
-  - 문서 작성 단계가 대응 상태를 스스로 승인하지 않고, 후속 단계가 승인된 선행 문서 상태를 요구하는지 확인한다.
-  - 상태가 `SPEC` → `ANALYSIS` → `TASKS` → `IMPLEMENT`의 승인 접두 상태를 유지하는지 확인한다.
-  - 각 검증의 Issues가 거절 사유와 가장 이른 수정 소유 단계를 식별하고, main의 재진입, 상위 문서 무효화,
-    TASKS 자체 재검증 승인·거절과 `IMPLEMENT` 완료 전이가 각 소유 skill 사이에서 일치하는지 확인한다.
+  - 전역 흐름이 `spec-init` → `analyze-init` → `verify-analysis` → `implement-init` → `implement` → `verify` 순서와 일치하는지 확인한다.
+  - `analyze-init`이 `ANALYSIS`를 스스로 승인하지 않고 `implement-init`이 승인된 `SPEC`과 `ANALYSIS`만 사용하는지 확인한다.
+  - 상태가 `SPEC` → `ANALYSIS` → `IMPLEMENT`의 승인 접두 상태를 유지하고 상위 문서 변경이 하위 승인과 Task 체크박스를 무효화하는지 확인한다.
+  - Issues가 가장 이른 수정 소유 단계를 식별하고 main의 재진입과 상태 전이가 각 소유 skill 사이에서 일치하는지 확인한다.
   - 검증 상세를 저장하는 별도 Markdown 문서를 만들도록 규정하지 않았는지 확인한다.
   - 사용자가 특정 단계나 산출물만 요청한 경우 해당 범위를 넘어 진행하지 않는지 확인한다.
   - 구현이나 전체 완료 요청에서는 필요한 단계의 연속 진행을 불필요하게 막거나 단계마다 승인을 요구하지 않는지 확인한다.
@@ -107,8 +104,7 @@ allowlist 관리 대상인 `agents/*.toml`, `skills/*/SKILL.md`와 존재하는 
 - 문서 산출물 완결성
   - `analyze-init`이 다음 단계에서 설계를 다시 결정할 필요 없는 `analysis.md`를 만들고, `verify-analysis`가 SPEC 추적성과
     구조·흐름·인터페이스·영향 범위·설계 결정을 원본 코드·설정에서 직접 검증하는지 확인한다.
-  - `tasks-init`이 모든 `SPEC §5.N`을 실행 가능한 Task로 매핑하고, `verify-tasks`가 경계·설계 준수·검증 조건과
-    검증 맥락별 체크박스 상태를 확인하는지 점검한다.
+  - `implement-init`은 미매핑 `SPEC §5.N`을 조용히 넘기지 않고 Task 추가, 완료 조건 제거, 제외 범위 보류 중 하나로 결정하게 해야 한다.
   - 문서 우선 흐름이 중간에 끊겨도 다음 단계가 기존 문서와 사용자 지시만으로 재개될 수 있는지 확인한다.
   - `승인 전 확인`, 미해결 설계 결정, 설계 변경 필요, 검증할 변경 범위가 다음 단계에서 무시되거나
     대화 기억에만 의존하지 않는지 확인한다.

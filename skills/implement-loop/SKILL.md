@@ -14,10 +14,8 @@ description: "Run the remaining Tasks in a documented feature through implementa
 ## 전제 조건
 
 - 대상 feature와 구현 의도가 명확해야 한다.
-- feature 디렉터리에 `README.md`, `spec.md`, `analysis.md`, `implement.md`가 있어야 한다.
-- `implement.md`가 없으면 `tasks-init`이 필요하다고 보고하고 중단한다.
-- feature `README.md`의 `SPEC`, `ANALYSIS`, `TASKS`가 모두 `[x]`여야 한다.
-  하나라도 승인되지 않았으면 필요한 문서 작성 또는 검증 단계를 보고하고 중단한다. 파일 존재만으로 승인을 추정하지 않는다.
+- `implement` skill §컨텍스트 로딩의 Phased mode 진입 조건을 충족해야 한다.
+  충족하지 않으면 필요한 작성 단계 또는 `verify-analysis`를 안내하고 중단한다.
 - 첫 `[ ]` Task가 없으면 이미 완료됐다고 보고한다.
 
 ## 반복
@@ -54,8 +52,6 @@ description: "Run the remaining Tasks in a documented feature through implementa
 - 테스트 assertion을 약화하거나 실패 사례를 삭제하지 않는다.
 - 막힌 Task를 건너뛰거나 Task 순서를 바꾸지 않는다.
 - `approved` 전에 Task를 `[x]`로 바꾸지 않는다.
-- 상위 문서 무효화 뒤 기존 구현 결과가 남아 있어도 모든 Task가 현재 승인된 문서 기준의 `verify`에서 다시 승인되기 전에
-  `IMPLEMENT`를 `[x]`로 바꾸지 않는다.
 
 ## 완료 보고
 
