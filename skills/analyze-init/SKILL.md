@@ -95,8 +95,7 @@ description: "Create or update features/<feature-dir>/analysis.md from spec.md f
 ## 스킬 완료 조건
 - `analysis.md`가 spec에 근거해 생성 또는 갱신되어야 한다.
 - 관련 설계 본문에서 필요한 `SPEC §5.N` 참조가 확인되어야 한다.
-- feature 상태판의 `SPEC`은 `[x]`, `ANALYSIS`와 `IMPLEMENT`는 `[ ]`여야 한다.
-- 작성 또는 재작성 이력이 추가되어야 한다.
+- feature 상태판, 이력과 기존 Task 체크박스는 §feature README.md 갱신에 맞아야 한다.
 
 ## 완료 보고
 - 핵심 설계 결정

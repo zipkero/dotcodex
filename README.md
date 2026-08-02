@@ -54,21 +54,11 @@ custom agent는 `agents/*.toml`에 둔다.
 - `agents/verifier.toml`: `verify-analysis`와 필요한 구현 `verify`에서 사용하는 읽기 전용 검증 subagent 정의
 - `agents/analyzer.toml`: Phased `analysis.md`와 `implement.md` 초안을 만드는 읽기 전용 subagent 정의
 
-## 정책 소유 위치
+## 정책 위치
 
-전역 지침과 사용자 정의 skill은 요청 범위가 과하게 확장되지 않도록 소유 위치를 나눈다.
-
-- `AGENTS.md`는 항상 적용되어야 하는 언어, 응답, 요청 해석, 범위, 안전, 공통 네이밍·주석 원칙과
-  skill·언어별 기준 라우팅을 소유한다.
-- `docs/languages.md`는 언어별 작업 기준의 진입점을 소유하고, 세부 기준은 `docs/languages/*.md`가 소유한다.
-- `features/**` Markdown 줄바꿈 기준은 `AGENTS.md`와 `.editorconfig`가 소유한다.
-- 단계별 실행 절차는 각 `skills/*/SKILL.md`가 소유한다.
-- custom subagent의 역할과 실행 성격은 각 `agents/*.toml`이 소유한다.
-- 테스트 Task 작성은 `implement-init`, 테스트 코드 작성은 `implement`가 소유한다.
-- 분석 승인 기준은 `verify-analysis`, 구현 승인 기준과 Task 완료 후처리는 `verify`가 소유한다.
-- 특정 코드 변경의 배경과 동작 이해를 돕는 해설은 `explain-change`가 소유한다.
-- 구현 단계의 세부 네이밍·주석 기준, 공개 contract 보존과 구현 품질 가드는 `implement`가 소유한다.
-- README는 관리 대상 파일, 구조, 설계 의도만 설명한다.
+- 전역 원칙과 라우팅은 `AGENTS.md`, 언어별 세부 기준은 `docs/languages/**`에 둔다.
+- 단계별 절차와 판단 기준은 해당 `skills/*/SKILL.md`, custom subagent의 실행 성격은 `agents/*.toml`이 소유한다.
+- 이 README는 관리 대상과 구조만 설명한다.
 
 ## Git 관리 정책
 

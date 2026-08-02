@@ -82,10 +82,8 @@ description: "Create or update features/<feature-dir>/implement.md with executab
 
 ## 스킬 완료 조건
 - `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.
-- 모든 Task가 `[ ]` 상태여야 한다.
 - 모든 `SPEC §5.N`이 하나 이상의 Task로 추적되어야 한다.
-- feature 상태판의 `SPEC`과 `ANALYSIS`는 `[x]`, `IMPLEMENT`는 `[ ]`여야 한다.
-- 작성 또는 재작성 이력이 추가되어야 한다.
+- Task 체크박스, feature 상태판과 이력은 §작성 규칙과 §feature README.md 갱신에 맞아야 한다.
 
 ## 완료 보고
 - 작업 항목 수
