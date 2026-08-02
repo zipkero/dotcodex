@@ -1,6 +1,8 @@
 ---
 name: spec-init
-description: "Create or reset features/<feature-dir>/spec.md and feature README.md for documentation-first work."
+description: >-
+  Create or reset a feature spec.md and feature README.md from the current request and applicable
+  project README, ROADMAP, product, and design documents when available.
 ---
 
 # Spec Init
@@ -16,6 +18,20 @@ description: "Create or reset features/<feature-dir>/spec.md and feature README.
 - feature 이름이 불명확하면 문서 생성을 진행하지 말고 짧게 질문한다.
 - feature 이름은 산출물의 디렉터리명일 뿐이며 요구사항 범위를 결정하는 근거로 쓰지 않는다.
 
+## 프로젝트 기준 문서 연결
+- feature 경로를 소유하는 프로젝트 루트를 확인하고, 존재하는 `README.md`, `ROADMAP.md`,
+  `docs/product.md`와 `docs/design.md`를 먼저 조사한다.
+- README에서는 현재 확인된 동작, 사용 방법, 명령과 문서 경로만 사실 근거로 사용한다.
+- ROADMAP이 있으면 대상 feature와 관련된 마일스톤의 결과, 의존 관계, 전환 기준과 범위 경계를 확인한다.
+- `docs/product.md`에서는 관련 사용자 흐름, 외부 동작, 설정과 정책을 요구사항 근거로 사용한다.
+- `docs/design.md`에서는 관련 프로젝트 수준 제약과 확정된 설계 결정을 확인한다.
+  제안 또는 미확정 결정은 사용자가 확정하지 않는 한 요구사항으로 변환하지 않는다.
+- 관련 없는 마일스톤이나 문서 섹션은 spec에 가져오지 않는다.
+- 사용한 프로젝트 문서의 경로와 관련 섹션을 `범위 > 입력 맥락`에 기록하고,
+  필요한 요구사항과 제약은 링크만 남기지 말고 spec 본문에 자체 완결적으로 반영한다.
+- 프로젝트 문서끼리 충돌하거나 현재 코드와 다르고 그 차이가 feature 범위나 완료 조건을 바꾸면
+  임의로 우선순위를 정하지 말고 작성 전에 사용자에게 확인한다.
+
 ## 요구사항 확정
 - 현재 요청, 같은 작업에서 사용자가 이미 확정한 판단, 입력 문서와 조사 결과를 함께 근거로 삼는다.
 - spec 범위는 구현 단위나 진행 순서가 아니라 확인된 최종 사용 가능 상태를 기준으로 판단한다.
@@ -29,7 +45,8 @@ description: "Create or reset features/<feature-dir>/spec.md and feature README.
 - 범위, 목표, 제약, 제외 범위, 완료 조건, 사용자 가치 또는 성공 판단 기준이 여러 방향으로 해석되면
   `AGENTS.md`의 요청 해석과 범위 기준에 따라 문서 생성 전에 질문한다.
 - 공개 contract, 완료 조건, 제외 범위, 후속 문서 기준은 추정으로 확정하지 않는다.
-- 이미 확정된 판단은 다시 묻지 않는다. 결과에 영향을 주는 미확정 판단이 남아 있으면 `spec.md`를 생성하지 않는다.
+- 이미 확정된 판단은 다시 묻지 않는다.
+  결과에 영향을 주는 미확정 판단이 남아 있으면 `spec.md`를 생성하지 않는다.
 
 ## 생성/갱신 규칙
 - 새 feature 디렉터리는 `features/<yyyyMMdd>-<nnn>-<feature-name>/` 형식을 사용한다.
@@ -111,7 +128,11 @@ description: "Create or reset features/<feature-dir>/spec.md and feature README.
 - `spec.md`에는 선택 `승인 전 확인`과 위 형식의 5개 섹션만 둔다.
 - 각 `SPEC §5.N`은 관찰 가능한 결과여야 한다.
 - `제외 범위`에는 의도적으로 하지 않을 변경을 적는다.
+- 존재하는 관련 ROADMAP 마일스톤과 프로젝트 기준 문서를 조사하고,
+  사용한 근거를 `입력 맥락`에 기록해야 한다.
+- 관련 기준 문서의 확정된 요구사항과 제약이 spec에 누락되지 않아야 한다.
 
 ## 완료 보고
 - 생성/갱신된 파일
+- 사용한 ROADMAP 마일스톤과 프로젝트 기준 문서, 없으면 없음
 - 문서 생성을 막은 미확정 요구사항이 있었다면 질문한 내용
