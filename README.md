@@ -75,7 +75,7 @@ custom agent는 `agents/*.toml`에 둔다.
 - 문서 작성은 `spec-init`, `analyze-init`, `tasks-init`이 각각 소유하고 대응 승인의 세부 기준은
   `verify-spec`, `verify-analysis`, `verify-tasks`가 각각 소유한다.
 - 테스트 Task 작성은 `tasks-init`, 테스트 코드 작성은 `implement`, 구현 승인 기준과 Task 완료 후처리 절차는 `verify`가 소유한다.
-- main은 verifier의 후보 판단을 검토한 최종 승인·거절과 feature 상태 전환을 소유한다.
+- main은 verifier의 후보 판단을 검토한 최종 승인·거절, feature 상태 전환과 검증 거절 후 재진입 순서를 소유한다.
 - 특정 코드 변경의 배경과 동작 이해를 돕는 해설은 `explain-change`가 소유한다.
 - 구현 단계의 세부 네이밍·주석 기준, 공개 contract 보존과 구현 품질 가드는 `implement`가 소유한다.
 - README는 관리 대상 파일, 구조, 설계 의도만 설명한다.

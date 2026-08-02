@@ -73,6 +73,8 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 4. Completed requirements: Phased mode에서 이번 승인으로 완료되는 `SPEC §5.N`의 성립/불성립 또는 `없음`
 5. `rejected`인 경우 Issues:
    - Category: `style/minor` | `correctness` | `design/scope`
+   - Repair stage: 구현 수정은 `implement`, Task 기준 수정은 `tasks-init`, 설계 수정은 `analyze-init`,
+     승인된 요구사항 수정은 `spec-init` 중 가장 이른 수정 소유 단계
    - 실제 근거와 함께 구체적 문제를 적는다.
 6. `approved`인 경우 Explanation:
    - 무엇이 어떻게 충족되었는지 2-3문장으로 적는다.

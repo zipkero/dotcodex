@@ -58,7 +58,7 @@ description: >-
    - Source: 관련 `SPEC §5.N`, 분석 섹션 또는 프로젝트 contract
    - Evidence: 직접 확인한 문서, 코드, 테스트, 설정 또는 명령 결과
    - Result: `충족` | `불충족` | `근거 부족`
-4. Issues: 거절 사유와 다시 필요한 작성 단계인 `analyze-init`; 없으면 `없음`
+4. Issues: 거절 사유와 가장 이른 수정 소유 단계(`analyze-init`, 승인된 요구사항 변경은 `spec-init`); 없으면 `없음`
 5. Residual Risk: 실행하지 못했거나 남은 근거 한계; 없으면 `없음`
 
 ## 상태 전환

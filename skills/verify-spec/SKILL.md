@@ -56,7 +56,7 @@ description: >-
    - Source: 기준의 출처
    - Evidence: 직접 확인한 파일, 코드, 설정 또는 명령 결과
    - Result: `충족` | `불충족` | `근거 부족`
-4. Issues: 거절 사유와 다시 필요한 작성 단계인 `spec-init`; 없으면 `없음`
+4. Issues: 거절 사유와 가장 이른 수정 소유 단계인 `spec-init`; 없으면 `없음`
 5. Residual Risk: 실행하지 못했거나 남은 근거 한계; 없으면 `없음`
 
 ## 상태 전환
