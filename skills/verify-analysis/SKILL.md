@@ -15,8 +15,9 @@ description: >-
 - 구현 Task를 작성하거나 별도 검증 결과 Markdown 문서를 만들지 않는다.
 
 ## 전제 조건과 입력
-- 대상 feature에 현재 `spec.md`, `analysis.md`, `README.md`가 있어야 하며 상태판의 `SPEC`이 `[x]`여야 한다.
-- 문서가 없거나 `SPEC`이 `[ ]`이면 `spec-init`이 필요하다고 보고하고 중단한다.
+- 대상 feature에 `README.md`와 현재 `spec.md`가 있어야 하며 상태판의 `SPEC`이 `[x]`여야 한다.
+- `README.md` 또는 `spec.md`가 없거나 `SPEC`이 `[ ]`이면 `spec-init`이 필요하다고 보고하고 중단한다.
+- `README.md`와 승인된 `spec.md`가 있지만 `analysis.md`가 없으면 `analyze-init`이 필요하다고 보고하고 중단한다.
 - `spec.md`, 현재 `analysis.md`, 관련 프로젝트 기준 문서와 실제 구현 코드·테스트·설정을 직접 확인한다.
 - `spec.md`의 입력 맥락과 `analysis.md`의 근거는 조사 출발점으로만 사용하고 작성자의 요약을 원본 근거로 대신하지 않는다.
 - 재검증이면 현재 승인 상태와 승인 뒤 바뀐 문서, 코드, 설정의 범위를 함께 확인한다.

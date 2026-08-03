@@ -6,7 +6,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 # Verify
 
 ## 목적
-- 방금 구현한 단일 Task 또는 Per-Request 변경을 `approved` 또는 `rejected`로 판단하고 근거를 보고한다.
+- built-in `worker`가 구현한 단일 Task 또는 Per-Request 변경을 main이 `approved` 또는 `rejected`로 최종 판단하고 근거를 보고하는 기준을 정의한다.
 - Phased mode에서는 Task-level 판단을 기본으로 하되, 이번 Task 승인으로 완료되는 `SPEC §5.N`은 완료 조건 성립까지 확인한다.
 - 별도 `verify.md`를 만들지 않는다.
 
@@ -22,10 +22,10 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 2. Per-Request mode:
    - feature 문서를 읽거나 갱신하지 않는다.
    - 사용자 요청, 변경 범위와 실행 결과를 확인한다.
-3. 대상이 모호하면 판단하지 않고 식별 가능한 후보와 필요한 입력을 요청한다.
+3. 대상이 모호하면 판단하지 않는다. verifier는 식별 가능한 후보와 필요한 입력을 main에 반환하고, 사용자 확인은 main이 수행한다.
 
 ## verifier agent 사용 기준
-- `agents/verifier.toml`은 읽기 전용 독립 검증 subagent이며, 이 skill의 판단 기준을 기준 소스로 따른다.
+- `agents/verifier.toml`은 읽기 전용 독립 검증 subagent이며, 이 skill의 판단 기준을 기준 소스로 따라 후보 판단만 반환한다.
 - 변경이 여러 파일에 걸치고 동작, 상태, 외부 I/O, 동시성, 경계 중 하나 이상에 영향을 주면 verifier agent를 사용한다.
 - Per-Request 변경이라도 main의 diff 확인만으로 정확성을 판단하기 어렵거나 독립 검증 컨텍스트가 필요하면 사용을 고려한다.
 - 문서, 오타, 정적 설정 문구처럼 diff만으로 판단 가능한 변경은 main이 직접 검증할 수 있다.
@@ -70,7 +70,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
    - Result: `충족` | `불충족` | `근거 부족`
 4. Completed requirements: Phased mode에서 이번 승인으로 완료되는 `SPEC §5.N`의 성립/불성립 또는 `없음`
 5. `rejected`인 경우 Issues:
-   - Category: `style/minor` | `correctness` | `design/scope`
+   - Category: `quality` | `correctness` | `design/scope`
    - Repair stage: 구현 수정은 `implement`, Task 기준 수정은 `implement-init`, 설계 수정은 `analyze-init`,
      승인된 요구사항 수정은 `spec-init` 중 가장 이른 수정 소유 단계
    - 실제 근거와 함께 구체적 문제를 적는다.
@@ -80,7 +80,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 
 ## reject 분류
 - 모든 reject category는 Task 승인을 막으며, 해소 전까지 체크박스는 `[x]`로 전환하지 않는다.
-- `style/minor`: 명명, 주석, 포맷 같은 비동작 문제다. `implement`의 주석 기준 위반도 포함한다.
+- `quality`: 명명, 주석, 포맷 같은 비동작 품질 문제다. `implement`의 주석 기준 위반도 포함한다.
 - `correctness`: 요구 동작, 검증 조건, invariant, 출력이 맞지 않는다.
   검증 조건 완화나 사례 삭제로 검증력이 낮아진 경우도 포함한다.
 - `design/scope`: 설계 결정에서 이탈했거나 요청 범위를 초과 또는 미달했다.

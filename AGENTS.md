@@ -49,14 +49,22 @@
   `Phased(문서 우선)`로 다룬다.
 - 작고 명확하며 되돌리기 쉬운 단일 요청은 `Per-Request`로 다룬다.
 - 문서 우선 작업은 `spec-init` → `analyze-init` → `verify-analysis` → `implement-init` → `implement` → `verify` 순서로 진행한다.
-- main은 단계 진행, verifier 후보 판단 검토, 최종 승인·거절, 상태 전환과 `rejected` 뒤 재작업 순서를 소유한다.
+- main은 단계 진행, agent 호출, 사용자 확인, verifier 후보 판단 검토, 최종 승인·거절, 상태 전환과 `rejected` 뒤 재작업 순서를 소유한다.
   Issues가 식별한 가장 이른 수정 소유 단계로 재진입한다.
 - `analyze-init`과 `implement-init`의 문서 본문 작성은 읽기 전용 `analyzer`, `verify-analysis`의 독립 조사는 읽기 전용 `verifier`,
-  Task 구현은 `implementer` custom agent에 맡긴다. 구현 `verify`의 verifier 사용 여부는 해당 skill 기준을 따른다.
+  단일 Task와 작은 Per-Request 변경은 built-in `worker`에 맡긴다. 여러 Task 또는 전체 구현은 main이 `implement-loop`로 라우팅해
+  Task마다 worker 구현과 필요한 verifier 후보 판단을 반복한다. 구현 `verify`의 verifier 사용 여부는 해당 skill 기준을 따른다.
+- main은 모든 worker 호출에 `agent_type = "worker"`, `model = "gpt-5.6-sol"`, `reasoning_effort = "medium"`과
+  `fork_turns = "none"` 또는 필요한 최소 최근 turn 수인 양의 정수 문자열을 명시한다. `fork_turns`를 생략하거나 `"all"`을 사용하지 않는다.
+- worker 호출 메시지는 이전 대화 없이도 실행할 수 있도록 Task의 목적·접근·검증 조건, 수정 범위, 승인된 기준 문서,
+  `skills/implement/SKILL.md`와 반환 형식을 포함한다. 공유 작업 공간의 다른 변경을 되돌리지 않고 이미 생긴 변경에 맞춰 구현하며,
+  사용자 판단이나 상위 문서 변경이 필요하면 수정 없이 `blocked`와 근거를 반환하도록 명시한다.
+- 필요한 모델·추론 수준·이력 범위 입력을 사용할 수 없거나 지정한 worker 호출이 실패하면 다른 모델이나 agent,
+  main 직접 구현 또는 별도 `codex exec`로 대체하지 않는다. main은 Task와 문서 상태를 유지한 채 누락 입력 또는 오류와 영향을 보고한다.
 - `spec-init`은 `SPEC`을 완료하고 `analyze-init`은 `ANALYSIS`를 승인하지 않는다. `implement-init`은 승인된 `SPEC`과 `ANALYSIS`만 기준으로 사용한다.
 - feature 상태는 `SPEC` → `ANALYSIS` → `IMPLEMENT`의 승인 접두 상태를 유지한다.
   상위 문서 변경은 하위 승인과 기존 Task 체크박스를 무효화하되 문서와 Task 내용·ID·순서는 보존한다.
-- 문서·Task 보존, 체크박스, 상태와 이력 전이는 해당 작성·검증 skill이 소유한다.
+- 문서·Task 보존, 체크박스, 상태와 이력 전이의 기준은 해당 작성·검증 skill이 정의하고 실제 변경은 main만 수행한다.
 - 검증 상세를 저장하는 별도 Markdown 문서는 만들지 않는다.
 - 사용자가 특정 단계나 산출물만 요청하면 해당 단계까지만 진행한다.
 - 사용자가 구현이나 전체 완료를 요청하면 결과에 필요한 단계를 순서대로 연속해서 진행한다.

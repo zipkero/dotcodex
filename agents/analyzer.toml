@@ -1,5 +1,5 @@
 name = "analyzer"
-description = "Read-only author for Phased analysis.md and implement.md drafts."
+description = "Read-only author returning complete Phased analysis.md and implement.md contents."
 sandbox_mode = "read-only"
 model_reasoning_effort = "high"
 

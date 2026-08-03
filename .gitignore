@@ -5,6 +5,8 @@
 !/.gitattributes
 !/AGENTS.md
 !/README.md
+!/features/
+!/features/**
 !/docs/
 !/docs/**
 !/agents/
