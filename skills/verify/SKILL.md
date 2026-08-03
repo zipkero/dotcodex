@@ -47,13 +47,9 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
    각 기준에는 출처와 독립적으로 판정 가능한 문장 하나를 적는다.
 2. 변경 diff를 기준 목록과 대조한다. 기준을 구현에 맞춰 합치거나 삭제하거나 완화하지 않으며,
    새로운 기준은 적용 근거가 되는 출처를 확인한 경우에만 추가한다.
-3. 각 기준에 근거를 연결한다.
-   - 최소 근거는 변경 diff이다.
-   - 외부 관찰 가능한 동작 변경은 테스트 또는 명확한 실행 결과로 확인한다.
-   - 동작 변경이 없는 작업은 정확성이 diff에서 확인될 때 diff 기반 추론을 근거로 사용할 수 있다.
-   - 추가하거나 수정한 테스트는 assertion과 구현 diff가 해당 기준을 실제로 검증하는지 확인한다.
-   - 실행하지 못한 검증은 성공으로 간주하지 않는다.
-     관련 기존 테스트를 실행하지 않았다면 그 사실을 보고하고, 판단할 수 없으면 `근거 부족`으로 처리한다.
+3. 각 기준에 최소 변경 diff를 연결하고, 외부 동작 변경은 테스트나 명확한 실행 결과로 확인한다.
+   동작 변경이 없으면 정확성이 diff에서 확인될 때만 추론을 근거로 사용할 수 있다.
+   변경한 테스트는 assertion과 구현이 기준을 실제로 검증하는지 확인하며, 실행하지 못한 검증은 보고하고 판단할 수 없으면 `근거 부족`으로 처리한다.
 4. 각 기준을 `충족`, `불충족`, `근거 부족`으로 판정한다.
    하나라도 `불충족` 또는 `근거 부족`이면 `rejected`, 모두 `충족`이면 `approved`다.
 
@@ -68,18 +64,15 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
    - Source: 기준의 출처
    - Evidence: 확인한 diff, 테스트, 실행 결과 또는 산출물
    - Result: `충족` | `불충족` | `근거 부족`
-4. Completed requirements: `Phased` 작업에서 이번 승인으로 완료되는 `SPEC §5.N`의 성립/불성립 또는 `없음`
+4. Completed requirements: `Phased` 작업에서만 이번 승인으로 완료되는 `SPEC §5.N`의 성립 또는 불성립. 없으면 `없음`
 5. `rejected`인 경우 Issues:
    - Category: `quality` | `correctness` | `design/scope`
    - Repair stage: 구현 수정은 `implement`, Task 기준 수정은 `implement-init`, 설계 수정은 `analyze-init`,
      승인된 요구사항 수정은 `spec-init` 중 가장 이른 수정 소유 단계
-   - 실제 근거와 함께 구체적 문제를 적는다.
-6. `approved`인 경우 Explanation:
-   - 무엇이 어떻게 충족되었는지 2-3문장으로 적는다.
-   - 남은 리스크가 있으면 적는다.
+   - Problem: 실제 근거가 있는 구체적 문제
+6. `approved`인 경우 Explanation: `Validation`을 반복하지 않고 결과를 1-2문장으로 요약하며, 남은 위험이 있을 때만 덧붙인다.
 
 ## reject 분류
-- 모든 reject category는 Task 승인을 막으며, 해소 전까지 체크박스는 `[x]`로 전환하지 않는다.
 - `quality`: 명명, 주석, 포맷 같은 비동작 품질 문제다. `implement`의 주석 기준 위반도 포함한다.
 - `correctness`: 요구 동작, 검증 조건, 불변 조건, 출력이 맞지 않는다.
   검증 조건 완화나 사례 삭제로 검증력이 낮아진 경우도 포함한다.
@@ -87,11 +80,10 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 
 ## 상태 전환
 - 검증 단계는 먼저 `approved` 또는 `rejected` 판단과 근거를 확정한다.
-- 현재 승인된 `spec.md`와 `analysis.md` 기준으로 `approved`인 경우에만 대상 Task 하나를 `[x]`로 변경한다.
-- 모든 Task가 현재 승인된 문서 기준으로 `approved`되어 `[x]`가 되고, 모든 `SPEC §5.N`이 하나 이상의 Task에 매핑된 경우에만
-  `features/<feature-dir>/README.md`의 `IMPLEMENT`를 `[x]`로 변경하고 `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
-- `rejected`이면 대상 Task를 `[ ]`로 유지한다.
-- 완료되는 요구사항 불성립으로 rejected된 경우도 대상 Task만 `[ ]`로 유지하고, 앞선 `[x]` Task는 되돌리지 않는다.
-- 이미 승인된 Task를 재검증해 실패한 경우에는 `[x]`를 `[ ]`로 되돌린다.
-- 그 결과 모든 Task 완료 상태가 아니게 되면 README의 `[x] IMPLEMENT`를 `[ ] IMPLEMENT`로 되돌리고, 이력에 재검증 실패로 IMPLEMENT 상태를 되돌렸다는 한 줄을 추가한다.
+- `approved`이면 현재 승인된 `spec.md`와 `analysis.md` 기준으로 대상 Task만 `[x]`로 바꾼다.
+  모든 Task가 승인되고 모든 `SPEC §5.N`이 하나 이상의 Task에 매핑됐을 때만 기능 `README.md`의 `IMPLEMENT`를 `[x]`로 바꾸고
+  `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
+- `rejected`이면 대상 Task를 `[ ]`로 유지하고 앞서 승인된 Task는 보존한다.
+- 승인된 Task의 재검증이 실패하면 해당 Task를 `[ ]`로 되돌린다.
+  모든 Task가 완료된 상태가 아니게 되면 `IMPLEMENT`도 `[ ]`로 되돌리고 재검증 실패로 상태를 되돌렸다는 이력을 추가한다.
 - `Per-Request` 작업은 문서나 체크박스를 갱신하지 않는다.
