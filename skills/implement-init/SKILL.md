@@ -11,19 +11,17 @@ description: "Create or update features/<feature-dir>/implement.md with executab
 - 설계 판단은 `analysis.md`에 두고, `implement.md`에는 확정된 설계를 실행 가능한 Task로 나눈 내용만 둔다.
 
 ## 전제 조건
-- feature 문서 디렉터리에 `spec.md`, `analysis.md`, `README.md`가 있어야 한다.
-- feature 상태판의 `SPEC`과 `ANALYSIS`가 모두 `[x]`여야 한다.
+- 기능 문서 디렉터리에 `spec.md`, `analysis.md`, `README.md`가 있어야 한다.
+- 기능 상태판의 `SPEC`과 `ANALYSIS`가 모두 `[x]`여야 한다.
 - 문서가 없으면 필요한 작성 단계를 보고하고, `ANALYSIS`가 `[ ]`이면 `verify-analysis`가 필요하다고 보고한 뒤 중단한다.
   파일 존재만으로 승인을 추정하지 않는다.
 - 기존 `implement.md`가 있으면 체크박스 상태가 사라질 수 있음을 알린다.
   현재 요청이 재작성이나 초기화를 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - `analysis.md`에 `승인 전 확인`이 있고 미확인 항목이 남아 있으면 사용자에게 확인을 요청하고 중단한다.
-- 다만 사용자가 해당 확인 항목을 명시적으로 보류하고 진행하라고 한 경우에만, 그 항목이 영향을 주지 않는 Task까지 작성한다.
-- `analysis.md`의 `Decision Points`에 채택안이 없는 미해결 결정이 있으면 사용자에게 알리고 원칙적으로 중단한다.
-- 다만 사용자가 미해결 결정을 보류하고 진행하라고 명시한 경우에만, 해당 결정이 영향을 주지 않는 Task까지 작성한다.
+- `analysis.md`의 `Decision Points`에 채택안이 없는 미해결 결정이 있으면 사용자에게 알리고 중단한다.
 - Task 분해 방식만 여러 가지인 경우에는 아래 작성 규칙에 따라 권장 분해안을 작성한다.
 - 완료 기준, Task 경계, 검증 조건을 정하는 과정에서 `SPEC §5.N`의 충족 여부, 사용자 관찰 결과, 실패 의미,
-  공개 contract, 채택된 설계 결정이 바뀌면 질문으로 해소한다.
+  공개 규약, 채택된 설계 결정이 바뀌면 질문으로 해소한다.
 - 미확정 요구사항이나 미채택 설계 결정을 임의로 Task 범위나 검증 조건으로 변환하지 않는다.
 
 ## 작성 규칙
@@ -72,7 +70,7 @@ description: "Create or update features/<feature-dir>/implement.md with executab
   - 참조: SPEC §5.N, ANALYSIS §X.Y
 ```
 
-## feature README.md 갱신
+## 기능 README.md 갱신
 - `SPEC`과 `ANALYSIS`는 `[x]`, `IMPLEMENT`는 `[ ]`로 유지한다.
 - 새로 작성하면 `- <yyyy-MM-dd>: IMPLEMENT 체크리스트 작성`, 다시 작성하면
   `- <yyyy-MM-dd>: IMPLEMENT 체크리스트 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
@@ -81,7 +79,7 @@ description: "Create or update features/<feature-dir>/implement.md with executab
 ## 스킬 완료 조건
 - `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.
 - 모든 `SPEC §5.N`이 하나 이상의 Task로 추적되어야 한다.
-- Task 체크박스, feature 상태판과 이력은 §작성 규칙과 §feature README.md 갱신에 맞아야 한다.
+- Task 체크박스, 기능 상태판과 이력은 §작성 규칙과 §기능 README.md 갱신에 맞아야 한다.
 
 ## 완료 보고
 - 작업 항목 수

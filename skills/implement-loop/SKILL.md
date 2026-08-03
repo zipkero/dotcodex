@@ -13,8 +13,8 @@ description: "Coordinate main's implementation, independent verification, and st
 
 ## 전제 조건
 
-- 대상 feature와 구현 의도가 명확해야 한다.
-- `implement` skill §컨텍스트 로딩의 Phased mode 진입 조건을 충족해야 한다.
+- 대상 기능과 구현 의도가 명확해야 한다.
+- `implement` skill §컨텍스트 로딩의 `Phased` 작업 진입 조건을 충족해야 한다.
   충족하지 않으면 필요한 작성 단계 또는 `verify-analysis`를 안내하고 중단한다.
 - 첫 `[ ]` Task가 없으면 이미 완료됐다고 보고한다.
 

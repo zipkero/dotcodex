@@ -8,16 +8,16 @@
 - `AGENTS.md`: 모든 Codex 작업에 적용되는 전역 지침
 - `docs/**`: 전역 지침에서 참조하는 보조 기준 문서
 - `features/**`: 문서 우선 작업에서 생성되는 기능 문서
-- allowlist에 포함된 `agents/*.toml`: 특정 역할의 custom subagent 정의
-- allowlist에 포함된 `skills/*/`: 특정 작업 유형에서만 로드되는 사용자 정의 skill
+- 추적 허용 목록에 포함된 `agents/*.toml`: 특정 역할의 custom subagent 정의
+- 추적 허용 목록에 포함된 `skills/*/`: 특정 작업 유형에서만 로드되는 사용자 정의 skill
 - `.editorconfig`, `.gitattributes`: 텍스트 포맷 기준
-- `.gitignore`: 로컬 상태 파일을 제외하는 allowlist 규칙
+- `.gitignore`: 로컬 상태 파일을 제외하는 추적 허용 목록 규칙
 
-## Feature 문서 구조
+## 기능 문서 구조
 
-문서 우선 작업에서 생성되는 feature 문서 세트는 `features/<feature-dir>/` 아래 다음 산출물로 구성된다.
+문서 우선 작업에서 생성되는 기능 문서 세트는 `features/<feature-dir>/` 아래 다음 산출물로 구성된다.
 
-- `README.md`: feature 상태와 이력
+- `README.md`: 기능 상태와 이력
 - `spec.md`: 요구사항, 범위, 완료 조건
 - `analysis.md`: 분석, 설계 결정, 영향 범위
 - `implement.md`: 구현 체크리스트와 항목별 검증 기준
@@ -27,33 +27,33 @@
 ## Skill 구성
 
 사용자 정의 skill은 `skills/.system` 밖에 둔다.
-실제 관리 대상은 `.gitignore` allowlist에 포함되고 `SKILL.md`가 있는 사용자 정의 skill 디렉터리이다.
+실제 관리 대상은 `.gitignore`의 추적 허용 목록에 포함되고 `SKILL.md`가 있는 사용자 정의 skill 디렉터리이다.
 
 - `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인, 설계 선택지 비교
 - `skills/explain-change`: 코드 변경의 배경, 핵심 생각, 관련 흐름과 구현 판단 설명
-- `skills/project-init`: 프로젝트 루트 `README.md`와 `ROADMAP.md` 초기화
-- `skills/spec-init`: `spec.md`와 feature `README.md` 초기화
+- `skills/project-init`: 프로젝트 루트 `README.md`, `ROADMAP.md`와 필요한 `docs/product.md`, `docs/design.md` 구성
+- `skills/spec-init`: `spec.md`와 기능 `README.md` 초기화
 - `skills/analyze-init`: `spec.md` 기반 `analysis.md` 작성
 - `skills/verify-analysis`: `analysis.md`를 실제 코드·설정과 대조해 승인·거절 후보 판단
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
 - `skills/implement`: 문서화된 Task 또는 작은 Per-Request 변경 구현
 - `skills/implement-loop`: main이 남은 Task의 구현, 검증, 상태 전환 순서를 조정하고 사용자 판단이 필요하면 중단
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
-- `skills/config-review`: 전역 설정, 역할 프롬프트, 책임 경계, allowlist 관리 대상 사용자 정의 skill 정합성 점검
+- `skills/config-review`: 전역 설정, 역할 프롬프트, 책임 경계, 추적 허용 목록의 관리 대상 사용자 정의 skill 정합성 점검
 - `skills/context-save`: 현재 작업 맥락과 다음 작업을 프로젝트 루트 `CONTEXT.md`에 저장
 - `skills/context-restore`: `CONTEXT.md`와 원본 문서를 대조해 저장된 작업 맥락을 읽기 전용으로 복원
 
 `skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
-`.gitignore` allowlist에 포함되지 않은 로컬 skill이나 런타임/캐시성 디렉터리는 현재 전역 설정 관리 대상이 아니다.
+`.gitignore`의 추적 허용 목록에 포함되지 않은 로컬 skill이나 런타임/캐시성 디렉터리는 현재 전역 설정 관리 대상이 아니다.
 다만 로컬 Codex 런타임에는 활성 skill로 노출될 수 있다.
 
 ## Agent 구성
 
 custom agent 정의는 `agents/*.toml`에 둔다.
-실제 관리 대상은 `.gitignore` allowlist에 포함된 standalone TOML 파일이며, 구현 agent는 custom 정의를 두지 않는다.
+실제 관리 대상은 `.gitignore`의 추적 허용 목록에 포함된 standalone TOML 파일이며, 구현 agent는 custom 정의를 두지 않는다.
 
-- `agents/analyzer.toml`: Phased `analysis.md`와 `implement.md`의 완성된 본문을 반환하는 읽기 전용 subagent 정의
-- built-in `worker`: main이 `gpt-5.6-sol`, `medium`과 제한된 이력 범위를 명시해 호출하는 단일 Task·작은 Per-Request 변경 구현 agent
+- `agents/analyzer.toml`: `Phased` 작업의 `analysis.md`와 `implement.md` 완성 본문을 반환하는 읽기 전용 subagent 정의
+- built-in `worker`: 단일 Task·작은 `Per-Request` 변경을 구현하며, 상세 호출 계약은 `skills/implement/SKILL.md`가 소유
 - `agents/verifier.toml`: `verify-analysis`와 필요한 구현 `verify`에서 후보 판단을 반환하는 읽기 전용 검증 subagent 정의
 
 ## 정책 위치
@@ -73,10 +73,10 @@ custom agent 정의는 `agents/*.toml`에 둔다.
 - `.gitattributes`
 - `README.md`
 - `AGENTS.md`
-- `.gitignore` allowlist에 포함된 `features/**`
-- `.gitignore` allowlist에 포함된 `docs/**`
-- `.gitignore` allowlist에 포함된 `agents/*.toml`
-- `.gitignore` allowlist에 포함된 사용자 정의 `skills/*/**`
+- `.gitignore`의 추적 허용 목록에 포함된 `features/**`
+- `.gitignore`의 추적 허용 목록에 포함된 `docs/**`
+- `.gitignore`의 추적 허용 목록에 포함된 `agents/*.toml`
+- `.gitignore`의 추적 허용 목록에 포함된 사용자 정의 `skills/*/**`
 
 비추적 대상:
 

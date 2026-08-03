@@ -1,4 +1,4 @@
 interface:
   display_name: "구현 반복"
   short_description: "main이 built-in worker 구현·검증·상태 전환을 조정"
-  default_prompt: "$implement-loop로 main이 built-in worker를 호출해 feature의 남은 Task 구현과 검증을 순서대로 조정해 주세요."
+  default_prompt: "$implement-loop로 main이 built-in worker를 호출해 기능의 남은 Task 구현과 검증을 순서대로 조정해 주세요."
