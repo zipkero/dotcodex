@@ -22,12 +22,8 @@ description: "Coordinate main's implementation, independent verification, and st
 
 1. 위에서부터 첫 `[ ]` Task를 선택한다.
 2. Task의 `확인`이 테스트, 빌드, lint, 명령 출력이나 명확한 diff처럼 실행 가능한 근거를 가리키는지 확인한다.
-3. main은 worker 호출에 `agent_type = "worker"`, `model = "gpt-5.6-sol"`, `reasoning_effort = "medium"`과
-   `fork_turns = "none"`을 명시한다. 최근 사용자 정정이 필요할 때만 `fork_turns`에 필요한 최소 양의 정수 문자열을 사용하며,
-   생략하거나 `"all"`을 사용하지 않는다.
-4. 호출 메시지에 Task의 목적·접근·검증 조건, 수정 범위, 승인된 `spec.md`·`analysis.md`·`implement.md`,
-   `skills/implement/SKILL.md`와 반환 형식을 자체 완결적으로 전달한다. 공유 작업 공간의 다른 변경을 되돌리지 않고
-   이미 생긴 변경에 맞춰 구현하며, 사용자 판단이나 상위 문서 변경이 필요하면 수정 없이 `blocked`와 근거를 반환하도록 명시한다.
+3. main은 `implement`의 worker 호출 계약에 따라 worker를 호출한다. 이 반복에서 양의 정수 `fork_turns`는 최근 사용자 정정이 필요할 때만 사용한다.
+4. 호출 메시지에는 해당 Task의 목적·접근·검증 조건, 수정 범위와 승인된 `spec.md`·`analysis.md`·`implement.md`를 포함한다.
 5. worker는 단일 Task를 구현하고 `implement`의 반환 형식으로 결과만 main에 반환한다.
 6. main은 `verify`의 agent 사용 기준에 따라 직접 근거를 확인하거나 verifier에게 후보 판단을 요청한다.
    verifier의 결과를 검토해 최종 승인·거절을 확정하고, `approved`인 경우에만 상태를 전환한다.
@@ -51,11 +47,10 @@ description: "Coordinate main's implementation, independent verification, and st
 - Task가 독립적으로 검증 가능한 동작 단위가 아니어서 재분해가 필요하다.
 - 재시도 한도를 소진했다.
 - 되돌리기 어렵거나 외부에 영향을 주는 작업에 사용자 결정이 필요하다.
-- 필요한 모델·추론 수준·이력 범위 입력을 사용할 수 없거나 지정한 worker 호출이 실패했다.
+- `implement`의 worker 호출 계약을 충족할 수 없거나 지정한 worker 호출이 실패했다.
 
 사용자 확인이 필요한 경우 main이 확인하며 worker와 verifier는 사용자에게 직접 묻지 않는다.
-worker 호출 입력이 없거나 호출이 실패하면 다른 모델이나 agent, main 직접 구현 또는 별도 `codex exec`로 대체하지 않는다.
-main은 현재 Task와 문서 상태를 유지하고 누락 입력 또는 오류와 영향을 보고한다.
+worker 호출 계약 관련 실패는 `implement`의 대체 금지와 보고 규칙을 따른다.
 
 ## 금지
 

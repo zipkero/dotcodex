@@ -8,7 +8,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 ## 목적
 - built-in `worker`가 구현한 단일 Task 또는 Per-Request 변경을 main이 `approved` 또는 `rejected`로 최종 판단하고 근거를 보고하는 기준을 정의한다.
 - Phased mode에서는 Task-level 판단을 기본으로 하되, 이번 Task 승인으로 완료되는 `SPEC §5.N`은 완료 조건 성립까지 확인한다.
-- 별도 `verify.md`를 만들지 않는다.
+- 검증 상세를 별도 Markdown 문서로 만들지 않는다.
 
 ## 컨텍스트 로딩
 1. Phased mode:

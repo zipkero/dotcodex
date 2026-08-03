@@ -30,6 +30,18 @@ description: "Execute one documented Task or a small per-request code change wit
    - 조사로 해소 가능한 불확실성은 먼저 코드, 테스트, 로그, 기존 문서에서 확인한다.
    - `features/<feature-dir>/`를 만들지 않는다.
 
+## worker 호출 계약
+- 이 계약은 단일 Task, 작은 Per-Request 변경과 `implement-loop`를 포함한 모든 worker 호출에 적용한다.
+- main은 `agent_type = "worker"`, `model = "gpt-5.6-sol"`, `reasoning_effort = "medium"`과
+  `fork_turns = "none"` 또는 필요한 최소 최근 turn 수인 양의 정수 문자열을 명시한다.
+  `fork_turns`를 생략하거나 `"all"`을 사용하지 않는다.
+- 호출 메시지는 이전 대화 없이도 실행할 수 있도록 Task의 목적·접근·검증 조건, 수정 범위, 승인된 기준 문서,
+  `skills/implement/SKILL.md`와 반환 형식을 포함한다.
+- 호출 메시지에는 공유 작업 공간의 다른 변경을 되돌리지 않고 이미 생긴 변경에 맞춰 구현하며, 사용자 판단이나 상위 문서 변경이 필요하면
+  작업 공간을 수정하지 않고 `blocked`와 근거를 반환하도록 명시한다.
+- 필요한 모델·추론 수준·이력 범위 입력을 사용할 수 없거나 지정한 worker 호출이 실패하면 다른 모델이나 agent, main 직접 구현 또는
+  별도 `codex exec`로 대체하지 않는다. main은 Task와 문서 상태를 유지한 채 누락 입력 또는 오류와 영향을 보고한다.
+
 ## 범위와 설계 변경
 - 요청 또는 Task 범위 안의 구현 선택은 기존 코드 패턴과 `analysis.md`의 확정된 결정을 따른다.
 - Task 밖에서 발견한 문제는 수정하지 않고 보고만 한다.
