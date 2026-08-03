@@ -20,15 +20,19 @@ description: "Execute one documented Task or a small per-request code change wit
    - 파일 존재만으로 승인을 추정하지 않고 승인된 `spec.md`, `analysis.md`와 현재 `implement.md`를 읽는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 잡고, 지정하지 않으면 위에서부터 첫 미완료 Task를 잡는다.
    - Task가 없거나 이미 완료되었거나 둘 이상으로 해석되면 구현하지 않는다.
-     범위를 요청하고, 위임받은 subagent가 식별한 경우에는 작업 공간을 수정하지 않고 `blocked`와 근거를 반환한다.
+     범위를 요청한다.
 3. `Per-Request` 작업:
    - 한 번의 제한된 변경과 검증으로 완료할 수 있는 요청은 바로 처리한다.
    - 한 번의 제한된 변경과 검증으로 완료할 수 있더라도 사용자의 의도, 산출물, 변경 범위, 성공 기준처럼 요구사항 기준이
      여러 방향으로 해석될 수 있으면 먼저 질문한다.
-     위임받은 subagent가 식별한 경우에는 작업 공간을 수정하지 않고 `blocked`와 근거를 반환한다.
    - 질문이 필요한 상태에서는 파일을 수정하지 않는다.
    - 조사로 해소 가능한 불확실성은 먼저 코드, 테스트, 로그, 기존 문서에서 확인한다.
    - `features/<feature-dir>/`를 만들지 않는다.
+
+## subagent 위임 경계
+- 위임받은 subagent는 Phased Task 하나 또는 범위가 정해진 Per-Request 요청 하나만 수행한다.
+  사용자 확인이나 상위 문서 변경·범위 재결정이 필요하면 작업 공간을 수정하지 않은 채 `blocked`와 근거를 반환한다.
+- 공유 작업 공간의 다른 변경을 되돌리지 않고 이미 생긴 변경에 맞춰 작업한다.
 
 ## worker 호출 계약
 - 범위가 정해진 구현을 built-in `worker`에 위임하기로 한 경우에만 이 계약을 적용한다.
@@ -37,8 +41,7 @@ description: "Execute one documented Task or a small per-request code change wit
   `fork_turns`를 생략하거나 `"all"`을 사용하지 않는다.
 - 호출 메시지는 이전 대화 없이도 실행할 수 있도록 Task의 목적·접근·검증 조건, 수정 범위, 승인된 기준 문서,
   `skills/implement/SKILL.md`와 반환 형식을 포함한다.
-- 호출 메시지에는 공유 작업 공간의 다른 변경을 되돌리지 않고 이미 생긴 변경에 맞춰 구현하며, 사용자 판단이나 상위 문서 변경이 필요하면
-  작업 공간을 수정하지 않고 `blocked`와 근거를 반환하도록 명시한다.
+- 호출 메시지에는 `subagent 위임 경계`를 명시한다.
 - 필요한 모델·추론 수준·이력 범위 입력을 사용할 수 없으면 해당 worker를 다른 모델·추론 수준·전체 이력 호출로 대체하지 않는다.
   worker 호출 실패 자체는 구현 중단 조건이 아니며, 요청 범위와 승인된 기준을 유지할 수 있으면 직접 구현하거나 현재 작업에 적절한
   다른 subagent 사용 여부를 다시 판단한다. 계속할 수 없으면 Task와 문서 상태를 유지한 채 오류와 영향을 보고한다.
@@ -48,9 +51,7 @@ description: "Execute one documented Task or a small per-request code change wit
 - Task 밖에서 발견한 문제는 수정하지 않고 보고만 한다.
 - 구현이나 테스트 완료에 새 의존성, 인터페이스, 추상화, 공개 API, 경계, 상태 소유권, 의존성 방향,
   인접 리팩터링 또는 확정된 설계 변경이 필요하면 파일 수정 전에 중단한다.
-- 위임받은 subagent는 중단 시 작업 공간을 수정하지 않고 필요한 이유, 영향, 대안을 `blocked`로 반환한다.
-  사용자 확인은 subagent에 위임하지 않는다.
-  `Phased` 작업의 설계 변경은 `analysis.md` 갱신 필요 사항도 함께 보고한다.
+- `Phased` 작업의 설계 변경은 `analysis.md` 갱신 필요 사항도 함께 보고한다.
 
 ## 구현 규칙
 - 기존 코드 패턴과 프로젝트 관례를 우선한다.
@@ -61,7 +62,7 @@ description: "Execute one documented Task or a small per-request code change wit
 - 외부 스키마, 프로토콜, 사용자 입력에서 온 이름은 경계에서 보존하고, 내부 이름은 도메인 내 역할에 맞게 표현한다.
 - `Phased` 작업에서는 `analysis.md`에 확정된 설계를 해당 언어와 프로젝트 관례에 맞춰 구현한다.
 - 파일 수정 전 어떤 변경을 할지 짧게 설명한다.
-- 구현은 대상 Task 단위로 진행하며, 위임하는 경우에도 subagent 하나가 한 번에 하나의 Task만 구현한다.
+- 구현은 대상 Task 단위로 진행한다.
 - 선택된 Phased 작업에서 사용자가 여러 Task 또는 전체 구현을 명시적으로 요청하면 `implement-loop`로 라우팅한다.
 - 잡은 Task가 닫힌 동작이 아니라 코드 조각 수준이면, 구현하지 말고 Task 재분해 필요성을 보고한다.
 - `Phased` 작업의 새 테스트 코드는 Task의 `접근`이나 `검증 조건`에 테스트 작성 범위가 명시된 경우에 작성한다.

@@ -1,6 +1,6 @@
 ---
 name: analyze-init
-description: "Create or update features/<feature-dir>/analysis.md from spec.md for documented feature design."
+description: "Create or update a documented feature analysis.md from spec.md for implementation-ready design."
 ---
 
 # Analyze Init

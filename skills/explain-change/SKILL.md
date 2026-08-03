@@ -1,9 +1,6 @@
 ---
 name: explain-change
-description: >-
-  Explain a code change, diff, commit, branch, or pull request through its background, core idea, behavior flow, implementation,
-  and trade-offs. Use when the user wants to understand what changed, why it changed, how the related code works, or wants
-  diagrams or comprehension checks.
+description: "Explain a diff, commit, branch, pull request, or code change through its background, behavior flow, implementation, and trade-offs. Use for change walkthroughs or comprehension checks."
 ---
 
 # Explain Change

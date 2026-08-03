@@ -1,9 +1,6 @@
 ---
 name: project-init
-description: >-
-  Create or restructure a conventional project README.md and the planning sources ROADMAP.md,
-  docs/product.md, and docs/design.md. Use for initial project documentation or project-level
-  documentation restructuring; use spec-init to derive feature requirements from these sources.
+description: "Create or restructure project README.md, ROADMAP.md, and needed product or design docs for project initialization or project-level documentation planning."
 ---
 
 # Project Init

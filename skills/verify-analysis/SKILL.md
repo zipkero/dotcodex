@@ -1,9 +1,6 @@
 ---
 name: verify-analysis
-description: >-
-  Independently verify a feature analysis.md against its approved spec.md, project sources,
-  implementation code, and configuration. Use before implement-init or when revalidating an
-  approved ANALYSIS.
+description: "Independently verify feature analysis.md against approved requirements and project evidence before implement-init or during ANALYSIS revalidation."
 ---
 
 # Verify Analysis
@@ -25,8 +22,7 @@ description: >-
 ## verifier agent 사용
 - `agents/verifier.toml`의 읽기 전용 verifier에게 이 skill의 전체 경로, 대상 기능, `spec.md`와 현재 `analysis.md`,
   프로젝트 기준 문서·코드·테스트·설정의 조사 출발점, 재검증 상태와 변경 범위를 전달한다.
-- verifier는 이 skill의 기준을 재정의하지 않고 원본을 독립적으로 조사해 후보 판단만 반환한다.
-- main은 반환된 기준별 근거를 검토해 최종 승인·거절과 상태 전환을 결정한다.
+- verifier는 원본을 독립 조사해 후보 판단과 근거만 반환한다.
 
 ## 판단 기준
 다음 기준을 각각 독립적으로 판정한다.
@@ -63,7 +59,7 @@ description: >-
 5. Residual Risk: 실행하지 못했거나 남은 근거 한계; 없으면 `없음`
 
 ## 상태 전환
-- main은 후보 판단과 근거를 검토한 뒤에만 최종 상태를 전환한다.
+- 후보 판단과 근거를 검토한 뒤에만 최종 상태를 전환한다.
 - 최초 검증이 최종 `approved`이면 기능 `README.md`의 `ANALYSIS`만 `[x]`로 바꾸고
   `- <yyyy-MM-dd>: ANALYSIS 승인` 이력을 추가한다.
 - 승인된 ANALYSIS를 내용 변경 없이 재검증해 `approved`이면 현재 Task 체크박스와 `IMPLEMENT` 상태를 보존한다.

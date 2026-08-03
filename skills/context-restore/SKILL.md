@@ -1,10 +1,6 @@
 ---
 name: context-restore
-description: >-
-  Restore architecture, design, or delivery context from a project-root CONTEXT.md and verify it against linked source
-  and Phased documents. Read-only: report the recovered goal, current state, decisions, unresolved questions, next
-  action, and conflicts, then stop without modifying files or executing the next action. Use when reviewing or resuming
-  orientation from saved context in a new session.
+description: "Read and verify project-root CONTEXT.md against linked sources when resuming saved Phased work, without modifying files or running the next action."
 ---
 
 # Context Restore

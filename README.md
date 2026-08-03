@@ -26,7 +26,6 @@
 
 ## Skill 구성
 
-사용자 정의 skill은 `skills/.system` 밖에 둔다.
 실제 관리 대상은 `.gitignore`의 추적 허용 목록에 포함되고 `SKILL.md`가 있는 사용자 정의 skill 디렉터리이다.
 
 - `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인, 설계 선택지 비교
@@ -43,9 +42,8 @@
 - `skills/context-save`: 현재 작업 맥락과 다음 작업을 프로젝트 루트 `CONTEXT.md`에 저장
 - `skills/context-restore`: `CONTEXT.md`와 원본 문서를 대조해 저장된 작업 맥락을 읽기 전용으로 복원
 
-`skills/.system`은 Codex 제공 내장 skill 영역이므로 직접 관리하지 않는다.
-`.gitignore`의 추적 허용 목록에 포함되지 않은 로컬 skill이나 런타임/캐시성 디렉터리는 현재 전역 설정 관리 대상이 아니다.
-다만 로컬 Codex 런타임에는 활성 skill로 노출될 수 있다.
+Codex 제공 skill과 추적 허용 목록 밖의 로컬 skill은 위치와 관계없이 현재 전역 설정 관리 대상이 아니다.
+이들 skill은 로컬 Codex 런타임에 활성 상태로 노출될 수 있다.
 
 ## Agent 구성
 

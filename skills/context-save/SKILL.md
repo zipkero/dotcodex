@@ -1,9 +1,6 @@
 ---
 name: context-save
-description: >-
-  Save active architecture, design, or delivery handoff context to a project-root CONTEXT.md. Capture the current goal
-  and state, unresolved decisions, one next action, and source links; prune resolved context or remove the file when no
-  handoff remains. Use when pausing or handing off Phased work.
+description: "Save or prune project-root CONTEXT.md handoff state when pausing or handing off Phased work."
 ---
 
 # Context Save

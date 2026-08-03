@@ -1,4 +1,4 @@
 interface:
   display_name: "구현 반복"
   short_description: "남은 Task의 순차 구현·검증·상태 전환 조정"
-  default_prompt: "$implement-loop로 기능의 남은 Task를 순서대로 구현하고 검증하며, 필요할 때 적절한 subagent에 위임해 주세요."
+  default_prompt: "$implement-loop로 기능의 남은 Task를 순서대로 구현하고 검증해 주세요."

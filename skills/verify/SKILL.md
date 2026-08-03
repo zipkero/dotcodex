@@ -29,7 +29,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 - 변경이 여러 파일에 걸치고 동작, 상태, 외부 I/O, 동시성, 경계 중 하나 이상에 영향을 주면 verifier agent를 사용한다.
 - Per-Request 변경이라도 diff 확인만으로 정확성을 판단하기 어렵거나 독립 검증 컨텍스트가 필요하면 사용을 고려한다.
 - 문서, 오타, 정적 설정 문구처럼 diff만으로 판단 가능한 변경은 직접 검증할 수 있다.
-- 사용 여부는 근거 수집 전에 판단하며, 최종 승인/거절과 상태 전환은 verifier를 포함한 subagent에 위임하지 않는다.
+- 사용 여부는 근거 수집 전에 판단하며, 반환된 후보 근거를 검토한 뒤 아래 `상태 전환`을 적용한다.
 
 ## 판단 기준
 - `Phased` 작업에서는 대상 Task의 `검증 조건`을 기준으로 관련 `SPEC §5.N`의 완료 조건·제약·제외 범위와

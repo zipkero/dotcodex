@@ -1,6 +1,6 @@
 ---
 name: implement-init
-description: "Create or update features/<feature-dir>/implement.md with executable Tasks and verification criteria."
+description: "Create or update a documented feature implement.md with executable Tasks and verification criteria."
 ---
 
 # Implement Init
