@@ -27,6 +27,9 @@ description: "Analyze code, debug behavior, architecture, design options, root c
 - 설계·구조 분석 요청에서는 문제 크기에 맞게 가능한 구조 선택지들을 펼치고,
   각 선택지의 장점, 단점, 유지보수 영향, 구현 난이도, 검증 기준을 비교한다.
 - 마지막에는 추천안을 하나로 수렴하되, 채택하지 않은 주요 대안의 trade-off도 남긴다.
+- 분석 결과 여러 독립 완료·검증 단위, 주요 설계의 선확정, 공개 규약·데이터 이전·되돌리기 어려운 외부 영향이나
+  완료 조건·영향 범위의 문서 고정이 필요한 복잡·대규모 작업이면 Phased를 권장한다.
+  권장 이유, 영향과 예상 산출물을 설명하고 사용자 선택 확인을 다음 단계로 제안한다.
 - 코드, spec, 로그에서 확인되지 않은 일반론적 우려를 개선안처럼 제시하지 않는다.
 
 ## 출력 구조
@@ -36,7 +39,7 @@ description: "Analyze code, debug behavior, architecture, design options, root c
 - 원인: 확인된 root cause 또는 아직 좁혀지지 않은 지점.
 - 설계 선택지: 설계·구조 요청일 때 가능한 선택지, trade-off, 추천안을 적는다.
 - 미확정 판단: 조사로 좁힌 내용과 남은 사용자 결정 사항을 구분하고, 결과에 영향을 주는 질문은 권장안과 함께 적는다.
-- 분류: `Phased(문서 우선)` 대상 / Per-Request 가능 / 추가 입력 필요 중 하나. 구현 범위에 영향이 있을 때만 포함한다.
+- 분류: `Phased 권장` / `Per-Request 가능` / `추가 입력 필요` 중 하나. 구현 범위에 영향이 있을 때만 포함한다.
 - 다음 단계: 필요한 문서 단계(`spec-init`, `analyze-init`, `verify-analysis`, `implement-init`) 또는 구현/검증 제안.
 
 ## Blocker

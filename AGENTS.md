@@ -45,14 +45,21 @@
 
 ## 문서 우선 흐름
 - 작업은 `Phased(문서 우선)` 또는 `Per-Request`로 분류한다.
-- 새 feature, 공개 contract 변경, 되돌리기 어려운 데이터/외부 영향, 여러 Task로 나눠야 검증 가능한 작업은
-  `Phased(문서 우선)`로 다룬다.
-- 작고 명확하며 되돌리기 쉬운 단일 요청은 `Per-Request`로 다룬다.
-- 문서 우선 작업은 `spec-init` → `analyze-init` → `verify-analysis` → `implement-init` → `implement` → `verify` 순서로 진행한다.
+- 일반 구현 요청은 먼저 `Per-Request`로 평가하며, 한 번의 제한된 변경과 검증으로 완료할 수 있으면 `Per-Request`로 진행한다.
+- 다음 조건에서는 main이 `Phased(문서 우선)`를 권장하고 이유, 영향과 예상 산출물을 설명한 뒤 사용자 선택을 확인한다.
+  - 여러 독립적인 완료·검증 단위로 나눠야 한다.
+  - 구조, 책임, 데이터 흐름이나 주요 설계를 구현 전에 확정해야 한다.
+  - 공개 API 규약, 데이터 이전이나 되돌리기 어려운 외부 영향이 있다.
+  - 완료 조건이나 영향 범위를 문서로 고정할 필요가 있다.
+- 사용자가 `Phased`, 특정 phase skill, 단계별 문서 작성 또는 `features/<feature-dir>/` 기반 진행을 요청하면 `Phased`로 진행한다.
+  기존 feature 후속 작업은 해당 feature의 승인 상태에서 계속한다.
+- 이하 선택된 Phased 작업은 사용자가 직접 요청했거나 권장 후 선택한 Phased 작업과 기존 feature 후속 작업을 뜻한다.
+- 선택된 Phased 작업은
+  `spec-init` → `analyze-init` → `verify-analysis` → `implement-init` → `implement` → `verify` 순서로 진행한다.
 - main은 단계 진행, agent 호출, 사용자 확인, verifier 후보 판단 검토, 최종 승인·거절, 상태 전환과 `rejected` 뒤 재작업 순서를 소유한다.
   Issues가 식별한 가장 이른 수정 소유 단계로 재진입한다.
 - `analyze-init`과 `implement-init`의 문서 본문 작성은 읽기 전용 `analyzer`, `verify-analysis`의 독립 조사는 읽기 전용 `verifier`,
-  단일 Task와 작은 Per-Request 변경은 built-in `worker`에 맡긴다. 여러 Task 또는 전체 구현은 main이 `implement-loop`로 라우팅해
+  단일 Task와 작은 Per-Request 변경은 built-in `worker`에 맡긴다. 선택된 Phased 작업의 여러 Task 또는 전체 구현은 main이 `implement-loop`로 라우팅해
   Task마다 worker 구현과 필요한 verifier 후보 판단을 반복한다. 구현 `verify`의 verifier 사용 여부는 해당 skill 기준을 따른다.
 - main은 모든 worker 호출에 `agent_type = "worker"`, `model = "gpt-5.6-sol"`, `reasoning_effort = "medium"`과
   `fork_turns = "none"` 또는 필요한 최소 최근 turn 수인 양의 정수 문자열을 명시한다. `fork_turns`를 생략하거나 `"all"`을 사용하지 않는다.
@@ -66,9 +73,9 @@
   상위 문서 변경은 하위 승인과 기존 Task 체크박스를 무효화하되 문서와 Task 내용·ID·순서는 보존한다.
 - 문서·Task 보존, 체크박스, 상태와 이력 전이의 기준은 해당 작성·검증 skill이 정의하고 실제 변경은 main만 수행한다.
 - 검증 상세를 저장하는 별도 Markdown 문서는 만들지 않는다.
-- 사용자가 특정 단계나 산출물만 요청하면 해당 단계까지만 진행한다.
-- 사용자가 구현이나 전체 완료를 요청하면 결과에 필요한 단계를 순서대로 연속해서 진행한다.
-- 단계 사이에 결과를 실질적으로 바꾸는 미확정 판단이 없으면 `verify-analysis`를 포함해 다음 단계로 연속 진행하며,
+- 선택된 Phased 작업에서 사용자가 특정 단계나 산출물만 요청하면 해당 단계까지만 진행한다.
+- 선택된 Phased 작업에서 사용자가 구현이나 전체 완료를 요청하면 결과에 필요한 단계를 순서대로 연속해서 진행한다.
+- 선택된 Phased 작업의 단계 사이에 결과를 실질적으로 바꾸는 미확정 판단이 없으면 `verify-analysis`를 포함해 다음 단계로 연속 진행하며,
   별도의 사용자 진행 승인을 요청하지 않는다.
 - 확정된 요구사항·설계를 바꾸거나, 되돌리기 어렵거나 외부에 영향을 주는 판단 또는 현재 확보할 수 없는 필수 근거가
   필요하면 진행을 중단하고 사용자에게 확인한다.

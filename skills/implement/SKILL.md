@@ -7,7 +7,7 @@ description: "Execute one documented Task or a small per-request code change wit
 
 ## 목적
 - Phased mode에서는 `implement.md`의 Task 하나를 최소 범위로 구현한다.
-- Per-Request mode에서는 사용자가 요청한 작은 변경을 문서 플로우 없이 처리한다.
+- Per-Request mode에서는 한 번의 제한된 변경과 검증으로 완료할 수 있는 요청을 문서 플로우 없이 처리한다.
 
 ## 컨텍스트 로딩
 1. Phased mode로 진입하는 경우:
@@ -22,8 +22,8 @@ description: "Execute one documented Task or a small per-request code change wit
    - Task가 없거나 이미 완료되었거나 둘 이상으로 해석되면 구현하지 않는다.
      main은 범위를 요청하고, worker가 식별한 경우에는 작업 공간을 수정하지 않고 `blocked`로 main에 반환한다.
 3. Per-Request mode:
-   - Phased mode 조건이 없고 요청이 작고 명확하며 되돌리기 쉬운 변경이면 바로 처리한다.
-   - 작고 되돌리기 쉬운 변경이라도 사용자의 의도, 산출물, 변경 범위, 성공 기준처럼 요구사항 기준이
+   - 한 번의 제한된 변경과 검증으로 완료할 수 있는 요청은 바로 처리한다.
+   - 한 번의 제한된 변경과 검증으로 완료할 수 있더라도 사용자의 의도, 산출물, 변경 범위, 성공 기준처럼 요구사항 기준이
      여러 방향으로 해석될 수 있으면 main이 먼저 질문한다.
      worker가 식별한 경우에는 작업 공간을 수정하지 않고 `blocked`로 main에 반환한다.
    - 질문이 필요한 상태에서는 파일을 수정하지 않는다.
@@ -49,7 +49,8 @@ description: "Execute one documented Task or a small per-request code change wit
 - Phased mode에서는 `analysis.md`에 확정된 설계를 해당 언어와 프로젝트 관례에 맞춰 구현한다.
 - 파일 수정 전 어떤 변경을 할지 짧게 설명한다.
 - 구현은 대상 Task 단위로 진행하며, worker는 한 번에 하나의 Task만 구현한다.
-- 사용자가 여러 Task 또는 전체 구현을 명시적으로 요청하면 main이 `implement-loop`로 라우팅하고, 각 Task마다 새 worker를 호출한다.
+- 선택된 Phased 작업에서 사용자가 여러 Task 또는 전체 구현을 명시적으로 요청하면 main이 `implement-loop`로 라우팅하고,
+  각 Task마다 새 worker를 호출한다.
 - 잡은 Task가 닫힌 동작이 아니라 코드 조각 수준이면, 구현하지 말고 Task 재분해 필요성을 보고한다.
 - Phased mode의 새 테스트 코드는 Task의 `접근`이나 `검증 조건`에 테스트 작성 범위가 명시된 경우에 작성한다.
 - Per-Request mode에서는 요청한 동작을 직접 검증하거나 수정한 결함의 재발을 막는 데 필요한 최소 테스트를
@@ -90,4 +91,4 @@ description: "Execute one documented Task or a small per-request code change wit
   - `Blocker`: 중단했다면 필요한 설계·범위 결정과 근거
   - `Residual risk`: 실행하지 못한 검증 또는 남은 위험
 - 단일 Task 구현 결과에는 승인 검증이 남았음을 알린다.
-- 여러 Task 또는 전체 구현은 main이 `implement-loop`에 따라 각 Task의 `verify`와 상태 전환까지 이어서 진행한다.
+- 선택된 Phased 작업의 여러 Task 또는 전체 구현은 main이 `implement-loop`에 따라 각 Task의 `verify`와 상태 전환까지 이어서 진행한다.
