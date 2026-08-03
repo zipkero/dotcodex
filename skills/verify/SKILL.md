@@ -6,7 +6,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 # Verify
 
 ## 목적
-- built-in `worker`가 구현한 단일 Task 또는 Per-Request 변경을 main이 `approved` 또는 `rejected`로 최종 판단하고 근거를 보고하는 기준을 정의한다.
+- 구현된 단일 Task 또는 Per-Request 변경을 `approved` 또는 `rejected`로 최종 판단하고 근거를 보고하는 기준을 정의한다.
 - `Phased` 작업에서는 Task 단위 판단을 기본으로 하되, 이번 Task 승인으로 완료되는 `SPEC §5.N`은 완료 조건 성립까지 확인한다.
 - 검증 상세를 별도 Markdown 문서로 만들지 않는다.
 
@@ -22,14 +22,14 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 2. `Per-Request` 작업:
    - 기능 문서를 읽거나 갱신하지 않는다.
    - 사용자 요청, 변경 범위와 실행 결과를 확인한다.
-3. 대상이 모호하면 판단하지 않는다. verifier는 식별 가능한 후보와 필요한 입력을 main에 반환하고, 사용자 확인은 main이 수행한다.
+3. 대상이 모호하면 판단하지 않는다. verifier는 식별 가능한 후보와 필요한 입력을 반환하며, 사용자 확인은 subagent에 위임하지 않는다.
 
 ## verifier agent 사용 기준
 - `agents/verifier.toml`은 읽기 전용 독립 검증 subagent이며, 이 skill의 판단 기준을 기준 소스로 따라 후보 판단만 반환한다.
 - 변경이 여러 파일에 걸치고 동작, 상태, 외부 I/O, 동시성, 경계 중 하나 이상에 영향을 주면 verifier agent를 사용한다.
-- Per-Request 변경이라도 main의 diff 확인만으로 정확성을 판단하기 어렵거나 독립 검증 컨텍스트가 필요하면 사용을 고려한다.
-- 문서, 오타, 정적 설정 문구처럼 diff만으로 판단 가능한 변경은 main이 직접 검증할 수 있다.
-- 사용 여부는 근거 수집 전에 판단하며, 최종 승인/거절과 상태 전환은 main이 수행한다.
+- Per-Request 변경이라도 diff 확인만으로 정확성을 판단하기 어렵거나 독립 검증 컨텍스트가 필요하면 사용을 고려한다.
+- 문서, 오타, 정적 설정 문구처럼 diff만으로 판단 가능한 변경은 직접 검증할 수 있다.
+- 사용 여부는 근거 수집 전에 판단하며, 최종 승인/거절과 상태 전환은 verifier를 포함한 subagent에 위임하지 않는다.
 
 ## 판단 기준
 - `Phased` 작업에서는 대상 Task의 `검증 조건`을 기준으로 관련 `SPEC §5.N`의 완료 조건·제약·제외 범위와
@@ -87,8 +87,8 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 
 ## 상태 전환
 - 검증 단계는 먼저 `approved` 또는 `rejected` 판단과 근거를 확정한다.
-- main은 현재 승인된 `spec.md`와 `analysis.md` 기준으로 `approved`인 경우에만 대상 Task 하나를 `[x]`로 변경한다.
-- 모든 Task가 현재 승인된 문서 기준으로 `approved`되어 `[x]`가 되고, 모든 `SPEC §5.N`이 하나 이상의 Task에 매핑된 경우에만 main이
+- 현재 승인된 `spec.md`와 `analysis.md` 기준으로 `approved`인 경우에만 대상 Task 하나를 `[x]`로 변경한다.
+- 모든 Task가 현재 승인된 문서 기준으로 `approved`되어 `[x]`가 되고, 모든 `SPEC §5.N`이 하나 이상의 Task에 매핑된 경우에만
   `features/<feature-dir>/README.md`의 `IMPLEMENT`를 `[x]`로 변경하고 `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
 - `rejected`이면 대상 Task를 `[ ]`로 유지한다.
 - 완료되는 요구사항 불성립으로 rejected된 경우도 대상 Task만 `[ ]`로 유지하고, 앞선 `[x]` Task는 되돌리지 않는다.

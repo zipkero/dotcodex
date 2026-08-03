@@ -37,7 +37,7 @@
 - `skills/verify-analysis`: `analysis.md`를 실제 코드·설정과 대조해 승인·거절 후보 판단
 - `skills/implement-init`: `analysis.md` 기반 `implement.md` 체크리스트 작성
 - `skills/implement`: 문서화된 Task 또는 작은 Per-Request 변경 구현
-- `skills/implement-loop`: main이 남은 Task의 구현, 검증, 상태 전환 순서를 조정하고 사용자 판단이 필요하면 중단
+- `skills/implement-loop`: 남은 Task의 구현, 검증, 재시도와 상태 전환 순서를 조정하고 사용자 판단이 필요하면 중단
 - `skills/verify`: 구현 결과 승인/거절 판단과 근거 보고
 - `skills/config-review`: 전역 설정, 역할 프롬프트, 책임 경계, 추적 허용 목록의 관리 대상 사용자 정의 skill 정합성 점검
 - `skills/context-save`: 현재 작업 맥락과 다음 작업을 프로젝트 루트 `CONTEXT.md`에 저장
@@ -53,7 +53,7 @@ custom agent 정의는 `agents/*.toml`에 둔다.
 실제 관리 대상은 `.gitignore`의 추적 허용 목록에 포함된 standalone TOML 파일이며, 구현 agent는 custom 정의를 두지 않는다.
 
 - `agents/analyzer.toml`: `Phased` 작업의 `analysis.md`와 `implement.md` 완성 본문을 반환하는 읽기 전용 subagent 정의
-- built-in `worker`: 단일 Task·작은 `Per-Request` 변경을 구현하며, 상세 호출 계약은 `skills/implement/SKILL.md`가 소유
+- built-in agent의 사용 여부와 역할 선택은 `AGENTS.md`를 따르며, `worker` 호출 계약은 `skills/implement/SKILL.md`가 소유
 - `agents/verifier.toml`: `verify-analysis`와 필요한 구현 `verify`에서 후보 판단을 반환하는 읽기 전용 검증 subagent 정의
 
 ## 정책 위치

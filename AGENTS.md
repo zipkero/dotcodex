@@ -26,24 +26,22 @@
 ## 문서 우선 흐름
 - 작업은 `Per-Request` 또는 `Phased(문서 우선)`로 분류한다. 한 번의 제한된 변경과 검증으로 끝나는 일반 구현은 `Per-Request`로 진행한다.
 - 여러 독립적인 완료·검증 단위가 필요하거나, 구조·책임·데이터 흐름·주요 설계를 먼저 확정해야 하거나, 공개 API 규약·데이터 이전처럼
-  되돌리기 어려운 외부 영향이 있거나, 완료 조건·영향 범위를 문서로 고정해야 하면 main이 `Phased`를 권장하고 이유, 영향과 예상 산출물을 설명한 뒤 선택을 확인한다.
+  되돌리기 어려운 외부 영향이 있거나, 완료 조건·영향 범위를 문서로 고정해야 하면 `Phased`를 권장하고 이유, 영향과 예상 산출물을 설명한 뒤 선택을 확인한다.
 - 사용자가 `Phased`, 특정 phase skill, 단계별 문서 작성 또는 `features/<feature-dir>/` 진행을 요청하면 `Phased`로 진행한다.
   기존 기능의 후속 작업은 해당 기능의 승인 상태에서 계속한다.
 - 선택된 `Phased` 작업은 `spec-init` → `analyze-init` → `verify-analysis` → `implement-init` → `implement` → `verify` 순서로 진행한다.
-- main은 단계 진행, agent 호출, 사용자 확인, verifier 후보 판단 검토, 최종 승인·거절, 실제 상태 전환과 `rejected` 뒤 재작업 순서를 소유한다.
-  Issues가 식별한 가장 이른 수정 소유 단계로 재진입한다.
-- `analyze-init`과 `implement-init` 문서 본문은 읽기 전용 `analyzer`, `verify-analysis` 독립 조사는 읽기 전용 `verifier`,
-  단일 Task와 작은 `Per-Request` 변경은 built-in `worker`에 맡긴다.
-- 여러 Task 또는 전체 구현은 main이 `implement-loop`로 라우팅해 Task마다 worker 구현과 필요한 verifier 후보 판단을 반복한다.
-  구현 검증의 verifier 사용 여부는 `verify`를 따른다.
-- phase별 문서·Task 보존, 승인·체크박스·상태·이력 전이는 각 작성·검증 skill이 정의하고, 실제 문서·Task·상태 변경은 main만 수행한다.
-  `spec-init`은 `SPEC`을 완료하고, `analyze-init`은 작성만으로 `ANALYSIS`를 승인하지 않으며, `implement-init`은 승인된 `SPEC`과 `ANALYSIS`만 사용한다.
+- 단계 진행과 사용자 확인, 최종 승인·거절, 상태 전환은 main이 소유하며 `rejected`이면 Issue가 식별한 가장 이른 수정 단계로 돌아간다.
+- `analyze-init`과 `implement-init` 문서 본문은 읽기 전용 `analyzer`, `verify-analysis` 독립 조사는 읽기 전용 `verifier`에 맡긴다.
+- 코드 탐색, 로그·테스트 분석, 범위가 정해진 구현은 컨텍스트 분리에 도움이 될 때 적절한 subagent에 위임한다.
+- 여러 Task 또는 전체 구현은 `implement-loop`로 진행하며, 구현 검증의 verifier 사용 여부는 `verify`를 따른다.
 - 특정 단계나 산출물만 요청하면 그 단계까지만 진행한다. 구현이나 전체 완료 요청은 결과에 필요한 단계를 순서대로 계속하고,
   결과를 바꾸는 미확정 판단이 없으면 `verify-analysis`를 포함해 단계 사이에 별도 진행 승인을 요청하지 않는다.
 - 확정된 요구사항·설계 변경, 되돌리기 어렵거나 외부에 영향을 주는 판단 또는 현재 확보할 수 없는 필수 근거가 필요하면 중단하고 사용자에게 확인한다.
-- 단계별 절차와 완료 기준은 해당 `SKILL.md`를 따르며, 단계별 구현 계획은 `spec.md`가 아니라 `analysis.md` 또는 `implement.md`에 둔다.
+- 문서·Task·상태 변경을 subagent에 위임하지 않는다. 단계별 절차와 완료 기준은 해당 `SKILL.md`를 따르며,
+  구현 계획은 `spec.md`가 아니라 `analysis.md` 또는 `implement.md`에 둔다.
 
 ## 공통 작업 기준과 도구
+- subagent에는 이전 대화 없이 실행 가능한 입력을 전달하고, `fork_turns`는 `"none"` 또는 필요한 최소 최근 turn만 사용한다.
 - 이름은 현재 역할과 책임을 기준으로 붙이고 같은 개념은 같은 표현으로 쓴다. 코드 주석은 이름과 시그니처로 드러나지 않는 정보만 설명한다.
 - 언어 파일을 수정하거나 검토할 때는 이 파일과 같은 디렉터리의 `docs/languages/`에서 해당 언어 문서를 직접 찾아 적용한다.
 - 프로젝트 안의 더 구체적인 `AGENTS.md`, formatter, linter, compiler, test 설정을 우선한다.

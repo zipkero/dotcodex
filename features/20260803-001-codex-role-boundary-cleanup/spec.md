@@ -1,5 +1,7 @@
 # Codex 역할·Skill 경계 정리 명세
 
+> 이 문서는 당시 완료 조건의 기록이다. 구현 위임의 현재 기준은 루트 `AGENTS.md`와 `skills/implement/SKILL.md`를 따른다.
+
 ## 1. 범위
 
 ### 1.1 입력 맥락

@@ -1,5 +1,7 @@
 # Codex 역할·Skill 경계 정리 분석
 
+> 이 문서는 당시 승인된 분석의 기록이다. 구현 위임의 현재 기준은 루트 `AGENTS.md`와 `skills/implement/SKILL.md`를 따른다.
+
 ## 근거
 
 확인 사실:
