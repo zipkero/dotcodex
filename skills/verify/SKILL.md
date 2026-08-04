@@ -34,7 +34,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 ## 판단 기준
 - `Phased` 작업에서는 대상 Task의 `검증 조건`을 기준으로 관련 `SPEC §5.N`의 완료 조건·제약·제외 범위와
   `analysis.md`의 설계 결정을 함께 확인한다.
-- 명시적으로 변경하기로 한 범위를 제외하고 기존 동작과 적용되는 공개 규약을 유지해야 한다.
+- 명시적으로 변경하기로 한 범위를 제외하고 기존 동작과 적용되는 공개 규약·프로젝트·언어 관례를 유지해야 한다.
 - 이번 승인으로 완료되는 `SPEC §5.N`은 매핑된 Task 전체의 변경을 합쳐 완료 조건 자체를 판단한다.
   하나라도 성립하지 않으면 `correctness`로 reject한다.
 - `Per-Request` 작업에서는 사용자 요청, 변경 diff와 관련 실행 결과를 기준으로 삼는다.
@@ -73,7 +73,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 6. `approved`인 경우 Explanation: `Validation`을 반복하지 않고 결과를 1-2문장으로 요약하며, 남은 위험이 있을 때만 덧붙인다.
 
 ## reject 분류
-- `quality`: 명명, 주석, 포맷 같은 비동작 품질 문제다. `implement`의 주석 기준 위반도 포함한다.
+- `quality`: 적용되는 구현·프로젝트·언어 관례를 위반한 비동작 품질 문제다.
 - `correctness`: 요구 동작, 검증 조건, 불변 조건, 출력이 맞지 않는다.
   검증 조건 완화나 사례 삭제로 검증력이 낮아진 경우도 포함한다.
 - `design/scope`: 설계 결정에서 이탈했거나 요청 범위를 초과 또는 미달했다.
