@@ -8,6 +8,3 @@ trim_trailing_whitespace = true
 
 [*.md]
 trim_trailing_whitespace = false
-
-[features/**/*.md]
-max_line_length = 150
