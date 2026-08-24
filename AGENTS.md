@@ -17,17 +17,15 @@
   되돌리기 어려운 외부 영향이 있거나, 완료 조건·영향 범위를 문서로 고정해야 하면 `Phased`를 권장하고 이유, 영향과 예상 산출물을 설명한 뒤 선택을 확인한다.
 - 사용자가 `Phased`, 특정 phase skill, 단계별 문서 작성 또는 `features/<feature-dir>/` 진행을 요청하면 `Phased`로 진행한다.
   기존 기능의 후속 작업은 해당 기능의 승인 상태에서 계속한다.
-- 선택된 `Phased` 작업은 `spec-init` → `analyze-init` → `verify-analysis` → `implement-init` → `implement` → `verify` 순서로 진행한다.
-- 단계 진행과 사용자 확인, 최종 승인·거절, 상태 전환은 main이 소유하며 `rejected`이면 가장 이른 수정 소유 단계로 돌아간다.
-- `analyze-init`·`implement-init` 문서 본문은 읽기 전용 `analyzer`, `verify-analysis` 조사는 읽기 전용 `verifier`에 맡긴다.
-- 독립적으로 분리할 수 있고 병렬 실행, 전문 역할 활용이나 대량 중간 출력 격리의 이점이 호출·조정 비용을 상쇄할 때
-  범위가 명확한 작업을 적절한 subagent에 위임한다.
-- 여러 Task 또는 전체 구현은 `implement-loop`로 진행하며, 구현 검증의 verifier 사용 여부는 `verify`를 따른다.
+- 선택된 `Phased` 작업은 `spec-init` → `analyze-init` → `implement-init` → `implement` → `verify` 순서로 진행한다.
+- 단계 진행과 사용자 확인, 최종 승인·거절, 상태 전환, Phased 문서 본문 적용, Task 체크박스와 기능 상태 변경은 main이 수행하고
+  subagent에 위임하지 않으며, `rejected`이면 가장 이른 수정 소유 단계로 돌아간다.
+- `analyze-init`·`implement-init` 문서 본문은 읽기 전용 `analyzer`에 맡기고, 구현 검증의 `verifier` 사용 여부는 `verify`를 따른다.
+- 여러 Task 또는 전체 구현은 `implement-loop`로 진행한다.
 - 특정 단계나 산출물만 요청하면 그 단계까지만 진행한다. 구현이나 전체 완료 요청은 결과에 필요한 단계를 순서대로 계속하고,
-  결과를 바꾸는 미확정 판단이 없으면 `verify-analysis`를 포함해 단계 사이에 별도 진행 승인을 요청하지 않는다.
-- Phased 문서 본문 적용, Task 체크박스와 기능 상태 변경은 subagent에 위임하지 않는다.
-  단계별 절차와 완료 기준은 해당 `SKILL.md`를 따르며,
-  구현 계획은 `spec.md`가 아니라 `analysis.md` 또는 `implement.md`에 둔다.
+  결과를 바꾸는 미확정 판단이 없으면 단계 사이에 별도 진행 승인을 요청하지 않는다.
+- 단계별 절차와 완료 기준은 해당 `SKILL.md`를 따르며,
+  구현 계획은 `spec.md`가 아니라 `analyze.md` 또는 `implement.md`에 둔다.
 
 ## 프로젝트 루트
 - 사용자가 프로젝트 루트를 명시하면 그 경로를 사용한다. 파일이나 하위 경로만 지정하면 해당 경로를 조사 출발점으로 삼는다.
@@ -35,7 +33,13 @@
 - 후보가 둘 이상이고 선택에 따라 작업 범위나 산출물 위치가 달라지면 파일을 변경하기 전에 사용자에게 확인한다.
 
 ## 공통 작업 기준과 도구
+- 독립적으로 분리할 수 있고 병렬 실행, 전문 역할 활용이나 대량 중간 출력 격리의 이점이 호출·조정 비용을 상쇄할 때
+  범위가 명확한 작업을 적절한 subagent에 위임한다.
 - subagent에는 이전 대화 없이 실행 가능한 입력을 전달하고, `fork_turns`는 `"none"` 또는 필요한 최소 최근 turn만 사용한다.
+- 위 위임 기준을 충족하는 구체적이고 범위가 명확한 코드베이스 조사는 built-in `explorer`에 맡기고,
+  설계 확정·파일 수정·검증 판단은 맡기지 않는다.
+- `explorer` 호출에는 `agent_type = "explorer"`, `model = "gpt-5.6-terra"`, `reasoning_effort = "max"`를 명시하며,
+  조사 질문·범위·필요한 근거·반환 형식을 입력하고 확인 사실과 근거 위치를 반환받는다.
 - 이름은 현재 역할과 책임을 기준으로 붙이고 같은 개념은 같은 표현으로 쓴다.
 - 코드 파일을 수정하거나 검토할 때는 `docs/languages.md`의 공통 기준을 적용하고,
   그 문서가 가리키는 해당 언어 기준도 직접 읽어 적용한다.

@@ -51,7 +51,7 @@ description: >-
 - 같은 날짜의 기존 기능 디렉터리를 확인해 가장 큰 `nnn`의 다음 번호를 사용한다.
 - 같은 날짜의 같은 `<feature-name>` 디렉터리가 이미 있으면 새 번호를 만들지 않고 기존 디렉터리를 재사용한다.
 - 기존 `spec.md`가 있고 현재 요청이 재작성이나 초기화를 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
-- 기존 하위 문서(`analysis.md`, `implement.md`)가 있으면 `spec.md` 덮어쓰기가 하위 문서를 무효화할 수 있음을 알린다.
+- 기존 하위 문서(`analyze.md`, `implement.md`)가 있으면 `spec.md` 덮어쓰기가 하위 문서를 무효화할 수 있음을 알린다.
   현재 요청이 하위 문서의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
 - 기존 `README.md`의 문서 섹션과 `implement.md`의 Task 내용·ID·순서는 보존한다.
 - 질문으로 해소했거나 대화에서 확정된 요청은 대화에만 남기지 않는다. 목표는 `목표`, 조사 출발점은
@@ -62,7 +62,7 @@ description: >-
   따른다.
 - `features/<feature-dir>/README.md`의 `개요`는 기능의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나
   설계 판단은 반복하지 않는다.
-- `spec.md`를 다시 작성하면 README의 `[x] SPEC`은 유지하고 `ANALYSIS`, `IMPLEMENT`와 기존 `implement.md`의
+- `spec.md`를 다시 작성하면 README의 `[x] SPEC`은 유지하고 `ANALYZE`, `IMPLEMENT`와 기존 `implement.md`의
   모든 Task 체크박스를 `[ ]`로 되돌린 뒤 `- <yyyy-MM-dd>: SPEC 재작성으로 하위 승인 상태 초기화` 이력을 추가한다.
 
 ## 기능 README.md 형식
@@ -74,24 +74,17 @@ description: >-
 
 ## 상태
 - [x] SPEC
-- [ ] ANALYSIS
+- [ ] ANALYZE
 - [ ] IMPLEMENT
 
 ## 문서
 - [spec.md](./spec.md)
-- [analysis.md](./analysis.md) (ANALYSIS 단계에서 생성)
+- [analyze.md](./analyze.md) (ANALYZE 단계에서 생성)
 - [implement.md](./implement.md) (IMPLEMENT 단계에서 생성)
 
 ## 이력
 - <yyyy-MM-dd>: SPEC 작성
 ```
-
-## 승인 전 확인 기준
-- `승인 전 확인`에는 SPEC 승인 전에 사용자가 확인해야 하는 기능 고유 판단만 둔다.
-- 범위, 완료 조건, 제외 범위를 결정하지 못하게 하는 판단은 이 섹션에 남기지 말고 문서 생성 전에 해소한다.
-- 어느 기능에나 성립하는 일반 확인 질문은 두지 않는다.
-- 본문 요약, 파생 수치, 모든 기능 문서에 공통인 고정 항목은 두지 않는다.
-- 항목은 `- <판단 질문>. 관련 본문: §N` 형식으로 쓴다.
 
 ## spec.md 형식
 ```markdown
@@ -119,11 +112,11 @@ description: >-
   대상 기능의 외부 관찰 지점을 기준으로 쓴다.
 - 완료 조건 번호는 영구 식별자다. 하위 문서는 `SPEC §5.N`으로 참조한다.
 - 기존 완료 조건을 재배열, 삭제, 재번호하지 않는다. 새 조건은 마지막 번호 뒤에 추가한다.
-- 내부 실행 절차를 완료 조건으로 쓰지 않는다. 내부 설계와 구현 순서는 `analysis.md` 또는 `implement.md`로 분리한다.
+- 내부 실행 절차를 완료 조건으로 쓰지 않는다. 내부 설계와 구현 순서는 `analyze.md` 또는 `implement.md`로 분리한다.
 
 ## 스킬 완료 조건
 - `features/<feature-dir>/README.md`와 `spec.md`가 생성 또는 갱신되어야 한다.
-- `spec.md`에는 선택 `승인 전 확인`과 위 형식의 5개 섹션만 둔다.
+- `spec.md`에는 위 형식의 5개 섹션만 둔다.
 - 각 `SPEC §5.N`은 관찰 가능한 결과여야 한다.
 - `제외 범위`에는 의도적으로 하지 않을 변경을 적는다.
 - 존재하는 관련 ROADMAP 마일스톤과 프로젝트 기준 문서를 조사하고,

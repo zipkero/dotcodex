@@ -16,8 +16,6 @@
 /skills/*
 !/skills/analyze/
 !/skills/analyze/**
-!/skills/explain-change/
-!/skills/explain-change/**
 !/skills/implement/
 !/skills/implement/**
 !/skills/implement-loop/
@@ -28,8 +26,6 @@
 !/skills/analyze-init/**
 !/skills/spec-init/
 !/skills/spec-init/**
-!/skills/verify-analysis/
-!/skills/verify-analysis/**
 !/skills/verify/
 !/skills/verify/**
 !/skills/config-review/

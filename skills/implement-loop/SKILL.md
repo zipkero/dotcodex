@@ -15,7 +15,7 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 
 - 대상 기능과 구현 의도가 명확해야 한다.
 - `implement` skill §컨텍스트 로딩의 `Phased` 작업 진입 조건을 충족해야 한다.
-  충족하지 않으면 필요한 작성 단계 또는 `verify-analysis`를 안내하고 중단한다.
+  충족하지 않으면 필요한 작성 단계를 안내하고 중단한다.
 - 첫 `[ ]` Task가 없으면 이미 완료됐다고 보고한다.
 
 ## 반복
@@ -37,7 +37,7 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 
 다음 중 하나면 남은 Task를 건드리지 않고 중단한다.
 
-- `spec.md`, `analysis.md`, Task 목적, 검증 조건이나 참조를 바꿔야 한다.
+- `spec.md`, `analyze.md`, Task 목적, 검증 조건이나 참조를 바꿔야 한다.
 - 완료 조건이 충돌하거나 현재 설계로 달성할 수 없다.
 - 실행 가능한 검증 근거 없이 수동 판단에만 의존한다.
 - Task가 독립적으로 검증 가능한 동작 단위가 아니어서 재분해가 필요하다.
@@ -48,7 +48,7 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 
 ## 금지
 
-- 통과를 위해 `spec.md`, `analysis.md`, Task 검증 조건을 약화하거나 넓히지 않는다.
+- 통과를 위해 `spec.md`, `analyze.md`, Task 검증 조건을 약화하거나 넓히지 않는다.
 - 테스트 assertion을 약화하거나 실패 사례를 삭제하지 않는다.
 - 막힌 Task를 건너뛰거나 Task 순서를 바꾸지 않는다.
 - `approved` 전에 Task를 `[x]`로 바꾸지 않는다.

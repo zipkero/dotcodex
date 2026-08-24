@@ -1,40 +1,40 @@
 ---
 name: analyze-init
-description: "Create or update a documented feature analysis.md from spec.md for implementation-ready design."
+description: "Create or update a documented feature analyze.md from spec.md for implementation-ready design."
 ---
 
 # Analyze Init
 
 ## 목적
 - `spec.md`를 근거로 분석과 설계 기준을 문서화한다.
-- `analysis.md`는 구조, 데이터 흐름, 인터페이스, 영향 범위, 설계 결정의 기준 문서이다.
-- `analysis.md`는 정적 설계 기준 문서이며 진행 상태를 추적하지 않는다.
-- `analysis.md`는 요구사항을 추가·누락·약화하지 않으며, 새 요구사항은 먼저 `spec.md`에 반영한다.
+- `analyze.md`는 구조, 데이터 흐름, 인터페이스, 영향 범위, 설계 결정의 기준 문서이다.
+- `analyze.md`는 정적 설계 기준 문서이며 진행 상태를 추적하지 않는다.
+- `analyze.md`는 요구사항을 추가·누락·약화하지 않으며, 새 요구사항은 먼저 `spec.md`에 반영한다.
 - 구현 Task, 진행 상태, 구현 순서와 Task별 검증 조건은 `implement.md`가 소유한다.
 
 ## 전제 조건
 - 기능 문서 디렉터리에 `spec.md`와 `README.md`가 있어야 하며 상태판의 `SPEC`이 `[x]`여야 한다.
 - 문서가 없거나 `SPEC`이 `[ ]`이면 `spec-init`이 필요하다고 보고하고 중단한다.
-- 기존 `analysis.md`가 있고 현재 요청이 갱신이나 재작성을 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
+- 기존 `analyze.md`가 있고 현재 요청이 갱신이나 재작성을 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - 기존 `implement.md`가 있으면 하위 문서에 미치는 영향을 알린다.
   현재 요청이 `implement.md`의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
 
 ## 작성 규칙
-- `analysis.md`는 `spec.md`의 범위, 목표, 제약, 제외 범위, `SPEC §5.N`을 기준으로 작성한다.
-- `analysis.md`는 새 대화에서 이전 대화 맥락 없이 읽어도 구현 체크리스트를 만들 수 있게 작성한다.
-  `spec.md`와 `analysis.md`만으로 구조, 흐름, 경계, 설계 결정을 판단할 수 있어야 한다.
-- `analysis.md`는 특정 구현 단계가 아니라 `SPEC §5.N` 전체를 달성하기 위한 구조, 흐름, 경계, 설계 결정을 다룬다.
+- `analyze.md`는 `spec.md`의 범위, 목표, 제약, 제외 범위, `SPEC §5.N`을 기준으로 작성한다.
+- `analyze.md`는 새 대화에서 이전 대화 맥락 없이 읽어도 구현 체크리스트를 만들 수 있게 작성한다.
+  `spec.md`와 `analyze.md`만으로 구조, 흐름, 경계, 설계 결정을 판단할 수 있어야 한다.
+- `analyze.md`는 특정 구현 단계가 아니라 `SPEC §5.N` 전체를 달성하기 위한 구조, 흐름, 경계, 설계 결정을 다룬다.
 - 기존 코드, 문서, 명령 결과처럼 확인한 근거를 기준으로 작성한다.
 - 확인하지 않은 구조나 동작은 추정으로 표시한다.
 - `spec.md`의 `입력 맥락`은 조사 출발점으로 사용하고, 조사 결과는 `근거`에 확인 사실과 추정으로 구분해 기록한다.
-- `analysis.md`를 만들기 전, spec 범위나 완료 조건을 바꾸는 판단은 질문으로 해소한다.
+- `analyze.md`를 만들기 전, spec 범위나 완료 조건을 바꾸는 판단은 질문으로 해소한다.
 - spec 범위 안의 구조, 데이터 흐름, 인터페이스, 저장 경계, 실패 처리 위치는 확인한 근거를 바탕으로
   채택안을 제시하고, 채택안이 있는 주요 대안과 장단점을 `Decision Points`에 남긴다.
   이 중 되돌리기 비용이 큰 데이터 모델, 공개 인터페이스, UX 흐름, 저장 형식, 외부 연동 방식은 우선 판단한다.
 - 다만 선택지가 공개 규약, 저장 형식, 외부 연동 의미, 사용자 관찰 결과, `SPEC §5.N`의 충족 여부를
   바꾸는 경우에는 문서 작성 전에 질문한다.
-- 채택안이 없는 미해결 결정은 사용자가 명시적으로 선택 보류를 원한 경우에만 `Decision Points`에 남기고,
-  선택지, 장단점, 필요한 결정을 함께 적는다.
+- 구현 체크리스트 작성에 필요한 결정이 해결되지 않았으면 `analyze.md`를 확정하지 않고,
+  선택지, 장단점과 권장안을 제시해 사용자 판단을 받는다.
 - `SPEC §5.N` 본문을 복사해 반복하지 말고, 해당 설계가 어떤 완료 조건에 기여하는지 본문에 인라인으로 참조한다.
 - 독립 `SPEC 추적` 매트릭스, 독립 `리스크` 섹션, 독립 `검증 관점` 섹션, `열린 질문` 섹션은 만들지 않는다.
   SPEC 연결은 관련 설계 본문에 `SPEC §5.N`으로 인라인 표기하고, 설계를 막는 리스크는 `Decision Points`에 선택지와 함께 둔다.
@@ -48,18 +48,9 @@ description: "Create or update a documented feature analysis.md from spec.md for
 - 불필요한 리팩터링, 범위 외 개선, `spec.md`에 없는 요구사항은 설계 결정이나 구현 전제로 확정하지 않는다.
 - 일반 보안, 성능, 컴플라이언스, 호환성 우려는 spec, 코드, 명령 결과에서 확인된 경우에만 적는다.
   확인되지 않은 일반 체크리스트나 가설적 실패 모드를 독립 섹션으로 만들지 않는다.
-- `analysis.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
+- `analyze.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
 
-## 승인 전 확인 기준
-- `승인 전 확인`에는 ANALYSIS 본문은 확정됐지만 다음 단계 전에 확인할 기능 고유 판단만 둔다.
-- ANALYSIS 본문을 바꾸는 판단은 이 섹션에 남기지 말고 문서 작성 전에 해소한다.
-- 어느 기능에나 성립하는 일반 확인 질문은 두지 않는다.
-- Decision Point 개수, 채택 옵션 재서술처럼 본문을 되풀이한 정보는 두지 않는다.
-- 항목은 `- <판단 질문>. 관련 본문: §N` 형식으로 쓴다.
-- 질문에는 그 기능에서 무엇이 걸려 있는지가 드러나야 한다.
-- 미해결 결정 자체는 `Decision Points`가 소유한다. 이 섹션에는 판단 질문만 둔다.
-
-## analysis.md 형식
+## analyze.md 형식
 ```markdown
 # <기능명> 분석
 
@@ -86,19 +77,21 @@ description: "Create or update a documented feature analysis.md from spec.md for
   옵션, 장단점, 채택안, 근거와 함께 적는다. 결정할 사항이 없으면 `해당 없음`으로 적는다.
 
 ## 기능 README.md 갱신
-- `SPEC`은 `[x]`로 유지하고 `ANALYSIS`, `IMPLEMENT`를 `[ ]`로 둔다.
+- `SPEC`과 `ANALYZE`는 `[x]`, `IMPLEMENT`는 `[ ]`로 둔다.
 - 기존 `implement.md`는 파일과 Task 내용·ID·순서를 보존하고 모든 Task 체크박스만 `[ ]`로 바꾼다.
-- 새로 작성하면 `- <yyyy-MM-dd>: ANALYSIS 작성`, 다시 작성하면
-  `- <yyyy-MM-dd>: ANALYSIS 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
-- 작성만으로 `ANALYSIS`를 `[x]`로 바꾸지 않는다. 승인은 `verify-analysis` 뒤 main이 수행한다.
+- 새로 작성하면 `- <yyyy-MM-dd>: ANALYZE 작성`, 다시 작성하면
+  `- <yyyy-MM-dd>: ANALYZE 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
+- main은 analyzer가 반환한 본문과 확인 근거를 검토한 뒤 `analyze.md`를 적용하고 `ANALYZE`를 `[x]`로 바꾼다.
 
 ## 스킬 완료 조건
-- `analysis.md`가 spec에 근거해 생성 또는 갱신되어야 한다.
+- `analyze.md`가 spec과 직접 확인한 프로젝트 근거에 따라 생성 또는 갱신되어야 한다.
 - 관련 설계 본문에서 필요한 `SPEC §5.N` 참조가 확인되어야 한다.
+- 책임 경계, 데이터 소유권, 호출 방향, 실패 처리, 인터페이스와 영향 범위가 실제 코드·설정에 맞아야 한다.
+- 주요 Decision Point의 채택안, 근거와 배제한 주요 대안이 다음 단계에서 다시 설계하지 않아도 될 만큼 확정되어야 한다.
 - 기능 상태판, 이력과 기존 Task 체크박스는 §기능 README.md 갱신에 맞아야 한다.
 
 ## 완료 보고
 - 핵심 설계 결정
 - 영향 범위
 - 남은 Decision Point
-- `ANALYSIS`는 미승인 상태이며 다음 단계 전에 `verify-analysis`가 필요하다는 안내
+- 확인한 근거와 남은 한계

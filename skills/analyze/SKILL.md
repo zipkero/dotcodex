@@ -1,6 +1,6 @@
 ---
 name: analyze
-description: "Analyze code, debug behavior, architecture, design options, root causes, and scope without writing files."
+description: "Analyze code or changes without writing files when the requested outcome is diagnosis, explanation, review, or design guidance rather than implementation."
 ---
 
 # Analyze
@@ -8,22 +8,24 @@ description: "Analyze code, debug behavior, architecture, design options, root c
 ## 목적
 - 즉석 조사, 디버깅, 코드 이해를 대화 안에서 수행한다.
 - 설계·구조 요청에서는 구현 전에 선택지, 장단점, 추천안을 대화 안에서 정리한다.
-- `analyze-init`과 다르다. 이 skill은 문서 단계가 아니며, `analysis.md`는 `analyze-init`이 작성한다.
+- 특정 diff, commit, branch나 파일 변경의 설명에서는 변경 전후 동작과 지켜야 할 조건을 실제 근거에 연결한다.
+- `analyze-init`과 다르다. 이 skill은 문서 단계가 아니며, `analyze.md`는 `analyze-init`이 작성한다.
 
 ## 컨텍스트 로딩
-- 사용자가 `features/<feature-dir>/` 또는 하위 파일을 지정하면 기능 범위로 보고, 질문에 필요한 `spec.md`, `analysis.md`, `implement.md`만 읽는다.
+- 사용자가 `features/<feature-dir>/` 또는 하위 파일을 지정하면 기능 범위로 보고, 질문에 필요한 `spec.md`, `analyze.md`, `implement.md`만 읽는다.
 - 사용자가 특정 파일, 심볼, 에러, 로그를 지정하면 그 대상과 필요한 주변 맥락을 읽는다.
+- 변경 설명 요청은 지정된 diff, commit, branch나 파일 범위와 관련 호출부·테스트를 확인한다.
 - 범위가 비어 있으면 대화 맥락에서 충분한 신호가 있을 때만 명시적 가정으로 진행한다.
 - 대상 시스템이나 영역을 결정할 수 없으면 `scope undefined`로 중단한다.
 
 ## 분석 원칙
-- 수정 가능성이 언급된 요청도 이 턴의 산출물은 분석 결과와 수정 범위로 한정한다.
-  구현은 다음 단계로 제안한다.
+- 분석 결과와 필요한 후속 변경 범위를 제시하되, 이 skill에서는 파일을 수정하지 않는다.
 - 실제 코드, 로그, 에러, 문서를 근거로 삼고 추정은 근거와 분리해 명시한다.
 - 사용자가 낯선 코드 영역, 익숙하지 않은 도메인, 설계 방향 탐색을 요청하면 구현안부터 확정하지 않는다.
   조사로 좁힐 수 있는 불확실성은 먼저 확인하고, 사용자 의도·범위·성공 기준에 따라 결과가 달라지는
   불확실성은 권장안, 근거, 장단점과 함께 질문한다.
 - 디버깅 요청에서는 확인된 원인, 영향 범위, 아직 확인되지 않은 가정을 분리한다.
+- 변경 설명 요청에서는 기존 동작과 변경 후 동작, 변경 이유, 실행·자료 흐름과 주요 제약을 구분한다.
 - 설계·구조 분석 요청에서는 문제 크기에 맞게 가능한 구조 선택지들을 펼치고,
   각 선택지의 장점, 단점, 유지보수 영향, 구현 난이도, 검증 기준을 비교한다.
 - 마지막에는 추천안 하나와 주요 대안의 장단점을 함께 남긴다.
@@ -40,7 +42,7 @@ description: "Analyze code, debug behavior, architecture, design options, root c
 - 설계 선택지: 설계·구조 요청일 때 가능한 선택지, 장단점, 추천안을 적는다.
 - 미확정 판단: 조사로 좁힌 내용과 남은 사용자 결정 사항을 구분하고, 결과에 영향을 주는 질문은 권장안과 함께 적는다.
 - 분류: `Phased 권장` / `Per-Request 가능` / `추가 입력 필요` 중 하나. 구현 범위에 영향이 있을 때만 포함한다.
-- 다음 단계: 필요한 문서 단계(`spec-init`, `analyze-init`, `verify-analysis`, `implement-init`) 또는 구현/검증 제안.
+- 다음 단계: 필요한 문서 단계(`spec-init`, `analyze-init`, `implement-init`) 또는 구현/검증 제안.
 
 ## Blocker
 - `scope undefined`: 분석 대상이 불명확함

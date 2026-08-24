@@ -12,17 +12,20 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 
 ## 컨텍스트 로딩
 1. `Phased` 작업:
-   - 진입 조건은 `implement` skill의 `Phased` 작업과 동일하다.
-   - `implement.md`의 대상 Task와 참조된 `spec.md`, `analysis.md`를 읽는다.
+   - 기능 디렉터리에 `README.md`, `spec.md`, `analyze.md`, `implement.md`가 있어야 하며,
+     기능 상태판의 `SPEC`과 `ANALYZE`가 모두 `[x]`여야 한다.
+   - 사용자가 기능 또는 Task의 구현 결과 검증을 요청했거나 직전 구현 대상이 단일하게 식별되어야 한다.
+   - `implement.md`의 대상 Task와 참조된 `spec.md`, `analyze.md`를 읽는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 검증한다.
    - 지정이 없으면 직전 구현 대상이 단일하게 식별될 때만 검증한다.
    - 변경 범위는 기본적으로 커밋하지 않은 작업 디렉터리 변경분이다.
      이미 커밋됐다면 커밋 식별자, 파일 목록 또는 비교 범위를 확인한다.
    - 대상 Task를 `[x]`로 가정했을 때 참조된 `SPEC §5.N`의 매핑 Task가 모두 `[x]`가 되는지 계산한다.
 2. `Per-Request` 작업:
+   - 사용자가 기능 문서 없는 변경의 검증을 요청했거나 직전 Per-Request 구현 대상이 단일하게 식별되어야 한다.
    - 기능 문서를 읽거나 갱신하지 않는다.
    - 사용자 요청, 변경 범위와 실행 결과를 확인한다.
-3. 대상이 모호하면 판단하지 않는다. verifier는 식별 가능한 후보와 필요한 입력을 반환하며, 사용자 확인은 subagent에 위임하지 않는다.
+3. 대상이 모호하면 verifier는 판단 대신 식별 가능한 후보와 필요한 입력을 반환하며, 사용자 확인은 subagent에 위임하지 않는다.
 
 ## verifier agent 사용 기준
 - `agents/verifier.toml`은 읽기 전용 독립 검증 subagent이며, 이 skill의 판단 기준을 기준 소스로 따라 후보 판단만 반환한다.
@@ -33,7 +36,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 
 ## 판단 기준
 - `Phased` 작업에서는 대상 Task의 `검증 조건`을 기준으로 관련 `SPEC §5.N`의 완료 조건·제약·제외 범위와
-  `analysis.md`의 설계 결정을 함께 확인한다.
+  `analyze.md`의 설계 결정을 함께 확인한다.
 - 명시적으로 변경하기로 한 범위를 제외하고 기존 동작과 적용되는 공개 규약·프로젝트·언어 관례를 유지해야 한다.
 - 이번 승인으로 완료되는 `SPEC §5.N`은 매핑된 Task 전체의 변경을 합쳐 완료 조건 자체를 판단한다.
   하나라도 성립하지 않으면 `correctness`로 reject한다.
@@ -80,7 +83,7 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
 
 ## 상태 전환
 - 검증 단계는 먼저 `approved` 또는 `rejected` 판단과 근거를 확정한다.
-- `approved`이면 현재 승인된 `spec.md`와 `analysis.md` 기준으로 대상 Task만 `[x]`로 바꾼다.
+- `approved`이면 현재 승인된 `spec.md`와 `analyze.md` 기준으로 대상 Task만 `[x]`로 바꾼다.
   모든 Task가 승인되고 모든 `SPEC §5.N`이 하나 이상의 Task에 매핑됐을 때만 기능 `README.md`의 `IMPLEMENT`를 `[x]`로 바꾸고
   `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
 - `rejected`이면 대상 Task를 `[ ]`로 유지하고 앞서 승인된 Task는 보존한다.
