@@ -1,0 +1,7 @@
+interface:
+  display_name: "교차 분석"
+  short_description: "여러 subagent의 독립 분석을 근거 중심으로 교차검증"
+  default_prompt: "$cross-analyze로 이 질문을 3개 subagent가 독립 분석하고 결과를 교차검증해 주세요."
+
+policy:
+  allow_implicit_invocation: false

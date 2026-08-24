@@ -40,3 +40,5 @@
 !/skills/context-save/**
 !/skills/context-restore/
 !/skills/context-restore/**
+!/skills/cross-analyze/
+!/skills/cross-analyze/**

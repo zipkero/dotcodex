@@ -26,9 +26,10 @@
 
 ## Skill 구성
 
-실제 관리 대상은 `.gitignore`의 추적 허용 목록에 포함되고 `SKILL.md`가 있는 사용자 정의 skill 디렉터리이다.
+현재 관리 중인 사용자 정의 skill은 다음과 같다.
 
 - `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인, 설계 선택지 비교
+- `skills/cross-analyze`: 같은 질문을 여러 subagent가 독립 분석한 결과를 근거 중심으로 교차검증
 - `skills/explain-change`: 코드 변경의 배경, 핵심 생각, 관련 흐름과 구현 판단 설명
 - `skills/project-init`: 프로젝트 루트 `README.md`, `ROADMAP.md`와 필요한 `docs/product.md`, `docs/design.md` 구성
 - `skills/spec-init`: `spec.md`와 기능 `README.md` 초기화
@@ -48,7 +49,7 @@ Codex 제공 skill과 추적 허용 목록 밖의 로컬 skill은 위치와 관�
 ## Agent 구성
 
 custom agent 정의는 `agents/*.toml`에 둔다.
-실제 관리 대상은 `.gitignore`의 추적 허용 목록에 포함된 standalone TOML 파일이며, 구현 agent는 custom 정의를 두지 않는다.
+현재 관리 중인 custom agent는 다음과 같다. 구현 agent는 built-in `worker`를 사용한다.
 
 - `agents/analyzer.toml`: `Phased` 작업의 `analysis.md`와 `implement.md` 완성 본문을 반환하는 읽기 전용 subagent 정의
 - built-in agent의 사용 여부와 역할 선택은 `AGENTS.md`를 따르며, `worker` 호출 계약은 `skills/implement/SKILL.md`가 소유
@@ -62,19 +63,8 @@ custom agent 정의는 `agents/*.toml`에 둔다.
 
 ## Git 관리 정책
 
-`.gitignore`는 기본적으로 전체를 무시한 뒤 필요한 파일만 허용한다.
-
-추적 대상:
-
-- `.gitignore`
-- `.editorconfig`
-- `.gitattributes`
-- `README.md`
-- `AGENTS.md`
-- `.gitignore`의 추적 허용 목록에 포함된 `features/**`
-- `.gitignore`의 추적 허용 목록에 포함된 `docs/**`
-- `.gitignore`의 추적 허용 목록에 포함된 `agents/*.toml`
-- `.gitignore`의 추적 허용 목록에 포함된 사용자 정의 `skills/*/**`
+`.gitignore`는 전체를 기본 제외하고 `관리 대상`에 해당하는 공유 가능 설정만 허용한다.
+실제 추적 여부는 `.gitignore`와 Git 결과로 확인한다.
 
 비추적 대상:
 
