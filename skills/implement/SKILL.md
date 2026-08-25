@@ -14,12 +14,10 @@ description: "Execute one documented Task or a small per-request code change wit
    - 사용자가 구현 의도를 밝히고 `features/<feature-dir>/` 또는 `features/<feature-dir>/implement.md`를 지정했다.
    - 기능 경로만 언급한 경우에는 구현하지 않고 요청 의도에 맞춰 분석, 설명, 검토로 처리한다.
 2. `Phased` 작업 동작:
-   - 기능 디렉터리에 `README.md`, `spec.md`, `analyze.md`, `implement.md`가 있어야 한다.
-   - 기능 상태판의 `SPEC`과 `ANALYZE`가 모두 `[x]`여야 한다.
+   - 기능 디렉터리에 `README.md`, `spec.md`, `analyze.md`, `implement.md`가 있고 기능 상태판의 `SPEC`과 `ANALYZE`가 모두 `[x]`여야 한다.
      하나라도 충족되지 않으면 필요한 작성 단계를 보고하고 구현하지 않는다.
-   - 파일 존재만으로 승인을 추정하지 않고 승인된 `spec.md`, `analyze.md`와 현재 `implement.md`를 읽는다.
-   - `implement.md`의 `Plan status`가 `ready`여야 한다.
-     값이 없거나 `stale`이면 `implement-init`이 필요하다고 보고하고 구현하지 않는다.
+   - 파일 존재만으로 승인을 추정하지 않고 승인된 `spec.md`, `analyze.md`와 현재 `implement.md`를 읽으며,
+     `Plan status`가 `ready`가 아니면 `implement-init`이 필요하다고 보고하고 구현하지 않는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 잡고, 지정하지 않으면 위에서부터 첫 미완료 Task를 잡는다.
    - Task가 없거나 이미 완료되었거나 둘 이상으로 해석되면 구현하지 않는다.
      범위를 요청한다.

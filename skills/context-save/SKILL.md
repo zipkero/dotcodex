@@ -19,7 +19,6 @@ description: "Save or prune project-root CONTEXT.md handoff state when pausing o
 - Phased 문서의 체크리스트나 전체 내용은 복제하지 않는다.
 - Phased 문서가 없는 Per-Request 작업은 사용자 요청 범위, 실제 변경 파일과 실행한 검증 결과를 기준으로 기록한다.
 - 프로젝트 루트는 `AGENTS.md`의 `프로젝트 루트` 기준으로 식별한다.
-  하나로 결정할 수 없으면 파일을 변경하기 전에 사용자에게 대상 프로젝트를 확인한다.
 - `context-save`는 `CONTEXT.md`만 변경한다.
   원본 문서에 반영되지 않은 확정 사항은 `문서 반영 필요`에 기록하고 해당 문서를 소유한 skill로 넘긴다.
 

@@ -78,7 +78,6 @@ description: "Create or update a documented feature analyze.md from spec.md for 
 - 기존 `implement.md`는 파일과 Task 내용·ID·순서를 보존하면서 `Plan status: stale`로 바꾸고 모든 Task 체크박스를 `[ ]`로 바꾼다.
 - 새로 작성하면 `- <yyyy-MM-dd>: ANALYZE 작성`, 다시 작성하면
   `- <yyyy-MM-dd>: ANALYZE 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
-- main은 analyzer가 반환한 본문과 확인 근거를 검토한 뒤 `analyze.md`를 적용하고 `ANALYZE`를 `[x]`로 바꾼다.
 
 ## 스킬 완료 조건
 - `analyze.md`가 spec과 직접 확인한 프로젝트 근거에 따라 생성 또는 갱신되어야 한다.

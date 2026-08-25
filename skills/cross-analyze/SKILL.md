@@ -16,6 +16,7 @@ description: "Run an explicitly requested read-only cross-analysis by sending th
   요청한 전체 호출의 성공 또는 실패가 확정된 뒤 결과를 종합한다.
 
 ## 위임
+- 사용자가 이 skill을 명시적으로 선택하면 아래 `default` agent 독립 분석 구성이 `AGENTS.md`의 일반 `explorer` 라우팅보다 우선한다.
 - built-in `default` agent를 사용하고 `fork_turns = "none"`으로 호출한다.
 - 모델과 추론 수준은 따로 재정의하지 않고 부모 설정을 상속한다.
 - 모든 agent에 문구까지 같은 자체 완결적 프롬프트를 전달한다. 프롬프트에는 다음 내용을 포함한다.

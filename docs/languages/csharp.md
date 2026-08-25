@@ -1,7 +1,6 @@
 # C# 작업 기준
 
 ## 적용 범위
-- 이 문서는 전역 기본값이다. 프로젝트의 `AGENTS.md`, `.editorconfig`, analyzer, formatter, test 설정이 있으면 그 기준을 우선한다.
 - C# 파일을 수정하거나 검토할 때 적용한다.
 
 ## 코드 작성
