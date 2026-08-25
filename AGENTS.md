@@ -19,8 +19,12 @@
   기존 기능의 후속 작업은 해당 기능의 승인 상태에서 계속한다.
 - 선택된 `Phased` 작업은 `spec-init` → `analyze-init` → `implement-init` → `implement` → `verify` 순서로 진행한다.
 - 단계 진행과 사용자 확인, 최종 승인·거절, 상태 전환, Phased 문서 본문 적용, Task 체크박스와 기능 상태 변경은 main이 수행하고
-  subagent에 위임하지 않으며, `rejected`이면 가장 이른 수정 소유 단계로 돌아간다.
-- `analyze-init`·`implement-init` 문서 본문은 읽기 전용 `analyzer`에 맡기고, 구현 검증의 `verifier` 사용 여부는 `verify`를 따른다.
+  subagent에 위임하지 않으며, `rejected`이면 `verify` 분류에 따라 필요한 입력·환경을 확보하거나 가장 이른 수정 소유 단계로 돌아간다.
+- `analyze-init`·`implement-init` 문서 본문은 이름 있는 읽기 전용 custom agent `analyzer`(`agents/analyzer.toml`)에 맡기고,
+  독립 검증에는 `verify` 기준에 따라 이름 있는 읽기 전용 custom agent `verifier`(`agents/verifier.toml`)를 사용한다.
+  둘은 후보 본문이나 판단만 반환하고 main이 적용과 최종 판단을 수행한다.
+- 구현은 built-in `worker`가 전담한다. 이름 있는 custom agent 호출이 실패하면 `default` agent나 main의 직접 수행으로 대체하지 않고
+  현재 문서와 상태를 유지한 채 오류와 영향을 보고한다.
 - 여러 Task 또는 전체 구현은 `implement-loop`로 진행한다.
 - 특정 단계나 산출물만 요청하면 그 단계까지만 진행한다. 구현이나 전체 완료 요청은 결과에 필요한 단계를 순서대로 계속하고,
   결과를 바꾸는 미확정 판단이 없으면 단계 사이에 별도 진행 승인을 요청하지 않는다.
@@ -38,7 +42,7 @@
 - subagent에는 이전 대화 없이 실행 가능한 입력을 전달하고, `fork_turns`는 `"none"` 또는 필요한 최소 최근 turn만 사용한다.
 - 위 위임 기준을 충족하는 구체적이고 범위가 명확한 코드베이스 조사는 built-in `explorer`에 맡기고,
   설계 확정·파일 수정·검증 판단은 맡기지 않는다.
-- `explorer` 호출에는 `agent_type = "explorer"`, `model = "gpt-5.6-terra"`, `reasoning_effort = "max"`를 명시하며,
+- `explorer` 호출에는 `model = "gpt-5.6-terra"`, `reasoning_effort = "max"`를 명시하며,
   조사 질문·범위·필요한 근거·반환 형식을 입력하고 확인 사실과 근거 위치를 반환받는다.
 - 이름은 현재 역할과 책임을 기준으로 붙이고 같은 개념은 같은 표현으로 쓴다.
 - 코드 파일을 수정하거나 검토할 때는 `docs/languages.md`의 공통 기준을 적용하고,

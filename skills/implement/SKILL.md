@@ -18,6 +18,8 @@ description: "Execute one documented Task or a small per-request code change wit
    - 기능 상태판의 `SPEC`과 `ANALYZE`가 모두 `[x]`여야 한다.
      하나라도 충족되지 않으면 필요한 작성 단계를 보고하고 구현하지 않는다.
    - 파일 존재만으로 승인을 추정하지 않고 승인된 `spec.md`, `analyze.md`와 현재 `implement.md`를 읽는다.
+   - `implement.md`의 `Plan status`가 `ready`여야 한다.
+     값이 없거나 `stale`이면 `implement-init`이 필요하다고 보고하고 구현하지 않는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 잡고, 지정하지 않으면 위에서부터 첫 미완료 Task를 잡는다.
    - Task가 없거나 이미 완료되었거나 둘 이상으로 해석되면 구현하지 않는다.
      범위를 요청한다.
@@ -34,7 +36,7 @@ description: "Execute one documented Task or a small per-request code change wit
 - worker는 Phased Task 하나 또는 범위가 확정된 Per-Request 요청 하나를 구현하며, 사용자 확인이나 상위 문서 변경·범위 재결정이
   필요하면 작업 공간을 수정하지 않고 `blocked`와 근거를 반환한다.
 - worker는 공유 작업 공간의 다른 변경을 보존하고 이미 생긴 변경에 맞춰 작업하며, 관련 없는 변경을 되돌리지 않는다.
-- worker 호출에는 `agent_type = "worker"`, `model = "gpt-5.6-sol"`, `reasoning_effort = "high"`와
+- worker 호출에는 `model = "gpt-5.6-sol"`, `reasoning_effort = "high"`와
   `fork_turns = "none"` 또는 필요한 최소 최근 turn 수인 양의 정수 문자열을 명시하며, `fork_turns`를 생략하거나 `"all"`을 사용하지 않는다.
 - 호출 메시지는 이전 대화 없이도 실행할 수 있도록 Task의 목적·접근·검증 조건, 수정 범위, 승인된 기준 문서,
   `skills/implement/SKILL.md`, 위임 경계와 반환 형식을 포함한다.
@@ -42,16 +44,15 @@ description: "Execute one documented Task or a small per-request code change wit
   다른 모델·추론 수준·전체 이력 호출이나 main의 직접 구현으로 대체하지 않는다.
 
 ## 범위와 설계 변경
-- 요청 또는 Task 범위 안의 구현 선택은 기존 코드 패턴과 `analyze.md`의 확정된 결정을 따른다.
+- 요청 또는 Task 범위 안의 구현 선택은 기존 코드 패턴과 승인된 `analyze.md`의 확정된 결정을 따른다.
+- 승인된 `analyze.md`에서 확정한 새 경계, 상태, 저장 위치, 인터페이스와 의존성 방향은 구현 전제이며 중단 사유가 아니다.
+- 구현이나 테스트 완료에 필요한 의존성, 인터페이스, 추상화, 공개 API, 경계, 상태 소유권, 의존성 방향이나 인접 리팩터링이
+  요청·Task·승인된 분석에 확정되지 않은 새 결정이면 파일 수정 전에 중단한다.
 - Task 밖에서 발견한 문제는 수정하지 않고 보고만 한다.
-- 구현이나 테스트 완료에 새 의존성, 인터페이스, 추상화, 공개 API, 경계, 상태 소유권, 의존성 방향,
-  인접 리팩터링 또는 확정된 설계 변경이 필요하면 파일 수정 전에 중단한다.
 - `Phased` 작업의 설계 변경은 `analyze.md` 갱신 필요 사항도 함께 보고한다.
 
 ## 구현 규칙
-- 프로젝트·언어 관례와 `범위와 설계 변경` 기준을 따른다.
-  요청 범위 안에서 책임·경계·의존성 방향과 공개 규약을 유지한다.
-  요청 밖 추상화와 리팩터링은 별도 요청 후보로 보고한다.
+- 프로젝트·언어 관례와 `범위와 설계 변경` 기준을 따르며, 요청 밖 추상화와 리팩터링은 별도 요청 후보로 보고한다.
 - 새로 만들거나 바꾸는 이름은 현재 역할과 책임을 기준으로 붙이고, 같은 개념을 가리키는 타입, 필드, 메서드와 테스트 설명은
   일관되게 표현한다. 외부 스키마·프로토콜·사용자 입력의 이름은 경계에서 보존하고 내부 이름은 도메인 역할에 맞게 붙인다.
 - 파일 수정 전 어떤 변경을 할지 짧게 설명한다.

@@ -3,7 +3,6 @@ description = "Independent read-only verifier for implemented Codex tasks, diffs
 sandbox_mode = "read-only"
 model = "gpt-5.6-terra"
 model_reasoning_effort = "max"
-nickname_candidates = ["Verifier", "Review Gate", "Evidence Check"]
 
 developer_instructions = """
 지정된 `verify`의 `SKILL.md` 전체를 유일한 판단 기준으로 따른다.

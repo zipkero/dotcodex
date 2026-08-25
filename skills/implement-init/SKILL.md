@@ -8,6 +8,7 @@ description: "Create or update a documented feature implement.md with executable
 ## 목적
 - `analyze.md`를 실행 가능한 구현 체크리스트로 변환한다.
 - `implement.md`는 구현 단계의 진행 상황과 Task별 검증 조건을 소유하는 실행 체크리스트이다.
+- `Plan status` 값은 `ready` 또는 `stale`이며, 구현 계획의 유효성을 나타내는 단일 상태로 사용하고 별도 `PLAN` 체크박스는 두지 않는다.
 - 설계 판단은 `analyze.md`에 두고, `implement.md`에는 확정된 설계를 실행 가능한 Task로 나눈 내용만 둔다.
 
 ## 전제 조건
@@ -19,7 +20,7 @@ description: "Create or update a documented feature implement.md with executable
   현재 요청이 재작성이나 초기화를 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - `analyze.md`의 `Decision Points`에 채택안이 없는 미해결 결정이 있으면 사용자에게 알리고 중단한다.
 - Task 분해 방식만 여러 가지인 경우에는 아래 작성 규칙에 따라 권장 분해안을 작성한다.
-- 완료 기준, Task 경계, 검증 조건을 정하는 과정에서 `SPEC §5.N`의 충족 여부, 사용자 관찰 결과, 실패 의미,
+- 완료 기준, Task 경계, 검증 조건을 정하는 과정에서 적용 중인 `SPEC §5.N`의 충족 여부, 사용자 관찰 결과, 실패 의미,
   공개 규약, 채택된 설계 결정이 바뀌면 질문으로 해소한다.
 - 미확정 요구사항이나 미채택 설계 결정을 임의로 Task 범위나 검증 조건으로 변환하지 않는다.
 
@@ -31,13 +32,13 @@ description: "Create or update a documented feature implement.md with executable
 - Task ID는 `task-001`처럼 3자리 zero-padding을 사용하고, 신규 문서는 `task-001`부터 순서대로 작성한다.
 - 기존 문서 갱신 시 Task ID는 재번호 매기지 않는다. 새 Task는 가장 큰 ID의 다음 번호를 사용하고, 삭제/병합된 ID는 재사용하지 않는다.
 - 의존성 순서는 `implement.md`의 항목 위치로 표현한다. ID 숫자를 순서 의미로 사용하거나 순서 변경 때문에 재번호하지 않는다.
-- 각 항목은 최소 하나의 `SPEC §5.N`에 매핑한다.
+- 각 항목은 최소 하나의 적용 중인 `SPEC §5.N`에 매핑한다.
 - `ANALYZE §X.Y` 참조는 해당 Task가 따르는 구조나 설계 결정이 있을 때만 둔다.
-- `implement.md`의 전체 Task 집합은 모든 `SPEC §5.N`을 빠짐없이 Task로 커버해야 한다.
-- 특정 `SPEC §5.N`을 Task로 확정할 수 없으면 임의로 생략하거나 `implement.md`의 제외 항목으로 옮기지 않는다.
-- 미매핑 `SPEC §5.N`이 있으면 사용자에게 선택지를 제시한다. 선택지는 해당 기준을 다루는 Task 추가, `spec.md` 완료 조건 제거,
-  `spec.md` 제외 범위로 명시적 보류 중 하나다. 사용자가 결정하기 전에는 `implement.md`를 확정하지 않는다.
-- 각 항목에는 목적, 접근, 검증 조건, 참조만 둔다.
+- `implement.md`의 전체 Task 집합은 적용 중인 모든 `SPEC §5.N`을 빠짐없이 커버해야 한다.
+- 적용 중인 `SPEC §5.N`을 Task로 확정할 수 없으면 해당 조건, 이유와 구현 계획에 미치는 영향을 보고하고 `implement.md`를 확정하지 않는다.
+  요구사항 변경이 필요하면 삭제·철회·보류 선택을 재정의하지 않고 `spec-init`으로 반환한다.
+- 작성 시 각 항목의 기본 필드는 목적, 접근, 검증 조건, 참조만 둔다.
+  진행 중 재시도 상태는 `implement-loop` 기준에 따라 `시도`와 `최근 reject`만 임시로 추가할 수 있다.
 - Task의 `목적`, `접근`, `검증 조건`은 다음 세션에서 이전 대화 없이도 작업 단위, 설계 근거,
   완료 판단을 복원할 수 있게 작성한다.
 - `목적`에는 문서 매핑이 아니라 사용자가 얻는 결과나 Task가 완성해야 하는 외부 관찰 가능한 동작을 적는다.
@@ -46,6 +47,7 @@ description: "Create or update a documented feature implement.md with executable
   `확인`에는 테스트, 빌드, lint, diff, 수동 확인 등 해당 결과를 검증하는 방법을 적는다.
 - `spec.md`의 `제약`에 사용자가 지정한 검증 근거가 있으면 관련 Task의 `확인`에 빠짐없이 반영한다.
 - 새로 작성하거나 다시 작성하는 모든 Task의 체크박스는 `[ ]`로 둔다.
+- 새로 작성하거나 다시 작성하는 `implement.md`의 `Plan status`는 `ready`로 둔다.
 - `implement.md`는 구현자가 목적, 접근, 검증 방법을 바로 실행할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
 
 ## 테스트 Task 기준
@@ -57,6 +59,8 @@ description: "Create or update a documented feature implement.md with executable
 ## implement.md 형식
 ```markdown
 # <기능명> 구현
+
+Plan status: ready
 
 ## 체크리스트
 
@@ -77,7 +81,7 @@ description: "Create or update a documented feature implement.md with executable
 
 ## 스킬 완료 조건
 - `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.
-- 모든 `SPEC §5.N`이 하나 이상의 Task로 추적되어야 한다.
+- 적용 중인 모든 `SPEC §5.N`이 하나 이상의 Task로 추적되어야 한다.
 - Task 체크박스, 기능 상태판과 이력은 §작성 규칙과 §기능 README.md 갱신에 맞아야 한다.
 
 ## 완료 보고
