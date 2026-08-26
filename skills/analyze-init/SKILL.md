@@ -82,7 +82,7 @@ description: "Create or update a documented feature analyze.md from spec.md for 
 
 ## 기능 README.md 갱신
 - `SPEC`과 `ANALYZE`는 `[x]`, `IMPLEMENT`는 `[ ]`로 둔다.
-- 기존 `implement.md`는 파일과 Task 내용·ID·순서를 보존하면서 `Plan status: stale`로 바꾸고 모든 Task 체크박스를 `[ ]`로 바꾼다.
+- 기존 `implement.md`는 파일과 Task 내용·ID·순서를 보존하면서 모든 Task 체크박스를 `[ ]`로 바꾼다.
 - 새로 작성하면 `- <yyyy-MM-dd>: ANALYZE 작성`, 다시 작성하면
   `- <yyyy-MM-dd>: ANALYZE 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
 

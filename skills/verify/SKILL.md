@@ -13,7 +13,6 @@ description: "Verify a documented Task or per-request implementation against its
 ## 컨텍스트 로딩
 1. `Phased` 작업:
    - 기능 디렉터리에 `README.md`, `spec.md`, `analyze.md`, `implement.md`가 있고 기능 상태판의 `SPEC`과 `ANALYZE`가 모두 `[x]`여야 한다.
-   - `implement.md`의 `Plan status`가 `ready`가 아니면 `implement-init`이 필요하다고 보고하고 검증하지 않는다.
    - 사용자가 기능 또는 Task의 구현 결과 검증을 요청했거나 직전 구현 대상이 단일하게 식별되어야 한다.
    - `implement.md`의 대상 Task와 참조된 `spec.md`, `analyze.md`를 읽는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 검증한다.

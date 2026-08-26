@@ -8,7 +8,6 @@ description: "Create or update a documented feature implement.md with executable
 ## 목적
 - `analyze.md`를 실행 가능한 구현 체크리스트로 변환한다.
 - `implement.md`는 구현 단계의 진행 상황과 Task별 검증 조건을 소유하는 실행 체크리스트이다.
-- `Plan status` 값은 `ready` 또는 `stale`이며, 구현 계획의 유효성을 나타내는 단일 상태로 사용하고 별도 `PLAN` 체크박스는 두지 않는다.
 - 설계 판단은 `analyze.md`에 두고, `implement.md`에는 확정된 설계를 실행 가능한 Task로 나눈 내용만 둔다.
 
 ## 전제 조건
@@ -54,7 +53,7 @@ description: "Create or update a documented feature implement.md with executable
 - `검증 조건`은 `결과`와 `확인`으로 작성한다. `결과`에는 Task 완료 후 성립해야 하는 동작, 출력, 파일 내용, 설정 상태를 적는다.
   `확인`에는 테스트, 빌드, lint, diff, 수동 확인 등 해당 결과를 검증하는 방법을 적는다.
 - `spec.md`의 `제약`에 사용자가 지정한 검증 근거가 있으면 관련 Task의 `확인`에 빠짐없이 반영한다.
-- 새로 작성하거나 다시 작성하는 `implement.md`는 모든 Task 체크박스를 `[ ]`, `Plan status`를 `ready`로 둔다.
+- 새로 작성하거나 다시 작성하는 `implement.md`는 모든 Task 체크박스를 `[ ]`로 둔다.
 - `implement.md`는 구현자가 목적, 접근, 검증 방법을 바로 실행할 수 있게 쓴다.
 
 ## 테스트 Task 기준
@@ -66,8 +65,6 @@ description: "Create or update a documented feature implement.md with executable
 ## implement.md 형식
 ```markdown
 # <기능명> 구현
-
-Plan status: ready
 
 ## 체크리스트
 

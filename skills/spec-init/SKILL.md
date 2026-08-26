@@ -61,7 +61,7 @@ description: >-
 - `features/<feature-dir>/README.md`의 `개요`는 기능의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나
   설계 판단은 반복하지 않는다.
 - main은 `spec.md`를 다시 적용할 때 README의 `[x] SPEC`은 유지하고 `ANALYZE`, `IMPLEMENT`를 `[ ]`로 되돌린다.
-  기존 `implement.md`는 Task 내용·ID·순서를 보존하면서 `Plan status: stale`로 바꾸고 모든 Task 체크박스를 `[ ]`로 되돌린 뒤
+  기존 `implement.md`는 Task 내용·ID·순서를 보존하면서 모든 Task 체크박스를 `[ ]`로 되돌린 뒤
   `- <yyyy-MM-dd>: SPEC 재작성으로 하위 승인 상태 초기화` 이력을 추가한다.
 
 ## 기능 README.md 형식
@@ -126,4 +126,4 @@ description: >-
 - 생성/갱신된 파일
 - 사용한 ROADMAP 마일스톤과 프로젝트 기준 문서, 없으면 없음
 - 문서 생성을 막은 미확정 요구사항이 있었다면 질문한 내용
-- 재작성으로 초기화한 하위 승인 상태, `Plan status`와 Task 체크박스
+- 재작성으로 초기화한 하위 승인 상태와 Task 체크박스
