@@ -37,7 +37,7 @@ description: "Execute one documented Task or a small per-request code change wit
   `fork_turns = "none"` 또는 필요한 최소 최근 turn 수인 양의 정수 문자열을 명시하며, `fork_turns`를 생략하거나 `"all"`을 사용하지 않는다.
 - 호출 메시지는 이전 대화 없이도 실행할 수 있도록 Task의 목적·접근·검증 조건, 수정 범위, 승인된 기준 문서,
   `skills/implement/SKILL.md`, 적용되는 프로젝트 `AGENTS.md`, `docs/languages.md`와 해당 언어 문서의 정확한 경로,
-  위임 경계와 반환 형식을 포함한다.
+  위임 경계와 반환 형식을 포함하고, worker가 해당 지침 파일을 직접 읽어 적용하도록 명시한다.
 - 필요한 모델·추론 수준·이력 범위를 적용할 수 없거나 worker 호출에 실패하면 Task와 문서 상태를 유지한 채 오류와 영향을 보고하며,
   다른 모델·추론 수준·전체 이력 호출이나 main의 직접 구현으로 대체하지 않는다.
 
@@ -67,18 +67,6 @@ description: "Execute one documented Task or a small per-request code change wit
 - 구현 중에는 `SPEC`과 `ANALYZE`의 승인 상태를 유지한다.
   Task 체크박스와 `IMPLEMENT` 상태 갱신은 `verify`의 `approved` 판단 이후에 수행한다.
   상위 문서 변경으로 초기화된 Task는 기존 구현이 남아 있어도 현재 기준으로 다시 검증한다.
-
-## 주석
-언어별 doc comment의 사용 여부와 형식은 `docs/languages.md`가 연결하는 해당 언어 문서가 소유하며,
-아래 기준은 그 밖의 주석에 적용한다.
-
-- 코드만 봐서는 알 수 없고 어기면 동작이 깨지는 제약만 남긴다.
-- 제약을 만드는 주체와 깨질 때 나타나는 증상을 한 줄에 함께 적으며, 주체가 외부에 있으면 이름으로 지목한다.
-- 코드가 하는 일을 옮겨 적지 않으며, 이름·구조·타입으로 뜻이 드러나는 자리에는 쓰지 않는다.
-- 설명을 `SPEC §5.N`, `ANALYZE §X.Y`, `task-<nnn>` 같은 문서 위치로 미루지 않으며,
-  코드가 그렇게 된 경위나 변경 이력은 적지 않는다.
-- 코드를 고치면 그 자리에 있던 주석이 아직 맞는지 확인한다.
-  어긋나면 고치거나 지우고, 새로 더할 때는 위 기준을 따른다.
 
 ## 완료 보고
 - main은 worker의 반환을 검토하고 구현 결과, 변경 파일, 실행한 검증, 남은 위험과 범위 밖 발견을 보고한다.

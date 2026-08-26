@@ -20,4 +20,4 @@
 - 프로젝트 관례가 없고 JS/TS 코드 동작을 바꿨다면 `test`, `lint`, `typecheck` 계열 package script를 확인한다.
 
 ## 주석
-- JSDoc/TSDoc은 lint 설정이나 공개 패키지 API가 요구할 때만 쓴다.
+- JSDoc/TSDoc은 타입으로 드러나지 않는 내용에만 쓴다.

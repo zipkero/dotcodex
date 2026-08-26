@@ -34,7 +34,7 @@ description: "Verify a documented Task or per-request implementation against its
 ## verifier agent 사용 기준
 - 이름 있는 custom agent `verifier`에게 이 skill을 기준으로 독립 후보 판단을 맡긴다.
 - verifier 호출에는 검증 대상과 변경 범위, 선행 문서, 적용되는 프로젝트 `AGENTS.md`, `docs/languages.md`와 해당 언어 문서의 정확한 경로,
-  실행 근거 위치를 포함한다.
+  실행 근거 위치를 포함하고, verifier가 해당 지침 파일을 직접 읽어 적용하도록 명시한다.
 - 변경이 여러 파일에 걸치고 동작, 상태, 외부 I/O, 동시성, 경계 중 하나 이상에 영향을 주면 verifier agent를 사용한다.
 - Per-Request 변경이라도 diff 확인만으로 정확성을 판단하기 어렵거나 독립 검증 컨텍스트가 필요하면 사용을 고려한다.
 - 문서, 오타, 정적 설정 문구처럼 diff만으로 판단 가능한 변경은 직접 검증할 수 있다.

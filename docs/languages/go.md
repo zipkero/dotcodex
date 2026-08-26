@@ -21,5 +21,6 @@
 - 프로젝트 관례가 없고 Go 코드 동작을 바꿨다면 `go test ./...`를 우선 검증 명령으로 고려한다.
 
 ## 주석
-- exported 식별자의 doc comment는 linter나 패키지 관례가 요구할 때만 쓰고,
-  `// Name ...` 한 문장으로 끝낸다.
+- doc comment는 `// Name ...` 형태로 쓴다.
+- 한국어로 쓸 때도 식별자 이름을 첫 낱말로 두고 조사는 붙여 쓴다. 예: `// Role은 …`, `// Package llm은 …`.
+- `revive exported`나 GoLand 주석 inspection을 사용하는 프로젝트에서는 해당 설정을 우선한다.
