@@ -1,6 +1,6 @@
 ---
 name: verify
-description: "Judge implemented work against Task criteria and any SPEC requirements completed by the Task."
+description: "Verify a documented Task or per-request implementation against its criteria, diff, and execution evidence."
 ---
 
 # Verify
@@ -18,17 +18,23 @@ description: "Judge implemented work against Task criteria and any SPEC requirem
    - `implement.md`의 대상 Task와 참조된 `spec.md`, `analyze.md`를 읽는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 검증한다.
    - 지정이 없으면 직전 구현 대상이 단일하게 식별될 때만 검증한다.
-   - 변경 범위는 기본적으로 커밋하지 않은 작업 디렉터리 변경분이다.
-     이미 커밋됐다면 커밋 식별자, 파일 목록 또는 비교 범위를 확인한다.
    - 대상 Task를 `[x]`로 가정했을 때 참조된 적용 중인 `SPEC §5.N`의 매핑 Task가 모두 `[x]`가 되는지 계산한다.
 2. `Per-Request` 작업:
    - 사용자가 기능 문서 없는 변경의 검증을 요청했거나 직전 Per-Request 구현 대상이 단일하게 식별되어야 한다.
    - 기능 문서를 읽거나 갱신하지 않는다.
    - 사용자 요청, 변경 범위와 실행 결과를 확인한다.
 3. main이 검증 대상을 하나로 확정한다. 대상이 모호하면 식별 가능한 후보와 필요한 입력을 사용자에게 제시하고 verifier를 호출하지 않는다.
+4. main은 검증 대상을 확정한 뒤 다음 우선순위로 공통 변경 범위를 확정한다.
+   1. 사용자가 지정한 commit, 파일 목록 또는 비교 범위
+   2. 같은 흐름에서 implement worker가 반환한 `Changed files`와 해당 diff
+   3. 복원 작업이면 `CONTEXT.md`의 changed files, saved branch와 base HEAD
+   4. 위 근거가 없으면 working tree와 Git history에서 수집한 후보
+   5. 후보가 여러 개이거나 범위가 불확실하면 후보와 각 근거를 제시해 사용자에게 확인하며, 확인 전에는 verifier를 호출하거나 판정하지 않는다.
 
 ## verifier agent 사용 기준
 - `agents/verifier.toml`의 이름 있는 custom agent `verifier`는 읽기 전용 독립 검증을 수행하고 이 skill을 기준 소스로 따라 후보 판단만 반환한다.
+- verifier 호출에는 검증 대상과 변경 범위, 선행 문서, 적용되는 프로젝트 `AGENTS.md`, `docs/languages.md`와 해당 언어 문서의 정확한 경로,
+  실행 근거 위치를 포함한다.
 - 변경이 여러 파일에 걸치고 동작, 상태, 외부 I/O, 동시성, 경계 중 하나 이상에 영향을 주면 verifier agent를 사용한다.
 - Per-Request 변경이라도 diff 확인만으로 정확성을 판단하기 어렵거나 독립 검증 컨텍스트가 필요하면 사용을 고려한다.
 - 문서, 오타, 정적 설정 문구처럼 diff만으로 판단 가능한 변경은 직접 검증할 수 있다.

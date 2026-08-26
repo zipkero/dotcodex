@@ -19,6 +19,18 @@ description: "Create or update a documented feature analyze.md from spec.md for 
 - 기존 `implement.md`가 있으면 하위 문서에 미치는 영향을 알린다.
   현재 요청이 `implement.md`의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
 
+## analyzer 호출 계약
+- main은 이름 있는 읽기 전용 custom agent `analyzer`에게 `analyze.md` 후보 본문 작성을 맡긴다.
+- 호출 입력에는 feature dir, `README.md`와 `spec.md` 경로, 존재하는 경우 `analyze.md`와 `implement.md` 경로,
+  적용되는 프로젝트 `AGENTS.md`의 정확한 경로, 코드 조사 출발점, `skills/analyze-init/SKILL.md`의 정확한 경로,
+  작업 범위와 산출물 계약을 포함한다.
+- analyzer는 전체 `analyze.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환하며 파일을 수정하지 않는다.
+- main은 이 skill의 완료 기준에 따라 후보를 검토하되, 설계 의미를 바꾸지 않는 기계적 형식·링크·확정 고정값만 직접 수정한다.
+- 구조, 데이터 흐름, 인터페이스, 영향, `Decision Points`의 의미가 바뀌거나 사용자 결정을 반영해야 하면 analyzer를 다시 호출해
+  전체 후보 본문을 받아야 하며 main은 본문을 실질적으로 재작성하지 않는다.
+- analyzer 호출 실패 시 `AGENTS.md`의 무대체 원칙을 따르며, main이나 다른 agent로 대체하지 않는다.
+- 후보 파일 적용, 상태 전환과 `README.md` 갱신은 main이 담당한다.
+
 ## 작성 규칙
 - 이 skill에서 설계, 충족, 인라인 연결과 완료 확인 대상으로 삼는 `SPEC §5.N`은 적용 중인 완료 조건만을 뜻한다.
 - `analyze.md`는 `spec.md`의 범위, 목표, 제약, 제외 범위, `SPEC §5.N`을 기준으로 작성한다.

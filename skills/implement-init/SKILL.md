@@ -24,6 +24,18 @@ description: "Create or update a documented feature implement.md with executable
   공개 규약, 채택된 설계 결정이 바뀌면 질문으로 해소한다.
 - 미확정 요구사항이나 미채택 설계 결정을 임의로 Task 범위나 검증 조건으로 변환하지 않는다.
 
+## analyzer 호출 계약
+- main은 이름 있는 읽기 전용 custom agent `analyzer`에게 `implement.md` 후보 본문 작성을 맡긴다.
+- 호출 입력에는 feature dir, `README.md`, `spec.md`, `analyze.md` 경로, 존재하는 경우 `implement.md` 경로,
+  적용되는 프로젝트 `AGENTS.md`의 정확한 경로, `skills/implement-init/SKILL.md`의 정확한 경로,
+  작업 범위와 산출물 계약을 포함한다.
+- analyzer는 전체 `implement.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환하며 파일을 수정하지 않는다.
+- main은 이 skill의 완료 기준에 따라 후보를 검토하되, Task 의미를 바꾸지 않는 기계적 형식·링크·확정 고정값만 직접 수정한다.
+- Task 경계, 순서, 목적, 접근, 검증 또는 참조 매핑이 바뀌거나 사용자 결정을 반영해야 하면 analyzer를 다시 호출해
+  전체 후보 본문을 받아야 하며 main은 본문을 실질적으로 재작성하지 않는다.
+- analyzer 호출 실패 시 `AGENTS.md`의 무대체 원칙을 따르며, main이나 다른 agent로 대체하지 않는다.
+- 후보 파일 적용과 상태 전환은 main이 담당한다.
+
 ## 작성 규칙
 - Task는 외부 관찰 결과, 실패 의미와 검증 기준이 같은 하나의 책임 단위로 묶고, 한 번의 `verify`로 승인 또는 거절할 수 있게 나눈다.
   코드 조각 단위로 쪼개지 않는다.
