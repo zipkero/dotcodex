@@ -12,10 +12,9 @@ description: "Create or update a documented feature implement.md with executable
 - 설계 판단은 `analyze.md`에 두고, `implement.md`에는 확정된 설계를 실행 가능한 Task로 나눈 내용만 둔다.
 
 ## 전제 조건
-- 기능 문서 디렉터리에 `spec.md`, `analyze.md`, `README.md`가 있어야 한다.
-- 기능 상태판의 `SPEC`과 `ANALYZE`가 모두 `[x]`여야 한다.
-- 문서가 없거나 `ANALYZE`가 `[ ]`이면 `analyze-init`이 필요하다고 보고한 뒤 중단한다.
-  파일 존재만으로 승인을 추정하지 않는다.
+- `README.md` 또는 `spec.md`가 없거나 기능 상태판의 `SPEC`이 `[ ]`이면 `spec-init`이 필요하다고 보고하고 중단한다.
+- `analyze.md`가 없거나 기능 상태판의 `ANALYZE`가 `[ ]`이면 `analyze-init`이 필요하다고 보고하고 중단한다.
+- 파일 존재만으로 승인을 추정하지 않는다.
 - 기존 `implement.md`가 있으면 체크박스 상태가 사라질 수 있음을 알린다.
   현재 요청이 재작성이나 초기화를 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - `analyze.md`의 `Decision Points`에 채택안이 없는 미해결 결정이 있으면 사용자에게 알리고 중단한다.
@@ -25,7 +24,7 @@ description: "Create or update a documented feature implement.md with executable
 - 미확정 요구사항이나 미채택 설계 결정을 임의로 Task 범위나 검증 조건으로 변환하지 않는다.
 
 ## analyzer 호출 계약
-- main은 `AGENTS.md`의 agent 역할·권한·실패 원칙에 따라 이름 있는 custom agent `analyzer`에게 `implement.md` 후보 본문 작성을 맡긴다.
+- main은 이름 있는 custom agent `analyzer`에게 `implement.md` 후보 본문 작성을 맡긴다.
 - 호출 입력에는 feature dir, `README.md`, `spec.md`, `analyze.md` 경로, 존재하는 경우 `implement.md` 경로,
   적용되는 프로젝트 `AGENTS.md`의 정확한 경로, `skills/implement-init/SKILL.md`의 정확한 경로,
   작업 범위와 산출물 계약을 포함한다.
@@ -37,8 +36,7 @@ description: "Create or update a documented feature implement.md with executable
 
 ## 작성 규칙
 - Task는 외부 관찰 결과, 실패 의미와 검증 기준이 같은 하나의 책임 단위로 묶고, 한 번의 `verify`로 승인 또는 거절할 수 있게 나눈다.
-  코드 조각 단위로 쪼개지 않는다.
-- 한 외부 동작을 완성하는 데 필요한 기반 변경·연결 작업은 같은 Task에 둔다.
+  한 외부 동작에 필요한 기반 변경·연결 작업은 같은 Task에 두고 코드 조각 단위로 쪼개지 않는다.
 - 자체 동작 검증 없이 빌드·정적검사·기존 검증 유지만 확인하는 작업은 독립 Task로 만들지 않는다.
 - Task ID는 `task-001`처럼 3자리 zero-padding을 사용하고, 신규 문서는 `task-001`부터 순서대로 작성한다.
 - 기존 문서 갱신 시 Task ID는 재번호 매기지 않는다. 새 Task는 가장 큰 ID의 다음 번호를 사용하고, 삭제/병합된 ID는 재사용하지 않는다.
@@ -56,9 +54,8 @@ description: "Create or update a documented feature implement.md with executable
 - `검증 조건`은 `결과`와 `확인`으로 작성한다. `결과`에는 Task 완료 후 성립해야 하는 동작, 출력, 파일 내용, 설정 상태를 적는다.
   `확인`에는 테스트, 빌드, lint, diff, 수동 확인 등 해당 결과를 검증하는 방법을 적는다.
 - `spec.md`의 `제약`에 사용자가 지정한 검증 근거가 있으면 관련 Task의 `확인`에 빠짐없이 반영한다.
-- 새로 작성하거나 다시 작성하는 모든 Task의 체크박스는 `[ ]`로 둔다.
-- 새로 작성하거나 다시 작성하는 `implement.md`의 `Plan status`는 `ready`로 둔다.
-- `implement.md`는 구현자가 목적, 접근, 검증 방법을 바로 실행할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
+- 새로 작성하거나 다시 작성하는 `implement.md`는 모든 Task 체크박스를 `[ ]`, `Plan status`를 `ready`로 둔다.
+- `implement.md`는 구현자가 목적, 접근, 검증 방법을 바로 실행할 수 있게 쓴다.
 
 ## 테스트 Task 기준
 - 회귀 테스트는 보통 구현 Task의 `확인` 필드에 둔다.

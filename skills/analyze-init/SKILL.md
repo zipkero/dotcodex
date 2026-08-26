@@ -20,7 +20,7 @@ description: "Create or update a documented feature analyze.md from spec.md for 
   현재 요청이 `implement.md`의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
 
 ## analyzer 호출 계약
-- main은 `AGENTS.md`의 agent 역할·권한·실패 원칙에 따라 이름 있는 custom agent `analyzer`에게 `analyze.md` 후보 본문 작성을 맡긴다.
+- main은 이름 있는 custom agent `analyzer`에게 `analyze.md` 후보 본문 작성을 맡긴다.
 - 호출 입력에는 feature dir, `README.md`와 `spec.md` 경로, 존재하는 경우 `analyze.md`와 `implement.md` 경로,
   적용되는 프로젝트 `AGENTS.md`의 정확한 경로, 코드 조사 출발점, `skills/analyze-init/SKILL.md`의 정확한 경로,
   작업 범위와 산출물 계약을 포함한다.
@@ -35,7 +35,6 @@ description: "Create or update a documented feature analyze.md from spec.md for 
 - `analyze.md`는 `spec.md`의 범위, 목표, 제약, 제외 범위, `SPEC §5.N`을 기준으로 작성한다.
 - `analyze.md`는 새 대화에서 이전 대화 맥락 없이 읽어도 구현 체크리스트를 만들 수 있게 작성한다.
   `spec.md`와 `analyze.md`만으로 구조, 흐름, 경계, 설계 결정을 판단할 수 있어야 한다.
-- `analyze.md`는 특정 구현 단계가 아니라 `SPEC §5.N`을 달성하기 위한 구조, 흐름, 경계, 설계 결정을 다룬다.
 - `spec.md`의 `입력 맥락`은 조사 출발점으로 사용한다.
 - `analyze.md`를 만들기 전, spec 범위나 완료 조건을 바꾸는 판단은 질문으로 해소한다.
 - spec 범위 안의 구조, 데이터 흐름, 인터페이스, 저장 경계와 실패 처리 위치에 관한 주요 결정은 `Decision Points`에
@@ -53,7 +52,7 @@ description: "Create or update a documented feature analyze.md from spec.md for 
 - 불필요한 리팩터링, 범위 외 개선, `spec.md`에 없는 요구사항은 설계 결정이나 구현 전제로 확정하지 않는다.
 - 일반 보안, 성능, 컴플라이언스, 호환성 우려는 spec, 코드, 명령 결과에서 확인된 경우에만 적는다.
   확인되지 않은 일반 체크리스트나 가설적 실패 모드를 독립 섹션으로 만들지 않는다.
-- `analyze.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓰고, 용어는 `AGENTS.md`의 문서 용어 선택을 따른다.
+- `analyze.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓴다.
 
 ## analyze.md 형식
 ```markdown

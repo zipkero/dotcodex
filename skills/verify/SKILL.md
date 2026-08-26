@@ -32,7 +32,7 @@ description: "Verify a documented Task or per-request implementation against its
    5. 후보가 여러 개이거나 범위가 불확실하면 후보와 각 근거를 제시해 사용자에게 확인하며, 확인 전에는 verifier를 호출하거나 판정하지 않는다.
 
 ## verifier agent 사용 기준
-- 이름 있는 custom agent `verifier`에게 이 skill을 기준으로 독립 후보 판단을 맡긴다.
+- 아래 기준에 따라 이름 있는 custom agent `verifier`에게 이 skill을 기준으로 독립 후보 판단을 맡긴다.
 - verifier 호출에는 검증 대상과 변경 범위, 선행 문서, 적용되는 프로젝트 `AGENTS.md`, `docs/languages.md`와 해당 언어 문서의 정확한 경로,
   실행 근거 위치를 포함하고, verifier가 해당 지침 파일을 직접 읽어 적용하도록 명시한다.
 - 변경이 여러 파일에 걸치고 동작, 상태, 외부 I/O, 동시성, 경계 중 하나 이상에 영향을 주면 verifier agent를 사용한다.
