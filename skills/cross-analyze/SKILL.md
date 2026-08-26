@@ -18,9 +18,8 @@ description: "Run an explicitly requested read-only cross-analysis by sending th
   요청한 전체 호출의 성공 또는 실패가 확정된 뒤 결과를 종합한다.
 
 ## 위임
-- 사용자가 이 skill을 명시적으로 선택하면 아래 `default` agent 독립 분석 구성이 `AGENTS.md`의 일반 `explorer` 라우팅보다 우선한다.
-- built-in `default` agent를 사용하고 `fork_turns = "none"`으로 호출한다.
-- 모델과 추론 수준은 따로 재정의하지 않고 부모 설정을 상속한다.
+- built-in `default` agent를 사용하고, 호출마다 `model = "gpt-5.6-sol"`, `reasoning_effort = "high"`,
+  `fork_turns = "none"`을 명시한다.
 - 모든 agent에 문구까지 같은 자체 완결적 프롬프트를 전달한다. 프롬프트에는 다음 내용을 포함한다.
   - 답해야 할 질문과 필요한 하위 질문
   - 알고 있는 핵심 파일·심볼의 절대 경로

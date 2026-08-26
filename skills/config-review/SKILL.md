@@ -1,6 +1,6 @@
 ---
 name: config-review
-description: "Audit a specific Codex configuration file or the full global configuration for role sufficiency, responsibility boundaries, consistency, ownership, and trimming opportunities; not for simple configuration lookups."
+description: "Audit a specific Codex configuration file or global configuration for role sufficiency and boundaries, consistency, ownership, and trimming opportunities; not for simple lookups."
 ---
 
 # Config Review

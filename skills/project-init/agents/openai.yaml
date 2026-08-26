@@ -1,4 +1,4 @@
 interface:
   display_name: "프로젝트 문서 초기화"
   short_description: "일반적인 README와 프로젝트 계획 기준 문서 구성"
-  default_prompt: "$project-init으로 일반적인 README와 후속 작업의 기준이 될 ROADMAP·상세 문서를 구성해 주세요."
+  default_prompt: "$project-init으로 README.md, ROADMAP.md와 필요한 프로젝트 기준 문서를 구성해 주세요."

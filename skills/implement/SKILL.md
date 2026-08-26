@@ -6,8 +6,7 @@ description: "Execute one documented Task or a small per-request code change wit
 # Implement
 
 ## 목적
-- `Phased` 작업에서는 `implement.md`의 Task 하나를 최소 범위로 구현한다.
-- `Per-Request` 작업에서는 한 번의 제한된 변경과 검증으로 완료할 수 있는 요청을 문서 흐름 없이 처리한다.
+- 승인된 단일 `Phased` Task 또는 범위가 확정된 작은 `Per-Request` 변경을 구현한다.
 
 ## 컨텍스트 로딩
 1. `Phased` 작업으로 진입하는 경우:
@@ -52,8 +51,8 @@ description: "Execute one documented Task or a small per-request code change wit
 
 ## 구현 규칙
 - 프로젝트·언어 관례와 `범위와 설계 변경` 기준을 따르며, 요청 밖 추상화와 리팩터링은 별도 요청 후보로 보고한다.
-- 새로 만들거나 바꾸는 이름은 현재 역할과 책임을 기준으로 붙이고, 같은 개념을 가리키는 타입, 필드, 메서드와 테스트 설명은
-  일관되게 표현한다. 외부 스키마·프로토콜·사용자 입력의 이름은 경계에서 보존하고 내부 이름은 도메인 역할에 맞게 붙인다.
+- 외부 스키마·프로토콜·사용자 입력의 이름은 경계에서 보존하고 내부 이름은 도메인 역할에 맞게 붙이며,
+  같은 개념을 가리키는 타입, 필드, 메서드와 테스트 설명은 일관되게 표현한다.
 - 파일 수정 전 어떤 변경을 할지 짧게 설명한다.
 - Phased 작업은 `analyze.md`의 확정된 설계와 대상 Task 단위로 구현한다.
   Task가 독립적으로 검증 가능한 동작 단위가 아니면 재분해 필요성을 보고하고, 여러 Task 또는 전체 구현 요청은 `implement-loop`로 라우팅한다.
@@ -80,7 +79,6 @@ description: "Execute one documented Task or a small per-request code change wit
   코드가 그렇게 된 경위나 변경 이력은 적지 않는다.
 - 코드를 고치면 그 자리에 있던 주석이 아직 맞는지 확인한다.
   어긋나면 고치거나 지우고, 새로 더할 때는 위 기준을 따른다.
-- 요청 범위 밖의 주석은 수정하지 않고 필요한 경우 완료 보고에만 남긴다.
 
 ## 완료 보고
 - main은 worker의 반환을 검토하고 구현 결과, 변경 파일, 실행한 검증, 남은 위험과 범위 밖 발견을 보고한다.
@@ -97,4 +95,3 @@ description: "Execute one documented Task or a small per-request code change wit
   - `Residual risk`: 실행하지 못한 검증이나 남은 위험. 없으면 `없음`
   - `Out-of-scope findings`: 요청 범위 밖에서 확인해 수정하지 않은 문제나 보류한 작업. 없으면 없음
 - 단일 Task 구현 결과에는 승인 검증이 남았음을 알린다.
-- 선택된 Phased 작업의 여러 Task 또는 전체 구현은 `implement-loop`에 따라 각 Task의 `verify`와 상태 전환까지 이어서 진행한다.

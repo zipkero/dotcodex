@@ -25,15 +25,14 @@ description: "Create or update a documented feature implement.md with executable
 - 미확정 요구사항이나 미채택 설계 결정을 임의로 Task 범위나 검증 조건으로 변환하지 않는다.
 
 ## analyzer 호출 계약
-- main은 이름 있는 읽기 전용 custom agent `analyzer`에게 `implement.md` 후보 본문 작성을 맡긴다.
+- main은 `AGENTS.md`의 agent 역할·권한·실패 원칙에 따라 이름 있는 custom agent `analyzer`에게 `implement.md` 후보 본문 작성을 맡긴다.
 - 호출 입력에는 feature dir, `README.md`, `spec.md`, `analyze.md` 경로, 존재하는 경우 `implement.md` 경로,
   적용되는 프로젝트 `AGENTS.md`의 정확한 경로, `skills/implement-init/SKILL.md`의 정확한 경로,
   작업 범위와 산출물 계약을 포함한다.
-- analyzer는 전체 `implement.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환하며 파일을 수정하지 않는다.
+- analyzer는 전체 `implement.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환한다.
 - main은 이 skill의 완료 기준에 따라 후보를 검토하되, Task 의미를 바꾸지 않는 기계적 형식·링크·확정 고정값만 직접 수정한다.
 - Task 경계, 순서, 목적, 접근, 검증 또는 참조 매핑이 바뀌거나 사용자 결정을 반영해야 하면 analyzer를 다시 호출해
   전체 후보 본문을 받아야 하며 main은 본문을 실질적으로 재작성하지 않는다.
-- analyzer 호출 실패 시 `AGENTS.md`의 무대체 원칙을 따르며, main이나 다른 agent로 대체하지 않는다.
 - 후보 파일 적용과 상태 전환은 main이 담당한다.
 
 ## 작성 규칙
@@ -44,9 +43,8 @@ description: "Create or update a documented feature implement.md with executable
 - Task ID는 `task-001`처럼 3자리 zero-padding을 사용하고, 신규 문서는 `task-001`부터 순서대로 작성한다.
 - 기존 문서 갱신 시 Task ID는 재번호 매기지 않는다. 새 Task는 가장 큰 ID의 다음 번호를 사용하고, 삭제/병합된 ID는 재사용하지 않는다.
 - 의존성 순서는 `implement.md`의 항목 위치로 표현한다. ID 숫자를 순서 의미로 사용하거나 순서 변경 때문에 재번호하지 않는다.
-- 각 항목은 최소 하나의 적용 중인 `SPEC §5.N`에 매핑한다.
+- 각 항목은 최소 하나의 적용 중인 `SPEC §5.N`에 매핑하고, 전체 Task 집합은 적용 중인 모든 `SPEC §5.N`을 빠짐없이 커버해야 한다.
 - `ANALYZE §X.Y` 참조는 해당 Task가 따르는 구조나 설계 결정이 있을 때만 둔다.
-- `implement.md`의 전체 Task 집합은 적용 중인 모든 `SPEC §5.N`을 빠짐없이 커버해야 한다.
 - 적용 중인 `SPEC §5.N`을 Task로 확정할 수 없으면 해당 조건, 이유와 구현 계획에 미치는 영향을 보고하고 `implement.md`를 확정하지 않는다.
   요구사항 변경이 필요하면 삭제·철회·보류 선택을 재정의하지 않고 `spec-init`으로 반환한다.
 - 작성 시 각 항목의 기본 필드는 목적, 접근, 검증 조건, 참조만 둔다.

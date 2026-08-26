@@ -11,13 +11,11 @@ description: "Create or restructure project README.md, ROADMAP.md, and needed pr
 - ROADMAP의 책임을 넘는 확정된 사용자 관점 정보와 기술 설계는 필요한 경우에만
   `docs/product.md`와 `docs/design.md`에 보존한다.
 - 후속 기능 작업이 ROADMAP과 관련 `docs/**`를 기준 입력으로 사용하도록 문서 관계를 구성한다.
-- 내용 없는 선택 문서와 기능별 문서는 만들지 않는다.
 
 ## 범위 판단
 - 새 프로젝트의 최초 문서 작성, 루트 README·ROADMAP 초기화 또는 프로젝트 수준 문서 재구성에 사용한다.
 - README 문구만 고치는 작고 명확한 변경은 Per-Request로 처리할 수 있다.
-- 특정 기능의 요구사항 구체화, 공개 규약 변경 또는 여러 Task가 필요한 구현은 `spec-init`부터 시작한다.
-- 기존 ROADMAP의 특정 마일스톤만 기능으로 구체화하려는 요청이면 `spec-init`이 필요하다고 보고한다.
+- 특정 기능의 요구사항을 구체화하거나 기존 ROADMAP 마일스톤을 기능으로 전환하는 요청이면 `spec-init`이 필요하다고 보고한다.
 
 ## 대상 프로젝트 루트
 - 프로젝트 루트는 `AGENTS.md`의 `프로젝트 루트` 기준으로 식별한다.

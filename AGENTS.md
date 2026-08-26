@@ -39,8 +39,9 @@
 - subagent에는 이전 대화 없이 실행 가능한 입력을 전달하고, `fork_turns`는 `"none"` 또는 필요한 최소 최근 turn만 사용한다.
 - 위 위임 기준을 충족하는 구체적이고 범위가 명확한 코드베이스 조사는 built-in `explorer`에 맡기고,
   설계 확정·파일 수정·검증 판단은 맡기지 않는다.
-- `explorer` 호출에는 `model = "gpt-5.6-terra"`, `reasoning_effort = "max"`를 명시하며,
+- `explorer` 호출에는 `model = "gpt-5.6-terra"`, `reasoning_effort = "high"`를 명시하며,
   조사 질문·범위·필요한 근거·반환 형식을 입력하고 확인 사실과 근거 위치를 반환받는다.
+- 사용자가 `cross-analyze`를 명시적으로 선택한 경우 해당 skill의 독립 분석 호출 계약이 위 `explorer` 라우팅보다 우선한다.
 - 이름은 현재 역할과 책임을 기준으로 붙이고 같은 개념은 같은 표현으로 쓴다.
 - 코드 파일을 수정하거나 검토할 때는 `docs/languages.md`의 공통 기준을 적용하고,
   그 문서가 가리키는 해당 언어 기준도 직접 읽어 적용한다.

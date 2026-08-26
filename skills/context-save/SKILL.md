@@ -9,8 +9,7 @@ description: "Save or prune project-root CONTEXT.md handoff state when pausing o
 
 - 현재 작업의 위치를 다음 Codex 세션이 대화 기록 없이 복원할 수 있게 저장한다.
 - 프로젝트 루트의 `CONTEXT.md`만 인수인계 진입점으로 사용한다.
-- 확정된 설계의 원문은 기존 프로젝트 문서에 두고 `CONTEXT.md`에는 현재 초점과 링크만 남긴다.
-- `CONTEXT.md`를 결정 이력이 아닌 현재 상태만 남기는 인수인계 기록으로 유지한다.
+- 확정된 설계 원문은 기존 프로젝트 문서에 두고, `CONTEXT.md`에는 결정 이력 대신 현재 초점·상태와 링크만 남긴다.
 
 ## 적용 경계
 

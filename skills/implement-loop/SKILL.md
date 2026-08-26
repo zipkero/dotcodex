@@ -25,7 +25,7 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 2. Task의 `확인`이 테스트, 빌드, lint, 명령 출력이나 명확한 diff처럼 실행 가능한 근거를 가리키는지 확인한다.
 3. Task 하나를 `implement` 기준으로 구현한다. worker가 `blocked`를 반환하면 문서와 Task 상태를 유지하고 즉시 중단하며,
    `completed`를 반환한 경우에만 `verify`를 실행한다.
-4. `verify`가 `approved`이면 상태를 전환하고 해당 Task의 `시도`, `최근 reject` 기록을 제거한 뒤 다음 `[ ]` Task로 진행한다.
+4. `verify`가 `approved`이면 main이 `verify`의 상태 전환 규칙을 적용하고 해당 Task의 `시도`, `최근 reject` 기록을 제거한 뒤 다음 `[ ]` Task로 진행한다.
 5. `rejected`이면 반환된 사유와 근거를 기록하고 재시도 또는 정지를 판단한다.
 
 ## 재시도
@@ -53,10 +53,7 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 
 ## 금지
 
-- 통과를 위해 `spec.md`, `analyze.md`, Task 검증 조건을 약화하거나 넓히지 않는다.
-- 테스트 assertion을 약화하거나 실패 사례를 삭제하지 않는다.
 - 막힌 Task를 건너뛰거나 Task 순서를 바꾸지 않는다.
-- `approved` 전에 Task를 `[x]`로 바꾸지 않는다.
 
 ## 완료 보고
 

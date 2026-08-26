@@ -20,15 +20,14 @@ description: "Create or update a documented feature analyze.md from spec.md for 
   현재 요청이 `implement.md`의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
 
 ## analyzer 호출 계약
-- main은 이름 있는 읽기 전용 custom agent `analyzer`에게 `analyze.md` 후보 본문 작성을 맡긴다.
+- main은 `AGENTS.md`의 agent 역할·권한·실패 원칙에 따라 이름 있는 custom agent `analyzer`에게 `analyze.md` 후보 본문 작성을 맡긴다.
 - 호출 입력에는 feature dir, `README.md`와 `spec.md` 경로, 존재하는 경우 `analyze.md`와 `implement.md` 경로,
   적용되는 프로젝트 `AGENTS.md`의 정확한 경로, 코드 조사 출발점, `skills/analyze-init/SKILL.md`의 정확한 경로,
   작업 범위와 산출물 계약을 포함한다.
-- analyzer는 전체 `analyze.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환하며 파일을 수정하지 않는다.
+- analyzer는 전체 `analyze.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환한다.
 - main은 이 skill의 완료 기준에 따라 후보를 검토하되, 설계 의미를 바꾸지 않는 기계적 형식·링크·확정 고정값만 직접 수정한다.
 - 구조, 데이터 흐름, 인터페이스, 영향, `Decision Points`의 의미가 바뀌거나 사용자 결정을 반영해야 하면 analyzer를 다시 호출해
   전체 후보 본문을 받아야 하며 main은 본문을 실질적으로 재작성하지 않는다.
-- analyzer 호출 실패 시 `AGENTS.md`의 무대체 원칙을 따르며, main이나 다른 agent로 대체하지 않는다.
 - 후보 파일 적용, 상태 전환과 `README.md` 갱신은 main이 담당한다.
 
 ## 작성 규칙
@@ -37,9 +36,7 @@ description: "Create or update a documented feature analyze.md from spec.md for 
 - `analyze.md`는 새 대화에서 이전 대화 맥락 없이 읽어도 구현 체크리스트를 만들 수 있게 작성한다.
   `spec.md`와 `analyze.md`만으로 구조, 흐름, 경계, 설계 결정을 판단할 수 있어야 한다.
 - `analyze.md`는 특정 구현 단계가 아니라 `SPEC §5.N`을 달성하기 위한 구조, 흐름, 경계, 설계 결정을 다룬다.
-- 기존 코드, 문서, 명령 결과처럼 확인한 근거를 기준으로 작성한다.
-- 확인하지 않은 구조나 동작은 추정으로 표시한다.
-- `spec.md`의 `입력 맥락`은 조사 출발점으로 사용하고, 조사 결과는 `근거`에 확인 사실과 추정으로 구분해 기록한다.
+- `spec.md`의 `입력 맥락`은 조사 출발점으로 사용한다.
 - `analyze.md`를 만들기 전, spec 범위나 완료 조건을 바꾸는 판단은 질문으로 해소한다.
 - spec 범위 안의 구조, 데이터 흐름, 인터페이스, 저장 경계와 실패 처리 위치에 관한 주요 결정은 `Decision Points`에
   채택안, 확인 근거, 배제한 주요 대안과 장단점, 영향 범위를 기록한다.
@@ -47,9 +44,8 @@ description: "Create or update a documented feature analyze.md from spec.md for 
   선택지, 장단점과 권장안을 제시해 문서 작성 전에 사용자 판단을 받는다.
 - 외부 의미를 바꾸지 않더라도 구현 체크리스트 작성에 필요한 내부 설계 결정이 해결되지 않았으면 `analyze.md`를 확정하지 않고
   선택지, 장단점과 권장안을 제시해 사용자 판단을 받는다.
-- `SPEC §5.N` 본문을 복사해 반복하지 말고, 해당 설계가 어떤 완료 조건에 기여하는지 본문에 인라인으로 참조한다.
-- 독립 `SPEC 추적` 매트릭스, 독립 `리스크` 섹션, 독립 `검증 관점` 섹션, `열린 질문` 섹션은 만들지 않는다.
-  SPEC 연결은 관련 설계 본문에 `SPEC §5.N`으로 인라인 표기하고, 설계를 막는 리스크는 `Decision Points`에 선택지와 함께 둔다.
+- `SPEC §5.N` 본문을 복사하거나 독립 `SPEC 추적` 매트릭스를 만들지 않고, 관련 설계 본문에 기여하는 완료 조건을 인라인으로 참조한다.
+- 독립 `리스크`, `검증 관점`, `열린 질문` 섹션은 만들지 않고, 설계를 막는 리스크는 `Decision Points`에 선택지와 함께 둔다.
 - 구현 Task에 필요한 API, 상태, 데이터 흐름, 저장 경계, 외부 연동, 설정은 본문 섹션이나 `Decision Points`에 확정한다.
 - 구조는 변경을 어디에 둘지뿐 아니라 책임 경계, 데이터 소유권, 호출 방향, 실패 처리 위치가 일관되는지 기준으로 판단한다.
 - 기존 구조를 따르는 경우에도 요구사항의 정확성, 확장 범위, 검증 가능성을 해치면 대안을 비교해 `Decision Points`에 남긴다.
