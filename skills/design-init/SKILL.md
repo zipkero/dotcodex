@@ -1,30 +1,30 @@
 ---
-name: analyze-init
-description: "Create or update a documented feature analyze.md from spec.md for implementation-ready design."
+name: design-init
+description: "Create or update a documented feature design.md from spec.md for implementation-ready design decisions."
 ---
 
-# Analyze Init
+# Design Init
 
 ## 목적
-- `spec.md`를 근거로 분석과 설계 기준을 문서화한다.
-- `analyze.md`는 구조, 데이터 흐름, 인터페이스, 영향 범위, 설계 결정의 기준 문서이다.
-- `analyze.md`는 정적 설계 기준 문서이며 진행 상태를 추적하지 않는다.
-- `analyze.md`는 요구사항을 추가·누락·약화하지 않으며, 새 요구사항은 먼저 `spec.md`에 반영한다.
+- `spec.md`를 근거로 설계 기준을 문서화한다.
+- `design.md`는 구조, 데이터 흐름, 인터페이스, 영향 범위, 설계 결정의 기준 문서이다.
+- `design.md`는 정적 설계 기준 문서이며 진행 상태를 추적하지 않는다.
+- `design.md`는 요구사항을 추가·누락·약화하지 않으며, 새 요구사항은 먼저 `spec.md`에 반영한다.
 - 구현 Task, 진행 상태, 구현 순서와 Task별 검증 조건은 `implement.md`가 소유한다.
 
 ## 전제 조건
 - 기능 문서 디렉터리에 `spec.md`와 `README.md`가 있어야 하며 상태판의 `SPEC`이 `[x]`여야 한다.
 - 문서가 없거나 `SPEC`이 `[ ]`이면 `spec-init`이 필요하다고 보고하고 중단한다.
-- 기존 `analyze.md`가 있고 현재 요청이 갱신이나 재작성을 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
+- 기존 `design.md`가 있고 현재 요청이 갱신이나 재작성을 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - 기존 `implement.md`가 있으면 하위 문서에 미치는 영향을 알린다.
   현재 요청이 `implement.md`의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
 
 ## analyzer 호출 계약
-- main은 이름 있는 custom agent `analyzer`에게 `analyze.md` 후보 본문 작성을 맡긴다.
-- 호출 입력에는 feature dir, `README.md`와 `spec.md` 경로, 존재하는 경우 `analyze.md`와 `implement.md` 경로,
-  적용되는 프로젝트 `AGENTS.md`의 정확한 경로, 코드 조사 출발점, `skills/analyze-init/SKILL.md`의 정확한 경로,
+- main은 이름 있는 custom agent `analyzer`에게 `design.md` 후보 본문 작성을 맡긴다.
+- 호출 입력에는 feature dir, `README.md`와 `spec.md` 경로, 존재하는 경우 `design.md`와 `implement.md` 경로,
+  적용되는 프로젝트 `AGENTS.md`의 정확한 경로, 코드 조사 출발점, `skills/design-init/SKILL.md`의 정확한 경로,
   작업 범위와 산출물 계약을 포함한다.
-- analyzer는 전체 `analyze.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환한다.
+- analyzer는 전체 `design.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환한다.
 - main은 이 skill의 완료 기준에 따라 후보를 검토하되, 설계 의미를 바꾸지 않는 기계적 형식·링크·확정 고정값만 직접 수정한다.
 - 구조, 데이터 흐름, 인터페이스, 영향, `Decision Points`의 의미가 바뀌거나 사용자 결정을 반영해야 하면 analyzer를 다시 호출해
   전체 후보 본문을 받아야 하며 main은 본문을 실질적으로 재작성하지 않는다.
@@ -32,16 +32,16 @@ description: "Create or update a documented feature analyze.md from spec.md for 
 
 ## 작성 규칙
 - 이 skill에서 설계, 충족, 인라인 연결과 완료 확인 대상으로 삼는 `SPEC §5.N`은 적용 중인 완료 조건만을 뜻한다.
-- `analyze.md`는 `spec.md`의 범위, 목표, 제약, 제외 범위, `SPEC §5.N`을 기준으로 작성한다.
-- `analyze.md`는 새 대화에서 이전 대화 맥락 없이 읽어도 구현 체크리스트를 만들 수 있게 작성한다.
-  `spec.md`와 `analyze.md`만으로 구조, 흐름, 경계, 설계 결정을 판단할 수 있어야 한다.
+- `design.md`는 `spec.md`의 범위, 목표, 제약, 제외 범위, `SPEC §5.N`을 기준으로 작성한다.
+- `design.md`는 새 대화에서 이전 대화 맥락 없이 읽어도 구현 체크리스트를 만들 수 있게 작성한다.
+  `spec.md`와 `design.md`만으로 구조, 흐름, 경계, 설계 결정을 판단할 수 있어야 한다.
 - `spec.md`의 `입력 맥락`은 조사 출발점으로 사용한다.
-- `analyze.md`를 만들기 전, spec 범위나 완료 조건을 바꾸는 판단은 질문으로 해소한다.
+- `design.md`를 만들기 전, spec 범위나 완료 조건을 바꾸는 판단은 질문으로 해소한다.
 - spec 범위 안의 구조, 데이터 흐름, 인터페이스, 저장 경계와 실패 처리 위치에 관한 주요 결정은 `Decision Points`에
   채택안, 확인 근거, 배제한 주요 대안과 장단점, 영향 범위를 기록한다.
 - 선택이 공개 규약, 저장 형식, 외부 연동 의미, 사용자 관찰 결과나 `SPEC §5.N` 충족 여부를 바꾸면
   선택지, 장단점과 권장안을 제시해 문서 작성 전에 사용자 판단을 받는다.
-- 외부 의미를 바꾸지 않더라도 구현 체크리스트 작성에 필요한 내부 설계 결정이 해결되지 않았으면 `analyze.md`를 확정하지 않고
+- 외부 의미를 바꾸지 않더라도 구현 체크리스트 작성에 필요한 내부 설계 결정이 해결되지 않았으면 `design.md`를 확정하지 않고
   선택지, 장단점과 권장안을 제시해 사용자 판단을 받는다.
 - `SPEC §5.N` 본문을 복사하거나 독립 `SPEC 추적` 매트릭스를 만들지 않고, 관련 설계 본문에 기여하는 완료 조건을 인라인으로 참조한다.
 - 독립 `리스크`, `검증 관점`, `열린 질문` 섹션은 만들지 않고, 설계를 막는 리스크는 `Decision Points`에 선택지와 함께 둔다.
@@ -52,11 +52,11 @@ description: "Create or update a documented feature analyze.md from spec.md for 
 - 불필요한 리팩터링, 범위 외 개선, `spec.md`에 없는 요구사항은 설계 결정이나 구현 전제로 확정하지 않는다.
 - 일반 보안, 성능, 컴플라이언스, 호환성 우려는 spec, 코드, 명령 결과에서 확인된 경우에만 적는다.
   확인되지 않은 일반 체크리스트나 가설적 실패 모드를 독립 섹션으로 만들지 않는다.
-- `analyze.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓴다.
+- `design.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓴다.
 
-## analyze.md 형식
+## design.md 형식
 ```markdown
-# <기능명> 분석
+# <기능명> 설계
 
 ## 근거
 
@@ -81,13 +81,13 @@ description: "Create or update a documented feature analyze.md from spec.md for 
   옵션, 장단점, 채택안, 근거와 함께 적는다. 결정할 사항이 없으면 `해당 없음`으로 적는다.
 
 ## 기능 README.md 갱신
-- `SPEC`과 `ANALYZE`는 `[x]`, `IMPLEMENT`는 `[ ]`로 둔다.
+- `SPEC`과 `DESIGN`은 `[x]`, `IMPLEMENT`는 `[ ]`로 둔다.
 - 기존 `implement.md`는 파일과 Task 내용·ID·순서를 보존하면서 모든 Task 체크박스를 `[ ]`로 바꾼다.
-- 새로 작성하면 `- <yyyy-MM-dd>: ANALYZE 작성`, 다시 작성하면
-  `- <yyyy-MM-dd>: ANALYZE 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
+- 새로 작성하면 `- <yyyy-MM-dd>: DESIGN 작성`, 다시 작성하면
+  `- <yyyy-MM-dd>: DESIGN 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
 
 ## 스킬 완료 조건
-- `analyze.md`가 spec과 직접 확인한 프로젝트 근거에 따라 생성 또는 갱신되어야 한다.
+- `design.md`가 spec과 직접 확인한 프로젝트 근거에 따라 생성 또는 갱신되어야 한다.
 - 관련 설계 본문에서 필요한 `SPEC §5.N` 참조가 확인되어야 한다.
 - 책임 경계, 데이터 소유권, 호출 방향, 실패 처리, 인터페이스와 영향 범위가 실제 코드·설정에 맞아야 한다.
 - 주요 Decision Point의 채택안, 근거와 배제한 주요 대안이 다음 단계에서 다시 설계하지 않아도 될 만큼 확정되어야 한다.

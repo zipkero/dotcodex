@@ -9,10 +9,10 @@ description: "Analyze code or changes without writing files when the requested o
 - 즉석 조사, 디버깅, 코드 이해를 대화 안에서 수행한다.
 - 설계·구조 요청에서는 구현 전에 선택지, 장단점, 추천안을 대화 안에서 정리한다.
 - 특정 diff, commit, branch나 파일 변경의 설명에서는 변경 전후 동작과 지켜야 할 조건을 실제 근거에 연결한다.
-- `analyze-init`과 다르다. 이 skill은 문서 단계가 아니며, `analyze.md`는 `analyze-init`이 작성한다.
+- `design-init`과 다르다. 이 skill은 독립 조사 도구이며, `design-init`은 `design.md`를 작성하는 `Phased` 설계 단계다.
 
 ## 컨텍스트 로딩
-- 사용자가 `features/<feature-dir>/` 또는 하위 파일을 지정하면 기능 범위로 보고, 질문에 필요한 `spec.md`, `analyze.md`, `implement.md`만 읽는다.
+- 사용자가 `features/<feature-dir>/` 또는 하위 파일을 지정하면 기능 범위로 보고, 질문에 필요한 `spec.md`, `design.md`, `implement.md`만 읽는다.
 - 사용자가 특정 파일, 심볼, 에러, 로그를 지정하면 그 대상과 필요한 주변 맥락을 읽는다.
 - 변경 설명 요청은 지정된 diff, commit, branch나 파일 범위와 관련 호출부·테스트를 확인한다.
 - 범위가 비어 있으면 대화 맥락에서 충분한 신호가 있을 때만 명시적 가정으로 진행한다.

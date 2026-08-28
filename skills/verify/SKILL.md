@@ -12,9 +12,9 @@ description: "Verify a documented Task or per-request implementation against its
 
 ## 컨텍스트 로딩
 1. `Phased` 작업:
-   - 기능 디렉터리에 `README.md`, `spec.md`, `analyze.md`, `implement.md`가 있고 기능 상태판의 `SPEC`과 `ANALYZE`가 모두 `[x]`여야 한다.
+   - 기능 디렉터리에 `README.md`, `spec.md`, `design.md`, `implement.md`가 있고 기능 상태판의 `SPEC`과 `DESIGN`이 모두 `[x]`여야 한다.
    - 사용자가 기능 또는 Task의 구현 결과 검증을 요청했거나 직전 구현 대상이 단일하게 식별되어야 한다.
-   - `implement.md`의 대상 Task와 참조된 `spec.md`, `analyze.md`를 읽는다.
+   - `implement.md`의 대상 Task와 참조된 `spec.md`, `design.md`를 읽는다.
    - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 검증한다.
    - 지정이 없으면 직전 구현 대상이 단일하게 식별될 때만 검증한다.
    - 대상 Task를 `[x]`로 가정했을 때 참조된 적용 중인 `SPEC §5.N`의 매핑 Task가 모두 `[x]`가 되는지 계산한다.
@@ -42,7 +42,7 @@ description: "Verify a documented Task or per-request implementation against its
 
 ## 판단 기준
 - `Phased` 작업에서는 대상 Task의 `검증 조건`을 기준으로 관련된 적용 중인 `SPEC §5.N`의 완료 조건·제약·제외 범위와
-  `analyze.md`의 설계 결정을 함께 확인한다.
+  `design.md`의 설계 결정을 함께 확인한다.
 - 명시적으로 변경하기로 한 범위를 제외하고 기존 동작과 적용되는 공개 규약·프로젝트·언어 관례를 유지해야 한다.
 - 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`은 매핑된 Task 전체의 변경을 합쳐 완료 조건 자체를 판단한다.
   하나라도 성립하지 않으면 `correctness`로 reject한다.
@@ -77,7 +77,7 @@ description: "Verify a documented Task or per-request implementation against its
 5. `rejected`인 경우 Issues:
    - Category: `quality` | `correctness` | `design/scope` | `evidence`
    - Repair stage: `quality`, `correctness`, `design/scope`일 때 구현 수정은 `implement`, Task 기준 수정은 `implement-init`,
-     설계 수정은 `analyze-init`, 승인된 요구사항 수정은 `spec-init` 중 가장 이른 수정 소유 단계
+     설계 수정은 `design-init`, 승인된 요구사항 수정은 `spec-init` 중 가장 이른 수정 소유 단계
    - Resolution: `evidence`일 때 `Repair stage` 대신 필요한 입력·환경·재검증 조건
    - Problem: 실제 근거가 있는 구체적 문제
 6. `approved`인 경우 Explanation: `Validation`을 반복하지 않고 결과를 1-2문장으로 요약하며, 남은 위험이 있을 때만 덧붙인다.
@@ -92,7 +92,7 @@ description: "Verify a documented Task or per-request implementation against its
 ## 상태 전환
 - 검증 단계는 먼저 `approved` 또는 `rejected` 판단과 근거를 확정한다.
 - `Phased` 상태 전환은 적용 중인 `SPEC §5.N`과 그 매핑 Task만으로 계산한다.
-- `approved`이면 현재 승인된 `spec.md`와 `analyze.md` 기준으로 대상 Task만 `[x]`로 바꾼다.
+- `approved`이면 현재 승인된 `spec.md`와 `design.md` 기준으로 대상 Task만 `[x]`로 바꾼다.
   적용 중인 모든 `SPEC §5.N`이 하나 이상의 Task에 매핑되고 각 매핑 Task가 승인됐을 때만 기능 `README.md`의 `IMPLEMENT`를 `[x]`로 바꾸고
   `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
 - `rejected`이면 대상 Task를 `[ ]`로 유지하고 앞서 승인된 Task는 보존한다.

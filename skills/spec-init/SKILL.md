@@ -51,7 +51,7 @@ description: >-
 - 같은 날짜의 기존 기능 디렉터리를 확인해 가장 큰 `nnn`의 다음 번호를 사용한다.
 - 같은 날짜의 같은 `<feature-name>` 디렉터리가 이미 있으면 새 번호를 만들지 않고 기존 디렉터리를 재사용한다.
 - 기존 `spec.md`가 있고 현재 요청이 재작성이나 초기화를 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
-- 기존 하위 문서(`analyze.md`, `implement.md`)가 있으면 `spec.md` 덮어쓰기가 하위 문서를 무효화할 수 있음을 알린다.
+- 기존 하위 문서(`design.md`, `implement.md`)가 있으면 `spec.md` 덮어쓰기가 하위 문서를 무효화할 수 있음을 알린다.
   현재 요청이 하위 문서의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
 - 기존 `README.md`의 문서 섹션과 `implement.md`의 Task 내용·ID·순서는 보존한다.
 - 질문으로 해소했거나 대화에서 확정된 요청은 대화에만 남기지 않는다. 목표는 `목표`, 조사 출발점은
@@ -60,7 +60,7 @@ description: >-
 - `spec.md`는 독자가 요구사항과 완료 기준을 바로 판단할 수 있게 쓴다.
 - `features/<feature-dir>/README.md`의 `개요`는 기능의 목적과 배경을 1-3문장으로 요약하고, 세부 요구사항이나
   설계 판단은 반복하지 않는다.
-- main은 `spec.md`를 다시 적용할 때 README의 `[x] SPEC`은 유지하고 `ANALYZE`, `IMPLEMENT`를 `[ ]`로 되돌린다.
+- main은 `spec.md`를 다시 적용할 때 README의 `[x] SPEC`은 유지하고 `DESIGN`, `IMPLEMENT`를 `[ ]`로 되돌린다.
   기존 `implement.md`는 Task 내용·ID·순서를 보존하면서 모든 Task 체크박스를 `[ ]`로 되돌린 뒤
   `- <yyyy-MM-dd>: SPEC 재작성으로 하위 승인 상태 초기화` 이력을 추가한다.
 
@@ -73,12 +73,12 @@ description: >-
 
 ## 상태
 - [x] SPEC
-- [ ] ANALYZE
+- [ ] DESIGN
 - [ ] IMPLEMENT
 
 ## 문서
 - [spec.md](./spec.md)
-- [analyze.md](./analyze.md) (ANALYZE 단계에서 생성)
+- [design.md](./design.md) (DESIGN 단계에서 생성)
 - [implement.md](./implement.md) (IMPLEMENT 단계에서 생성)
 
 ## 이력
@@ -112,7 +112,7 @@ description: >-
 - 더 이상 적용하지 않는 조건은 삭제하지 않고 `[철회]` 또는 `[보류]`로 표시해 이유를 적으며, 필요하면 `제외 범위`도 갱신한다.
   완료 조건의 번호 안정성, 추가, 철회와 보류는 `spec-init`이 소유한다.
 - `[철회]` 또는 `[보류]` 표시가 없는 조건을 `적용 중인 완료 조건`으로 정의한다.
-- 내부 실행 절차를 완료 조건으로 쓰지 않는다. 내부 설계와 구현 순서는 `analyze.md` 또는 `implement.md`로 분리한다.
+- 내부 실행 절차를 완료 조건으로 쓰지 않는다. 내부 설계와 구현 순서는 `design.md` 또는 `implement.md`로 분리한다.
 
 ## 스킬 완료 조건
 - `features/<feature-dir>/README.md`와 `spec.md`가 생성 또는 갱신되어야 한다.

@@ -42,7 +42,7 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 
 다음 중 하나면 남은 Task를 건드리지 않고 중단한다.
 
-- `spec.md`, `analyze.md`, Task 목적, 검증 조건이나 참조를 바꿔야 한다.
+- `spec.md`, `design.md`, Task 목적, 검증 조건이나 참조를 바꿔야 한다.
 - 완료 조건이 충돌하거나 현재 설계로 달성할 수 없다.
 - 실행 가능한 검증 근거 없이 수동 판단에만 의존한다.
 - Task가 독립적으로 검증 가능한 동작 단위가 아니어서 재분해가 필요하다.
