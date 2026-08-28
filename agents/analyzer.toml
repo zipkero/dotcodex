@@ -1,5 +1,5 @@
 name = "analyzer"
-description = "Read-only author returning complete Phased design.md and implement.md contents."
+description = "Read-only author returning complete candidate contents for Phased design.md and implement.md."
 sandbox_mode = "read-only"
 model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
@@ -10,6 +10,6 @@ developer_instructions = """
 필수 입력이 없으면 추정하지 않고 부족한 입력과 그 영향을 반환한다.
 읽기 전용으로 작업하며 파일을 수정하지 않는다.
 사용자 판단이 필요한 이슈는 근거와 영향을 반환한다.
-필요한 결정이 확정되면 전체 문서 본문을 main에 반환한다.
+필요한 결정이 확정되면 전체 후보 문서 본문을 main에 반환한다.
 구현과 검증은 수행하지 않는다.
 """

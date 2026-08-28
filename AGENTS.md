@@ -22,12 +22,12 @@
 - `design.md`는 `features/<feature-dir>/design.md`를 가리키며, 프로젝트 수준 설계 문서는 `docs/design.md`로 적는다.
 - 사용자 확인, 최종 승인·거절, Phased 문서 본문 적용, 상태 전환, Task 체크박스와 기능 상태 변경은 main이 수행한다.
   `rejected`이면 `verify` 분류에 따라 필요한 입력·환경을 확보하거나 가장 이른 수정 소유 단계로 돌아간다.
-- `design-init`·`implement-init` 본문은 이름 있는 읽기 전용 `analyzer`, 구현은 built-in `worker`, 독립 검증 후보 판단은 이름 있는 읽기 전용
+- `spec-init`은 main이 직접 수행하고, `design-init`·`implement-init` 본문은 이름 있는 읽기 전용 `analyzer`, 구현은 built-in `worker`, 독립 검증 후보 판단은 이름 있는 읽기 전용
   `verifier`에 맡긴다. 세부 호출·실패·산출물 계약은 해당 skill과 agent 설정을 따르며, `analyzer`·`verifier` 호출 실패는 다른 agent나 main으로 대체하지 않는다.
 - 여러 Task 또는 전체 구현은 `implement-loop`로 진행한다.
 - 특정 단계나 산출물만 요청하면 그 단계까지만 진행한다. 구현이나 전체 완료 요청은 결과에 필요한 단계를 순서대로 계속하고,
   결과를 바꾸는 미확정 판단이 없으면 단계 사이에 별도 진행 승인을 요청하지 않는다.
-- 단계별 절차와 완료 기준은 해당 `SKILL.md`를 따르며, 설계 판단은 `design.md`, 실행 계획은 `implement.md`에 둔다.
+- 단계별 절차와 완료 기준은 해당 `SKILL.md`를 따르며, 설계 판단은 `design.md`, 구현 체크리스트는 `implement.md`에 둔다.
 
 ## 프로젝트 루트
 - 사용자가 프로젝트 루트를 명시하면 그 경로를 사용한다. 파일이나 하위 경로만 지정하면 해당 경로를 조사 출발점으로 삼는다.

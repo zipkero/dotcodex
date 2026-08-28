@@ -12,7 +12,7 @@ description: "Save or prune project-root CONTEXT.md handoff state when pausing o
 
 ## 적용 경계
 
-- Phased 문서가 있으면 Task 상태, 요구사항과 구현 계획은 해당 문서를 기준으로 삼고,
+- Phased 문서가 있으면 Task 상태, 요구사항과 구현 체크리스트는 해당 문서를 기준으로 삼고,
   `CONTEXT.md`에는 체크리스트를 복제하지 않고 작업을 중단시킨 변경, 현재 논점, 이어서 볼 문서와 다음 작업만 기록한다.
 - Phased 문서가 없는 Per-Request 작업은 사용자 요청 범위, 실제 변경 파일과 실행한 검증 결과를 기준으로 기록한다.
 - 프로젝트 루트는 `AGENTS.md`의 `프로젝트 루트` 기준으로 식별한다.

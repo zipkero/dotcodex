@@ -71,7 +71,7 @@ description: "Execute one documented Task or a small per-request code change wit
 - main은 worker의 반환을 검토하고 구현 결과, 변경 파일, 실행한 검증, 남은 위험과 범위 밖 발견을 보고한다.
 - `Phased` 작업에서 실제 구현이 Task의 `접근`과 달라졌다면 차이의 성격, 관련 `SPEC §5.N` /
   `DESIGN §X.Y`, 문서 반영 여부와 그 근거를 보고한다.
-- `design.md`, Task의 `목적`, `검증 조건`, `참조`에 영향이 없는 구현 상세 차이만 `접근`에 반영한다.
+- `design.md`, Task의 `목적`, `검증 조건`, `참조`에 영향이 없는 구현 상세 차이만 main이 `접근`에 반영한다.
   그 밖의 차이는 문서를 바꾸지 않고 설계 문서나 구현 체크리스트 재작성이 필요하다고 보고한다.
 - worker는 다음 형식으로 반환한다.
   - `Status`: `completed` | `blocked`

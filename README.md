@@ -8,7 +8,7 @@
 - `AGENTS.md`: 모든 Codex 작업에 적용되는 전역 지침
 - `docs/**`: 전역 지침에서 참조하는 보조 기준 문서
 - `features/**`: 문서 우선 작업에서 생성되는 기능 문서
-- 추적 허용 목록에 포함된 `agents/*.toml`: 특정 역할의 custom subagent 정의
+- 추적 허용 목록에 포함된 `agents/*.toml`: 특정 역할의 custom agent 정의
 - 추적 허용 목록에 포함된 `skills/*/`: 특정 작업 유형에서만 로드되는 사용자 정의 skill
 - `.editorconfig`, `.gitattributes`: 텍스트 포맷 기준
 - `.gitignore`: 로컬 상태 파일을 제외하는 추적 허용 목록 규칙
@@ -49,8 +49,8 @@ Codex 제공 skill과 추적 허용 목록 밖의 로컬 skill은 위치와 관�
 custom agent 정의는 `agents/*.toml`에 둔다.
 현재 관리 중인 custom agent는 다음과 같다.
 
-- `agents/analyzer.toml`: `Phased` 작업의 `design.md`와 `implement.md` 완성 본문을 반환하는 읽기 전용 subagent 정의
-- `agents/verifier.toml`: 필요한 구현 `verify`에서 후보 판단을 반환하는 읽기 전용 검증 subagent 정의
+- `agents/analyzer.toml`: `Phased` 작업의 `design.md`와 `implement.md` 전체 후보 본문을 반환하는 읽기 전용 custom agent 정의
+- `agents/verifier.toml`: 필요한 구현 `verify`에서 후보 판단을 반환하는 읽기 전용 검증 custom agent 정의
 
 built-in `explorer` 호출 계약은 `AGENTS.md`, built-in `worker` 호출 계약은 `skills/implement/SKILL.md`가 소유한다.
 

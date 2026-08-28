@@ -13,7 +13,7 @@ description: "Restore saved Phased or Per-Request work by reading project-root C
 ## 적용 경계
 
 - `CONTEXT.md`와 관련 프로젝트 문서를 읽어 복원 결과를 보고하는 작업으로 한정한다.
-- Phased 문서가 있으면 Task 상태, 요구사항과 구현 계획은 해당 문서를 기준으로 복원한다.
+- Phased 문서가 있으면 Task 상태, 요구사항과 구현 체크리스트는 해당 문서를 기준으로 복원한다.
 - Phased 문서가 없는 Per-Request 맥락은 저장된 요청 범위와 현재 작업 트리를 기준으로 복원한다.
 - `CONTEXT.md`는 작업을 중단시킨 설계 변경, 현재 논점과 다음 작업을 보완한다.
 - `문서 반영 필요`에 기록된 확정 사항은 원본 문서보다 나중에 결정됐을 수 있으므로 단순 충돌로 폐기하지 않는다.

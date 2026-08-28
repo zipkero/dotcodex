@@ -7,7 +7,7 @@ description: "Create or update a documented feature implement.md with executable
 
 ## 목적
 - `design.md`를 실행 가능한 구현 체크리스트로 변환한다.
-- `implement.md`는 구현 단계의 진행 상황과 Task별 검증 조건을 소유하는 실행 체크리스트이다.
+- `implement.md`는 구현 단계의 진행 상황과 Task별 검증 조건을 소유하는 구현 체크리스트이다.
 - 설계 판단은 `design.md`에 두고, `implement.md`에는 확정된 설계를 실행 가능한 Task로 나눈 내용만 둔다.
 
 ## 전제 조건
@@ -42,7 +42,7 @@ description: "Create or update a documented feature implement.md with executable
 - 의존성 순서는 `implement.md`의 항목 위치로 표현한다. ID 숫자를 순서 의미로 사용하거나 순서 변경 때문에 재번호하지 않는다.
 - 각 항목은 최소 하나의 적용 중인 `SPEC §5.N`에 매핑하고, 전체 Task 집합은 적용 중인 모든 `SPEC §5.N`을 빠짐없이 커버해야 한다.
 - `DESIGN §X.Y` 참조는 해당 Task가 따르는 구조나 설계 결정이 있을 때만 둔다.
-- 적용 중인 `SPEC §5.N`을 Task로 확정할 수 없으면 해당 조건, 이유와 구현 계획에 미치는 영향을 보고하고 `implement.md`를 확정하지 않는다.
+- 적용 중인 `SPEC §5.N`을 Task로 확정할 수 없으면 해당 조건, 이유와 구현 체크리스트에 미치는 영향을 보고하고 `implement.md`를 확정하지 않는다.
   요구사항 변경이 필요하면 삭제·철회·보류 선택을 재정의하지 않고 `spec-init`으로 반환한다.
 - 작성 시 각 항목의 기본 필드는 목적, 접근, 검증 조건, 참조만 둔다.
   진행 중 재시도 상태는 `implement-loop` 기준에 따라 `시도`와 `최근 reject`만 임시로 추가할 수 있다.
