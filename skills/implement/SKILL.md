@@ -32,7 +32,7 @@ description: "Execute one documented Task or a small per-request code change wit
 - worker는 Phased Task 하나 또는 범위가 확정된 Per-Request 요청 하나를 구현하며, 사용자 확인이나 상위 문서 변경·범위 재결정이
   필요하면 작업 공간을 수정하지 않고 `blocked`와 근거를 반환한다.
 - worker는 공유 작업 공간의 다른 변경을 보존하고 이미 생긴 변경에 맞춰 작업하며, 관련 없는 변경을 되돌리지 않는다.
-- worker 호출에는 `model = "gpt-5.6-sol"`, `reasoning_effort = "high"`와
+- worker 호출에는 `model = "gpt-5.6-sol"`, `reasoning_effort = "medium"`과
   `fork_turns = "none"` 또는 필요한 최소 최근 turn 수인 양의 정수 문자열을 명시하며, `fork_turns`를 생략하거나 `"all"`을 사용하지 않는다.
 - 호출 메시지는 이전 대화 없이도 실행할 수 있도록 Task의 목적·접근·검증 조건, 수정 범위, 승인된 기준 문서,
   `skills/implement/SKILL.md`, 적용되는 프로젝트 `AGENTS.md`, `docs/languages.md`와 해당 언어 문서의 정확한 경로,
