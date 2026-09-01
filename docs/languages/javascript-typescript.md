@@ -20,4 +20,5 @@
 - 프로젝트 관례가 없고 JS/TS 코드 동작을 바꿨다면 `test`, `lint`, `typecheck` 계열 package script를 확인한다.
 
 ## 주석
-- JSDoc/TSDoc은 타입으로 드러나지 않는 내용에만 쓴다.
+- TypeScript의 JSDoc/TSDoc은 타입 선언을 되풀이하지 않고 이름·시그니처·타입으로 드러나지 않는 계약, 부수 효과, 예외와 제약을 설명할 때만 사용한다.
+- JavaScript에서 프로젝트가 JSDoc을 타입 검사나 편집기 지원에 사용하면 기존 타입 표기 관례를 따른다.
