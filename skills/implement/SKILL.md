@@ -29,8 +29,9 @@ description: "Execute one documented Task or a small per-request code change wit
 
 ## worker 호출 계약
 - main이 이 skill을 실행할 때 범위가 확정된 구현은 built-in `worker`에 맡기고 직접 구현하지 않는다.
-- worker는 Phased Task 하나 또는 범위가 확정된 Per-Request 요청 하나를 구현하며, 사용자 확인이나 상위 문서 변경·범위 재결정이
-  필요하면 작업 공간을 수정하지 않고 `blocked`와 근거를 반환한다.
+- worker는 Phased Task 하나 또는 범위가 확정된 Per-Request 요청 하나를 구현한다.
+  - 수정 전에 사용자 확인이나 상위 문서 변경·범위 재결정이 필요하다고 판단하면 작업 공간을 수정하지 않고 `blocked`와 근거를 반환한다.
+  - 진행 중 해당 필요를 발견하면 추가 수정을 중단하고, 이미 수행한 변경과 검증 및 `blocked` 근거를 반환한다.
 - worker는 공유 작업 공간의 다른 변경을 보존하고 이미 생긴 변경에 맞춰 작업하며, 관련 없는 변경을 되돌리지 않는다.
 - worker 호출에는 `model = "gpt-5.6-sol"`, `reasoning_effort = "medium"`과
   `fork_turns = "none"` 또는 필요한 최소 최근 turn 수인 양의 정수 문자열을 명시하며, `fork_turns`를 생략하거나 `"all"`을 사용하지 않는다.
@@ -44,7 +45,7 @@ description: "Execute one documented Task or a small per-request code change wit
 - 요청 또는 Task 범위 안의 구현 선택은 기존 코드 패턴과 승인된 `design.md`의 확정된 결정을 따른다.
 - 승인된 `design.md`에서 확정한 새 경계, 상태, 저장 위치, 인터페이스와 의존성 방향은 구현 전제이며 중단 사유가 아니다.
 - 구현이나 테스트 완료에 필요한 의존성, 인터페이스, 추상화, 공개 API, 경계, 상태 소유권, 의존성 방향이나 인접 리팩터링이
-  요청·Task·승인된 설계에 확정되지 않은 새 결정이면 파일 수정 전에 중단한다.
+  요청·Task·승인된 설계에 확정되지 않은 새 결정이면 해당 결정에 의존하는 파일 수정 전에 중단한다.
 - Task 밖에서 발견한 문제는 수정하지 않고 보고만 한다.
 - `Phased` 작업의 설계 변경은 `design.md` 갱신 필요 사항도 함께 보고한다.
 
@@ -76,7 +77,7 @@ description: "Execute one documented Task or a small per-request code change wit
 - worker는 다음 형식으로 반환한다.
   - `Status`: `completed` | `blocked`
   - `Target`: 구현한 Task 또는 Per-Request 요청
-  - `Changed files`: 실제 변경 파일. `blocked`이면 `없음`
+  - `Changed files`: 상태와 관계없이 실제 변경 파일. 실제 변경이 없으면 `없음`
   - `Validation`: 실행한 명령과 결과
   - `Blocker`: 필요한 설계·범위 결정과 근거. 없으면 `없음`
   - `Residual risk`: 실행하지 못한 검증이나 남은 위험. 없으면 `없음`
