@@ -70,7 +70,7 @@ description: "Create or update a documented feature implement.md with executable
 
 - [ ] task-001: <작업 항목>
   - 목적: <이 Task가 만들거나 보존하는 외부 관찰 가능한 동작>
-  - 접근: <확정된 설계를 실행하는 1-2줄 방법>
+  - 접근: <확정된 설계를 실행하는 방법>
   - 검증 조건:
     - 결과: <Task 완료 후 성립해야 하는 동작·출력·파일 내용·상태>
     - 확인: <테스트 / 빌드 / lint / diff / 수동 확인>
