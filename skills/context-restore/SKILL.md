@@ -61,5 +61,3 @@ description: "Restore saved Phased or Per-Request work by reading project-root C
 5. 저장된 다음 작업과 완료 기준
 6. 누락되거나 원본 문서·현재 작업 트리와 충돌한 맥락
 7. 관련 참고가 있으면 합의 여부와 함께 짧게 소개
-
-`context-restore`만 요청받은 경우 복원 보고를 최종 산출물로 삼아 종료한다.

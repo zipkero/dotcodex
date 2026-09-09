@@ -80,7 +80,7 @@ description: "Verify a documented Task or per-request implementation against its
      설계 수정은 `design-init`, 승인된 요구사항 수정은 `spec-init` 중 가장 이른 수정 소유 단계
    - Resolution: `evidence`일 때 `Repair stage` 대신 필요한 입력·환경·재검증 조건
    - Problem: 실제 근거가 있는 구체적 문제
-6. `approved`인 경우 Explanation: `Validation`을 반복하지 않고 결과를 1-2문장으로 요약하며, 남은 위험이 있을 때만 덧붙인다.
+6. `approved`인 경우 Explanation: `Validation`을 반복하지 않고 결과를 요약하며, 남은 위험이 있을 때만 덧붙인다.
 
 ## reject 분류
 - `quality`: 적용되는 구현·프로젝트·언어 관례를 위반한 비동작 품질 문제다.
