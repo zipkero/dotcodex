@@ -14,9 +14,9 @@ description: "Create or update a documented feature design.md from spec.md for i
 ## 전제 조건
 - 기능 문서 디렉터리에 `spec.md`와 `README.md`가 있어야 하며 상태판의 `SPEC`이 `[x]`여야 한다.
 - 문서가 없거나 `SPEC`이 `[ ]`이면 `spec-init`이 필요하다고 보고하고 중단한다.
-- 기존 `design.md`가 있고 현재 요청이 갱신이나 재작성을 명시하지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
+- 기존 `design.md`가 있고 현재 요청이나 같은 작업에서 확정된 승인 범위에 갱신이나 재작성이 포함되지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - 기존 `implement.md`가 있으면 하위 문서에 미치는 영향을 알린다.
-  현재 요청이 `implement.md`의 무효화나 재작성까지 명시하지 않았으면 사용자 확인을 받는다.
+  현재 요청이나 같은 작업에서 확정된 승인 범위에 `implement.md`의 무효화나 재작성이 포함되지 않았으면 사용자 확인을 받는다.
 
 ## analyzer 호출 계약
 - main은 이름 있는 custom agent `analyzer`에게 `design.md` 후보 본문 작성을 맡긴다.
@@ -41,8 +41,6 @@ description: "Create or update a documented feature design.md from spec.md for i
   채택안, 확인 근거, 배제한 주요 대안과 장단점, 영향 범위를 기록한다.
 - 선택이 공개 규약, 저장 형식, 외부 연동 의미, 사용자 관찰 결과나 `SPEC §5.N` 충족 여부를 바꾸면
   선택지, 장단점과 권장안을 제시해 문서 작성 전에 사용자 판단을 받는다.
-- 외부 의미를 바꾸지 않더라도 구현 체크리스트 작성에 필요한 내부 설계 결정이 해결되지 않았으면 `design.md`를 확정하지 않고
-  선택지, 장단점과 권장안을 제시해 사용자 판단을 받는다.
 - `SPEC §5.N` 본문을 복사하거나 독립 `SPEC 추적` 매트릭스를 만들지 않고, 관련 설계 본문에 기여하는 완료 조건을 인라인으로 참조한다.
 - 독립 `리스크`, `검증 관점`, `열린 질문` 섹션은 만들지 않고, 설계를 막는 리스크는 `Decision Points`에 선택지와 함께 둔다.
 - 구현 Task에 필요한 API, 상태, 데이터 흐름, 저장 경계, 외부 연동, 설정은 본문 섹션이나 `Decision Points`에 확정한다.

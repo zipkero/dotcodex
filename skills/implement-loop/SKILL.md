@@ -23,7 +23,8 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 
 1. 위에서부터 첫 `[ ]` Task를 선택한다.
 2. Task의 `확인`이 테스트, 빌드, lint, 명령 출력이나 명확한 diff처럼 실행 가능한 근거를 가리키는지 확인한다.
-3. Task 하나를 `implement` 기준으로 구현한다. worker가 `blocked`를 반환하면 문서와 Task 상태를 유지하고 즉시 중단하며,
+3. Task 하나를 `implement` 기준으로 구현한다. worker가 `blocked`를 반환하면 main이 기존 승인과 입력으로 해소할 수 있는지 검토하고,
+   입력을 실제로 보완했으면 같은 역할에 다시 위임한다. 해소할 수 없으면 문서와 Task 상태를 유지하고 중단한다.
    `completed`를 반환한 경우에만 `verify`를 실행한다.
 4. `verify`가 `approved`이면 main이 `verify`의 상태 전환 규칙을 적용하고 해당 Task의 `시도`, `최근 reject` 기록을 제거한 뒤 다음 `[ ]` Task로 진행한다.
 5. `rejected`이면 반환된 사유와 근거를 기록하고 재시도 또는 정지를 판단한다.
@@ -32,10 +33,11 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 
 - 구현 수정만으로 reject 사유를 해결할 수 있으면 같은 Task를 다시 구현한다.
 - reject 사유와 근거를 다음 구현의 입력으로 전달한다.
-- 최초 구현을 포함한 Task당 최대 3회 한도는 해당 Task가 승인될 때까지 `implement-loop` 재실행 사이에도 유지한다.
-- reject가 발생하면 해당 Task에 `시도: <1-3>/3`, `최근 reject: <verify 사유와 근거>`만 기록하고 다음 시도에서 갱신한다.
-- `evidence` reject는 구현을 재시도하지 않고, `Resolution`의 필요한 입력·환경·재검증 조건을 보고한 뒤 중단한다.
-- 구현 재시도를 하지 않기로 했거나 한도를 소진하면 `verify`가 반환한 결과, 사유와 근거 및 재시도 중단 이유를 그대로 보고하고 중단한다.
+- 최초 구현을 포함한 Task당 worker 구현 호출은 최대 3회이며, 호출 전에 `시도: <1-3>/3`을 갱신하고
+  해당 Task가 승인될 때까지 `implement-loop` 재실행 사이에도 유지한다.
+- reject가 발생하면 현재 `시도` 기록을 유지하고 `최근 reject: <verify 사유와 근거>`를 기록한다.
+- `evidence` reject는 `Resolution`에 따라 근거를 보완해 같은 구현을 재검증하며, 근거 보완과 재검증만으로 `시도` 횟수를 늘리지 않는다.
+  필요한 보완을 할 수 없거나 재검증에도 같은 근거가 부족하면 중단한다.
 - 재작업이 앞서 승인된 Task의 동작에 영향을 주면 영향받은 범위를 다시 검증한다.
 
 ## 정지 조건
@@ -46,7 +48,7 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 - 완료 조건이 충돌하거나 현재 설계로 달성할 수 없다.
 - 실행 가능한 검증 근거 없이 수동 판단에만 의존한다.
 - Task가 독립적으로 검증 가능한 동작 단위가 아니어서 재분해가 필요하다.
-- 재시도 한도를 소진했다.
+- 추가 구현이 필요한데 worker 구현 호출 한도를 소진했다.
 - 되돌리기 어렵거나 외부에 영향을 주는 작업에 사용자 결정이 필요하다.
 
 위임 실패 시 다음 진행 방법은 `implement`의 호출 계약을 따른다.

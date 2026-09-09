@@ -59,7 +59,7 @@ description: "Create or restructure project README.md, ROADMAP.md, and needed pr
 - 기능 후보는 후속 `spec-init`이 필요한 마일스톤에만 kebab-case로 제시하고 `features/`를 생성하지 않는다.
 - 보류·제외 범위는 사용자가 언급했거나 최종 결과물과 직접 경계를 이루는 항목만 기록한다.
 - 기존 문서의 기준을 바꾸는 갱신은 영향 범위를 먼저 보고한다.
-  현재 요청이 기준 변경을 명시하지 않았으면 사용자 확인을 받는다.
+  현재 요청이나 같은 작업에서 확정된 승인 범위에 기준 변경이 포함되지 않았으면 사용자 확인을 받는다.
 
 ## 문서별 기준
 
