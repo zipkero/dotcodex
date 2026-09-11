@@ -23,6 +23,6 @@
 - 코드를 고치면 영향받는 기존 주석의 정확성을 확인하고, 어긋나면 고치거나 지운다.
 
 ## 언어별 문서
-- Go 파일을 수정하거나 검토할 때는 `languages/go.md`를 읽고 적용한다.
-- C# 파일을 수정하거나 검토할 때는 `languages/csharp.md`를 읽고 적용한다.
-- JavaScript 또는 TypeScript 파일을 수정하거나 검토할 때는 `languages/javascript-typescript.md`를 읽고 적용한다.
+- Go 파일을 수정하거나 검토할 때는 `~/.codex/docs/languages/go.md`를 읽고 적용한다.
+- C# 파일을 수정하거나 검토할 때는 `~/.codex/docs/languages/csharp.md`를 읽고 적용한다.
+- JavaScript 또는 TypeScript 파일을 수정하거나 검토할 때는 `~/.codex/docs/languages/javascript-typescript.md`를 읽고 적용한다.

@@ -12,7 +12,7 @@ description: "Audit a specific Codex configuration file or global configuration 
 
 ## 컨텍스트 로딩
 - 특정 파일이나 skill 감사에서는 대상과 판단에 직접 필요한 권위 문서·참조만 읽는다.
-- 전역 감사에서는 `AGENTS.md`, 루트 `README.md`, `.gitignore`, `.editorconfig`, `.gitattributes`, `docs/**`, 관리 대상 `agents/*.toml`,
+- 전역 감사에서는 `~/.codex/`를 기준으로 다음 상대 경로를 해석한다: `AGENTS.md`, `README.md`, `.gitignore`, `.editorconfig`, `.gitattributes`, `docs/**`, 관리 대상 `agents/*.toml`,
   `skills/*/SKILL.md`와 존재하는 `skills/*/agents/openai.yaml`을 읽는다.
 - 실제 관리 범위는 `.gitignore` 문구만으로 추정하지 말고 `git ls-files`, `git check-ignore` 등 Git 결과로 확인한다.
   예외적으로 추적되는 설정 집합은 `추적 허용 목록`으로 표현한다.

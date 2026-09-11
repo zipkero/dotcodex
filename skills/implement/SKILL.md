@@ -36,7 +36,7 @@ description: "Execute one documented Task or a small per-request code change wit
 - worker 호출에는 `model = "gpt-5.6-sol"`, `reasoning_effort = "medium"`과
   `fork_turns = "none"` 또는 필요한 최소 최근 turn 수인 양의 정수 문자열을 명시하며, `fork_turns`를 생략하거나 `"all"`을 사용하지 않는다.
 - 호출 메시지는 이전 대화 없이도 실행할 수 있도록 Task의 목적·접근·검증 조건, 수정 범위, 승인된 기준 문서,
-  `skills/implement/SKILL.md`, 적용되는 프로젝트 `AGENTS.md`, `docs/languages.md`와 해당 언어 문서의 정확한 경로,
+  `~/.codex/skills/implement/SKILL.md`, 적용되는 프로젝트 `AGENTS.md`, `~/.codex/docs/languages.md`와 해당 언어 문서의 실제 절대 경로,
   위임 경계와 반환 형식을 포함하고, worker가 해당 지침 파일을 직접 읽어 적용하도록 명시한다.
 - 필요한 모델·추론 수준·이력 범위를 적용할 수 없거나 worker 호출에 실패하면 Task와 문서 상태를 유지한 채 오류와 영향을 보고하며,
   다른 모델·추론 수준·전체 이력 호출이나 main의 직접 구현으로 대체하지 않는다.

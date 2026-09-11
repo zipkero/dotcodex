@@ -21,7 +21,7 @@ description: "Create or update a documented feature design.md from spec.md for i
 ## analyzer 호출 계약
 - main은 이름 있는 custom agent `analyzer`에게 `design.md` 후보 본문 작성을 맡긴다.
 - 호출 입력에는 feature dir, `README.md`와 `spec.md` 경로, 존재하는 경우 `design.md`와 `implement.md` 경로,
-  적용되는 프로젝트 `AGENTS.md`의 정확한 경로, 코드 조사 출발점, `skills/design-init/SKILL.md`의 정확한 경로,
+  적용되는 프로젝트 `AGENTS.md`의 실제 절대 경로, 코드 조사 출발점, `~/.codex/skills/design-init/SKILL.md`의 실제 절대 경로,
   작업 범위와 산출물 계약을 포함한다.
 - analyzer는 전체 `design.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환한다.
 - main은 이 skill의 완료 기준에 따라 후보를 검토하되, 설계 의미를 바꾸지 않는 기계적 형식·링크·확정 고정값만 직접 수정한다.
