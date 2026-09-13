@@ -16,7 +16,6 @@ description: "Coordinate implementation, verification, and bounded retries for r
 - 대상 기능과 구현 의도가 명확해야 한다.
 - `~/.codex/skills/implement/references/phased.md`의 선행 문서·승인 상태 조건을 충족해야 한다.
   충족하지 않으면 반복을 시작하지 않고 필요한 작성 단계를 보고한다.
-  main의 선행 단계 진행 여부는 `~/.codex/AGENTS.md`의 `문서 우선 흐름`을 따른다.
 - 첫 `[ ]` Task가 없으면 적용 중인 모든 `SPEC §5.N`이 Task에 매핑되고 README의 `IMPLEMENT`가 `[x]`일 때만 완료를 보고한다.
   하나라도 충족되지 않으면 완료로 간주하지 않고 확인한 불일치와 `verify`의 상태 전환 복구가 필요함을 보고한 뒤 중단한다.
 

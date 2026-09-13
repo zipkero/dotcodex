@@ -12,7 +12,6 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 ## 전제 조건
 - 기능 문서 디렉터리에 `spec.md`와 `README.md`가 있어야 하며 상태판의 `SPEC`이 `[x]`여야 한다.
 - 문서가 없거나 `SPEC`이 `[ ]`이면 설계 작성을 보류하고 `spec-init`이 필요하다고 보고한다.
-  main의 선행 단계 진행 여부는 `~/.codex/AGENTS.md`의 `문서 우선 흐름`을 따른다.
 - 기존 `design.md`가 있고 현재 요청이나 같은 작업에서 확정된 승인 범위에 갱신이나 재작성이 포함되지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - 기존 `implement.md`가 있으면 하위 문서에 미치는 영향을 알린다.
   현재 요청이나 같은 작업에서 확정된 승인 범위에 `implement.md`의 무효화나 재작성이 포함되지 않았으면 사용자 확인을 받는다.

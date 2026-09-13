@@ -42,7 +42,9 @@ Per-Request에서는 검증으로 문서나 체크박스를 갱신하지 않는�
    - Source: 기준의 출처
    - Evidence: 확인한 diff, 테스트, 실행 결과 또는 산출물
    - Result: `충족` | `불충족` | `근거 부족`
-4. Completed requirements: `Phased` 작업에서만 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`의 성립 또는 불성립. 없으면 `없음`
+4. Completed requirements: `Phased`에서만 출력한다. 이번 승인으로 완료되는 적용 중인
+   `SPEC §5.N`의 성립 또는 불성립을 적고, 해당 요구사항이 없으면 `없음`으로 표시한다.
+   `Per-Request`에서는 이 항목을 생략한다.
 5. `rejected`인 경우 Issues:
    - Category: `quality` | `correctness` | `design/scope` | `evidence`
    - Repair stage: `quality`, `correctness`, `design/scope`일 때 구현 수정은 `implement`, Task 기준 수정은 `implement-init`,

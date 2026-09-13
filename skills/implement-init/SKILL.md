@@ -11,7 +11,6 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 ## 전제 조건
 - `README.md`·`spec.md`가 없거나 기능 상태판의 `SPEC`이 `[x]`가 아니면 작성을 보류하고 `spec-init`이 필요하다고 보고한다.
 - `design.md`가 없거나 기능 상태판의 `DESIGN`이 `[x]`가 아니면 작성을 보류하고 `design-init`이 필요하다고 보고한다.
-  main의 선행 단계 진행 여부는 `~/.codex/AGENTS.md`의 `문서 우선 흐름`을 따른다.
 - 기존 `implement.md`가 있으면 체크박스 상태가 사라질 수 있음을 알린다.
   현재 요청이나 같은 작업에서 확정된 승인 범위에 재작성이나 초기화가 포함되지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - `design.md`의 `Decision Points`에 채택안이 없는 미해결 결정이 있으면 사용자에게 알리고 중단한다.
