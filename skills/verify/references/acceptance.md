@@ -35,6 +35,9 @@ Per-Request에서는 검증으로 문서나 체크박스를 갱신하지 않는�
   사용자가 지정했거나 승인된 필수 테스트를 수동 확인으로 대체하지 않는다.
 
 ## 출력 구조
+정식 `verify`, 독립 verifier와 Phased는 아래 형식을 따른다. 의도·영향이 명확하고 기준에 대응하는 diff·실행 근거를 확인한
+main 직접 Per-Request는 판정 강도를 유지하며 결과·핵심 근거·미실행 검증·남은 위험만 보고할 수 있다.
+
 1. Status: `approved` 또는 `rejected`
 2. Target: `Phased` 작업의 `task-<nnn>` 제목 또는 `Per-Request` 요청
 3. Validation: 검증 기준 목록과 같은 순서로 기준마다 다음 내용을 적는다.
