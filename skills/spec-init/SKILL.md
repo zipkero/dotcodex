@@ -1,8 +1,6 @@
 ---
 name: spec-init
-description: >-
-  Create or reset a feature spec.md and feature README.md from the current request and applicable
-  project README, ROADMAP, product, and design documents when available.
+description: "Create or reset a Phased feature spec.md and status README from confirmed requirements."
 ---
 
 # Spec Init
@@ -14,8 +12,8 @@ description: >-
 - 설계, 데이터 흐름, 구현 순서, 체크리스트는 다루지 않는다.
 
 ## 입력 판단
-- 사용자가 기능 이름을 명시하면 사용하고, 없지만 대화에서 명확하면 kebab-case로 추론하고 가정을 밝힌다.
-- 기능 이름이 불명확하면 문서 생성을 진행하지 말고 짧게 질문한다.
+- 사용자가 기능 이름을 명시하면 사용하고, 없으면 확인된 기능 목적에서 kebab-case 이름을 정해 가정을 밝힌다.
+- 대상 기능을 식별할 수 없거나 디렉터리 선택에 따라 작업 범위가 달라지면 생성 전에 질문한다.
 - 기능 이름은 산출물의 디렉터리명일 뿐이며 요구사항 범위를 결정하는 근거로 쓰지 않는다.
 
 ## 프로젝트 기준 문서 연결
@@ -57,7 +55,6 @@ description: >-
 - 질문으로 해소했거나 대화에서 확정된 요청은 대화에만 남기지 않는다. 목표는 `목표`, 조사 출발점은
   `범위 > 입력 맥락`, 완료 기준은 `완료 조건`, 행동 경계는 `제약` 또는 `제외 범위`에 반영한다.
 - 기능이 만들어야 하는 산출물은 `완료 조건`, 사용자가 지정한 검증 근거와 작업 보고 형식은 `제약`에 둔다.
-- `spec.md`는 독자가 요구사항과 완료 기준을 바로 판단할 수 있게 쓴다.
 - `features/<feature-dir>/README.md`의 `개요`는 기능의 목적과 배경을 간결하게 요약하고, 세부 요구사항이나
   설계 판단은 반복하지 않는다.
 - main은 `spec.md`를 다시 적용할 때 README의 `[x] SPEC`은 유지하고 `DESIGN`, `IMPLEMENT`를 `[ ]`로 되돌린다.
@@ -117,9 +114,7 @@ description: >-
 ## 스킬 완료 조건
 - `features/<feature-dir>/README.md`와 `spec.md`가 생성 또는 갱신되어야 한다.
 - `spec.md`에는 위 형식의 5개 섹션만 둔다.
-- 적용 중인 각 `SPEC §5.N`은 관찰 가능한 결과여야 한다.
-- `제외 범위`에는 의도적으로 하지 않을 변경을 적는다.
-- 관련 ROADMAP 마일스톤과 프로젝트 기준 문서를 조사해 근거를 `입력 맥락`에 기록하고, 확정된 요구사항과 제약을 spec에 반영해야 한다.
+- 프로젝트 기준 문서 연결, 요구사항 확정과 완료 조건 작성 기준을 충족해야 한다.
 - 기능 상태판과 이력은 §생성/갱신 규칙에 맞아야 한다.
 
 ## 완료 보고

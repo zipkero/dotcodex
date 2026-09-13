@@ -1,6 +1,6 @@
 ---
 name: implement-loop
-description: "Implement and verify all remaining Tasks in a documented feature, coordinating retries and state transitions until completion or a user decision is required."
+description: "Coordinate implementation, verification, and bounded retries for remaining Phased Tasks."
 ---
 
 # Implement Loop
@@ -14,15 +14,18 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 ## 전제 조건
 
 - 대상 기능과 구현 의도가 명확해야 한다.
-- `implement` skill §컨텍스트 로딩의 `Phased` 작업 진입 조건을 충족해야 한다.
-  충족하지 않으면 필요한 작성 단계를 안내하고 중단한다.
+- `~/.codex/skills/implement/references/phased.md`의 선행 문서·승인 상태 조건을 충족해야 한다.
+  충족하지 않으면 반복을 시작하지 않고 필요한 작성 단계를 보고한다.
+  main의 선행 단계 진행 여부는 `~/.codex/AGENTS.md`의 `문서 우선 흐름`을 따른다.
 - 첫 `[ ]` Task가 없으면 적용 중인 모든 `SPEC §5.N`이 Task에 매핑되고 README의 `IMPLEMENT`가 `[x]`일 때만 완료를 보고한다.
   하나라도 충족되지 않으면 완료로 간주하지 않고 확인한 불일치와 `verify`의 상태 전환 복구가 필요함을 보고한 뒤 중단한다.
 
 ## 반복
 
 1. 위에서부터 첫 `[ ]` Task를 선택한다.
-2. Task의 `확인`이 테스트, 빌드, lint, 명령 출력이나 명확한 diff처럼 실행 가능한 근거를 가리키는지 확인한다.
+2. Task의 `확인`이 테스트, 빌드, lint, 명령 출력, 명확한 diff 또는 절차·합격 기준이 명시된 수동 확인처럼
+   검증 기준에 대응하는 확인 가능한 근거를 가리키는지 확인한다. 수동 근거의 판정은
+   `~/.codex/skills/verify/references/acceptance.md`의 `실행 근거 재사용과 수동 확인`을 따른다.
 3. Task 하나를 `implement` 기준으로 구현한다. worker가 `blocked`를 반환하면 main이 기존 승인과 입력으로 해소할 수 있는지 검토하고,
    입력을 실제로 보완했으면 같은 역할에 다시 위임한다. 해소할 수 없으면 문서와 Task 상태를 유지하고 중단한다.
    `completed`를 반환한 경우에만 `verify`를 실행한다.
@@ -33,8 +36,8 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 
 - 구현 수정만으로 reject 사유를 해결할 수 있으면 같은 Task를 다시 구현한다.
 - reject 사유와 근거를 다음 구현의 입력으로 전달한다.
-- 최초 구현을 포함한 Task당 worker 구현 호출은 최대 3회이며, 호출 전에 `시도: <1-3>/3`을 갱신하고
-  해당 Task가 승인될 때까지 `implement-loop` 재실행 사이에도 유지한다.
+- 최초 구현과 `blocked` 이후 재위임을 포함한 Task당 모든 worker 구현 호출은 최대 3회다.
+  매 호출 전에 `시도: <1-3>/3`을 갱신하며, 해당 Task가 승인될 때까지 `implement-loop` 재실행 사이에도 유지한다.
 - reject가 발생하면 현재 `시도` 기록을 유지하고 `최근 reject: <verify 사유와 근거>`를 기록한다.
 - `evidence` reject는 `Resolution`에 따라 근거를 보완해 같은 구현을 재검증하며, 근거 보완과 재검증만으로 `시도` 횟수를 늘리지 않는다.
   필요한 보완을 할 수 없거나 재검증에도 같은 근거가 부족하면 중단한다.
@@ -42,20 +45,16 @@ description: "Implement and verify all remaining Tasks in a documented feature, 
 
 ## 정지 조건
 
-다음 중 하나면 남은 Task를 건드리지 않고 중단한다.
+Task를 건너뛰거나 순서를 바꾸지 않는다. 다음 중 하나면 남은 Task를 건드리지 않고 중단한다.
 
 - `spec.md`, `design.md`, Task 목적, 검증 조건이나 참조를 바꿔야 한다.
 - 완료 조건이 충돌하거나 현재 설계로 달성할 수 없다.
-- 실행 가능한 검증 근거 없이 수동 판단에만 의존한다.
+- 확인 가능한 검증 근거 없이 수동 판단에만 의존하거나 필요한 관찰·사용자 확인을 수행할 수 없다.
 - Task가 독립적으로 검증 가능한 동작 단위가 아니어서 재분해가 필요하다.
 - 추가 구현이 필요한데 worker 구현 호출 한도를 소진했다.
 - 되돌리기 어렵거나 외부에 영향을 주는 작업에 사용자 결정이 필요하다.
 
 위임 실패 시 다음 진행 방법은 `implement`의 호출 계약을 따른다.
-
-## 금지
-
-- 막힌 Task를 건너뛰거나 Task 순서를 바꾸지 않는다.
 
 ## 완료 보고
 

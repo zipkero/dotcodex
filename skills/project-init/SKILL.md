@@ -1,6 +1,6 @@
 ---
 name: project-init
-description: "Create or restructure project README.md, ROADMAP.md, and needed product or design docs for project initialization or project-level documentation planning."
+description: "Initialize or restructure project README, ROADMAP, and supporting product or design docs."
 ---
 
 # Project Init
@@ -16,9 +16,6 @@ description: "Create or restructure project README.md, ROADMAP.md, and needed pr
 - 새 프로젝트의 최초 문서 작성, 루트 README·ROADMAP 초기화 또는 프로젝트 수준 문서 재구성에 사용한다.
 - README 문구만 고치는 작고 명확한 변경은 Per-Request로 처리할 수 있다.
 - 특정 기능의 요구사항을 구체화하거나 기존 ROADMAP 마일스톤을 기능으로 전환하는 요청이면 `spec-init`이 필요하다고 보고한다.
-
-## 대상 프로젝트 루트
-- 프로젝트 루트는 `AGENTS.md`의 `프로젝트 루트` 기준으로 식별한다.
 
 ## 입력 조사와 정보 보존
 - 기존 `README.md`, `ROADMAP.md`, `docs/`, 주요 manifest, 빌드·테스트 설정, 코드 구조와 사용자 입력을 먼저 확인한다.
@@ -47,8 +44,7 @@ description: "Create or restructure project README.md, ROADMAP.md, and needed pr
 - README는 현재 확인된 프로젝트만 설명하고, 아직 제공되지 않는 기능과 미래 계획은 ROADMAP으로 분리한다.
 - ROADMAP과 선택 문서는 다음 세션에서 이전 대화 없이 읽어도 프로젝트 목표와 결정 기준을 복원할 수 있게 쓴다.
 - 최종 목표, 현재 구현 상태와 제안된 계획을 명확히 구분한다.
-- 기술 선택, 명령어와 현재 동작은 확인한 파일이나 실행 결과에 근거해서만 단정한다.
-- 확인되지 않은 기능, 성능과 운영 보장을 현재 사실처럼 쓰지 않는다.
+- 기술 선택·명령·기능·성능·운영 보장은 확인한 파일이나 실행 결과에 근거해 현재 사실과 제안을 구분한다.
 - 같은 정보의 상세본은 책임 문서 한 곳에 두고 다른 문서에서는 요약과 링크만 제공한다.
 - README의 문서 섹션은 실제로 존재하는 ROADMAP과 선택 문서만 연결한다.
 - 특정 제품 유형의 UI, 데이터 모델 또는 아키텍처를 입력 근거 없이 관례적으로 추가하지 않는다.

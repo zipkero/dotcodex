@@ -6,7 +6,7 @@
 ## 관리 대상
 
 - `AGENTS.md`: 모든 Codex 작업에 적용되는 전역 지침
-- `docs/**`: 전역 지침에서 참조하는 보조 기준 문서
+- `docs/**`: 전역 지침의 보조 기준과 설정 변경을 검증하는 평가 문서
 - `features/**`: 문서 우선 작업에서 생성되는 기능 문서
 - 추적 허용 목록에 포함된 `agents/*.toml`: 특정 역할의 custom agent 정의
 - 추적 허용 목록에 포함된 `skills/*/`: 특정 작업 유형에서만 로드되는 사용자 정의 skill
@@ -57,8 +57,28 @@ built-in `explorer` 호출 계약은 `AGENTS.md`, built-in `worker` 호출 계�
 ## 정책 위치
 
 - 전역 원칙과 라우팅은 `AGENTS.md`, 언어별 세부 기준은 `docs/languages/**`에 둔다.
-- 단계별 절차와 판단 기준은 해당 `skills/*/SKILL.md`, custom analyzer·verifier의 실행 성격은 `agents/*.toml`이 소유한다.
+- 단계별 절차와 판단 기준은 해당 `skills/*/SKILL.md`와 그 skill이 참조하는 문서가 소유한다.
+  custom analyzer·verifier의 실행 성격은 `agents/*.toml`이 소유한다.
 - 이 README는 관리 대상과 구조만 설명한다.
+
+전역 지침 안의 읽기 참조는 `~/.codex/...`로 표기하고, 도구·agent 호출 시 실제 홈 디렉터리의 절대 경로로 확장한다.
+대상 프로젝트의 지침·산출물 경로와 구분하며, 이 README의 상대 링크는 저장소 탐색용이다.
+
+## 역할별 참조 문서
+
+- `implement`: main은 [진입점](skills/implement/SKILL.md), worker는 [구현 계약](skills/implement/references/worker.md)을 사용한다.
+  [Phased 조정](skills/implement/references/phased.md)은 main의 문서화된 Task 조정에만 적용한다.
+- `verify`: main은 [진입점](skills/verify/SKILL.md)에서 대상을 확정한다. 직접 검증과 verifier의 후보 판단은
+  [판정 계약](skills/verify/references/acceptance.md)을 공유하고, Phased에서만 [완료 조건과 상태](skills/verify/references/phased.md)를 추가로 적용한다.
+- `config-review`: [진입점](skills/config-review/SKILL.md)이 [구조 감사](skills/config-review/references/structure.md)와
+  [모델·하네스 감사](skills/config-review/references/model-harness.md)의 적용 범위를 구분한다.
+
+세부 적용 조건은 각 진입점이 정의한다. 참조 문서가 분리되어 있어도 main의 최종 권한과 기존 agent 호출 계약은 유지된다.
+
+## 설정 변경 평가
+
+[프롬프트 회귀 평가](docs/evals/prompt-regression.md)는 설정 변경의 정적 검사와 실제 Codex 비교 실행 기준을 설명한다.
+일반 구현·분석의 상시 입력이 아니라 설정 평가를 수행할 때 사용하는 문서다. 정적 검사와 실제 모델 실행의 결과를 구분한다.
 
 ## Git 관리 정책
 

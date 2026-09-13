@@ -1,19 +1,18 @@
 ---
 name: design-init
-description: "Create or update a documented feature design.md from spec.md for implementation-ready design decisions."
+description: "Draft or revise a Phased feature design.md from approved spec.md."
 ---
 
 # Design Init
 
 ## 목적
-- `spec.md`를 근거로 설계 기준을 문서화한다.
-- `design.md`는 구조, 데이터 흐름, 인터페이스, 영향 범위, 설계 결정의 기준 문서이다.
-- `design.md`는 정적 설계 기준 문서이며 진행 상태를 추적하지 않는다.
+- `spec.md`에 근거해 구조·흐름·인터페이스·영향·설계 결정을 `design.md`에 확정한다.
 - 구현 Task, 진행 상태, 구현 순서와 Task별 검증 조건은 `implement.md`가 소유한다.
 
 ## 전제 조건
 - 기능 문서 디렉터리에 `spec.md`와 `README.md`가 있어야 하며 상태판의 `SPEC`이 `[x]`여야 한다.
-- 문서가 없거나 `SPEC`이 `[ ]`이면 `spec-init`이 필요하다고 보고하고 중단한다.
+- 문서가 없거나 `SPEC`이 `[ ]`이면 설계 작성을 보류하고 `spec-init`이 필요하다고 보고한다.
+  main의 선행 단계 진행 여부는 `~/.codex/AGENTS.md`의 `문서 우선 흐름`을 따른다.
 - 기존 `design.md`가 있고 현재 요청이나 같은 작업에서 확정된 승인 범위에 갱신이나 재작성이 포함되지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - 기존 `implement.md`가 있으면 하위 문서에 미치는 영향을 알린다.
   현재 요청이나 같은 작업에서 확정된 승인 범위에 `implement.md`의 무효화나 재작성이 포함되지 않았으면 사용자 확인을 받는다.
@@ -32,8 +31,7 @@ description: "Create or update a documented feature design.md from spec.md for i
 ## 작성 규칙
 - 이 skill에서 설계, 충족, 인라인 연결과 완료 확인 대상으로 삼는 `SPEC §5.N`은 적용 중인 완료 조건만을 뜻한다.
 - `design.md`는 `spec.md`의 범위, 목표, 제약, 제외 범위, `SPEC §5.N`을 기준으로 작성한다.
-- `design.md`는 새 대화에서 이전 대화 맥락 없이 읽어도 구현 체크리스트를 만들 수 있게 작성한다.
-  `spec.md`와 `design.md`만으로 구조, 흐름, 경계, 설계 결정을 판단할 수 있어야 한다.
+- `spec.md`와 `design.md`만으로 다음 단계의 구현 체크리스트를 작성할 수 있어야 한다.
 - `spec.md`의 `입력 맥락`은 조사 출발점으로 사용한다.
 - `design.md`는 요구사항을 추가·누락·약화하지 않는다. 새 요구사항이나 spec 범위·완료 조건을 바꾸는 판단은 먼저 사용자 판단을 받은 뒤
   `spec.md`에 반영한다.
@@ -47,7 +45,6 @@ description: "Create or update a documented feature design.md from spec.md for i
 - 불필요한 리팩터링과 범위 외 개선은 설계 결정이나 구현 전제로 확정하지 않는다.
 - 일반 보안, 성능, 컴플라이언스, 호환성 우려는 spec, 코드, 명령 결과에서 확인된 경우에만 적는다.
   확인되지 않은 일반 체크리스트나 가설적 실패 모드를 독립 섹션으로 만들지 않는다.
-- `design.md`는 독자가 구조, 흐름, 리스크, 설계 판단을 바로 확인할 수 있게 쓴다.
 
 ## design.md 형식
 ```markdown
@@ -83,10 +80,8 @@ description: "Create or update a documented feature design.md from spec.md for i
   `- <yyyy-MM-dd>: DESIGN 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
 
 ## 스킬 완료 조건
-- `design.md`가 spec과 직접 확인한 프로젝트 근거에 따라 생성 또는 갱신되어야 한다.
-- 관련 설계 본문에서 필요한 `SPEC §5.N` 참조가 확인되어야 한다.
-- 책임 경계, 데이터 소유권, 호출 방향, 실패 처리, 인터페이스와 영향 범위가 실제 코드·설정에 맞아야 한다.
-- 주요 Decision Point의 채택안, 근거와 배제한 주요 대안이 다음 단계에서 다시 설계하지 않아도 될 만큼 확정되어야 한다.
+- 작성 규칙과 섹션 기준에 따라 spec·실제 프로젝트 근거·`SPEC §5.N` 연결을 확인한다.
+- 주요 Decision Point가 다음 단계에서 다시 설계하지 않아도 될 만큼 확정되어야 한다.
 - 기능 상태판, 이력과 기존 Task 체크박스는 §기능 README.md 갱신에 맞아야 한다.
 
 ## 완료 보고

@@ -1,6 +1,6 @@
 ---
 name: context-save
-description: "Save or prune project-root CONTEXT.md handoff state when pausing or handing off Phased or Per-Request work."
+description: "Save or prune project CONTEXT.md for a session handoff."
 ---
 
 # Context Save
@@ -15,7 +15,6 @@ description: "Save or prune project-root CONTEXT.md handoff state when pausing o
 - Phased 문서가 있으면 Task 상태, 요구사항과 구현 체크리스트는 해당 문서를 기준으로 삼고,
   `CONTEXT.md`에는 체크리스트를 복제하지 않고 작업을 중단시킨 변경, 현재 논점, 이어서 볼 문서와 다음 작업만 기록한다.
 - Phased 문서가 없는 Per-Request 작업은 사용자 요청 범위, 실제 변경 파일과 실행한 검증 결과를 기준으로 기록한다.
-- 프로젝트 루트는 `AGENTS.md`의 `프로젝트 루트` 기준으로 식별한다.
 - `context-save`는 `CONTEXT.md`만 변경한다.
   원본 문서에 반영되지 않은 확정 사항은 `문서 반영 필요`에 기록하고 해당 문서를 소유한 skill로 넘긴다.
 
@@ -24,12 +23,11 @@ description: "Save or prune project-root CONTEXT.md handoff state when pausing o
 1. 프로젝트 루트의 기존 `CONTEXT.md`가 있으면 전체를 읽는다.
 2. 현재 대화, 원본 문서와 작업 트리를 대조해 §CONTEXT.md 형식에 필요한 내용을 확인한다.
 3. 기존 파일이 명백히 다른 활성 주제를 다루면 덮어쓰기 전에 사용자에게 확인한다.
-4. 같은 주제이면 내용을 누적하지 않고 현재 인수인계에 필요한 항목만 다시 구성한다.
-5. 원본 문서에 반영됐거나 해결·폐기·대체되어 다음 작업에 필요하지 않은 항목을 제거한다.
-6. 활성 목표, 미확정 판단, 다음 작업과 문서 미반영 사항이 모두 없으면 삭제 근거를 설명하고 사용자 확인을 받은 뒤
+4. 같은 주제이면 현재 인수인계에 필요한 내용으로 교체하고, 원본 반영·해결·폐기·대체로 불필요해진 항목은 제거한다.
+5. 활성 목표, 미확정 판단, 다음 작업과 문서 미반영 사항이 모두 없으면 삭제 근거를 설명하고 사용자 확인을 받은 뒤
    기존 `CONTEXT.md`를 삭제하고 종료한다.
-7. 현재 목표나 하나의 다음 작업과 완료 기준을 근거 있게 확정할 수 없으면 작성 전에 사용자에게 확인한다.
-8. `apply_patch`로 프로젝트 루트의 `CONTEXT.md`를 작성한다.
+6. 현재 목표나 하나의 다음 작업과 완료 기준을 근거 있게 확정할 수 없으면 작성 전에 사용자에게 확인한다.
+7. `apply_patch`로 프로젝트 루트의 `CONTEXT.md`를 작성한다.
 
 ## CONTEXT.md 형식
 
@@ -75,8 +73,11 @@ description: "Save or prune project-root CONTEXT.md handoff state when pausing o
   다음 작업을 이해하는 데 필요하면 `현재 상태`에 합의되지 않은 참고임을 밝혀 짧게 남긴다.
 - `다음 작업`에는 새 세션이 바로 시작할 작업 하나와 검증 가능한 완료 기준을 적는다.
 - `먼저 읽을 파일`에는 다음 작업에 필요한 원본 문서와 변경 파일 경로를 적는다.
-  `CONTEXT.md`의 파일 참조는 프로젝트 내부 파일이면 프로젝트 루트 기준 상대 링크로, 전역 설정과 보조 문서이면 `~/.codex/...` 경로로 적는다.
+  `CONTEXT.md`의 파일 참조는 프로젝트 내부 파일이면 프로젝트 루트 기준 상대 링크로, 전역 설정과 보조 문서이면 인라인 코드 `~/.codex/...`로 적는다.
   변경 파일 경로는 이 항목에만 둔다.
+  각 항목에는 `필수`, `변경 파일` 또는 `조건부: <읽는 조건>`과 읽는 이유를 적는다.
+  현재 목표·상태·확정된 결정·문서 반영 필요를 검증할 원본과 실제 변경 파일은 조건부로 돌리지 않는다.
+  특정 후속 작업에서만 필요한 참고 파일만 조건부로 표시하며, 관련 없는 문서 목록을 늘리지 않는다.
 - `문서 반영 필요`에는 확정됐지만 원본 또는 Phased 문서에 아직 반영되지 않은 내용만 적고, 없으면 `없음`으로 적는다.
 
 ## 제외할 내용

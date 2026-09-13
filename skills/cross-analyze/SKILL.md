@@ -1,6 +1,6 @@
 ---
 name: cross-analyze
-description: "Run an explicitly requested read-only cross-analysis by sending the same question to multiple independent subagents and synthesizing agreement, disagreements, and evidence."
+description: "Cross-check one question with independent read-only agents when explicitly requested."
 ---
 
 # Cross Analyze

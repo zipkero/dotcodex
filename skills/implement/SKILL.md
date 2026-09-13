@@ -1,82 +1,31 @@
 ---
 name: implement
-description: "Execute one documented Task or a small per-request code change within the requested scope."
+description: "Implement one approved Phased Task or a scoped Per-Request change."
 ---
 
 # Implement
 
-## 목적
-- 승인된 단일 `Phased` Task 또는 범위가 확정된 작은 `Per-Request` 변경을 구현한다.
-
 ## 컨텍스트 로딩
-1. `Phased` 작업으로 진입하는 경우:
-   - 사용자가 구현 의도를 밝히고 `features/<feature-dir>/` 또는 `features/<feature-dir>/implement.md`를 지정했다.
-   - 기능 경로만 언급한 경우에는 구현하지 않고 요청 의도에 맞춰 분석, 설명, 검토로 처리한다.
-2. `Phased` 작업 동작:
-   - 기능 디렉터리에 `README.md`, `spec.md`, `design.md`, `implement.md`가 있고 기능 상태판의 `SPEC`과 `DESIGN`이 모두 `[x]`여야 한다.
-     하나라도 충족되지 않으면 필요한 작성 단계를 보고하고 구현하지 않는다.
-   - 승인된 `spec.md`, `design.md`와 현재 `implement.md`를 읽는다.
-   - 사용자가 `task-<nnn>`을 지정하면 해당 Task를 잡고, 지정하지 않으면 위에서부터 첫 미완료 Task를 잡는다.
-   - Task가 없거나 이미 완료되었거나 둘 이상으로 해석되면 구현하지 않는다.
-     범위를 요청한다.
-3. `Per-Request` 작업:
-   - 한 번의 제한된 변경과 검증으로 완료할 수 있는 요청은 바로 처리한다.
-   - 한 번의 제한된 변경과 검증으로 완료할 수 있더라도 사용자의 의도, 산출물, 변경 범위, 성공 기준처럼 요구사항 기준이
-     여러 방향으로 해석될 수 있으면 먼저 질문한다.
-   - 질문이 필요한 상태에서는 파일을 수정하지 않는다.
-   - 조사로 해소 가능한 불확실성은 먼저 코드, 테스트, 로그, 기존 문서에서 확인한다.
-   - `features/<feature-dir>/`를 만들지 않는다.
+- 이 문서는 main의 진입점이다. 구현 worker는 `~/.codex/skills/implement/references/worker.md`를 직접 읽고 적용한다.
+  main도 위임 경계와 반환 검토에 이 계약을 사용한다.
+- `Phased` 작업은 `~/.codex/skills/implement/references/phased.md`의 진입 조건과 Task 선택·문서 처리 기준을 추가로 적용한다.
+  기능 경로만 언급한 분석·설명·검토 요청을 구현으로 바꾸지 않는다.
+- `Per-Request`에서는 Phased 조정 절차를 적용하지 않고 `features/<feature-dir>/`를 만들지 않는다.
+  조사로 해소할 불확실성은 먼저 확인하고, 의도·산출물·범위·성공 기준을 바꾸는 미확정 판단이 남으면 수정 전에 질문한다.
 
 ## worker 호출 계약
-- main이 이 skill을 실행할 때 범위가 확정된 구현은 built-in `worker`에 맡기고 직접 구현하지 않는다.
-- worker는 Phased Task 하나 또는 범위가 확정된 Per-Request 요청 하나를 구현한다.
-  - 수정 전에 사용자 확인이나 상위 문서 변경·범위 재결정이 필요하다고 판단하면 작업 공간을 수정하지 않고 `blocked`와 근거를 반환한다.
-  - 진행 중 해당 필요를 발견하면 추가 수정을 중단하고, 이미 수행한 변경과 검증 및 `blocked` 근거를 반환한다.
-- worker는 공유 작업 공간의 다른 변경을 보존하고 이미 생긴 변경에 맞춰 작업하며, 관련 없는 변경을 되돌리지 않는다.
+- main은 승인된 Phased Task 하나 또는 범위가 확정된 Per-Request 요청 하나를 built-in `worker`에 맡긴다.
 - worker 호출에는 `model = "gpt-5.6-sol"`, `reasoning_effort = "medium"`과
   `fork_turns = "none"` 또는 필요한 최소 최근 turn 수인 양의 정수 문자열을 명시하며, `fork_turns`를 생략하거나 `"all"`을 사용하지 않는다.
-- 호출 메시지는 이전 대화 없이도 실행할 수 있도록 Task의 목적·접근·검증 조건, 수정 범위, 승인된 기준 문서,
-  `~/.codex/skills/implement/SKILL.md`, 적용되는 프로젝트 `AGENTS.md`, `~/.codex/docs/languages.md`와 해당 언어 문서의 실제 절대 경로,
-  위임 경계와 반환 형식을 포함하고, worker가 해당 지침 파일을 직접 읽어 적용하도록 명시한다.
+- 호출 메시지는 이전 대화 없이 실행할 수 있도록 목적·접근·검증 조건, 수정 범위, 승인된 기준 문서,
+  `~/.codex/skills/implement/references/worker.md`와 프로젝트 `AGENTS.md`의 실제 절대 경로를 포함한다.
+  코드 변경이면 `~/.codex/docs/languages.md`와 해당 언어 문서의 실제 절대 경로도 전달한다.
+  worker가 지정된 원본·지침 파일을 직접 읽어 적용하도록 명시한다.
 - 필요한 모델·추론 수준·이력 범위를 적용할 수 없거나 worker 호출에 실패하면 Task와 문서 상태를 유지한 채 오류와 영향을 보고하며,
   다른 모델·추론 수준·전체 이력 호출이나 main의 직접 구현으로 대체하지 않는다.
 
-## 범위와 설계 변경
-- 요청 또는 Task 범위 안의 구현 선택은 기존 코드 패턴과 승인된 `design.md`의 확정된 결정을 따른다.
-- 승인된 `design.md`에서 확정한 새 경계, 상태, 저장 위치, 인터페이스와 의존성 방향은 구현 전제이며 중단 사유가 아니다.
-- Task 밖에서 발견한 문제는 수정하지 않고 보고만 한다.
-- `Phased` 작업의 설계 변경은 `design.md` 갱신 필요 사항도 함께 보고한다.
-
-## 구현 규칙
-- 프로젝트·언어 관례와 `범위와 설계 변경` 기준을 따르며, 요청 밖 추상화와 리팩터링은 별도 요청 후보로 보고한다.
-- 외부 스키마·프로토콜·사용자 입력의 이름은 경계에서 보존하고 내부 이름은 도메인 역할에 맞게 붙이며,
-  같은 개념을 가리키는 타입, 필드, 메서드와 테스트 설명은 일관되게 표현한다.
-- 파일 수정 전 어떤 변경을 할지 짧게 설명한다.
-- Phased 작업은 `design.md`의 확정된 설계와 대상 Task 단위로 구현한다.
-  Task가 독립적으로 검증 가능한 동작 단위가 아니면 재분해 필요성을 보고하고, 여러 Task 또는 전체 구현 요청은 `implement-loop`로 라우팅한다.
-- 요청한 동작을 직접 검증하거나 수정한 결함의 재발을 막는 데 필요한 최소 테스트를
-  변경 범위에 포함할 수 있다.
-- 새 테스트 기반·의존성·공용 fixture나 요청 밖 검증이 필요하면 `범위와 설계 변경` 기준을 따르고,
-  테스트를 추가하지 못했거나 기존 검증이 부족하면 남은 위험을 보고한다.
-- 테스트와 구현이 충돌하면 외부 동작, 공개 규약과 `design.md`를 기준으로 원인을 판단하며,
-  테스트 통과만을 위한 하드코딩·fixture 전용 분기·근거 없는 상수값 고정·동작 축소를 넣지 않는다.
-- 테스트, 포맷, 빌드 명령은 변경 범위를 확인하는 데 필요한 수준으로 실행한다.
-- 구현 중에는 `SPEC`과 `DESIGN`의 승인 상태를 유지한다.
-  Task 체크박스와 `IMPLEMENT` 상태 갱신은 `verify`의 `approved` 판단 이후에 수행한다.
-  상위 문서 변경으로 초기화된 Task는 기존 구현이 남아 있어도 현재 기준으로 다시 검증한다.
-
 ## 완료 보고
 - main은 worker의 반환을 검토하고 구현 결과, 변경 파일, 실행한 검증, 남은 위험과 범위 밖 발견을 보고한다.
-- `Phased` 작업에서 실제 구현이 Task의 `접근`과 달라졌다면 차이의 성격, 관련 `SPEC §5.N` /
-  `DESIGN §X.Y`, 문서 반영 여부와 그 근거를 보고한다.
-- `design.md`, Task의 `목적`, `검증 조건`, `참조`에 영향이 없는 구현 상세 차이만 main이 `접근`에 반영한다.
-  그 밖의 차이는 문서를 바꾸지 않고 설계 문서나 구현 체크리스트 재작성이 필요하다고 보고한다.
-- worker는 다음 형식으로 반환한다.
-  - `Status`: `completed` | `blocked`
-  - `Target`: 구현한 Task 또는 Per-Request 요청
-  - `Changed files`: 상태와 관계없이 실제 변경 파일. 실제 변경이 없으면 `없음`
-  - `Validation`: 실행한 명령과 결과
-  - `Blocker`: 필요한 설계·범위 결정과 근거. 없으면 `없음`
-  - `Residual risk`: 실행하지 못한 검증이나 남은 위험. 없으면 `없음`
-  - `Out-of-scope findings`: 요청 범위 밖에서 확인해 수정하지 않은 문제나 보류한 작업. 없으면 없음
-- 단일 Task 구현 결과에는 승인 검증이 남았음을 알린다.
+- Phased 문서 반영은 `~/.codex/skills/implement/references/phased.md`를 따른다.
+- `completed`는 구현 반환이며 승인 판정이 아니다. main은 요청 범위의 `verify` 또는 `implement-loop`로 이어간다.
+  구현 단계만 요청받았거나 정지 조건에 걸려 종료하면 남은 승인 검증과 정지 근거를 알린다.

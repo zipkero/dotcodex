@@ -1,19 +1,17 @@
 ---
 name: implement-init
-description: "Create or update a documented feature implement.md with executable Tasks and verification criteria."
+description: "Draft or revise Phased implement.md Tasks and verification criteria from approved design.md."
 ---
 
 # Implement Init
 
 ## 목적
-- `design.md`를 실행 가능한 구현 체크리스트로 변환한다.
-- `implement.md`는 구현 단계의 진행 상황과 Task별 검증 조건을 소유하는 구현 체크리스트이다.
-- 설계 판단은 `design.md`에 두고, `implement.md`에는 확정된 설계를 실행 가능한 Task로 나눈 내용만 둔다.
+- 승인된 `design.md`를 실행 가능한 Task로 나눈다. `implement.md`는 Task·진행 상태·검증 조건을, `design.md`는 설계 결정을 소유한다.
 
 ## 전제 조건
-- `README.md` 또는 `spec.md`가 없거나 기능 상태판의 `SPEC`이 `[ ]`이면 `spec-init`이 필요하다고 보고하고 중단한다.
-- `design.md`가 없거나 기능 상태판의 `DESIGN`이 `[ ]`이면 `design-init`이 필요하다고 보고하고 중단한다.
-- 파일 존재만으로 승인을 추정하지 않는다.
+- `README.md`·`spec.md`가 없거나 기능 상태판의 `SPEC`이 `[x]`가 아니면 작성을 보류하고 `spec-init`이 필요하다고 보고한다.
+- `design.md`가 없거나 기능 상태판의 `DESIGN`이 `[x]`가 아니면 작성을 보류하고 `design-init`이 필요하다고 보고한다.
+  main의 선행 단계 진행 여부는 `~/.codex/AGENTS.md`의 `문서 우선 흐름`을 따른다.
 - 기존 `implement.md`가 있으면 체크박스 상태가 사라질 수 있음을 알린다.
   현재 요청이나 같은 작업에서 확정된 승인 범위에 재작성이나 초기화가 포함되지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - `design.md`의 `Decision Points`에 채택안이 없는 미해결 결정이 있으면 사용자에게 알리고 중단한다.
@@ -52,9 +50,9 @@ description: "Create or update a documented feature implement.md with executable
 - `접근`에는 `design.md`에서 확정된 설계를 구현하는 방법만 적는다.
 - `검증 조건`은 `결과`와 `확인`으로 작성한다. `결과`에는 Task 완료 후 성립해야 하는 동작, 출력, 파일 내용, 설정 상태를 적는다.
   `확인`에는 테스트, 빌드, lint, diff, 수동 확인 등 해당 결과를 검증하는 방법을 적는다.
+  수동 확인이면 관찰 대상, 확인 절차, 합격 기준과 남길 근거를 명시한다. 사용자가 지정했거나 승인된 필수 테스트를 수동 확인으로 대체하지 않는다.
 - `spec.md`의 `제약`에 사용자가 지정한 검증 근거가 있으면 관련 Task의 `확인`에 빠짐없이 반영한다.
 - 새로 작성하거나 다시 작성하는 `implement.md`는 모든 Task 체크박스를 `[ ]`로 둔다.
-- `implement.md`는 구현자가 목적, 접근, 검증 방법을 바로 실행할 수 있게 쓴다.
 
 ## 테스트 Task 기준
 - 회귀 테스트는 보통 구현 Task의 `확인` 필드에 둔다.
@@ -81,7 +79,6 @@ description: "Create or update a documented feature implement.md with executable
 - `SPEC`과 `DESIGN`은 `[x]`, `IMPLEMENT`는 `[ ]`로 유지한다.
 - 새로 작성하면 `- <yyyy-MM-dd>: IMPLEMENT 체크리스트 작성`, 다시 작성하면
   `- <yyyy-MM-dd>: IMPLEMENT 체크리스트 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
-- 이 단계에서는 `IMPLEMENT`를 `[x]`로 변경하지 않는다. `IMPLEMENT`는 실제 구현 완료를 뜻한다.
 
 ## 스킬 완료 조건
 - `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.
