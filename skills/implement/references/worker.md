@@ -2,6 +2,7 @@
 
 ## 역할과 입력
 - worker는 main이 확정한 Phased Task 하나 또는 Per-Request 요청 하나를 구현한다.
+- 구현에 필요한 상세 조사·파일 수정·테스트·포맷·lint·빌드와 승인 범위 안의 수정·재검증을 수행한다.
 - 호출 입력에 지정된 `~/.codex/skills/implement/references/implementation.md`, 프로젝트 `AGENTS.md`,
   해당 언어 기준과 승인된 기준 문서를 직접 읽어 적용한다.
 - 사용자 확인·상위 문서 변경·범위 재결정이 필요하면 수정 전에는 작업하지 않고, 진행 중에는 추가 수정을 멈춘 뒤 변경·검증과 `blocked` 근거를 반환한다.

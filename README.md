@@ -34,7 +34,7 @@
 - `skills/spec-init`: `spec.md`와 기능 `README.md` 초기화
 - `skills/design-init`: `spec.md` 기반 `design.md` 작성과 설계 완료 상태 확정
 - `skills/implement-init`: `design.md` 기반 `implement.md` 체크리스트 작성
-- `skills/implement`: Per-Request 직접 구현·선택적 위임 또는 문서화된 Task 구현
+- `skills/implement`: Per-Request 또는 문서화된 Task의 worker 구현 조정과 결과 검토
 - `skills/implement-loop`: 남은 Task의 구현, 검증, 재시도와 상태 전환 순서를 조정하고 사용자 판단이 필요하면 중단
 - `skills/verify`: 요청된 검증, 필요한 독립 검증과 Phased 구현의 승인/거절 판단
 - `skills/config-review`: 전역 설정, 역할 프롬프트, 책임 경계, 추적 허용 목록의 관리 대상 사용자 정의 skill 정합성 점검
@@ -67,7 +67,7 @@ built-in `explorer` 호출 계약은 `AGENTS.md`, built-in `worker` 호출 계�
 ## 역할별 참조 문서
 
 - `implement`: main과 worker는 [공통 구현 기준](skills/implement/references/implementation.md)을 사용한다.
-  main은 [진입점](skills/implement/SKILL.md)에서 직접 구현과 위임을 선택하고 worker는 [구현 계약](skills/implement/references/worker.md)을 추가한다.
+  main은 [진입점](skills/implement/SKILL.md)에서 worker 호출과 결과 검토를 조정하고 worker는 [구현 계약](skills/implement/references/worker.md)을 적용한다.
   [Phased 조정](skills/implement/references/phased.md)은 main의 문서화된 Task 조정에만 적용한다.
 - `verify`: main은 [진입점](skills/verify/SKILL.md)에서 대상을 확정한다. 직접 검증과 verifier의 후보 판단은
   [판정 계약](skills/verify/references/acceptance.md)을 공유하고, Phased에서만 [완료 조건과 상태](skills/verify/references/phased.md)를 추가로 적용한다.

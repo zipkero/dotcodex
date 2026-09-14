@@ -14,7 +14,7 @@ description: "Approve or reject an implementation against requirements, diff, an
 ## 대상과 변경 범위
 - main이 검증 대상을 하나로 확정하고 변경 범위는 다음 우선순위로 정한다.
   1. 사용자가 지정한 commit, 파일 목록 또는 비교 범위
-  2. 같은 흐름의 직접 구현 결과 또는 implement worker가 반환한 `Changed files`와 diff
+  2. 같은 흐름의 implement worker가 반환한 `Changed files`와 diff
   3. 복원 작업의 `CONTEXT.md`에 기록된 변경 파일, branch와 기준 HEAD
   4. working tree와 Git history에서 수집한 후보
 - 대상이나 범위를 확정할 수 없으면 후보·근거·필요한 입력을 사용자에게 제시하고, 확인 전에는 verifier 호출과 판정을 보류한다.
