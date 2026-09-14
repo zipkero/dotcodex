@@ -14,6 +14,8 @@
 - `Phased` 작업에서 승인되지 않은 설계 변경이 필요하면 `design.md` 갱신 필요 사항도 함께 보고한다.
 
 ## 반환 형식
+중간 탐색 기록과 실행 로그는 핵심 결과로 요약하고, 필요한 원문은 확인 가능한 위치나 식별자로 연결한다.
+
 - `Status`: `completed` | `blocked`. `completed`는 구현 반환이며 승인 판정이 아니다.
 - `Target`: 구현한 Task 또는 Per-Request 요청
 - `Changed files`: 상태와 관계없이 실제 변경 파일. 실제 변경이 없으면 `없음`

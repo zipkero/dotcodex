@@ -14,13 +14,17 @@ description: "Implement one approved Phased Task or a scoped Per-Request change.
 
 ## 구현 주체 선택과 worker 호출 계약
 - 의도가 명확하고 영향이 제한되며 결과를 쉽게 확인할 수 있는 Per-Request는 main이 직접 구현한다.
-  분리·병렬화나 전문 역할·독립 컨텍스트의 실익이 조정 비용보다 크면 worker를 선택하며, 파일 수나 줄 수만으로 위임하지 않는다.
+- Per-Request의 구현 주체는 예상되는 탐색·실행 출력·수정 반복과 인수인계 비용을 비교해 선택한다.
+  병렬화할 작업이 없어도 출력 격리의 실익이 크면 worker에 위임한다.
+- 직접 구현 중 예상보다 탐색·실패 로그·수정 반복이 늘어나면 남은 작업의 위임 실익을 재평가한다.
 - Phased Task는 worker에 맡긴다. 위임할 때 main과 worker는 `~/.codex/skills/implement/references/worker.md`를 적용한다.
 - worker 호출에는 `model = "gpt-5.6-sol"`, `reasoning_effort = "medium"`과
   `fork_turns = "none"` 또는 필요한 최소 최근 turn 수인 양의 정수 문자열을 명시하고, 생략하거나 `"all"`을 사용하지 않는다.
 - 호출 메시지는 이전 대화 없이 실행할 수 있도록 목적·접근·검증 조건, 수정 범위, 승인된 기준 문서,
   `~/.codex/skills/implement/references/implementation.md`, `~/.codex/skills/implement/references/worker.md`와
   프로젝트 `AGENTS.md`의 절대 경로를 포함한다. 코드 변경이면 언어 기준 경로도 전달하고 지정한 원본·지침을 직접 읽게 한다.
+- 진행 중 위임하면 기존 변경을 보존하고 현재 diff·확정된 결정·검증 결과·미해결 문제·남은 작업을 호출 입력에 포함한다.
+  worker가 반환할 때까지 main은 위임한 수정 범위를 동시에 수정하지 않는다.
 - 지정한 모델·추론·이력 범위를 적용할 수 없거나 호출에 실패하면 상태·문서를 유지하고 오류·영향을 보고하며 다른 모델·추론 수준·이력·main 구현으로 대체하지 않는다.
 
 ## 완료 보고
