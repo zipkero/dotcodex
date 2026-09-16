@@ -7,8 +7,9 @@
 - `Phased` 작업은 `~/.codex/skills/verify/references/phased.md`의 `입력과 판정 기준`을 함께 적용한다.
   Per-Request 검증에는 Phased 전용 절차를 적용하지 않으며, 검증에 무관한 기능 문서를 추가로 읽지 않는다.
   Phased 지침 파일 자체가 변경 대상이면 그 내용은 검증 대상으로 확인한다.
-- 문서 매핑만으로 승인하지 않는다. 판정 범위는 현재 Task가 만들거나 보존해야 하는 실제 동작과 이번 승인으로 완료되는 요구사항이다.
-  현재 Task 관련 동작의 반례는 전체 요구사항의 다른 매핑 Task가 남아 있어도 반영하며, 현재 Task와 관련 없는 기능 전체는 판정하지 않는다.
+- 판정 범위는 검증 대상이 만들거나 보존해야 하는 실제 동작과 이번 승인으로 완료되는 요구사항이다.
+- Phased에서는 문서 매핑만으로 승인하지 않는다. 현재 Task 관련 동작의 반례는 다른 매핑 Task가 남아 있어도 반영하며,
+  현재 Task와 관련 없는 기능 전체는 판정하지 않는다.
 
 ## 검증 절차
 판단은 대화 기억이나 구현 의도가 아니라 직접 확인한 파일, diff, 테스트 결과, 실행 로그와 산출물에 근거한다.
@@ -55,8 +56,10 @@ Per-Request에서는 검증으로 문서나 체크박스를 갱신하지 않는�
    `Per-Request`에서는 이 항목을 생략한다.
 5. `rejected`인 경우 Issues:
    - Category: `quality` | `correctness` | `design/scope` | `evidence`
-   - Repair stage: `quality`, `correctness`, `design/scope`일 때 구현 수정은 `implement`, Task 기준 수정은 `implement-init`,
-     설계 수정은 `design-init`, 승인된 요구사항 수정은 `spec-init` 중 가장 이른 수정 소유 단계
+   - Repair stage: `quality`, `correctness`, `design/scope`일 때 승인 범위 안의 구현 수정은 `implement`로 적는다.
+     Per-Request에서 요구사항·범위·설계 변경이 필요하면 main이 확인할 사용자 판단을 적는다.
+     Phased에서는 Task 기준 수정은 `implement-init`, 설계 수정은 `design-init`,
+     승인된 요구사항 수정은 `spec-init` 중 가장 이른 수정 소유 단계를 적는다.
    - Resolution: `evidence`일 때 `Repair stage` 대신 필요한 입력·환경·재검증 조건
    - Problem: 실제 근거가 있는 구체적 문제
 6. `approved`인 경우 Explanation: `Validation`을 반복하지 않고 결과를 요약하며, 남은 위험이 있을 때만 덧붙인다.

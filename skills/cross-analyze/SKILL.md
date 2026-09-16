@@ -46,8 +46,7 @@ description: "Cross-check one question with independent read-only agents when ex
 
 ## 출력
 - 요청 수, 유효 결과 수와 실패 수
-- 결론과 합의 수
-- 합의 사항과 공통 근거
+- 결론별 합의 수와 공통 근거
 - 불일치와 main의 판정 근거
 - 근거가 확인된 단독 발견
 - 확인 사실과 남은 추정
