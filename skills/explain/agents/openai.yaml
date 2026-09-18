@@ -1,0 +1,4 @@
+interface:
+  display_name: "설명"
+  short_description: "근거를 연결해 코드·변경·시스템의 작동 방식을 설명"
+  default_prompt: "$explain으로 이 시스템의 목적, 흐름, 계약, 설계 결정과 검증 한계를 근거와 함께 설명해 주세요."

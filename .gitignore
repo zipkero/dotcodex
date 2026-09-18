@@ -38,3 +38,5 @@
 !/skills/context-restore/**
 !/skills/cross-analyze/
 !/skills/cross-analyze/**
+!/skills/explain/
+!/skills/explain/**

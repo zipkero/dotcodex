@@ -28,7 +28,8 @@
 
 현재 관리 중인 사용자 정의 skill은 다음과 같다.
 
-- `skills/analyze`: 코드 분석, 원인 파악, 영향 범위 확인, 설계 선택지 비교
+- `skills/analyze`: 코드·오류의 원인과 영향 범위를 조사하고 구조·설계 선택지를 비교해 판단과 제안을 제공
+- `skills/explain`: 구현된 코드·시스템·변경·기능이 무엇이고 어떻게 작동하는지 근거와 흐름 중심으로 설명
 - `skills/cross-analyze`: 같은 질문을 여러 subagent가 독립 분석한 결과를 근거 중심으로 교차검증
 - `skills/project-init`: 프로젝트 루트 `README.md`, `ROADMAP.md`와 필요한 `docs/product.md`, `docs/design.md` 구성
 - `skills/spec-init`: `spec.md`와 기능 `README.md` 초기화
