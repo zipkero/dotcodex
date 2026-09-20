@@ -4,6 +4,7 @@
 `~/.codex/skills/implement/references/worker.md`를 전달하며 이 조정 문서의 실행을 위임하지 않는다.
 
 ## 진입과 Task 선택
+- 승인 상태와 부분 무효화는 `~/.codex/docs/phased-state.md`를 직접 읽어 적용한다.
 - 사용자가 구현 의도를 밝히고 `features/<feature-dir>/` 또는 `features/<feature-dir>/implement.md`를 지정한 경우 Phased로 진입한다.
   기능 경로만 언급한 경우에는 구현하지 않고 요청 의도에 맞춰 분석, 설명, 검토로 처리한다.
 - 기능 디렉터리에 `README.md`, `spec.md`, `design.md`, `implement.md`가 있고 기능 상태판의 `SPEC`과 `DESIGN`이 모두 `[x]`여야 한다.
@@ -19,4 +20,4 @@
   그 밖의 차이는 문서를 바꾸지 않고 설계 문서나 구현 체크리스트 재작성이 필요하다고 보고한다.
 - 구현 중에는 `SPEC`과 `DESIGN`의 승인 상태를 유지한다. Task 체크박스와 `IMPLEMENT` 갱신은
   `verify`의 `approved` 판단 이후 main이 수행한다.
-- 상위 문서 변경으로 초기화된 Task는 기존 구현이 남아 있어도 현재 기준으로 다시 검증한다.
+- 상위 문서 변경으로 승인이 취소된 Task는 기존 구현이 남아 있어도 현재 기준으로 다시 검증한다. 영향 없음이 근거로 확인되어 승인이 유지된 Task는 불필요하게 재구현하지 않는다.

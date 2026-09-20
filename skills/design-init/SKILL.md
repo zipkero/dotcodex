@@ -10,6 +10,7 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 - 구현 Task, 진행 상태, 구현 순서와 Task별 검증 조건은 `implement.md`가 소유한다.
 
 ## 전제 조건
+- 갱신 전후의 승인 유지·취소와 상태 계산은 `~/.codex/docs/phased-state.md`를 직접 읽어 적용한다.
 - 기능 문서 디렉터리에 `spec.md`와 `README.md`가 있어야 하며 상태판의 `SPEC`이 `[x]`여야 한다.
 - 문서가 없거나 `SPEC`이 `[ ]`이면 설계 작성을 보류하고 `spec-init`이 필요하다고 보고한다.
 - 기존 `design.md`가 있고 현재 요청이나 같은 작업에서 확정된 승인 범위에 갱신이나 재작성이 포함되지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
@@ -20,11 +21,12 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 - main은 이름 있는 custom agent `analyzer`에게 `design.md` 후보 본문 작성을 맡긴다.
 - 호출 입력에는 feature dir, `README.md`와 `spec.md` 경로, 존재하는 경우 `design.md`와 `implement.md` 경로,
   적용되는 프로젝트 `AGENTS.md`의 실제 절대 경로, 코드 조사 출발점, `~/.codex/skills/design-init/SKILL.md`의 실제 절대 경로,
-  작업 범위와 산출물 계약을 포함한다.
-- analyzer는 전체 `design.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환한다.
+  `~/.codex/docs/phased-state.md`의 실제 절대 경로, 작업 범위와 산출물 계약을 포함한다.
+- 신규 작성이나 광범위한 변경에서 analyzer는 전체 `design.md` 후보 본문을 반환한다. 국소적인 의미 변경에서는 정확한 교체 구간을 식별한 patch와 변경 이유, 관련 `SPEC §5.N`·설계 참조, 하위 Task 영향 범위를 반환할 수 있다.
+  필수 입력이나 사용자 결정이 부족하면 해당 항목과 근거·영향을 반환한다.
 - main은 이 skill의 완료 기준에 따라 후보를 검토하되, 설계 의미를 바꾸지 않는 기계적 형식·링크·확정 고정값만 직접 수정한다.
-- 구조, 데이터 흐름, 인터페이스, 영향, `Decision Points`의 의미가 바뀌거나 사용자 결정을 반영해야 하면 analyzer를 다시 호출해
-  전체 후보 본문을 받아야 하며 main은 본문을 실질적으로 재작성하지 않는다.
+- main은 analyzer 결과를 적용하기 전에 기준 문서와 대상 구간이 호출 시점 이후 달라지지 않았는지 확인한다. stale이면 적용하지 않고 현재 원본으로 analyzer를 다시 호출한다.
+- main은 analyzer가 반환한 전체 본문이나 국소 patch만 적용하며 본문을 실질적으로 재작성하지 않는다. 적용 후 전체 설계의 연결, 적용 중인 완료 조건 충족, 미채택 결정 부재와 하위 영향을 다시 검토한다.
 - 후보 파일 적용, 상태 전환과 `README.md` 갱신은 main이 담당한다.
 
 ## 작성 규칙
@@ -73,10 +75,7 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
   결정할 사항이 없으면 `해당 없음`으로 적는다.
 
 ## 기능 README.md 갱신
-- `SPEC`과 `DESIGN`은 `[x]`, `IMPLEMENT`는 `[ ]`로 둔다.
-- 기존 `implement.md`는 파일과 Task 내용·ID·순서를 보존하면서 모든 Task 체크박스를 `[ ]`로 바꾼다.
-- 새로 작성하면 `- <yyyy-MM-dd>: DESIGN 작성`, 다시 작성하면
-  `- <yyyy-MM-dd>: DESIGN 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
+- 현재 승인된 spec에 대한 설계가 확정됐으면 `DESIGN`을 `[x]`로 둔다. 미채택 결정이 남은 문서는 승인하지 않으며, 하위 Task·`IMPLEMENT`·이력은 공통 승인 상태 계약에 따라 갱신한다.
 
 ## 스킬 완료 조건
 - 작성 규칙과 섹션 기준에 따라 spec·실제 프로젝트 근거·`SPEC §5.N` 연결을 확인한다.

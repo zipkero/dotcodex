@@ -14,6 +14,7 @@ description: "Coordinate implementation, verification, and bounded retries for r
 ## 전제 조건
 
 - 대상 기능과 구현 의도가 명확해야 한다.
+- `~/.codex/docs/phased-state.md`의 승인 상태와 부분 무효화를 직접 읽어 적용한다.
 - `~/.codex/skills/implement/references/phased.md`의 선행 문서·승인 상태 조건을 충족해야 한다.
   충족하지 않으면 반복을 시작하지 않고 필요한 작성 단계를 보고한다.
 - 첫 `[ ]` Task가 없으면 적용 중인 모든 `SPEC §5.N`이 Task에 매핑되고 README의 `IMPLEMENT`가 `[x]`일 때만 완료를 보고한다.
@@ -39,6 +40,7 @@ description: "Coordinate implementation, verification, and bounded retries for r
 - reject 사유와 근거를 다음 구현의 입력으로 전달한다.
 - 최초 구현과 `blocked` 이후 재위임을 포함한 Task당 모든 worker 구현 호출은 최대 3회다.
   매 호출 전에 `시도: <1-3>/3`을 갱신하며, 해당 Task가 승인될 때까지 `implement-loop` 재실행 사이에도 유지한다.
+- 문서 갱신 뒤에도 공통 승인 상태 계약에 따라 `시도` 예산을 보존한다.
 - reject가 발생하면 현재 `시도` 기록을 유지하고 `최근 reject: <verify 사유와 근거>`를 기록한다.
 - `evidence` reject는 `Resolution`에 따라 근거를 보완해 같은 구현을 재검증하며, 근거 보완과 재검증만으로 `시도` 횟수를 늘리지 않는다.
   필요한 보완을 할 수 없거나 재검증에도 같은 근거가 부족하면 중단한다.

@@ -26,7 +26,7 @@ description: "Approve or reject an implementation against requirements, diff, an
 - verifier 호출에는 작업 유형, 검증 대상·범위, 선행 문서, 프로젝트 `AGENTS.md`,
   `~/.codex/skills/verify/references/acceptance.md`의 실제 절대 경로와 실행 근거 위치를 포함한다.
   코드 검증이면 `~/.codex/docs/languages.md`와 해당 언어 문서의 실제 절대 경로도 전달한다.
-  Phased일 때만 `~/.codex/skills/verify/references/phased.md`의 실제 절대 경로와 기능 문서를 추가하고,
+  Phased일 때만 `~/.codex/skills/verify/references/phased.md`, `~/.codex/docs/phased-state.md`의 실제 절대 경로와 기능 문서를 추가하고,
   verifier가 지정된 원본·지침 파일을 직접 읽어 적용하도록 명시한다. main용 진입 절차를 위임하지 않는다.
 
 ## 출력과 상태 전환

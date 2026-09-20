@@ -4,6 +4,7 @@ main과 verifier는 `입력과 판정 기준`을 적용한다. `상태 전환`�
 이 문서의 검증 절차는 Phased 작업에만 적용한다.
 
 ## 입력과 판정 기준
+- 승인 상태와 부분 무효화는 `~/.codex/docs/phased-state.md`를 직접 읽어 적용한다.
 - 기능 디렉터리에 `README.md`, `spec.md`, `design.md`, `implement.md`가 있고 기능 상태판의 `SPEC`과 `DESIGN`이 모두 `[x]`여야 한다.
 - 사용자가 기능 또는 Task의 구현 결과 검증을 요청했거나 직전 구현 대상이 단일하게 식별되어야 한다.
 - `implement.md`의 대상 Task와 참조된 `spec.md`, `design.md`를 읽는다.
@@ -20,7 +21,9 @@ main과 verifier는 `입력과 판정 기준`을 적용한다. `상태 전환`�
 ## 상태 전환
 - 검증 단계는 먼저 `approved` 또는 `rejected` 판단과 근거를 확정한다.
 - `Phased` 상태 전환은 적용 중인 `SPEC §5.N`과 그 매핑 Task만으로 계산한다.
-- `approved`이면 현재 승인된 `spec.md`와 `design.md` 기준으로 대상 Task만 `[x]`로 바꾼다.
+- `approved`이면 현재 승인된 `spec.md`와 `design.md` 기준으로 대상 Task만 `[x]`로 바꾸고, Task에 간결한 `승인 근거`를 남긴다.
+  승인 근거에는 적용한 기준, 실제 결과, 검증 당시 코드 상태와 실행 근거 위치 또는 식별자를 적고 같은 근거는 연결해 재사용한다.
+  이 규칙을 도입하기 전에 완료된 Task의 근거를 현재 상태에서 추정해 채우지 않는다.
   적용 중인 모든 `SPEC §5.N`이 하나 이상의 Task에 매핑되고 각 매핑 Task가 승인됐을 때만 기능 `README.md`의 `IMPLEMENT`를 `[x]`로 바꾸고
   `- <yyyy-MM-dd>: IMPLEMENT 완료` 이력을 추가한다.
 - `rejected`이면 대상 Task를 `[ ]`로 유지하고 앞서 승인된 Task는 보존한다.

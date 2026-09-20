@@ -44,6 +44,7 @@ description: "Create or reset a Phased feature spec.md and status README from co
   결과에 영향을 주는 미확정 판단이 남아 있으면 `spec.md`를 생성하지 않는다.
 
 ## 생성/갱신 규칙
+- 갱신 전후의 승인 유지·취소와 상태 계산은 `~/.codex/docs/phased-state.md`를 직접 읽어 적용한다.
 - 새 기능 디렉터리는 `features/<yyyyMMdd>-<nnn>-<feature-name>/` 형식을 사용한다.
 - 날짜는 `spec-init` 시작일 기준이고, `nnn`은 해당 날짜의 기능 생성 순번이다.
 - 같은 날짜의 기존 기능 디렉터리를 확인해 가장 큰 `nnn`의 다음 번호를 사용한다.
@@ -51,15 +52,14 @@ description: "Create or reset a Phased feature spec.md and status README from co
 - 기존 `spec.md`가 있고 현재 요청이나 같은 작업에서 확정된 승인 범위에 재작성이나 초기화가 포함되지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - 기존 하위 문서(`design.md`, `implement.md`)가 있으면 `spec.md` 덮어쓰기가 하위 문서를 무효화할 수 있음을 알린다.
   현재 요청이나 같은 작업에서 확정된 승인 범위에 하위 문서의 무효화나 재작성이 포함되지 않았으면 사용자 확인을 받는다.
-- 기존 `README.md`의 문서 섹션과 `implement.md`의 Task 내용·ID·순서는 보존한다.
+- 기존 `README.md`의 문서 섹션과 `implement.md`의 Task 내용·ID·순서·`시도`·`최근 reject`는 보존한다.
 - 질문으로 해소했거나 대화에서 확정된 요청은 대화에만 남기지 않는다. 목표는 `목표`, 조사 출발점은
   `범위 > 입력 맥락`, 완료 기준은 `완료 조건`, 행동 경계는 `제약` 또는 `제외 범위`에 반영한다.
 - 기능이 만들어야 하는 산출물은 `완료 조건`, 사용자가 지정한 검증 근거와 작업 보고 형식은 `제약`에 둔다.
 - `features/<feature-dir>/README.md`의 `개요`는 기능의 목적과 배경을 간결하게 요약하고, 세부 요구사항이나
   설계 판단은 반복하지 않는다.
-- main은 `spec.md`를 다시 적용할 때 README의 `[x] SPEC`은 유지하고 `DESIGN`, `IMPLEMENT`를 `[ ]`로 되돌린다.
-  기존 `implement.md`는 Task 내용·ID·순서를 보존하면서 모든 Task 체크박스를 `[ ]`로 되돌린 뒤
-  `- <yyyy-MM-dd>: SPEC 재작성으로 하위 승인 상태 초기화` 이력을 추가한다.
+- 요구사항 의미가 바뀌면 새 `spec.md`가 사용자 승인 요구사항과 일치할 때만 `SPEC`을 `[x]`로 둔다. 새 요구사항이나 미확정 판단이 남아 있으면 승인하지 않는다.
+  하위 상태·Task와 이력은 공통 승인 상태 계약에 따라 갱신한다.
 
 ## 기능 README.md 형식
 ```markdown
@@ -122,4 +122,4 @@ description: "Create or reset a Phased feature spec.md and status README from co
 - 생성/갱신된 파일
 - 사용한 ROADMAP 마일스톤과 프로젝트 기준 문서, 없으면 없음
 - 문서 생성을 막은 미확정 요구사항이 있었다면 질문한 내용
-- 재작성으로 초기화한 하위 승인 상태와 Task 체크박스
+- 갱신으로 승인 취소하거나 유지한 하위 상태·Task와 그 근거

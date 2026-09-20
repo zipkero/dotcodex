@@ -9,10 +9,11 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 - 승인된 `design.md`를 실행 가능한 Task로 나눈다. `implement.md`는 Task·진행 상태·검증 조건을, `design.md`는 설계 결정을 소유한다.
 
 ## 전제 조건
+- 갱신 전후의 승인 유지·취소와 상태 계산은 `~/.codex/docs/phased-state.md`를 직접 읽어 적용한다.
 - `README.md`·`spec.md`가 없거나 기능 상태판의 `SPEC`이 `[x]`가 아니면 작성을 보류하고 `spec-init`이 필요하다고 보고한다.
 - `design.md`가 없거나 기능 상태판의 `DESIGN`이 `[x]`가 아니면 작성을 보류하고 `design-init`이 필요하다고 보고한다.
-- 기존 `implement.md`가 있으면 체크박스 상태가 사라질 수 있음을 알린다.
-  현재 요청이나 같은 작업에서 확정된 승인 범위에 재작성이나 초기화가 포함되지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
+- 기존 `implement.md`가 있으면 Task 의미 변경에 따라 영향받는 승인이 취소될 수 있음을 알린다.
+  현재 요청이나 같은 작업에서 확정된 승인 범위에 갱신이 포함되지 않았으면 덮어쓰기 전에 사용자에게 확인한다.
 - `design.md`의 `Decision Points`에 채택안이 없는 미해결 결정이 있으면 사용자에게 알리고 중단한다.
 - Task 분해 방식만 여러 가지인 경우에는 아래 작성 규칙에 따라 권장 분해안을 작성한다.
 - 완료 기준, Task 경계, 검증 조건을 정하는 과정에서 적용 중인 `SPEC §5.N`의 충족 여부, 사용자 관찰 결과, 실패 의미,
@@ -23,11 +24,12 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 - main은 이름 있는 custom agent `analyzer`에게 `implement.md` 후보 본문 작성을 맡긴다.
 - 호출 입력에는 feature dir, `README.md`, `spec.md`, `design.md` 경로, 존재하는 경우 `implement.md` 경로,
   적용되는 프로젝트 `AGENTS.md`의 실제 절대 경로, 코드 조사 출발점, `~/.codex/skills/implement-init/SKILL.md`의 실제 절대 경로,
-  작업 범위와 산출물 계약을 포함한다.
-- analyzer는 전체 `implement.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환한다.
+  `~/.codex/docs/phased-state.md`의 실제 절대 경로, 작업 범위와 산출물 계약을 포함한다.
+- 신규 작성이나 광범위한 변경에서 analyzer는 전체 `implement.md` 후보 본문을 반환한다. 국소적인 의미 변경에서는 정확한 교체 구간을 식별한 patch와 변경 이유, 관련 `SPEC §5.N`·`DESIGN §X.Y`, 영향받는 Task와 의존 Task를 반환할 수 있다.
+  필수 입력이나 사용자 결정이 부족하면 해당 항목과 근거·영향을 반환한다.
 - main은 이 skill의 완료 기준에 따라 후보를 검토하되, Task 의미를 바꾸지 않는 기계적 형식·링크·확정 고정값만 직접 수정한다.
-- Task 경계, 순서, 목적, 접근, 검증 또는 참조 매핑이 바뀌거나 사용자 결정을 반영해야 하면 analyzer를 다시 호출해
-  전체 후보 본문을 받아야 하며 main은 본문을 실질적으로 재작성하지 않는다.
+- main은 analyzer 결과를 적용하기 전에 기준 문서와 대상 구간이 호출 시점 이후 달라지지 않았는지 확인한다. stale이면 적용하지 않고 현재 원본으로 analyzer를 다시 호출한다.
+- main은 analyzer가 반환한 전체 본문이나 국소 patch만 적용하며 본문을 실질적으로 재작성하지 않는다. 적용 후 Task 전체의 순서·의존 관계, 적용 중인 완료 조건 커버리지와 검증 가능성을 다시 검토한다.
 - 후보 파일 적용과 상태 전환은 main이 담당한다.
 
 ## 작성 규칙
@@ -43,7 +45,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 - 적용 중인 `SPEC §5.N`을 Task로 확정할 수 없으면 해당 조건, 이유와 구현 체크리스트에 미치는 영향을 보고하고 `implement.md`를 확정하지 않는다.
   요구사항 변경이 필요하면 삭제·철회·보류 선택을 재정의하지 않고 `spec-init`으로 반환한다.
 - 작성 시 각 항목의 기본 필드는 목적, 접근, 검증 조건, 참조만 둔다.
-  진행 중 재시도 상태는 `implement-loop` 기준에 따라 `시도`와 `최근 reject`만 임시로 추가할 수 있다.
+  진행 중에는 `implement-loop` 기준의 `시도`와 `최근 reject`, 승인 뒤에는 `verify` 기준의 `승인 근거`를 추가할 수 있다.
 - Task의 `목적`, `접근`, `검증 조건`은 다음 세션에서 이전 대화 없이도 작업 단위, 설계 근거,
   완료 판단을 복원할 수 있게 작성한다.
 - `목적`에는 문서 매핑이 아니라 사용자가 얻는 결과나 Task가 완성해야 하는 외부 관찰 가능한 동작을 적는다.
@@ -52,7 +54,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
   `확인`에는 테스트, 빌드, lint, diff, 수동 확인 등 해당 결과를 검증하는 방법을 적는다.
   수동 확인이면 관찰 대상, 확인 절차, 합격 기준과 남길 근거를 명시한다. 사용자가 지정했거나 승인된 필수 테스트를 수동 확인으로 대체하지 않는다.
 - `spec.md`의 `제약`에 사용자가 지정한 검증 근거가 있으면 관련 Task의 `확인`에 빠짐없이 반영한다.
-- 새로 작성하거나 다시 작성하는 `implement.md`는 모든 Task 체크박스를 `[ ]`로 둔다.
+- 새 문서의 Task 체크박스는 모두 `[ ]`로 둔다. 기존 문서의 Task 승인과 진행 기록은 공통 승인 상태 계약에 따라 갱신한다.
 
 ## 테스트 Task 기준
 - 회귀 테스트는 보통 구현 Task의 `확인` 필드에 둔다.
@@ -76,9 +78,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 ```
 
 ## 기능 README.md 갱신
-- `SPEC`과 `DESIGN`은 `[x]`, `IMPLEMENT`는 `[ ]`로 유지한다.
-- 새로 작성하면 `- <yyyy-MM-dd>: IMPLEMENT 체크리스트 작성`, 다시 작성하면
-  `- <yyyy-MM-dd>: IMPLEMENT 체크리스트 재작성으로 구현 승인 상태 초기화` 이력을 추가한다.
+- `SPEC`·`DESIGN`·`IMPLEMENT`와 이력은 공통 승인 상태 계약에 따라 갱신한다.
 
 ## 스킬 완료 조건
 - `implement.md`가 위 형식과 작성 규칙에 맞게 생성 또는 갱신되어야 한다.

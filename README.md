@@ -39,7 +39,7 @@
 - `skills/implement-loop`: 남은 Task의 구현, 검증, 재시도와 상태 전환 순서를 조정하고 사용자 판단이 필요하면 중단
 - `skills/verify`: 요청된 검증, 필요한 독립 검증과 Phased 구현의 승인/거절 판단
 - `skills/config-review`: 전역 설정, 역할 프롬프트, 책임 경계, 추적 허용 목록의 관리 대상 사용자 정의 skill 정합성 점검
-- `skills/context-save`: 현재 작업 맥락과 다음 작업을 프로젝트 루트 `CONTEXT.md`에 저장
+- `skills/context-save`: 명시 요청이나 문서 작성·구현의 인수인계 경계에서 현재 작업 맥락과 다음 작업을 프로젝트 루트 `CONTEXT.md`에 저장
 - `skills/context-restore`: `CONTEXT.md`와 원본 문서를 대조해 저장된 작업 맥락을 읽기 전용으로 복원
 
 Codex 제공 skill과 추적 허용 목록 밖의 로컬 skill은 위치와 관계없이 현재 전역 설정 관리 대상이 아니다.
@@ -50,7 +50,7 @@ Codex 제공 skill과 추적 허용 목록 밖의 로컬 skill은 위치와 관�
 custom agent 정의는 `agents/*.toml`에 둔다.
 현재 관리 중인 custom agent는 다음과 같다.
 
-- `agents/analyzer.toml`: `Phased` 작업의 `design.md`와 `implement.md` 전체 후보 본문을 반환하는 읽기 전용 custom agent 정의
+- `agents/analyzer.toml`: `Phased` 작업의 `design.md`와 `implement.md` 전체 후보 또는 국소 patch를 반환하는 읽기 전용 custom agent 정의
 - `agents/verifier.toml`: 필요한 구현 `verify`에서 후보 판단을 반환하는 읽기 전용 검증 custom agent 정의
 
 built-in `explorer` 호출 계약은 `AGENTS.md`, built-in `worker` 호출 계약은 `skills/implement/SKILL.md`가 소유한다.
@@ -58,6 +58,7 @@ built-in `explorer` 호출 계약은 `AGENTS.md`, built-in `worker` 호출 계�
 ## 정책 위치
 
 - 전역 원칙과 라우팅은 `AGENTS.md`, 언어별 세부 기준은 `docs/languages/**`에 둔다.
+- Phased 승인 상태와 영향 기반 무효화는 `docs/phased-state.md`가 소유한다.
 - 단계별 절차와 판단 기준은 해당 `skills/*/SKILL.md`와 그 skill이 참조하는 문서가 소유한다.
   custom analyzer·verifier의 실행 성격은 `agents/*.toml`이 소유한다.
 - 이 README는 관리 대상과 구조만 설명한다.
@@ -72,6 +73,7 @@ built-in `explorer` 호출 계약은 `AGENTS.md`, built-in `worker` 호출 계�
   [Phased 조정](skills/implement/references/phased.md)은 main의 문서화된 Task 조정에만 적용한다.
 - `verify`: main은 [진입점](skills/verify/SKILL.md)에서 대상을 확정한다. 직접 검증과 verifier의 후보 판단은
   [판정 계약](skills/verify/references/acceptance.md)을 공유하고, Phased에서만 [완료 조건과 상태](skills/verify/references/phased.md)를 추가로 적용한다.
+- Phased 문서를 작성·구현·검증하는 skill은 [승인 상태 계약](docs/phased-state.md)을 공통으로 읽는다.
 - `config-review`: [진입점](skills/config-review/SKILL.md)이 [구조 감사](skills/config-review/references/structure.md)와
   [모델·하네스 감사](skills/config-review/references/model-harness.md)의 적용 범위를 구분한다.
 
