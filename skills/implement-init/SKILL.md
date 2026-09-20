@@ -22,7 +22,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 ## analyzer 호출 계약
 - main은 이름 있는 custom agent `analyzer`에게 `implement.md` 후보 본문 작성을 맡긴다.
 - 호출 입력에는 feature dir, `README.md`, `spec.md`, `design.md` 경로, 존재하는 경우 `implement.md` 경로,
-  적용되는 프로젝트 `AGENTS.md`의 실제 절대 경로, `~/.codex/skills/implement-init/SKILL.md`의 실제 절대 경로,
+  적용되는 프로젝트 `AGENTS.md`의 실제 절대 경로, 코드 조사 출발점, `~/.codex/skills/implement-init/SKILL.md`의 실제 절대 경로,
   작업 범위와 산출물 계약을 포함한다.
 - analyzer는 전체 `implement.md` 후보 본문 또는 미확정 사용자 결정과 그 근거·영향을 반환한다.
 - main은 이 skill의 완료 기준에 따라 후보를 검토하되, Task 의미를 바꾸지 않는 기계적 형식·링크·확정 고정값만 직접 수정한다.
@@ -71,7 +71,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
   - 접근: <확정된 설계를 실행하는 방법>
   - 검증 조건:
     - 결과: <Task 완료 후 성립해야 하는 동작·출력·파일 내용·상태>
-    - 확인: <테스트 / 빌드 / lint / diff / 수동 확인>
+    - 확인: <위 결과의 충족 여부를 확인할 대상과 방법>
   - 참조: SPEC §5.N, DESIGN §X.Y
 ```
 

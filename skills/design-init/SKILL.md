@@ -42,8 +42,8 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 - 구조는 변경 위치, 책임 경계, 데이터 소유권, 호출 방향과 실패 처리 위치의 일관성 및 완료 조건의 안정적인 충족·검증 가능성을 기준으로 판단한다.
   기존 구조가 요구사항의 정확성, 확장 범위나 검증 가능성을 해치면 대안을 비교해 `Decision Points`에 남긴다.
 - 불필요한 리팩터링과 범위 외 개선은 설계 결정이나 구현 전제로 확정하지 않는다.
-- 일반 보안, 성능, 컴플라이언스, 호환성 우려는 spec, 코드, 명령 결과에서 확인된 경우에만 적는다.
-  확인되지 않은 일반 체크리스트나 가설적 실패 모드를 독립 섹션으로 만들지 않는다.
+- 리스크는 spec·코드·명령 결과 또는 제안한 설계에 근거해 작성한다.
+  해당 기능과 관련 없는 일반 체크리스트는 만들지 않는다.
 
 ## design.md 형식
 ```markdown
@@ -80,7 +80,7 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 
 ## 스킬 완료 조건
 - 작성 규칙과 섹션 기준에 따라 spec·실제 프로젝트 근거·`SPEC §5.N` 연결을 확인한다.
-- 주요 Decision Point가 다음 단계에서 다시 설계하지 않아도 될 만큼 확정되어야 한다.
+- Decision Points에 채택안이 없는 미해결 결정이 남아 있으면 작성을 완료하지 않는다.
 - 기능 상태판, 이력과 기존 Task 체크박스는 §기능 README.md 갱신에 맞아야 한다.
 
 ## 완료 보고
