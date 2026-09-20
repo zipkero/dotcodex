@@ -1,101 +1,51 @@
 # Codex 전역 설정
 
-이 디렉터리는 Codex가 일관된 방식으로 작업하도록 만드는 사용자 정의 전역 설정과 사용자 정의 skill만 관리한다.
-로컬 실행 상태, 인증 정보, 로그, 캐시는 관리 대상이 아니다.
+이 디렉터리는 Codex의 사용자 정의 운영 지침, agent와 skill을 관리한다. 인증 정보, 세션, 로그와 캐시는 관리하지 않는다.
 
 ## 관리 대상
+- `AGENTS.md`: 전역 작업 흐름과 역할·승인 경계
+- `docs/phased-state.md`: Phased 승인 상태와 의미·의존 관계 기반 무효화
+- `agents/*.toml`: analyzer와 verifier 정의
+- `skills/*/`: 사용자 정의 skill과 필요한 참조
+- `features/**`: Phased 기능 문서
+- `.editorconfig`, `.gitattributes`, `.gitignore`: 저장소 관리 설정
 
-- `AGENTS.md`: 모든 Codex 작업에 적용되는 전역 지침
-- `docs/**`: 전역 지침의 보조 기준과 설정 변경을 검증하는 평가 문서
-- `features/**`: 문서 우선 작업에서 생성되는 기능 문서
-- 추적 허용 목록에 포함된 `agents/*.toml`: 특정 역할의 custom agent 정의
-- 추적 허용 목록에 포함된 `skills/*/`: 특정 작업 유형에서만 로드되는 사용자 정의 skill
-- `.editorconfig`, `.gitattributes`: 텍스트 포맷 기준
-- `.gitignore`: 로컬 상태 파일을 제외하는 추적 허용 목록 규칙
-
-## 기능 문서 구조
-
-문서 우선 작업에서 생성되는 기능 문서 세트는 `features/<feature-dir>/` 아래 다음 산출물로 구성된다.
-
+## Phased 문서
+`features/<feature-dir>/`에는 다음 문서를 둔다.
 - `README.md`: 기능 상태와 이력
-- `spec.md`: 요구사항, 범위, 완료 조건
-- `design.md`: 구조, 설계 결정, 영향 범위
-- `implement.md`: 구현 체크리스트와 항목별 검증 기준
+- `spec.md`: 요구사항·범위·완료 조건
+- `design.md`: 구조·설계 결정·영향 범위
+- `implement.md`: Task와 검증 조건
 
 별도 `verify.md`는 만들지 않는다.
 
-## Skill 구성
+## 사용자 정의 skill
+- `analyze`: 원인·영향·구조·대안을 읽기 전용으로 분석
+- `explain`: 코드·변경·시스템의 작동 방식을 근거와 함께 설명
+- `cross-analyze`: 여러 subagent의 독립 분석을 교차검증
+- `project-init`: 프로젝트 README·ROADMAP과 필요한 프로젝트 문서 구성
+- `spec-init`: 기능 spec과 상태 README 작성
+- `design-init`: 승인된 spec 기반 design 작성
+- `implement-init`: 승인된 design 기반 Task 작성
+- `implement`: Per-Request 또는 Phased Task 구현 조정
+- `implement-loop`: 여러 Task의 순차 구현·검증·재시도 조정
+- `verify`: 구현의 승인·거절 판정
+- `config-review`: 설정의 역할·호출·참조·상태 정합성 감사
+- `context-save`: 작업 인수인계를 `CONTEXT.md`에 저장
+- `context-restore`: 저장된 맥락을 읽기 전용으로 복원
 
-현재 관리 중인 사용자 정의 skill은 다음과 같다.
+추적 허용 목록 밖의 로컬·Codex 제공·plugin skill은 이 저장소의 관리 대상이 아니다.
 
-- `skills/analyze`: 코드·오류의 원인과 영향 범위를 조사하고 구조·설계 선택지를 비교해 판단과 제안을 제공
-- `skills/explain`: 구현된 코드·시스템·변경·기능이 무엇이고 어떻게 작동하는지 근거와 흐름 중심으로 설명
-- `skills/cross-analyze`: 같은 질문을 여러 subagent가 독립 분석한 결과를 근거 중심으로 교차검증
-- `skills/project-init`: 프로젝트 루트 `README.md`, `ROADMAP.md`와 필요한 `docs/product.md`, `docs/design.md` 구성
-- `skills/spec-init`: `spec.md`와 기능 `README.md` 초기화
-- `skills/design-init`: `spec.md` 기반 `design.md` 작성과 설계 완료 상태 확정
-- `skills/implement-init`: `design.md` 기반 `implement.md` 체크리스트 작성
-- `skills/implement`: Per-Request 또는 문서화된 Task의 worker 구현 조정과 결과 검토
-- `skills/implement-loop`: 남은 Task의 구현, 검증, 재시도와 상태 전환 순서를 조정하고 사용자 판단이 필요하면 중단
-- `skills/verify`: 요청된 검증, 필요한 독립 검증과 Phased 구현의 승인/거절 판단
-- `skills/config-review`: 전역 설정, 역할 프롬프트, 책임 경계, 추적 허용 목록의 관리 대상 사용자 정의 skill 정합성 점검
-- `skills/context-save`: 명시 요청이나 문서 작성·구현의 인수인계 경계에서 현재 작업 맥락과 다음 작업을 프로젝트 루트 `CONTEXT.md`에 저장
-- `skills/context-restore`: `CONTEXT.md`와 원본 문서를 대조해 저장된 작업 맥락을 읽기 전용으로 복원
+## Agent와 참조
+- `agents/analyzer.toml`: `design.md`와 `implement.md` 후보를 반환하는 읽기 전용 agent
+- `agents/verifier.toml`: 구현의 독립 후보 판정을 반환하는 읽기 전용 agent
+- `skills/implement/references/worker.md`: worker 실행·반환 계약
+- `skills/implement/references/phased.md`: Phased 구현 진입·Task 선택·문서 처리
+- `skills/verify/references/acceptance.md`: 구현 승인 판정 계약
+- `skills/verify/references/phased.md`: Phased 완료 조건 판정·상태 전환
+- `skills/config-review/references/structure.md`: 설정 구조 감사 기준
 
-Codex 제공 skill과 추적 허용 목록 밖의 로컬 skill은 위치와 관계없이 현재 전역 설정 관리 대상이 아니다.
-이들 skill은 로컬 Codex 런타임에 활성 상태로 노출될 수 있다.
+전역 참조는 `~/.codex/...`로 적고 agent 호출에는 홈을 확장한 절대 경로를 전달한다. 단계별 절차는 해당 skill, agent 실행 성격은 agent TOML, 최종 적용·판정·상태 변경은 main이 소유한다.
 
-## Agent 구성
-
-custom agent 정의는 `agents/*.toml`에 둔다.
-현재 관리 중인 custom agent는 다음과 같다.
-
-- `agents/analyzer.toml`: `Phased` 작업의 `design.md`와 `implement.md` 전체 후보 또는 국소 patch를 반환하는 읽기 전용 custom agent 정의
-- `agents/verifier.toml`: 필요한 구현 `verify`에서 후보 판단을 반환하는 읽기 전용 검증 custom agent 정의
-
-built-in `explorer` 호출 계약은 `AGENTS.md`, built-in `worker` 호출 계약은 `skills/implement/SKILL.md`가 소유한다.
-
-## 정책 위치
-
-- 전역 원칙과 라우팅은 `AGENTS.md`, 언어별 세부 기준은 `docs/languages/**`에 둔다.
-- Phased 승인 상태와 영향 기반 무효화는 `docs/phased-state.md`가 소유한다.
-- 단계별 절차와 판단 기준은 해당 `skills/*/SKILL.md`와 그 skill이 참조하는 문서가 소유한다.
-  custom analyzer·verifier의 실행 성격은 `agents/*.toml`이 소유한다.
-- 이 README는 관리 대상과 구조만 설명한다.
-
-전역 지침 안의 읽기 참조는 `~/.codex/...`로 표기하고, 도구·agent 호출 시 실제 홈 디렉터리의 절대 경로로 확장한다.
-대상 프로젝트의 지침·산출물 경로와 구분하며, 이 README의 상대 링크는 저장소 탐색용이다.
-
-## 역할별 참조 문서
-
-- `implement`: main과 worker는 [공통 구현 기준](skills/implement/references/implementation.md)을 사용한다.
-  main은 [진입점](skills/implement/SKILL.md)에서 worker 호출과 결과 검토를 조정하고 worker는 [구현 계약](skills/implement/references/worker.md)을 적용한다.
-  [Phased 조정](skills/implement/references/phased.md)은 main의 문서화된 Task 조정에만 적용한다.
-- `verify`: main은 [진입점](skills/verify/SKILL.md)에서 대상을 확정한다. 직접 검증과 verifier의 후보 판단은
-  [판정 계약](skills/verify/references/acceptance.md)을 공유하고, Phased에서만 [완료 조건과 상태](skills/verify/references/phased.md)를 추가로 적용한다.
-- Phased 문서를 작성·구현·검증하는 skill은 [승인 상태 계약](docs/phased-state.md)을 공통으로 읽는다.
-- `config-review`: [진입점](skills/config-review/SKILL.md)이 [구조 감사](skills/config-review/references/structure.md)와
-  [모델·하네스 감사](skills/config-review/references/model-harness.md)의 적용 범위를 구분한다.
-
-세부 적용 조건은 각 진입점이 정의한다. 참조 문서가 분리되어 있어도 main의 최종 권한과 기존 agent 호출 계약은 유지된다.
-
-## 설정 변경 평가
-
-[프롬프트 회귀 평가](docs/evals/prompt-regression.md)는 설정 변경의 정적 검사와 실제 Codex 비교 실행 기준을 설명한다.
-일반 구현·분석의 상시 입력이 아니라 설정 평가를 수행할 때 사용하는 문서다. 정적 검사와 실제 모델 실행의 결과를 구분한다.
-
-## Git 관리 정책
-
-`.gitignore`는 전체를 기본 제외하고 `관리 대상`에 해당하는 공유 가능 설정만 허용한다.
-실제 추적 여부는 `.gitignore`와 Git 결과로 확인한다.
-
-비추적 대상:
-
-- `config.toml`
-- `auth.json`
-- `history.jsonl`
-- `logs_*.sqlite`, `state_*.sqlite`
-- `cache/`, `sessions/`, `tmp/`, `.tmp/`
-- `skills/.system/`
-
-이 구조는 로컬 실행 상태와 공유 가능한 Codex 작업 정책을 분리하기 위한 것이다.
+## Git
+`.gitignore`는 공유 가능한 관리 파일만 추적하도록 구성한다. `config.toml`, 인증 정보, history, logs, state, cache, sessions, tmp와 `skills/.system/`은 추적하지 않는다.

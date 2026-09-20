@@ -5,30 +5,19 @@ description: "Approve or reject an implementation against requirements, diff, an
 
 # Verify
 
-## 컨텍스트 로딩
-- main은 `~/.codex/skills/verify/references/acceptance.md`의 판정 계약을 적용한다.
-- `Phased` 작업은 `~/.codex/skills/verify/references/phased.md`의 입력 조건·판정 기준·상태 전환을 추가로 적용한다.
-- `Per-Request` 작업은 사용자가 검증을 명시적으로 요청했거나 독립 검증이 필요한 변경의 직전 구현 대상이 단일하게 식별되어야 한다.
-  Phased 전용 절차와 기능 상태 갱신은 적용하지 않는다.
+main은 직접 검증과 verifier 결과 검토에 `~/.codex/skills/verify/references/acceptance.md`를 읽어 적용한다.
 
-## 대상과 변경 범위
-- main이 검증 대상을 하나로 확정하고 변경 범위는 다음 우선순위로 정한다.
-  1. 사용자가 지정한 commit, 파일 목록 또는 비교 범위
-  2. 같은 흐름의 implement worker가 반환한 `Changed files`와 diff
-  3. 복원 작업의 `CONTEXT.md`에 기록된 변경 파일, branch와 기준 HEAD
-  4. working tree와 Git history에서 수집한 후보
-- 대상이나 범위를 확정할 수 없으면 후보·근거·필요한 입력을 사용자에게 제시하고, 확인 전에는 verifier 호출과 판정을 보류한다.
+## 대상
+- Per-Request는 사용자가 검증을 요청했거나 독립 검증이 필요한 직전 구현 대상을 하나로 확정한다.
+- Phased는 `~/.codex/skills/verify/references/phased.md`와 `~/.codex/docs/phased-state.md`의 입력·판정·상태 계약을 추가로 적용한다.
+- 변경 범위는 사용자가 지정한 범위, 직전 worker의 `Changed files`, `CONTEXT.md` 인계, 현재 작업 트리 순서로 확인한다. 대상을 확정할 수 없으면 필요한 입력을 보고하고 판정을 보류한다.
 
-## verifier agent 사용 기준
-- 독립 검증을 명시했거나 보안·권한·데이터 손실·복구 곤란 변경처럼 오류 영향이 크거나, 복잡한 상태·동시성·경계·컴포넌트 상호작용으로
-  자체 판단이 어려우면 이름 있는 custom agent `verifier`를 사용한다. 파일 수와 무관하며 한 파일도 중대하면 사용한다.
-  영향이 제한되고 diff와 필요한 실행 결과로 확인되는 변경은 main이 직접 검증할 수 있다.
-- verifier 호출에는 작업 유형, 검증 대상·범위, 선행 문서, 프로젝트 `AGENTS.md`,
-  `~/.codex/skills/verify/references/acceptance.md`의 실제 절대 경로와 실행 근거 위치를 포함한다.
-  코드 검증이면 `~/.codex/docs/languages.md`와 해당 언어 문서의 실제 절대 경로도 전달한다.
-  Phased일 때만 `~/.codex/skills/verify/references/phased.md`, `~/.codex/docs/phased-state.md`의 실제 절대 경로와 기능 문서를 추가하고,
-  verifier가 지정된 원본·지침 파일을 직접 읽어 적용하도록 명시한다. main용 진입 절차를 위임하지 않는다.
+## verifier 호출
+- 독립 검증이 요청됐거나 권한·데이터·복구·상태 경계의 영향이 큰 변경은 custom agent `verifier`를 사용한다. 그 밖의 제한된 변경은 main이 직접 검증할 수 있다.
+- 호출에는 대상과 범위, 기준 문서, 프로젝트 `AGENTS.md`, `~/.codex/skills/verify/references/acceptance.md`와 실행 근거를 전달한다. Phased일 때만 Phased 참조·공통 상태 계약과 기능 문서를 추가한다.
+- verifier는 읽기 전용 후보 판정을 반환한다. 호출 실패는 다른 agent나 main의 독립 판정으로 대체하지 않는다.
 
-## 출력과 상태 전환
-- main은 판정 계약에 따라 직접 수집한 근거나 verifier의 후보 근거를 검토해 최종 `approved`·`rejected`를 확정한다.
-  Phased 상태 전환은 이후 main만 Phased 참조의 `상태 전환`에 따라 수행한다.
+## 판정
+- main은 acceptance 계약에 따라 최종 `approved` 또는 `rejected`를 확정한다.
+- verifier가 근거 부족과 해소 조건을 반환하면 main은 현재 권한 안에서 보완을 조정하고, 근거를 확보하지 못하면 `evidence`로 거절한다.
+- Phased 상태 전환은 판정 뒤 main만 수행한다.
