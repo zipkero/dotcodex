@@ -7,7 +7,7 @@ description: "Cross-check one question with independent read-only agents when ex
 
 ## 입력과 호출
 - 사용자가 명시적으로 요청했을 때 하나의 질문을 3~5개 독립 subagent에 맡긴다. 수가 없으면 3개를 사용하고 범위를 벗어나면 사용자에게 확인한다.
-- built-in `default`를 `model = "gpt-5.6-sol"`, `reasoning_effort = "high"`, `fork_turns = "none"`으로 호출한다.
+- built-in `default`를 `model = "gpt-6-sol"`, `reasoning_effort = "high"`, `fork_turns = "none"`으로 호출한다.
 - 모든 agent에 같은 자체 완결적 질문, 관련 절대 경로, 읽기 전용 범위와 근거 반환 형식을 전달한다.
 - 동시 실행 한도를 넘으면 배치로 나누고 모든 호출과 재시도가 끝난 뒤 결과를 종합한다.
 

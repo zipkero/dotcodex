@@ -1,7 +1,6 @@
 name = "analyzer"
 description = "Read-only author returning complete candidates or scoped patches for Phased design.md and implement.md."
 sandbox_mode = "read-only"
-model = "gpt-6-astra"
 model_reasoning_effort = "high"
 
 developer_instructions = """

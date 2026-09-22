@@ -28,4 +28,4 @@
 ## 경로와 위임
 - 전역 지침은 `~/.codex/...`로 적고 도구·agent 입력에는 홈을 확장한 절대 경로를 전달한다. 프로젝트 지침·산출물은 프로젝트 루트 기준으로 다룬다.
 - 명시된 프로젝트 루트를 사용하고, 없으면 `AGENTS.md`·VCS 루트·주요 manifest로 확인한다. 후보에 따라 범위나 산출물 위치가 달라질 때만 사용자에게 묻는다.
-- subagent 호출은 `fork_turns = "none"` 또는 필요한 최소 최근 turn 수를 사용한다. 코드베이스 조사를 위임할 실익이 있으면 built-in `explorer`를 `model = "gpt-5.6-terra"`, `reasoning_effort = "high"`로 호출한다. `cross-analyze`를 명시한 요청은 그 skill의 호출 계약을 따른다.
+- subagent 호출은 `fork_turns = "none"` 또는 필요한 최소 최근 turn 수를 사용한다. 코드베이스 조사를 위임할 실익이 있으면 built-in `explorer`를 `model = "gpt-6-luna"`, `reasoning_effort = "high"`로 호출한다. `cross-analyze`를 명시한 요청은 그 skill의 호출 계약을 따른다.
