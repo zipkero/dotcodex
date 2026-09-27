@@ -1,6 +1,6 @@
 ---
 name: implement-loop
-description: "Coordinate implementation, verification, and bounded retries for remaining Phased Tasks."
+description: "Coordinate implementation, verification, and retries for remaining Phased Tasks."
 ---
 
 # Implement Loop
@@ -18,15 +18,13 @@ description: "Coordinate implementation, verification, and bounded retries for r
 5. `approved`이면 main이 Task와 기능 상태를 갱신하고 다음 Task로 진행한다. `rejected`이면 사유와 근거를 기록해 재시도 또는 중단을 결정한다.
 
 ## 재시도와 기록
-- 최초 호출, 입력 보완 뒤 호출과 `blocked` 뒤 실제 재호출을 포함해 Task당 worker 호출은 최대 3회다.
-- 호출 전에 `시도: <1-3>/3`을 기록하고 loop 재실행과 문서 갱신 뒤에도 유지한다. reject는 `최근 reject`에 사유와 근거를 기록한다.
-- 구현 변경 없이 근거만 보완해 다시 검증하는 경우 worker 호출 횟수를 늘리지 않는다.
-- 필요한 근거를 보완할 수 없거나 재검증에도 같은 근거가 부족하면 중단한다.
+- 재시도 때는 미해결 원인과 보완 내용을 기록하고, reject는 `최근 reject`에 사유와 근거를 기록한다.
+- 필요한 근거의 보완이나 원인 해소가 불가능하면 중단한다.
 - 재작업이 승인된 Task의 동작에 영향을 주면 해당 범위를 다시 검증한다.
-- Task가 승인되면 `시도`와 `최근 reject`를 제거한다.
+- Task가 승인되면 `최근 reject`를 제거한다.
 
 ## 중단
-- 요구사항·설계·Task 목적·검증 조건·참조의 의미 변경, Task 재분해, 승인 범위 밖 변경, 필요한 사용자 결정, worker 호출 한도 소진이 필요하면 남은 Task를 건드리지 않고 해당 소유 단계와 재개 조건을 보고한다.
+- 요구사항·설계·Task 목적·검증 조건·참조의 의미 변경, Task 재분해, 승인된 결과와 무관한 별도 변경, 필요한 사용자 결정이 필요하면 남은 Task를 건드리지 않고 해당 소유 단계와 재개 조건을 보고한다.
 - Task를 건너뛰거나 순서를 바꾸지 않는다.
 
 ## 완료 보고
