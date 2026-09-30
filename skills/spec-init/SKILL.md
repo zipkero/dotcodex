@@ -6,15 +6,14 @@ description: "Create or reset a Phased feature spec.md and status README from co
 # Spec Init
 
 ## 역할과 입력
-- 확정된 요구사항을 `features/<feature-dir>/spec.md`와 상태 `README.md`로 작성한다.
+- 사용자 또는 입력 문서에서 확정된 요구사항을 `features/<feature-dir>/spec.md`와 상태 `README.md`로 작성한다.
 - 프로젝트 `README.md`, `ROADMAP.md`, 관련 `docs/product.md`, `docs/design.md`와 현재 원본을 필요한 범위에서 확인한다.
 - 범위·목표·제약·제외 범위·완료 조건이 결과를 바꿀 정도로 미확정이면 문서를 확정하지 않고 main이 사용자에게 확인한다.
 
 ## 생성과 갱신
 - 새 디렉터리는 `features/<yyyyMMdd>-<nnn>-<feature-name>/` 형식을 사용한다. 같은 날짜와 이름의 기존 디렉터리는 재사용한다.
 - 기존 문서 갱신은 승인된 범위에서 수행하고, 승인 유지·취소와 상태는 `~/.codex/docs/phased-state.md`를 따른다.
-- 사용자 결정은 해당 섹션에 반영하고, 채택되지 않은 제안은 요구사항으로 만들지 않는다.
-- 기존 완료 조건 번호와 Task ID·순서·진행 기록을 보존한다.
+- 요구사항과 제약은 해당 본문에 적고, 출처로 사용한 문서의 경로와 섹션은 입력 맥락에 남긴다.
 
 ## README.md 형식
 ```markdown

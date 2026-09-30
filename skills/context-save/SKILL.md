@@ -8,8 +8,6 @@ description: "Save or prune project CONTEXT.md for a session handoff."
 ## 역할과 적용
 - 프로젝트 루트의 `CONTEXT.md`에 다음 세션이 대화 없이 작업을 재개하는 데 필요한 현재 상태와 다음 작업을 저장한다.
 - Phased 원본의 요구사항·설계·Task를 복제하지 않고 링크한다. Per-Request는 요청 범위, 변경 파일과 검증 결과를 기록한다.
-- 문서 작성·구현의 단계 완료, worker 결과 인수 또는 중단으로 원본만으로 재개할 수 없는 상태가 바뀌었을 때 main이 적용한다.
-- 읽기 전용 작업은 사용자가 요청하지 않는 한 자동 저장하지 않는다.
 
 ## 절차
 1. 기존 `CONTEXT.md` 전체와 현재 원본·작업 트리를 대조한다.

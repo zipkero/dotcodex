@@ -13,8 +13,7 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 ## analyzer 호출
 - main은 `analyzer`에게 `design.md` 후보 작성을 맡긴다.
 - 호출에는 feature dir, `README.md`, `spec.md`, 기존 `design.md`·`implement.md`, 적용되는 프로젝트 `AGENTS.md`, 코드 조사 출발점과 이 skill·공통 상태 계약의 절대 경로를 필요한 범위에서 전달한다.
-- analyzer는 신규 문서는 전체 후보로, 기존 문서의 국소 의미 변경은 patch로 반환한다. 의미와 의존 관계를 국소 patch로 정확히 표현하기 어려우면 이유와 함께 전체 후보를 반환한다.
-- 반환은 미커밋 변경까지 구별할 수 있는 원본 식별, patch의 적용 위치, 변경 이유와 관련 `SPEC §5.N`, 직접·의존 영향과 판단하지 못한 영향을 포함한다. 입력이나 사용자 결정이 부족하면 근거와 영향을 반환한다.
+- 반환에는 patch 적용 위치, 변경 이유, 관련 `SPEC §5.N`, 직접·의존 영향과 확인하지 못한 영향을 포함한다.
 - main은 원본·관련 상위 문서·승인 범위의 최신성을 확인한 뒤 후보를 적용한다. 불일치나 모호함이 있으면 현재 원본으로 analyzer를 다시 호출하며, main은 설계 의미를 작성하지 않는다.
 - 일부만 적용한 경우 실제 부분 상태와 남은 작업을 인계하고 완료 처리하지 않는다. 적용 후 전체 설계와 하위 영향을 확인하고 main이 상태와 이력을 갱신한다.
 
