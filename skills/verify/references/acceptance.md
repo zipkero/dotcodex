@@ -14,17 +14,22 @@
 하나라도 `불충족` 또는 `근거 부족`이면 `rejected`, 모두 `충족`이면 `approved`다. verifier는 읽기 전용 후보를 반환하고 main이 최종 판정한다.
 
 ## 출력
+아래 번호 항목 형식을 유지하고, 각 번호 항목은 들여쓰지 않는다.
 1. Status: `approved` 또는 `rejected`
-2. Target
+2. Target: Phased는 `task-<nnn>: 제목`
 3. Validation: 기준마다 다음을 기록한다.
    - Criterion
    - Source
    - Evidence
    - Result: `충족` | `불충족` | `근거 부족`
-4. Completed requirements: Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`, 없으면 `없음`
+4. Completed requirements: Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`마다 아래에 `- SPEC §5.N: 성립 — <근거>` 또는 `- SPEC §5.N: 불성립 — <근거>` 한 줄, 없으면 이 줄에 `없음`만 적는다.
 5. Issues: `rejected`일 때만 다음을 기록한다.
-   - Category: `quality` | `correctness` | `design/scope` | `evidence`
-   - Repair stage: `quality`·`correctness`·`design/scope`일 때 구현·Task·설계·spec 중 수정 소유 단계
+   - Category: `style/minor` | `correctness` | `design/scope` | `evidence` 중 하나를 backtick으로 적는다.
+     - `style/minor`: 정확성을 깨지 않는 이름·주석·포맷 관례 위반
+     - `correctness`: 완료 조건·Task 목적·검증 조건 불충족, 버그, 잘못된 출력
+     - `design/scope`: 설계 결정 이탈, 범위 초과·미달
+     - `evidence`: 불충족을 확인한 것이 아니라 성립 여부를 확인할 근거가 없음
+   - Repair stage: `style/minor`·`correctness`·`design/scope`일 때 구현·Task·설계·spec 중 수정 소유 단계
    - Resolution: `evidence`일 때 `Repair stage` 대신 필요한 입력·환경·재검증 조건
    - Problem
 6. Explanation: `approved`일 때 간결한 승인 근거와 남은 위험

@@ -7,7 +7,7 @@ description: "Audit Codex configuration and instruction consistency without edit
 
 ## 역할과 범위
 - Codex 설정을 읽기 전용으로 감사해 역할·호출·참조·상태 계약의 충돌, 누락과 중복을 찾는다.
-- 특정 파일 감사는 관련 원본만, 전역 감사는 추적 중인 `AGENTS.md`, `README.md`, agent, 사용자 정의 skill·참조와 설정 구조를 확인한다.
+- 특정 파일 감사는 대상 원본과 `README.md`의 관련 연동 설명을, 전역 감사는 추적 중인 `AGENTS.md`, `README.md`, agent, 사용자 정의 skill·참조와 설정 구조를 확인한다. 대상에 적용되는 외부 규약은 README가 가리키는 명세의 관련 절을 함께 읽는다.
 - 실제 관리 범위는 Git 추적 결과로 확인한다.
 
 ## 기준

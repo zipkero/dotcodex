@@ -26,6 +26,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 
 ## implement.md 형식
 ```markdown
+<!-- prowl-workflow: v1 -->
 # <기능명> 구현
 
 ## 체크리스트
@@ -36,7 +37,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
   - 검증 조건:
     - 결과: <완료 후 상태>
     - 확인: <판정 방법과 근거>
-  - 참조: SPEC §5.N, DESIGN §X.Y
+  - 참조: SPEC §5.N / DESIGN §X.Y
 ```
 
 ## 완료 보고

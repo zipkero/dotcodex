@@ -17,6 +17,7 @@ description: "Create or reset a Phased feature spec.md and status README from co
 
 ## README.md 형식
 ```markdown
+<!-- prowl-workflow: v1 -->
 # <기능명>
 
 ## 개요
@@ -38,6 +39,7 @@ description: "Create or reset a Phased feature spec.md and status README from co
 
 ## spec.md 형식
 ```markdown
+<!-- prowl-workflow: v1 -->
 # <기능명> 명세
 
 ## 1. 범위

@@ -19,6 +19,7 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 
 ## design.md 형식
 ```markdown
+<!-- prowl-workflow: v1 -->
 # <기능명> 설계
 
 ## 근거

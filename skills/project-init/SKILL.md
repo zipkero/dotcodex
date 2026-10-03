@@ -17,7 +17,8 @@ description: "Initialize or restructure project README, ROADMAP, and supporting 
 
 ## 산출물
 - `README.md`: 현재 프로젝트의 역할, 제공 범위와 시작 경로
-- `ROADMAP.md`: 최종 결과물, 프로젝트 완료 기준, 포함 범위, 검증 가능한 마일스톤과 의존 관계, 필요한 후속 기능 후보
+- `ROADMAP.md`: 최종 결과물, 프로젝트 완료 기준, 포함 범위, 검증 가능한 마일스톤과 의존 관계, 필요한 후속 기능 후보. 첫 줄은 `<!-- prowl-workflow: v1 -->`다.
+  마일스톤은 `## 마일스톤` 아래 `### M<n>. <제목>`으로, 작업 후보는 각 마일스톤 아래 `- 작업 후보:` 줄의 backtick 이름으로 적는다.
 - `docs/product.md`: README와 ROADMAP에 담기 어려운 확정된 사용자 흐름·정책이 있을 때만 생성 또는 갱신
 - `docs/design.md`: 확정된 프로젝트 수준 구조·경계·상태 흐름·인터페이스가 있을 때만 생성 또는 갱신
 

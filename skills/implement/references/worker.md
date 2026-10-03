@@ -11,8 +11,9 @@
 - Phased 구현이 Task의 `접근`과 달라졌으면 차이와 관련 `SPEC §5.N`·`DESIGN §X.Y`를 보고한다.
 
 ## 반환
+- Phased 반환의 첫 줄은 `<!-- prowl-workflow: v1 implement -->`다.
 - `Status`: `completed` 또는 `blocked`
-- `Target`: 구현 대상
+- `Target`: 구현 대상. Phased는 `task-<nnn>`
 - `Changed files`: 실제 변경 파일, 없으면 `없음`
 - `Validation`: 실행 명령과 cwd, 검증 당시 HEAD와 관련 미커밋 diff, 실제 결과와 미실행 범위
 - `Blocker`: `blocked`일 때 부족한 계약·입력·권한·환경의 근거와 재개 조건
