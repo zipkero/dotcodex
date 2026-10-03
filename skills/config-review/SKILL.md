@@ -13,7 +13,7 @@ description: "Audit Codex configuration and instruction consistency without edit
 ## 기준
 - 모든 감사에 `~/.codex/skills/config-review/references/structure.md`를 적용한다.
 - 사용자 정책과 운영 계약을 기준으로 판단하며 새 흐름을 설계하거나 파일을 변경하지 않는다.
-- 발견은 현재 환경에서 실제로 틀렸거나 동작하지 않아 영향이 있는 항목으로 한정한다. 관찰되지 않은 실패를 막기 위한 지침 추가·보강은 제안하지 않는다.
+- 발견은 원본에서 확인되는 중복·과잉·계약 충돌과 실행 근거로 확인된 동작 문제로 한정한다. 관찰되지 않은 실패를 가정해 지침 추가·보강을 제안하지 않는다.
 - 방어 지침에 다시 방어가 필요하면 단서를 더하지 말고 최초 지침의 적용 조건을 고친다.
 
 ## 출력

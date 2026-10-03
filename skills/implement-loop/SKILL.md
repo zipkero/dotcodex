@@ -15,7 +15,7 @@ description: "Coordinate implementation, verification, and retries for remaining
 2. Task의 검증 조건이 확인 가능한 근거를 지정하는지 확인한다.
 3. `implement`로 worker를 호출한다. `blocked`이면 main이 기존 승인과 입력으로 보완할 수 있는지 확인하고, 실제로 보완했으면 같은 역할을 다시 호출한다. 해소할 수 없으면 상태를 유지하고 중단한다.
 4. worker가 `completed`를 반환하면 `verify`를 실행한다.
-5. `approved`이면 main이 Task와 기능 상태를 갱신하고 다음 Task로 진행한다. `rejected`이면 사유와 근거를 기록해 재시도 또는 중단을 결정한다.
+5. `approved`이면 다음 Task로 진행한다. `rejected`이면 사유와 근거를 기록해 재시도 또는 중단을 결정한다.
 
 ## 재시도와 기록
 - 재시도 때는 미해결 원인과 보완 내용을 기록하고, reject는 `최근 reject`에 사유와 근거를 기록한다.

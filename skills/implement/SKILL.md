@@ -17,6 +17,6 @@ description: "Implement one approved Phased Task or a scoped Per-Request change.
 - 지정한 호출 조건을 적용할 수 없거나 호출에 실패하면 원인을 확인해 보완하고, 승인된 계약 안에서 재시도하거나 수행 방법을 조정한다.
 
 ## 결과
-- 구현 결과의 변경과 검증 근거를 main이 검토한다. Phased의 Task 체크박스와 상태는 `verify` 승인 후에만 바꾼다.
+- 구현 결과의 변경과 검증 근거를 main이 검토한다.
 - Phased는 `verify` 또는 `implement-loop`로 이어가고, Per-Request는 요청되었거나 독립 검증이 필요한 경우 `verify`로 이어간다.
 - 결과·변경 파일·검증·남은 위험과 범위 밖 발견을 보고한다.
