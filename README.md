@@ -68,7 +68,7 @@ Prowl은 이 설정이 만드는 작업 문서와 Phased 보고의 형식을 규
 - 규약 명세: [zipkero/prowl의 workflow 규약 v1](https://github.com/zipkero/prowl/blob/main/docs/workflow-contract/v1.md). 작업 문서는 §1·§2, 보고는 §1·§3, 요청 종류를 가리는 이름은 §4를 따른다. 표지 단어와 값 목록은 §5가 소유한다.
 - 작업 문서 표시: `skills/spec-init/SKILL.md` §README.md 형식·§spec.md 형식, `skills/design-init/SKILL.md` §design.md 형식, `skills/implement-init/SKILL.md` §implement.md 형식, `skills/project-init/SKILL.md` §산출물의 ROADMAP 첫 줄 `<!-- prowl-workflow: v1 -->`.
 - feature·spec 형식: `skills/spec-init/SKILL.md` §생성과 갱신의 feature 폴더 이름, §README.md 형식의 `## 상태`와 SPEC·DESIGN·IMPLEMENT 체크박스, §spec.md 형식의 §1 첫 문단과 §5 완료 조건 번호 항목.
-- design·Task 형식: `skills/design-init/SKILL.md` §design.md 형식의 절 번호, `skills/implement-init/SKILL.md` §Task 규칙·§implement.md 형식의 Task 줄·필드 이름·참조 필드 ` / ` 구분.
+- design·Task 형식: `skills/design-init/SKILL.md` §design.md 형식의 절 번호, `skills/implement-init/SKILL.md` §Task 규칙·§implement.md 형식의 Task 줄·필드 이름·참조 필드 ` / ` 구분·번호 나열과 절 이름 따옴표.
 - ROADMAP 형식: `skills/project-init/SKILL.md` §산출물의 마일스톤 제목과 작업 후보 줄.
 - verify 보고: `skills/verify/references/phased.md` §입력과 판정의 첫 줄 표시, `skills/verify/references/acceptance.md` §출력의 번호 항목 경계, `Status`·`Target`의 Task ID·`Completed requirements` 줄 형식·`Category`의 네 값과 backtick·`Repair stage`·`Resolution`.
 - implement 보고: `skills/implement/references/worker.md` §반환의 첫 줄 표시, `Status` 값과 `Target`의 Task ID.
