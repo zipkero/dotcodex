@@ -22,7 +22,7 @@
    - Source
    - Evidence
    - Result: `충족` | `불충족` | `근거 부족`
-4. Completed requirements: Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`마다 아래에 `- SPEC §5.N: 성립 — <근거>` 또는 `- SPEC §5.N: 불성립 — <근거>` 한 줄, 없으면 이 줄에 `없음`만 적는다.
+4. Completed requirements: Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`마다 아래에 `- SPEC §5.N: 성립 — <근거>` 또는 `- SPEC §5.N: 불성립 — <근거>` 한 줄, 없으면 이 줄에 `없음`만 적는다. `성립`·`불성립`·`없음`은 낱말 그대로 쓰고, 설명은 `—` 뒤 근거에 둔다.
 5. Issues: `rejected`일 때만 다음을 기록한다.
    - Category: `style/minor` | `correctness` | `design/scope` | `evidence` 중 하나를 backtick으로 적는다.
      - `style/minor`: 정확성을 깨지 않는 이름·주석·포맷 관례 위반

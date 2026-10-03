@@ -59,13 +59,10 @@
 
 전역 참조는 `~/.codex/...`로 적고 agent 호출에는 홈을 확장한 절대 경로를 전달한다. 단계별 절차는 해당 skill, agent 실행 성격은 agent TOML, 최종 적용·판정·상태 변경은 main이 소유한다.
 
-## Prowl workflow 규약
+## 출력 형식 계약
 
-Prowl은 이 설정이 만드는 작업 문서와 Phased 보고의 형식을 규약 v1로 정한다. 작업 문서는 현재 읽으며, Codex 세션 보고 수집은 아직 지원하지 않는다. Prowl은 산출물을 읽고 전역 설정을 수정하지 않는다.
+이 설정이 만드는 작업 문서와 Phased 보고는 다른 도구가 읽는 형식이다. 설명 문구는 다듬을 수 있지만, 아래 표지 단어·값·위치와 문서 형식을 바꾸면 동작 변경으로 다룬다.
 
-설명 문구는 다듬을 수 있지만, 아래 표지 단어·값·위치와 문서 형식은 규약에 기대는 자리다. 형식 변경은 Prowl이 새 규약 버전과 읽기 계약으로 정하고, 이 설정이 그 뒤에 맞춘다.
-
-- 규약 명세: [zipkero/prowl의 workflow 규약 v1](https://github.com/zipkero/prowl/blob/main/docs/workflow-contract/v1.md). 작업 문서는 §1·§2, 보고는 §1·§3, 요청 종류를 가리는 이름은 §4를 따른다. 표지 단어와 값 목록은 §5가 소유한다.
 - 작업 문서 표시: `skills/spec-init/SKILL.md` §README.md 형식·§spec.md 형식, `skills/design-init/SKILL.md` §design.md 형식, `skills/implement-init/SKILL.md` §implement.md 형식, `skills/project-init/SKILL.md` §산출물의 ROADMAP 첫 줄 `<!-- prowl-workflow: v1 -->`.
 - feature·spec 형식: `skills/spec-init/SKILL.md` §생성과 갱신의 feature 폴더 이름, §README.md 형식의 `## 상태`와 SPEC·DESIGN·IMPLEMENT 체크박스, §spec.md 형식의 §1 첫 문단과 §5 완료 조건 번호 항목.
 - design·Task 형식: `skills/design-init/SKILL.md` §design.md 형식의 절 번호, `skills/implement-init/SKILL.md` §Task 규칙·§implement.md 형식의 Task 줄·필드 이름·참조 필드 ` / ` 구분·번호만 나열.
