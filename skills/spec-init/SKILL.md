@@ -6,7 +6,7 @@ description: "Create or reset a Phased feature spec.md and status README from co
 # Spec Init
 
 ## 역할과 입력
-- 사용자 또는 입력 문서에서 확정된 요구사항을 `features/<feature-dir>/spec.md`와 상태 `README.md`로 작성한다.
+- 사용자에게 확정받았거나 입력 문서에 확정된 내용으로 적힌 요구사항을 `features/<feature-dir>/spec.md`와 상태 `README.md`로 작성한다.
 - 프로젝트 `README.md`, `ROADMAP.md`, 관련 `docs/product.md`, `docs/design.md`와 현재 원본을 필요한 범위에서 확인한다.
 - 범위·목표·제약·제외 범위·완료 조건이 결과를 바꿀 정도로 미확정이면 문서를 확정하지 않고 main이 사용자에게 확인한다.
 

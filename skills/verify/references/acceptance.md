@@ -26,7 +26,7 @@
      Evidence: <근거>
      Result: `충족` | `불충족` | `근거 부족`
 4. Completed requirements:
-   - SPEC §5.<N>: <성립|불성립> — <근거>
+   - SPEC §5.<N>: `성립` | `불성립` — <근거>
 5. Issues:
    - Category: `style/minor` | `correctness` | `design/scope` | `evidence`
    - Repair stage: `구현` | `Task` | `설계` | `spec`
