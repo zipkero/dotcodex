@@ -14,24 +14,36 @@
 하나라도 `불충족` 또는 `근거 부족`이면 `rejected`, 모두 `충족`이면 `approved`다. verifier는 읽기 전용 후보를 반환하고 main이 최종 판정한다.
 
 ## 출력
-아래 번호 항목 형식을 유지하고, 각 번호 항목은 들여쓰지 않는다.
-1. Status: `approved` 또는 `rejected`
-2. Target: Phased는 `task-<nnn>: 제목`
-3. Validation: 기준마다 다음을 기록한다.
-   - Criterion
-   - Source
-   - Evidence
-   - Result: `충족` | `불충족` | `근거 부족`
-4. Completed requirements: Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`마다 아래에 `- SPEC §5.N: <성립|불성립> — <근거>` 한 줄, 없으면 이 줄에 `없음`만 적는다.
-5. Issues: `rejected`일 때만 다음을 기록한다.
-   - Category: `style/minor` | `correctness` | `design/scope` | `evidence` 중 하나를 backtick으로 적는다.
-     - `style/minor`: 정확성을 깨지 않는 이름·주석·포맷 관례 위반
-     - `correctness`: 완료 조건·Task 목적·검증 조건 불충족, 버그, 잘못된 출력
-     - `design/scope`: 설계 결정 이탈, 범위 초과·미달
-     - `evidence`: 불충족을 확인한 것이 아니라 성립 여부를 확인할 근거가 없음
-   - Repair stage: `style/minor`·`correctness`·`design/scope`일 때 구현·Task·설계·spec 중 수정 소유 단계
-   - Resolution: `evidence`일 때 `Repair stage` 대신 필요한 입력·환경·재검증 조건
-   - Problem
-6. Explanation: `approved`일 때 간결한 승인 근거와 남은 위험, 4번이 `없음`이면 그 이유
+출력은 아래 모양이다. Phased는 `references/phased.md`의 표시 줄 다음에 둔다.
+`<…>`는 채울 자리, `|`는 그중 하나이며, 그 밖의 글자는 적힌 그대로 쓴다. 번호 항목은 들여쓰지 않는다.
+
+```markdown
+1. Status: `approved` | `rejected`
+2. Target: `task-<nnn>: <제목>`
+3. Validation:
+   - Criterion: <기준>
+     Source: <출처>
+     Evidence: <근거>
+     Result: `충족` | `불충족` | `근거 부족`
+4. Completed requirements:
+   - SPEC §5.<N>: <성립|불성립> — <근거>
+5. Issues:
+   - Category: `style/minor` | `correctness` | `design/scope` | `evidence`
+   - Repair stage: `구현` | `Task` | `설계` | `spec`
+   - Resolution: <필요한 입력·환경·재검증 조건>
+   - Problem: <문제와 근거>
+6. Explanation: <승인 근거와 남은 위험>
+```
+
+- 3번은 기준마다 한 묶음이다. Phased에서는 대상 Task에 매핑된 요구사항의 완료 여부와 판단 근거도 여기에 적는다.
+- 4번은 Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`마다 한 줄이다. 없으면 4번은 `4. Completed requirements: 없음` 한 줄이다.
+- 5번은 `rejected`일 때, 6번은 `approved`일 때만 둔다.
+- `Category` 값의 뜻:
+  - `style/minor`: 정확성을 깨지 않는 이름·주석·포맷 관례 위반
+  - `correctness`: 완료 조건·Task 목적·검증 조건 불충족, 버그, 잘못된 출력
+  - `design/scope`: 설계 결정 이탈, 범위 초과·미달
+  - `evidence`: 불충족을 확인한 것이 아니라 성립 여부를 확인할 근거가 없음
+- `Category`가 `evidence`면 `Repair stage` 대신 `Resolution`을 둔다.
+- Target의 Task ID 형식은 Phased에만 쓰고, Per-Request는 요청한 변경을 적는다.
 
 Per-Request 결과 검토는 같은 판정 기준을 유지하면서 결과·핵심 근거·미실행 검증만 간결하게 보고할 수 있다. 검증 중 파일이나 상태를 변경하거나 별도 검증 Markdown을 만들지 않는다.

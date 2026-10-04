@@ -14,7 +14,7 @@ description: "Audit Codex configuration and instruction consistency without edit
 - 모든 감사에 `~/.codex/skills/config-review/references/structure.md`를 적용한다.
 - 사용자 정책과 운영 계약을 기준으로 판단하며 새 흐름을 설계하거나 파일을 변경하지 않는다.
 - 발견은 원본에서 확인되는 중복·과잉·계약 충돌과 실행 근거로 확인된 동작 문제로 한정한다.
-- 방어 지침에 다시 방어가 필요하면 단서를 더하지 말고 최초 지침의 적용 조건을 고친다.
+- 지침 준수를 재차 요구하는 방어 문장은 중복·과잉으로 검토하고, 원래 지침의 적용 조건·구조·표현을 수정하는 방향으로 정리한다.
 
 ## 출력
 - 확인 범위와 전체 판정: `정상`, `과함`, `부족`, `충돌`
