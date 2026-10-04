@@ -16,6 +16,5 @@ description: "Restore work from project CONTEXT.md by checking its sources and c
 4. 누락·불일치, 현재 목표·상태·결정, 다음 작업과 완료 기준, 문서 반영 필요를 보고한다.
 
 ## 경계
-- 복원만 요청받으면 파일·상태를 변경하지 않는다.
 - 다음 작업 실행도 요청받았으면 복원 후 `AGENTS.md`와 해당 skill로 진행한다.
 - 원본 미반영 결정이 다음 작업의 선행 계약이면 의존 작업 전에 해당 문서 소유 단계에서 해소한다.

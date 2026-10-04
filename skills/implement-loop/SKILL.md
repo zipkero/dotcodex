@@ -28,7 +28,6 @@ description: "Coordinate implementation, verification, and retries for remaining
 ## 중단
 - 요구사항·설계·Task 목적·검증 조건·참조의 의미 변경, Task 재분해, 승인된 결과와 무관한 별도 변경, 필요한 사용자 결정이 필요하면 남은 Task를 건드리지 않고 해당 소유 단계와 재개 조건을 보고한다.
 - 근거 재검증 2회 뒤에도 `evidence`로 rejected이면 중단한다.
-- Task를 건너뛰거나 순서를 바꾸지 않는다.
 
 ## 완료 보고
 - 첫 줄은 `<!-- prowl-workflow: v1 implement-loop -->`다.

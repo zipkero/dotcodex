@@ -16,4 +16,4 @@ description: "Explain what code, changes, tasks, and systems are and how they wo
 
 ## 출력
 - 사용자 영향과 핵심 동작을 먼저 설명하고, 근거 위치·확인된 한계·후속 조사 지점을 함께 제시한다.
-- 파일·상태를 변경하지 않는다. 설명 기록 파일은 사용자가 명시적으로 요청한 경우에만 작성한다.
+- 설명 기록 파일은 사용자가 명시적으로 요청한 경우에만 작성한다.
