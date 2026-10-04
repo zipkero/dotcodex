@@ -32,6 +32,6 @@
    - Repair stage: `style/minor`·`correctness`·`design/scope`일 때 구현·Task·설계·spec 중 수정 소유 단계
    - Resolution: `evidence`일 때 `Repair stage` 대신 필요한 입력·환경·재검증 조건
    - Problem
-6. Explanation: `approved`일 때 간결한 승인 근거와 남은 위험
+6. Explanation: `approved`일 때 간결한 승인 근거와 남은 위험, 4번이 `없음`이면 그 이유
 
 Per-Request 결과 검토는 같은 판정 기준을 유지하면서 결과·핵심 근거·미실행 검증만 간결하게 보고할 수 있다. 검증 중 파일이나 상태를 변경하거나 별도 검증 Markdown을 만들지 않는다.
