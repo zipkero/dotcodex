@@ -19,33 +19,34 @@
 
 ```markdown
 1. Status: `approved` | `rejected`
-2. Target: `task-<nnn>: <제목>`
-3. Validation:
+2. Target: task-<nnn>: <제목>
+3. Completed requirements:
+   - SPEC §5.<N>: `성립` | `불성립` | `미확인` — <근거>
+4. Issues:
+   - Category: `style/minor` | `correctness` | `design/scope`
+   - Repair stage: `구현` | `Task` | `설계` | `spec`
+   - Problem: <문제와 근거>
+5. Validation:
    - Criterion: <기준>
      Source: <출처>
      Evidence: <근거>
      Result: `충족` | `불충족` | `근거 부족`
-4. Completed requirements:
-   - SPEC §5.<N>: `성립` | `불성립` — <근거>
-5. Issues:
-   - Category: `style/minor` | `correctness` | `design/scope`
-   - Repair stage: `구현` | `Task` | `설계` | `spec`
-   - Problem: <문제와 근거>
 6. Explanation: <승인 근거와 남은 위험>
 ```
 
-`Category`가 `evidence`면 5번은 아래 모양이다.
+`Category`가 `evidence`면 4번은 아래 모양이다.
 
 ```markdown
-5. Issues:
+4. Issues:
    - Category: `evidence`
    - Resolution: <필요한 입력·환경·재검증 조건>
    - Problem: <문제와 근거>
 ```
 
-- 3번은 이번 판정 대상의 기준마다 한 묶음이다. Phased 판정 범위와 요구사항 전체 판정 시점은 `references/phased.md`를 따른다.
-- 4번은 Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`마다 한 줄이다. 없으면 4번은 `4. Completed requirements: 없음` 한 줄이다.
-- 5번은 `rejected`일 때, 6번은 `approved`일 때만 둔다.
+- 3번은 Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`마다 한 줄이다. 그 요구사항에 걸린 기준이 `불충족`이면 `불성립`, `불충족` 없이 `근거 부족`이면 `미확인`이다. 없으면 3번은 `3. Completed requirements: 없음` 한 줄이다.
+- 4번은 `rejected`일 때, 6번은 `approved`일 때만 둔다.
+- 문제가 여럿이어도 `Category`와 `Repair stage`는 하나씩이다. `Category`는 확인된 문제가 있으면 그 값이고 근거 부족은 `Problem`에 적으며, `Repair stage`는 고칠 자리 중 가장 앞선 단계다.
+- 5번은 이번 판정 대상의 기준마다 한 묶음이다. Phased 판정 범위와 요구사항 전체 판정 시점은 `references/phased.md`를 따른다.
 - `Category` 값의 뜻:
   - `style/minor`: 정확성을 깨지 않는 이름·주석·포맷 관례 위반
   - `correctness`: 완료 조건·Task 목적·검증 조건 불충족, 버그, 잘못된 출력

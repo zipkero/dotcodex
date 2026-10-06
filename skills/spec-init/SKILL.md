@@ -12,6 +12,8 @@ description: "Create or reset a Phased feature spec.md and status README from co
 
 ## 생성과 갱신
 - 새 디렉터리는 `features/<yyyyMMdd>-<nnn>-<feature-name>/` 형식을 사용한다. 같은 날짜와 이름의 기존 디렉터리는 재사용한다.
+- `<feature-name>`은 담당 마일스톤의 ROADMAP 작업 후보 중 이 기능과 같은 것이 있으면 그 이름을 쓴다.
+- spec.md §1 첫 문단에는 담당 마일스톤을 `ROADMAP M<n>`으로 적고 다른 마일스톤 번호는 쓰지 않는다. ROADMAP이 없거나 맡는 마일스톤이 없으면 적지 않는다.
 - 기존 문서 갱신은 승인된 범위에서 수행하고, 승인 유지·취소와 상태는 `~/.codex/docs/phased-state.md`를 따른다.
 - 요구사항과 제약은 해당 본문에 적고, 출처로 사용한 문서의 경로와 섹션은 입력 맥락에 남긴다.
 
@@ -43,6 +45,7 @@ description: "Create or reset a Phased feature spec.md and status README from co
 # <기능명> 명세
 
 ## 1. 범위
+<담당 마일스톤 `ROADMAP M<n>`과 작업 경계>
 
 ### 1.1 입력 맥락
 <다음 단계의 조사 출발점. 필요 없으면 생략>
