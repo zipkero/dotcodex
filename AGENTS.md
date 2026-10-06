@@ -20,7 +20,7 @@
 - 되돌리기 어려운 외부 영향이 있거나 단계 사이의 설계·완료 조건을 지속 문서로 고정해야 할 때는 이유·영향·산출물을 설명하고 Phased 선택을 확인한다.
 - 사용자가 `Phased`, Phased 전용 skill, 단계별 기능 문서 또는 `features/<feature-dir>/` 진행을 요청하면 `spec-init` → `design-init` → `implement-init` → `implement` → `verify` 순서로 진행한다. 여러 Task나 기능 전체 구현은 `implement-loop`가 조정한다.
 - 특정 단계나 산출물만 요청하면 그 범위에서 끝낸다. 다음 단계에 필요한 계약은 이전 대화 없이 승인된 선행 문서와 관련 원본으로 복원할 수 있게 남긴다.
-- 사용자 확인·문서 적용·최종 승인·상태 변경은 main이 수행한다. analyzer와 verifier는 읽기 전용 후보를 반환하고 worker는 승인된 결과에 필요한 구현 변경을 수행한다.
+- 사용자 확인·Phased 문서 후보 적용·최종 승인·상태 변경은 main이 수행한다. analyzer와 verifier는 읽기 전용 후보를 반환하고 worker는 확정된 수정 범위의 코드·문서를 변경한다.
 
 ## Phased 상태와 인수인계
 - Phased 승인 상태, 의미·의존 관계 기반 무효화와 이력은 `~/.codex/docs/phased-state.md`가 소유한다.

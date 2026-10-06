@@ -10,14 +10,17 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 - 기능 `README.md`의 `SPEC`이 `[x]`여야 한다. 충족하지 않으면 `spec-init`으로 반환한다.
 - 승인 유지·취소와 상태는 `~/.codex/docs/phased-state.md`를 따른다.
 
-## analyzer 호출
+## main 조정
 - main은 `analyzer`에게 `design.md` 후보 작성을 맡긴다.
 - 호출에는 feature dir, `README.md`, `spec.md`, 기존 `design.md`·`implement.md`, 적용되는 프로젝트 `AGENTS.md`, 코드 조사 출발점과 이 skill·공통 상태 계약의 절대 경로를 필요한 범위에서 전달한다.
-- 반환에는 patch 적용 위치, 변경 이유, 관련 `SPEC §5.N`, 직접·의존 영향과 확인하지 못한 영향을 포함한다.
 - main은 후보를 현재 원본과 승인 범위에 대조한다.
-- 설계 의미를 확정할 수 있고 의미 수정이 필요 없으면 후보를 적용한다.
-- 그 외에는 현재 원본과 쟁점을 전달해 analyzer를 다시 호출한다.
+- 후보가 승인 범위와 작성 기준을 충족하면 main이 적용한다.
+- 기존 승인과 원본으로 해소 가능한 후보 결함은 main이 쟁점을 전달해 analyzer에게 수정을 맡긴다.
+- 새 사용자 결정이나 선행 계약 변경이 필요하면 main이 해당 소유 단계에서 해소한다.
 - main은 적용된 전체 설계와 하위 영향을 확인하고 상태와 이력을 갱신한다. 부분 적용은 미완료 상태와 남은 작업을 인계한다.
+
+## analyzer 반환
+- patch 적용 위치, 변경 이유, 관련 `SPEC §5.N`, 직접·의존 영향과 확인하지 못한 영향을 포함한다.
 
 ## design.md 형식
 ```markdown

@@ -15,9 +15,7 @@ main은 직접 검증과 verifier 결과 검토에 `~/.codex/skills/verify/refer
 ## verifier 호출
 - 독립 검증이 요청됐거나 권한·데이터·복구·상태 경계의 영향이 큰 변경은 custom agent `verifier`를 사용한다. 그 밖의 제한된 변경은 main이 직접 검증할 수 있다.
 - 호출에는 대상과 범위, 기준 문서, 프로젝트 `AGENTS.md`, `~/.codex/skills/verify/references/acceptance.md`와 실행 근거를 전달한다. Phased일 때만 Phased 참조·공통 상태 계약과 기능 문서를 추가한다.
-- verifier는 읽기 전용 후보 판정을 반환한다.
 
 ## 판정
 - main은 acceptance 계약에 따라 최종 `approved` 또는 `rejected`를 확정한다.
 - verifier가 근거 부족과 해소 조건을 반환하면 main은 현재 권한 안에서 보완을 조정하고, 근거를 확보하지 못하면 `evidence`로 거절한다.
-- Phased 상태 전환은 판정 뒤 main만 수행한다.

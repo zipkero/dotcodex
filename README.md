@@ -24,10 +24,9 @@
 
 ## 작업 흐름
 
-- 파일 변경은 기본적으로 `implement`의 Per-Request로 진행한다. main이 범위를 확정하고 직접 구현하거나 worker에게 맡긴다.
-- Phased는 `spec-init` → `design-init` → `implement-init` → `implement` → `verify` 순서로 진행한다. 여러 Task나 기능 전체 구현은 `implement-loop`가 조정한다.
-- 분석·설명·설정 감사·맥락 복원은 해당 읽기 전용 skill에서 끝낸다.
-- 승인 상태·무효화·이력은 `docs/phased-state.md`, 진행 상태 인수인계는 `context-save`가 소유한다.
+- 요청 분류·단계 순서·역할과 승인 경계: `~/.codex/AGENTS.md`
+- Phased 승인 상태·무효화·이력: `~/.codex/docs/phased-state.md`
+- 진행 상태 인수인계: `~/.codex/skills/context-save/SKILL.md`
 
 ## 사용자 정의 skill
 
@@ -57,7 +56,7 @@
 - `skills/verify/references/phased.md`: Phased 완료 조건 판정·상태 전환
 - `skills/config-review/references/structure.md`: 설정 구조 감사 기준
 
-전역 참조는 `~/.codex/...`로 적고 agent 호출에는 홈을 확장한 절대 경로를 전달한다. 단계별 절차는 해당 skill, agent 실행 성격은 agent TOML, 최종 적용·판정·상태 변경은 main이 소유한다.
+단계별 절차는 해당 skill, agent 실행 성격은 agent TOML에서 정의한다.
 
 ## 출력 형식 계약
 
