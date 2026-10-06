@@ -12,7 +12,7 @@
 
 ## 반환
 - Phased 반환의 첫 줄은 `<!-- prowl-workflow: v1 implement -->`다.
-- `Status`: `completed` 또는 `blocked`
+- `Status`: 구현을 마쳤으면 검증 조건을 확인하지 못했어도 `completed`, 구현에 필요한 계약·입력·권한·환경이 부족해 막혔으면 `blocked`
 - `Target`: 구현 대상. Phased는 `task-<nnn>`
 - `Changed files`: 실제 변경 파일, 없으면 `없음`
 - `Validation`: 실행 명령과 cwd, 검증 당시 HEAD와 관련 미커밋 diff, 실제 결과와 미실행 범위
