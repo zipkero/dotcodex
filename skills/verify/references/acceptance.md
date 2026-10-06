@@ -35,7 +35,7 @@
 6. Explanation: <승인 근거와 남은 위험>
 ```
 
-- 3번은 기준마다 한 묶음이다. Phased에서는 대상 Task에 매핑된 요구사항의 완료 여부와 판단 근거도 여기에 적는다.
+- 3번은 이번 판정 대상의 기준마다 한 묶음이다. Phased 판정 범위와 요구사항 전체 판정 시점은 `references/phased.md`를 따른다.
 - 4번은 Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`마다 한 줄이다. 없으면 4번은 `4. Completed requirements: 없음` 한 줄이다.
 - 5번은 `rejected`일 때, 6번은 `approved`일 때만 둔다.
 - `Category` 값의 뜻:
@@ -46,4 +46,5 @@
 - `Category`가 `evidence`면 `Repair stage` 대신 `Resolution`을 둔다.
 - Target의 Task ID 형식은 Phased에만 쓰고, Per-Request는 요청한 변경을 적는다.
 
-Per-Request 결과 검토는 같은 판정 기준을 유지하면서 결과·핵심 근거·미실행 검증만 간결하게 보고할 수 있다. 검증 중 파일이나 상태를 변경하거나 별도 검증 Markdown을 만들지 않는다.
+Per-Request 결과 검토는 같은 판정 기준으로 결과·핵심 근거·미실행 검증만 간결하게 보고할 수 있다.
+판정 과정은 읽기 전용이며, 판정 후 main이 `references/phased.md`에 따라 Phased 상태를 갱신한다. 별도 검증 Markdown은 만들지 않는다.

@@ -11,10 +11,15 @@ description: "Implement one approved Phased Task or a scoped Per-Request change.
 
 ## 구현과 worker 호출
 - main은 승인된 Phased Task 하나를 worker에게 맡긴다. 범위가 확정된 Per-Request는 직접 구현하거나 worker에게 맡긴다.
-- worker 호출에는 목적·범위·성공 기준, 예상 수정 대상, 승인된 기준 문서와 상태, 기존 diff·검증·미해결 문제, `~/.codex/skills/implement/references/worker.md`와 적용되는 프로젝트 `AGENTS.md`의 절대 경로를 전달한다. 프로젝트 `AGENTS.md`가 없으면 그 사실과 적용 기준을 전달한다.
+- worker 호출에는 다음을 전달한다.
+  - 목적·범위·성공 기준
+  - 예상 수정 대상
+  - 승인된 기준 문서와 상태
+  - 기존 diff·검증·미해결 문제
+  - `~/.codex/skills/implement/references/worker.md`와 적용되는 프로젝트 `AGENTS.md`의 절대 경로
+- 프로젝트 `AGENTS.md`가 없으면 그 사실과 적용 기준을 전달한다.
 - Phased의 확정 결정은 먼저 소유 문서에 반영하고 worker에게 승인된 원본을 전달한다.
 - worker 호출은 `model = "gpt-6-sol"`, `reasoning_effort = "medium"`, `fork_turns = "none"` 또는 필요한 최소 양의 정수 turn 수를 사용한다.
-- 지정한 호출 조건을 적용할 수 없거나 호출에 실패하면 원인을 확인해 보완하고, 승인된 계약 안에서 재시도하거나 수행 방법을 조정한다.
 
 ## 결과
 - 구현 결과의 변경과 검증 근거를 main이 검토한다.
