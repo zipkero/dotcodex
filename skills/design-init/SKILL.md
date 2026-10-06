@@ -13,10 +13,7 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 ## main 조정
 - main은 `analyzer`에게 `design.md` 후보 작성을 맡긴다.
 - 호출에는 feature dir, `README.md`, `spec.md`, 기존 `design.md`·`implement.md`, 적용되는 프로젝트 `AGENTS.md`, 코드 조사 출발점과 이 skill·공통 상태 계약의 절대 경로를 필요한 범위에서 전달한다.
-- main은 후보를 현재 원본과 승인 범위에 대조한다.
-- 후보가 승인 범위와 작성 기준을 충족하면 main이 적용한다.
-- 기존 승인과 원본으로 해소 가능한 후보 결함은 main이 쟁점을 전달해 analyzer에게 수정을 맡긴다.
-- 새 사용자 결정이나 선행 계약 변경이 필요하면 main이 해당 소유 단계에서 해소한다.
+- main은 후보를 원본·승인 범위·작성 기준에 대조해 적용하거나 analyzer에게 수정을 요청한다.
 - main은 적용된 전체 설계와 하위 영향을 확인하고 상태와 이력을 갱신한다. 부분 적용은 미완료 상태와 남은 작업을 인계한다.
 
 ## analyzer 반환

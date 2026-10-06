@@ -31,7 +31,7 @@ description: "Coordinate implementation, verification, and retries for remaining
 
 ## 중단
 - 다음 중 하나가 필요하면 남은 Task를 변경하지 않고 해당 소유 단계와 재개 조건을 보고한다.
-  - 요구사항·설계·Task 목적·검증 조건·참조의 의미 변경
+  - 승인 기준의 의미 변경
   - Task 재분해
   - 승인된 결과와 무관한 별도 변경
   - 사용자 결정
