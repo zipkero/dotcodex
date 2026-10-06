@@ -13,7 +13,7 @@ description: "Audit Codex configuration and instruction consistency without edit
 ## 기준
 - 모든 감사에 `~/.codex/skills/config-review/references/structure.md`를 적용한다.
 - 사용자 정책과 운영 계약을 기준으로 판단하고, 발견마다 원본 근거를 제시한다. 동작 문제는 실행 근거가 있을 때만 보고한다.
-- 반복되는 준수 요구는 중복·과잉으로 검토하고, 기존 지침의 조건·구조·표현을 다듬는 방향으로 제안한다.
+- 반복적인 준수 강조 문구는 제거하고, 기존 지침의 조건·행동·예외를 명확히 하는 방식으로 개선한다.
 
 ## 출력
 - 확인 범위와 전체 판정: `정상`, `과함`, `부족`, `충돌`
