@@ -28,11 +28,19 @@
 4. Completed requirements:
    - SPEC §5.<N>: `성립` | `불성립` — <근거>
 5. Issues:
-   - Category: `style/minor` | `correctness` | `design/scope` | `evidence`
+   - Category: `style/minor` | `correctness` | `design/scope`
    - Repair stage: `구현` | `Task` | `설계` | `spec`
-   - Resolution: <필요한 입력·환경·재검증 조건>
    - Problem: <문제와 근거>
 6. Explanation: <승인 근거와 남은 위험>
+```
+
+`Category`가 `evidence`면 5번은 아래 모양이다.
+
+```markdown
+5. Issues:
+   - Category: `evidence`
+   - Resolution: <필요한 입력·환경·재검증 조건>
+   - Problem: <문제와 근거>
 ```
 
 - 3번은 이번 판정 대상의 기준마다 한 묶음이다. Phased 판정 범위와 요구사항 전체 판정 시점은 `references/phased.md`를 따른다.
@@ -43,7 +51,6 @@
   - `correctness`: 완료 조건·Task 목적·검증 조건 불충족, 버그, 잘못된 출력
   - `design/scope`: 설계 결정 이탈, 범위 초과·미달
   - `evidence`: 불충족을 확인한 것이 아니라 성립 여부를 확인할 근거가 없음
-- `Category`가 `evidence`면 `Repair stage` 대신 `Resolution`을 둔다.
 - Target의 Task ID 형식은 Phased에만 쓰고, Per-Request는 요청한 변경을 적는다.
 
 Per-Request 결과 검토는 같은 판정 기준으로 결과·핵심 근거·미실행 검증만 간결하게 보고할 수 있다.
