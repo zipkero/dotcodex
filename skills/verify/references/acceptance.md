@@ -45,7 +45,7 @@
 
 - 3번은 Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`마다 한 줄이다. 그 요구사항에 걸린 기준이 `불충족`이면 `불성립`, `불충족` 없이 `근거 부족`이면 `미확인`이다. 없으면 3번은 `3. Completed requirements: 없음` 한 줄이다.
 - 4번은 `rejected`일 때, 6번은 `approved`일 때만 둔다.
-- 문제가 여럿이어도 `Category`와 `Repair stage`는 하나씩이다. `Category`는 확인된 문제가 있으면 그 값이고 근거 부족은 `Problem`에 적으며, `Repair stage`는 고칠 자리 중 가장 앞선 단계다.
+- 문제가 여럿이어도 `Category`·`Repair stage`·`Resolution` 줄은 하나씩이며, `Resolution`이 여럿이면 그 줄 아래에 들여써 나눈다. `Category`는 확인된 문제가 있으면 그 값이고 근거 부족은 `Problem`에 적으며, `Repair stage`는 고칠 자리 중 가장 앞선 단계다.
 - 5번은 이번 판정 대상의 기준마다 한 묶음이다. Phased 판정 범위와 요구사항 전체 판정 시점은 `references/phased.md`를 따른다.
 - `Category` 값의 뜻:
   - `style/minor`: 정확성을 깨지 않는 이름·주석·포맷 관례 위반
