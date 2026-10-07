@@ -39,6 +39,6 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 
 ## 작성과 완료
 - 적용 중인 각 `SPEC §5.N`을 관련 설계 본문에서 참조하고, spec과 관련 원본만으로 확인할 수 없는 설계 결정은 `Decision Points`에 둔다.
-- 요구사항이나 사용자 관찰 결과를 바꾸는 결정은 spec 소유 단계로 반환한다. 승인된 내부 결정은 보존하고 나머지 구현 방법은 Task와 worker의 재량으로 남긴다.
+- spec §1 범위를 넘거나 요구사항·사용자 관찰 결과를 바꾸는 결정은 spec 소유 단계로 반환한다. 승인된 내부 결정은 보존하고 나머지 구현 방법은 Task와 worker의 재량으로 남긴다.
 - spec, design과 관련 원본만으로 다음 단계가 Task를 작성할 수 있어야 한다.
 - 핵심 결정, 영향 범위와 남은 결정이 있으면 완료 보고에 포함한다.

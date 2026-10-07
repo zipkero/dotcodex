@@ -25,7 +25,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 - 각 적용 중인 `SPEC §5.N`은 하나 이상의 Task에 매핑되어야 한다. 설계가 부족하면 관련 완료 조건과 필요한 결정을 `design-init`으로 반환한다.
 - 기본 필드는 목적, 접근, 검증 조건과 참조다. `최근 reject`, `승인 근거`는 구현·검증 단계가 관리한다.
 - 참조는 `§5.N`·`§X.Y` 번호만 하나씩 쉼표로 나열한다.
-- Task와 관련 원본만으로 새 worker가 착수하고 완료 여부를 판단할 수 있게 작성한다.
+- Task와 관련 원본만으로 새 worker가 착수하고, 기준을 충족한 구현이면 그대로 통과하는 `확인`으로 완료 여부를 판단할 수 있게 작성한다.
 
 ## implement.md 형식
 ```markdown
@@ -44,4 +44,4 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 ```
 
 ## 완료 보고
-- Task 수, 완료 조건 매핑과 검증 기준을 보고한다. 상위 문서 결정이 부족하면 수정 소유 단계와 영향을 보고한다.
+- Task 수, 완료 조건 매핑과 검증 기준을 보고한다. 상위 문서 결정이 부족해 Task나 통과할 수 있는 `확인`을 정할 수 없으면 확정하지 않고 수정 소유 단계와 영향을 보고한다.

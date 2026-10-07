@@ -24,7 +24,7 @@
    - SPEC §5.<N>: `성립` | `불성립` | `미확인` — <근거>
 4. Issues:
    - Category: `style/minor` | `correctness` | `design/scope`
-   - Repair stage: `구현` | `Task` | `설계` | `spec`
+   - Repair stage: `implement` | `implement-init` | `design-init` | `spec-init`
    - Problem: <문제와 근거>
 5. Validation:
    - Criterion: <기준>
