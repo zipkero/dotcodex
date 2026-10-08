@@ -14,7 +14,6 @@ description: "Coordinate implementation, verification, and retries for remaining
 1. 위에서부터 첫 `[ ]` Task를 선택한다.
 2. Task의 검증 조건이 확인 가능한 근거를 지정하는지 확인한다.
    - `확인`에 수동 확인이 있으면 `manual_check`로 중단한다.
-   - 다만 수동 확인이 이미 확인한 동작을 다른 OS·실기기에서 다시 보는 것뿐이면 그 Task를 `[ ]`로 두고 다음 Task로 넘어가며, 확인 항목은 완료 보고에 모은다.
 3. Task마다 새 worker를 `implement`로 호출한다. `blocked`이면 main이 기존 승인과 입력으로 보완 가능 여부를 확인한다.
    - 실제로 보완했으면 같은 역할을 다시 호출한다.
    - 해소할 수 없으면 상태를 유지하고 중단한다.
@@ -28,7 +27,7 @@ description: "Coordinate implementation, verification, and retries for remaining
   3. 수집한 근거와 직전 `Resolution`을 전달해 `verify`를 다시 실행한다.
 - 구현 재시도는 Task별 2회로 제한하고, 소진하면 `retry_exhausted`로 중단한다.
 - 근거 재검증은 Task별 누적 2회로 제한한다. 다른 reject가 나와도 횟수를 유지하고, 구현 재시도와 구분해 집계·보고한다.
-- 재시도 때는 미해결 원인과 보완 내용을 기록하고, reject는 `최근 reject`에 사유와 근거를 기록한다.
+- 재시도 때는 미해결 원인과 보완 내용을 기록하고, `최근 reject`에 사유·근거와 구현 재시도·근거 재검증의 누적 횟수를 기록한다. 재개 시 해당 횟수를 이어서 계산한다.
 - 재작업이 승인된 Task의 동작에 영향을 주면 해당 범위를 다시 검증한다.
 - Task가 승인되면 `최근 reject`를 제거한다.
 
@@ -40,7 +39,7 @@ description: "Coordinate implementation, verification, and retries for remaining
   - 사용자 결정
 - 구현 문제의 원인을 현재 조건에서 해소할 수 없으면 중단한다.
 - 이미 승인된 Task의 동작이 성립하지 않는다고 드러나면 중단한다.
-- 되돌리기 어렵거나 외부에 영향을 주는 일이 필요하면 사용자 확인을 위해 중단한다.
+- 현재 사용자 승인 범위에 포함되지 않은, 되돌리기 어렵거나 외부에 영향을 주는 일이 필요하면 사용자 확인을 위해 중단한다.
 - `evidence`로 거절된 경우, `Resolution`의 입력·환경을 갖출 수 없거나 근거 재검증 2회를 소진했으면 중단한다.
 
 ## 완료 보고
@@ -53,6 +52,6 @@ description: "Coordinate implementation, verification, and retries for remaining
   - `retry_exhausted`: 구현 재시도 한도 소진
   - `evidence_exhausted`: 근거를 더 보완할 수 없음
   - `manual_check`: 수동 확인이 필요해 자동으로 진행하지 않음
-  - `approval_needed`: 되돌리기 어렵거나 외부에 영향을 주는 일에 사용자 확인이 필요함
+  - `approval_needed`: 현재 승인 범위 밖의 되돌리기 어렵거나 외부에 영향을 주는 일에 사용자 확인이 필요함
   - `blocked`: 그 밖의 사유로 구현이 blocked이거나 구현 문제의 원인을 현재 조건에서 해소할 수 없음
 - `blocked`·`evidence_exhausted`이면 재개 조건을 `Resolution:` 줄에 적는다.

@@ -43,7 +43,7 @@ description: "Save or prune project CONTEXT.md for a session handoff."
 ```
 
 ## 기록 기준
-- `현재 상태`에는 중단 원인과 재개 조건, 부분 변경, worker 결과 인수 여부, 마지막 검증, Git 작업이면 branch와 기준 HEAD를 적는다.
+- `현재 상태`에는 중단 원인과 재개 조건, 부분 변경, worker 결과 인수 여부, 마지막 검증, 진행 중인 Task의 구현 재시도·근거 재검증 누적 횟수, Git 작업이면 branch와 기준 HEAD를 적는다.
 - `현재 작업 문서`에는 활성 기능과 Task를 링크하고 Per-Request면 `없음`으로 적는다.
 - `다음 작업`에는 바로 시작할 작업 하나와 완료 기준을 적는다.
 - `먼저 읽을 파일`에는 필수 원본과 변경 파일만 프로젝트 상대 링크로 적고, 전역 파일은 `~/.codex/...`로 적는다.
