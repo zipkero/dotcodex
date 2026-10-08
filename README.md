@@ -31,7 +31,8 @@
 ## 사용자 정의 skill
 
 - `analyze`: 원인·영향·구조·대안을 읽기 전용으로 분석
-- `explain`: 코드·변경·시스템의 작동 방식을 근거와 함께 설명
+- `explain`: 코드·변경·시스템의 전체 작동 흐름을 근거와 함께 설명. 짧은 용어 질문·후속 확인은 제외
+- `commit-push`: 이번 작업 변경만 스테이징·커밋하고 요청 시 푸시. 메시지 추천만 요청하면 제목 후보만 제시
 - `cross-analyze`: 명시적으로 요청한 질문을 여러 읽기 전용 subagent로 교차검증
 - `project-init`: 프로젝트 README·ROADMAP과 필요한 프로젝트 문서 구성
 - `spec-init`: 기능 spec과 상태 README 작성
@@ -40,7 +41,7 @@
 - `implement`: Per-Request 직접 구현·위임 또는 Phased Task 구현 조정
 - `implement-loop`: 여러 Task의 순차 구현·검증·재시도 조정
 - `verify`: 구현의 승인·거절 판정
-- `config-review`: 설정의 역할·호출·참조·상태 정합성을 읽기 전용으로 감사
+- `config-review`: 설정의 역할 경계·중복·방어 지침·명확성·흐름과 README를 읽기 전용으로 감사
 - `context-save`: 작업 인수인계를 `CONTEXT.md`에 저장
 - `context-restore`: 저장된 맥락을 읽기 전용으로 복원
 
@@ -54,7 +55,6 @@
 - `skills/implement/references/phased.md`: Phased 구현 진입·Task 선택·문서 처리
 - `skills/verify/references/acceptance.md`: 구현 승인 판정 계약
 - `skills/verify/references/phased.md`: Phased 완료 조건 판정·상태 전환
-- `skills/config-review/references/structure.md`: 설정 구조 감사 기준
 
 단계별 절차는 해당 skill, agent 실행 성격은 agent TOML에서 정의한다.
 

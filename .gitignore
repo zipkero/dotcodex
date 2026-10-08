@@ -40,3 +40,5 @@
 !/skills/cross-analyze/**
 !/skills/explain/
 !/skills/explain/**
+!/skills/commit-push/
+!/skills/commit-push/**

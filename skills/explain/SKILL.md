@@ -1,6 +1,6 @@
 ---
 name: explain
-description: "Explain what code, changes, tasks, and systems are and how they work through evidence-backed walkthroughs and key source excerpts. Use when the requested outcome is understanding existing behavior, assumptions, design choices, or verification limits; not when the primary outcome is unresolved cause investigation, a new design recommendation, implementation, or formal approval."
+description: "Explain how code, a change, or a system works end to end through evidence-backed walkthroughs and key source excerpts. Use when the user asks for a walkthrough; not for a one-line term question, follow-up clarification, unresolved cause investigation, new design recommendation, implementation, or formal approval."
 ---
 
 # Explain
@@ -12,6 +12,7 @@ description: "Explain what code, changes, tasks, and systems are and how they wo
 ## 실행
 - 질문에 필요한 원본 문서, 현재 코드와 미커밋 diff, 호출부, 테스트와 실행 근거를 확인한다.
 - 대표 입력이나 시나리오를 따라 경계·상태·출력을 연결하고, 중요한 주장은 파일·심볼·간결한 발췌로 근거를 제시한다.
+- 변경 전후나 여러 대상을 비교할 때는 표로 쓴다.
 - 저장된 실행 근거는 현재 코드와 대응하는지 확인한다. 새 실행은 설명에 필요한 읽기 전용 범위에서만 수행한다.
 
 ## 출력
