@@ -1,6 +1,6 @@
 ---
 name: config-review
-description: "Audit Codex configuration without edits for role boundaries, duplication, defensive rules, ambiguity, flow integrity, and README accuracy; not for simple lookups."
+description: "Audit Codex configuration without edits for role boundaries, duplication, defensive rules, ambiguity, flow integrity, output-contract compatibility, and README accuracy; not for simple lookups."
 ---
 
 # Config Review
@@ -14,12 +14,12 @@ description: "Audit Codex configuration without edits for role boundaries, dupli
 2. 중복 — 같은 뜻이 함께 읽히는 지침에 반복되는가. 하네스와의 중복은 해당 주체가 실제로 받는 지침을 근거로 판단한다.
 3. 방어 지침 — 오작동을 우려해 붙인 단서, 강도만 높인 경고, 앞줄의 재진술, 모델이 원래 하는 일의 절차 나열에 해당하는 줄은 삭제 제안으로 낸다.
 4. 명확성 — 룰이 충돌하거나 두 갈래로 읽혀 실행 주체·변경 범위·승인 조건이 달라지는가.
-5. 플로우 — 승인된 선행 문서와 관련 원본만으로 다음 단계·중단된 세션을 이어갈 수 있는가. 위임·반환·상태 전환과 승인 무효화가 연결되는가.
+5. 플로우 — 승인된 선행 문서와 관련 원본만으로 다음 단계·중단된 세션을 이어갈 수 있는가. 위임·상태 전환과 승인 무효화가 연결되는가. 출력·반환 계약의 필드 의미·생략 조건이 수신 측 입력·판단에 맞고, 사용자 보고에 필요한 정보를 읽기 쉽게 전달하는가.
 6. `README.md` — 관리 구조·역할·참조·링크가 현재 원본과 맞는가.
 
 제안은 기존 지침의 수정·삭제를 우선하고, 새 지침은 이 환경에서 관찰된 실패가 있을 때만 더한다.
 
 ## 출력
 - 확인 범위와 검증 한계를 적고, 발견마다 관점 번호·위치·before/after diff·줄 수 증감·함께 고칠 파일을 제시한다. 끝에 전체 줄 수 증감 합계를 적는다.
-- 발견은 `문구`(동작 그대로)와 `동작`(행동이 달라짐)으로 나눈다. `동작`에는 달라지는 행동을 한두 줄로 붙인다. `README.md` §출력 형식 계약의 표지·값·위치·문서 형식 변경은 `동작`이다.
+- 발견은 `문구`(동작 그대로)와 `동작`(행동이 달라짐)으로 나눈다. `동작`에는 달라지는 행동을 한두 줄로 붙인다.
 - 원본으로 판단한 내용과 실행으로 확인한 동작을 구분한다. 발견이 없으면 확인한 범위만 보고한다.

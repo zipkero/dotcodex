@@ -29,7 +29,6 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 
 ## implement.md 형식
 ```markdown
-<!-- prowl-workflow: v1 -->
 # <기능명> 구현
 
 ## 체크리스트

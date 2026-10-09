@@ -41,7 +41,7 @@
 - `implement`: Per-Request 직접 구현·위임 또는 Phased Task 구현 조정
 - `implement-loop`: 여러 Task의 순차 구현·검증·재시도 조정
 - `verify`: 구현의 승인·거절 판정
-- `config-review`: 설정의 역할 경계·중복·방어 지침·명확성·흐름과 README를 읽기 전용으로 감사
+- `config-review`: 설정의 역할 경계·중복·방어 지침·명확성·흐름·출력 계약과 README를 읽기 전용으로 감사
 - `context-save`: 작업 인수인계를 `CONTEXT.md`에 저장
 - `context-restore`: 저장된 맥락을 읽기 전용으로 복원
 
@@ -57,19 +57,6 @@
 - `skills/verify/references/phased.md`: Phased 완료 조건 판정·상태 전환
 
 단계별 절차는 해당 skill, agent 실행 성격은 agent TOML에서 정의한다.
-
-## 출력 형식 계약
-
-이 설정이 만드는 작업 문서와 Phased 보고는 다른 도구가 읽는 형식이다. 설명 문구는 다듬을 수 있지만, 아래 표지 단어·값·위치와 문서 형식을 바꾸면 동작 변경으로 다룬다.
-
-- 작업 문서 표시: `skills/spec-init/SKILL.md` §README.md 형식·§spec.md 형식, `skills/design-init/SKILL.md` §design.md 형식, `skills/implement-init/SKILL.md` §implement.md 형식, `skills/project-init/SKILL.md` §산출물의 ROADMAP 첫 줄 `<!-- prowl-workflow: v1 -->`.
-- feature·spec 형식: `skills/spec-init/SKILL.md` §생성과 갱신의 feature 폴더 이름, §README.md 형식의 `## 상태`와 SPEC·DESIGN·IMPLEMENT 체크박스, §spec.md 형식의 §1 첫 문단과 §5 완료 조건 번호 항목.
-- design·Task 형식: `skills/design-init/SKILL.md` §design.md 형식의 절 번호, `skills/implement-init/SKILL.md` §Task 규칙·§implement.md 형식의 Task 줄·필드 이름·참조 필드 ` / ` 구분·번호만 나열.
-- ROADMAP 형식: `skills/project-init/SKILL.md` §산출물의 마일스톤 제목과 작업 후보 줄.
-- verify 보고: `skills/verify/references/phased.md` §입력과 판정의 첫 줄 표시, `skills/verify/references/acceptance.md` §출력의 번호 항목 경계, `Status`·`Target`의 Task ID·`Completed requirements` 줄 형식·`Category`의 네 값과 backtick·`Repair stage`·`Resolution`.
-- implement 보고: `skills/implement/references/worker.md` §반환의 첫 줄 표시, `Status` 값과 `Target`의 Task ID.
-- implement-loop 연동: `skills/implement-loop/SKILL.md` §재시도와 기록·§중단의 근거 부족 재검증 규칙, §완료 보고의 첫 줄 표시와 `Stopped at`·`Stop reason` 값·backtick·`Resolution`.
-- 요청 종류 식별: skill 이름 `implement`·`verify`·`implement-loop`, agent 이름 `verifier`.
 
 ## Git
 

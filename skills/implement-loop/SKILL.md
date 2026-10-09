@@ -21,10 +21,11 @@ description: "Coordinate implementation, verification, and retries for remaining
 5. `approved`이면 다음 Task로 진행한다. `rejected`이면 사유와 근거를 기록해 재시도 또는 중단을 결정한다.
 
 ## 재시도와 기록
-- `Category`가 `evidence`면 구현 재시도 전에 main이 다음 순서로 근거를 보완한다.
-  1. `Resolution`이 요구하는 입력·환경을 준비한다.
-  2. `Resolution`과 Task `확인`에 지정된 명령·테스트를 실행한다.
-  3. 수집한 근거와 직전 `Resolution`을 전달해 `verify`를 다시 실행한다.
+- 거절 사유에 실제 문제가 있으면 문제별 `Repair stage` 중 가장 앞선 소유 단계에서 수정한다. `implement` 외 단계의 수정이 필요하면 해당 단계로 반환하고 중단한다.
+- 거절 사유가 `evidence` 문제뿐이면 main이 다음 순서로 근거를 보완한다.
+  1. 각 문제의 `Resolution`이 요구하는 입력·환경을 준비한다.
+  2. 해당 `Resolution`과 Task `확인`에 지정된 명령·테스트를 실행한다.
+  3. 수집한 근거와 해당 문제·`Resolution`을 전달해 `verify`를 다시 실행한다.
 - 구현 재시도는 Task별 2회로 제한하고, 소진하면 `retry_exhausted`로 중단한다.
 - 근거 재검증은 Task별 누적 2회로 제한한다. 다른 reject가 나와도 횟수를 유지하고, 구현 재시도와 구분해 집계·보고한다.
 - 재시도 때는 미해결 원인과 보완 내용을 기록하고, `최근 reject`에 사유·근거와 구현 재시도·근거 재검증의 누적 횟수를 기록한다. 재개 시 해당 횟수를 이어서 계산한다.
@@ -40,13 +41,11 @@ description: "Coordinate implementation, verification, and retries for remaining
 - 구현 문제의 원인을 현재 조건에서 해소할 수 없으면 중단한다.
 - 이미 승인된 Task의 동작이 성립하지 않는다고 드러나면 중단한다.
 - 현재 사용자 승인 범위에 포함되지 않은, 되돌리기 어렵거나 외부에 영향을 주는 일이 필요하면 사용자 확인을 위해 중단한다.
-- `evidence`로 거절된 경우, `Resolution`의 입력·환경을 갖출 수 없거나 근거 재검증 2회를 소진했으면 중단한다.
+- 거절 사유가 `evidence` 문제뿐일 때 필요한 입력·환경을 갖출 수 없거나 근거 재검증 2회를 소진했으면 중단한다.
 
 ## 완료 보고
-- 첫 줄은 `<!-- prowl-workflow: v1 implement-loop -->`다.
-- 승인된 Task, 재시도와 reject 사유, 중단 지점과 재개 조건, 최종 상태를 보고한다.
-- 중단 보고에는 `Stopped at: task-<nnn>`과 `Stop reason:` 줄을 적는다.
-- `Stop reason` 값은 다음 중 하나를 backtick으로 적는다.
+- 최종 상태를 먼저 밝히고 승인된 Task, 재시도와 reject 사유를 요약한다. 중단한 경우 중단 Task·이유·재개 조건을 함께 보고한다.
+- 중단 이유는 다음 값과 해당 상황을 설명하는 문장으로 보고한다.
   - `decision_needed`: 의미 변경·재분해·사용자 결정이 필요함
   - `regression`: 이미 승인된 Task의 동작이 성립하지 않음
   - `retry_exhausted`: 구현 재시도 한도 소진
@@ -54,4 +53,3 @@ description: "Coordinate implementation, verification, and retries for remaining
   - `manual_check`: 수동 확인이 필요해 자동으로 진행하지 않음
   - `approval_needed`: 현재 승인 범위 밖의 되돌리기 어렵거나 외부에 영향을 주는 일에 사용자 확인이 필요함
   - `blocked`: 그 밖의 사유로 구현이 blocked이거나 구현 문제의 원인을 현재 조건에서 해소할 수 없음
-- `blocked`·`evidence_exhausted`이면 재개 조건을 `Resolution:` 줄에 적는다.

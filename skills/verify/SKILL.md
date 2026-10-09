@@ -19,4 +19,4 @@ main은 직접 검증과 verifier 결과 검토에 `~/.codex/skills/verify/refer
 
 ## 판정
 - main은 acceptance 계약에 따라 최종 `approved` 또는 `rejected`를 확정한다.
-- verifier가 근거 부족과 해소 조건을 반환하면 main은 현재 권한 안에서 보완을 조정하고, 근거를 확보하지 못하면 `evidence`로 거절한다.
+- verifier가 근거 부족을 반환하면 main은 해당 문제의 `Resolution`에 따라 현재 권한 안에서 보완을 조정한다. 미해소 항목은 `evidence` 문제로 남겨 거절한다.
