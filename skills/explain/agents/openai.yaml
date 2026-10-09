@@ -1,4 +1,4 @@
 interface:
   display_name: "설명"
-  short_description: "근거를 연결해 코드·변경·시스템의 전체 작동 흐름을 설명"
-  default_prompt: "$explain으로 이 시스템이 입력부터 출력까지 어떻게 작동하는지 근거와 함께 설명해 주세요."
+  short_description: "전체 흐름 속 대상의 위치와 상세 동작을 그림과 근거로 쉽게 설명"
+  default_prompt: "$explain으로 요청한 부분을 전체 흐름 속 위치부터 다이어그램으로 보여주고, 대표 사례를 따라 쉽게 상세하게 설명해 주세요."

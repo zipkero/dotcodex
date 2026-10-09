@@ -1,19 +1,26 @@
 ---
 name: explain
-description: "Explain how code, a change, or a system works end to end through evidence-backed walkthroughs and key source excerpts. Use when the user asks for a walkthrough; not for a one-line term question, follow-up clarification, unresolved cause investigation, new design recommendation, implementation, or formal approval."
+description: "Explain code, changes, or systems through accessible, detailed walkthroughs that place the requested part in the overall flow, with diagrams and source evidence. Use for understanding existing behavior; not for brief term questions, follow-up clarification, cause investigation, new design decisions, implementation, or formal approval."
 ---
 
 # Explain
 
 ## 역할
-- 지정된 코드·변경·Task·시스템의 목적, 책임, 흐름, 계약, 결정과 검증 범위를 읽기 전용으로 설명한다.
+- 지정된 코드·변경·Task·시스템을 읽기 전용으로 설명해 사용자가 동작과 그 맥락을 이해하도록 돕는다.
 - 원인 조사나 새 설계 판단은 `analyze`, 구현과 정식 판정은 해당 skill의 역할이다.
 
-## 실행
-- 질문에 필요한 원본 문서, 현재 코드와 미커밋 diff, 호출부, 테스트와 실행 근거를 확인한다.
-- 대표 입력이나 시나리오를 따라 경계·상태·출력을 연결하고, 중요한 주장은 파일·심볼·간결한 발췌로 근거를 제시한다.
-- 변경 전후나 여러 대상을 비교할 때는 표로 쓴다.
+## 근거 확인
+- 요청한 대상과 앞뒤 연결을 파악하는 데 필요한 원본 문서, 현재 코드, 호출부, 관련 미커밋 diff, 테스트와 실행 근거를 확인한다.
 - 저장된 실행 근거는 현재 코드와 대응하는지 확인한다. 새 실행은 설명에 필요한 읽기 전용 범위에서만 수행한다.
+- 확인한 동작과 추론을 구분하고, 설계 이유는 문서나 코드에서 확인되는 범위로 한정한다.
 
-## 출력
-- 사용자 영향과 핵심 동작을 먼저 설명하고, 근거 위치·확인된 한계·후속 조사 지점을 함께 제시한다.
+## 설명 구성
+1. **목적과 전체 맥락:** 사용자에게 어떤 결과를 주는지 먼저 설명한다. 이어서 전체 흐름에서 대상의 위치, 들어오는 입력과 결과를 사용하는 다음 단계를 보여준다. 주변 범위는 이 연결을 이해하는 데 필요한 만큼 다룬다.
+2. **대상의 상세 동작:** 대표 입력이나 시나리오를 따라 각 단계의 처리, 데이터·상태 변화와 출력을 연결한다. 결과를 바꾸는 주요 분기·실패 경로, 경계에서 주고받는 조건과 중요한 제약을 설명한다. 변경 설명은 이전과 이후의 차이가 이 흐름에 미치는 영향을 짚는다.
+3. **근거와 한계:** 중요한 설명 가까이에 파일·심볼 링크와 필요한 짧은 코드 발췌를 배치한다. 끝에는 확인하지 못한 부분과 이유, 이해에 영향을 주는 검증 한계를 밝힌다.
+
+## 표현과 시각화
+- 배경지식은 사용자의 질문에 맞추고, 별도 정보가 없으면 전문용어는 첫 등장 때 뜻을 풀어 쓴다. 식별자나 코드를 제시하기 전에 역할을 일상적인 말로 설명한다.
+- 여러 단계나 구성 요소가 연결되면 다이어그램을 기본으로 포함하고 요청한 대상을 표시한다. 관계는 흐름도, 호출 순서는 시퀀스 다이어그램, 상태 변화는 상태도로 표현하며 작은 정적 도식은 Mermaid를 사용한다. 단일 동작은 불필요하게 도식화하지 않는다.
+- 도식과 본문은 같은 명칭과 방향을 사용한다. 본문은 그림의 항목을 반복하기보다 처리 방식과 이유를 풀어 설명하고, 변경 전후나 여러 대상의 차이는 표로 비교한다.
+- 위 구성은 설명의 전개 원칙이며 고정된 출력 제목은 아니다. 요청한 부분의 이해에 필요한 깊이를 확보하되 같은 내용을 요약·본문·결론에서 되풀이하지 않는다.
