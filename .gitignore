@@ -42,3 +42,5 @@
 !/skills/explain/**
 !/skills/commit-push/
 !/skills/commit-push/**
+
+.trash/
