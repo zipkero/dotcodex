@@ -24,7 +24,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 - ID는 `task-001`부터 3자리로 부여한다. 기존 ID를 재번호·재사용하지 않고 새 ID는 가장 큰 번호 뒤에 추가한다.
 - 각 적용 중인 `SPEC §5.N`은 하나 이상의 Task에 매핑되어야 한다. 설계가 부족하면 관련 완료 조건과 필요한 결정을 `design-init`으로 반환한다.
 - 기본 필드는 목적, 접근, 검증 조건과 참조다. `최근 reject`, `승인 근거`는 구현·검증 단계가 관리한다.
-- 참조는 `§5.N`·`§X.Y` 번호만 하나씩 쉼표로 나열한다.
+- 참조는 `SPEC §5.N / DESIGN §X.Y` 형식으로 적고, 같은 문서의 여러 번호는 쉼표로 나열한다.
 - Task와 관련 원본만으로 새 worker가 착수하고, 기준을 충족한 구현이면 그대로 통과하는 `확인`으로 완료 여부를 판단할 수 있게 작성한다.
 
 ## implement.md 형식
