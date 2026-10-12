@@ -12,12 +12,12 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 
 ## main 조정
 - main은 `analyzer`에게 `implement.md` 후보 작성을 맡긴다.
-- 호출에는 feature dir, 기능 문서, 적용되는 프로젝트 `AGENTS.md`, 코드 조사 출발점과 이 skill·공통 상태 계약의 절대 경로를 필요한 범위에서 전달한다.
+- 호출에는 이번 요청의 목적·변경 범위, feature dir, 기능 문서, 적용되는 프로젝트 `AGENTS.md`, 코드 조사 출발점과 이 skill·공통 상태 계약의 절대 경로를 필요한 범위에서 전달한다.
 - main은 후보를 원본·승인 범위·작성 기준에 대조해 적용하거나 analyzer에게 수정을 요청한다.
 - main은 적용된 Task의 순서·참조·완료 조건 매핑을 확인하고 상태와 이력을 갱신한다. 부분 적용은 미완료 상태와 남은 작업을 인계한다.
 
 ## analyzer 반환
-- patch 적용 위치, 변경 이유, 관련 `SPEC §5.N`·`DESIGN §X.Y`, 직접·의존 영향과 확인하지 못한 영향을 포함한다.
+- 변경 이유, 관련 `SPEC §5.N`·`DESIGN §X.Y`, 직접·의존 영향과 확인하지 못한 영향을 포함한다. patch는 적용 위치도 명시한다.
 
 ## Task 규칙
 - Task는 관찰 가능한 동작 하나를 만들거나 보존하는 데 필요한 변경을 묶어, 한 번의 `verify`로 승인 또는 거절할 수 있는 결과 단위다. 의존 순서는 문서 항목 위치로 표현한다.
