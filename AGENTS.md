@@ -15,7 +15,8 @@
 - 운영 접근이나 외부 부작용이 필요한 작업은 현재 권한과 사용자 승인 범위 안에서만 수행한다.
 
 ## 작업 흐름
-- 파일 변경은 기본적으로 `implement`의 Per-Request로 진행한다. main은 범위를 확정하고 작업에 따라 직접 구현하거나 worker에게 위임하며 결과를 검토·보고한다.
+- 파일 변경은 기본적으로 `implement`의 Per-Request로 진행하며, 복원된 기능의 mode는 `~/.codex/skills/implement/references/phased.md`의 진입 계약을 따른다.
+  main은 범위를 확정하고 작업에 따라 직접 구현하거나 worker에게 위임하며 결과를 검토·보고한다.
 - 분석·설명·검토·복원 요청은 해당 읽기 전용 skill에서 끝낸다.
 - 되돌리기 어려운 외부 영향이 있거나 단계 사이의 설계·완료 조건을 지속 문서로 고정해야 할 때는 이유·영향·산출물을 설명하고 Phased 선택을 확인한다.
 - 사용자가 `Phased`, Phased 전용 skill, 단계별 기능 문서 또는 `features/<feature-dir>/` 진행을 요청하면 `spec-init` → `design-init` → `implement-init` → `implement` → `verify` 순서로 진행한다. 여러 Task나 기능 전체 구현은 `implement-loop`가 조정한다.
