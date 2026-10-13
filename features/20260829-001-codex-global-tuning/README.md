@@ -6,7 +6,7 @@ Claude 전역 설정의 최신 정리 방향을 Codex 실행 특성에 맞게 �
 ## 상태
 - [x] SPEC
 - [x] DESIGN
-- [x] IMPLEMENT
+- [ ] IMPLEMENT
 
 ## 문서
 - [spec.md](./spec.md)
@@ -18,3 +18,4 @@ Claude 전역 설정의 최신 정리 방향을 Codex 실행 특성에 맞게 �
 - 2026-08-29: DESIGN 작성
 - 2026-08-29: IMPLEMENT 체크리스트 작성
 - 2026-08-29: IMPLEMENT 완료
+- 2026-10-13: 현재 운영 지침과 기존 완료 조건의 불일치로 task-001~003의 현재 승인 표시 해제. 2026-08-29 완료 이력은 보존. 요구사항과 설계 문서의 의미는 변경하지 않아 SPEC·DESIGN 승인은 유지.

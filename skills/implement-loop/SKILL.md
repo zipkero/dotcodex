@@ -21,7 +21,7 @@ description: "Coordinate implementation, verification, and retries for remaining
 ## 재시도와 기록
 - 거절 사유에 실제 문제가 있으면 문제별 `Repair stage` 중 가장 앞선 소유 단계에서 수정한다. `implement` 외 단계의 수정이 필요하면 해당 단계로 반환하고 중단한다.
 - `evidence` 문제만 있으면 main이 `Resolution`에 따라 입력·환경을 보완하고, `Resolution`과 Task `확인`에 지정된 검증을 실행해 문제·`Resolution`·근거를 `verify`에 전달한다.
-- Task별 구현 재시도와 근거 재검증은 각각 누적 2회로 제한한다. 소진하면 각각 `retry_exhausted`, `evidence_exhausted`로 중단한다.
+- Task별 구현 재시도와 근거 재검증은 각각 누적 2회로 제한한다. 재개할 때도 추가 실행 전에 누적 횟수를 확인하고, 소진했으면 각각 `retry_exhausted`, `evidence_exhausted`로 중단한다.
 - 재시도 때는 미해결 원인과 보완 내용을 기록하고, `최근 reject`에 사유·근거와 구현 재시도·근거 재검증의 누적 횟수를 기록한다. 재개 시 해당 횟수를 이어서 계산한다.
 - 재작업이 승인된 Task의 동작에 영향을 주면 해당 범위를 다시 검증한다.
 - Task가 승인되면 `최근 reject`를 제거한다.
