@@ -18,7 +18,7 @@
 - `Issues`: `rejected`일 때 문제별로 `Problem`에 문제와 근거, `Category`에 분류를 적는다.
   실제 문제는 `Repair stage`에 수정할 소유 단계를 적는다. Phased는 `implement`·`implement-init`·`design-init`·`spec-init`, Per-Request는 구현 수정에 `implement`, 프로젝트 기준 문서 수정에 `project-init`을 사용한다.
   근거 부족은 `Resolution`에 필요한 입력·환경·재검증 조건을 적는다.
-- `Validation`: 기준마다 `Criterion`·`Source`·`Evidence`·`Result`를 묶어 적는다. `Result`는 `충족`, `불충족`, `근거 부족`이며 상세 근거는 이 항목에 둔다.
+- `Validation`: 검증 기준별로 출처, 확인한 동작·실행 결과와 `충족`·`불충족`·`근거 부족` 판정을 설명한다.
 - `Explanation`: `approved`일 때 승인으로 확인된 범위와 남은 위험
 
 요구사항에 걸린 기준이 `불충족`이면 `Requirements`의 판정은 `불성립`, `불충족` 없이 `근거 부족`이면 `미확인`, 모두 `충족`이면 `성립`이다. Phased 판정 범위와 요구사항 전체 판정 시점은 `references/phased.md`를 따른다.

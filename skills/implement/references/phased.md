@@ -1,7 +1,7 @@
 # Phased 구현 조정
 
 ## 진입과 Task 선택
-- `context-restore`가 `현재 작업 문서`로 복원한 기능은 그 세션의 활성 Phased 범위로 삼는다.
+- `context-restore`가 활성 기능으로 복원한 기능은 그 세션의 활성 Phased 범위로 삼는다.
 - 승인 상태는 `~/.codex/docs/phased-state.md`를 따른다.
 - 기능 `README.md`, `spec.md`, `design.md`, `implement.md`가 있고 `SPEC`과 `DESIGN`이 `[x]`여야 한다.
 - 사용자가 `task-<nnn>`을 지정하면 해당 Task, 지정하지 않으면 위에서부터 첫 `[ ]` Task를 선택한다. 여러 Task나 기능 전체 구현은 `implement-loop`로 진행한다.

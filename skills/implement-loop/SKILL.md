@@ -13,7 +13,7 @@ description: "Coordinate implementation, verification, and retries for remaining
 ## 반복
 1. 위에서부터 첫 `[ ]` Task를 선택한다.
 2. Task의 검증 조건이 확인 가능한 근거를 지정하는지 확인한다.
-   - `확인`에 수동 확인이 있으면 `manual_check`로 중단한다.
+   - `확인`에 수동 확인이 있으면 중단하고 필요한 확인을 보고한다.
 3. Task마다 새 worker를 `implement`로 호출한다. `blocked`이면 main이 기존 승인과 입력으로 보완한 뒤 같은 역할을 다시 호출하고, 해소할 수 없으면 상태를 유지하고 중단한다.
 4. worker가 `completed`를 반환하면 `verify`를 실행한다.
 5. `approved`이면 다음 Task로 진행한다. `rejected`이면 사유와 근거를 기록해 재시도 또는 중단을 결정한다.
@@ -21,7 +21,7 @@ description: "Coordinate implementation, verification, and retries for remaining
 ## 재시도와 기록
 - 거절 사유에 실제 문제가 있으면 문제별 `Repair stage` 중 가장 앞선 소유 단계에서 수정한다. `implement` 외 단계의 수정이 필요하면 해당 단계로 반환하고 중단한다.
 - `evidence` 문제만 있으면 main이 `Resolution`에 따라 입력·환경을 보완하고, `Resolution`과 Task `확인`에 지정된 검증을 실행해 문제·`Resolution`·근거를 `verify`에 전달한다.
-- Task별 구현 재시도와 근거 재검증은 각각 누적 2회로 제한한다. 재개할 때도 추가 실행 전에 누적 횟수를 확인하고, 소진했으면 각각 `retry_exhausted`, `evidence_exhausted`로 중단한다.
+- Task별 구현 재시도와 근거 재검증은 각각 누적 2회로 제한한다. 재개할 때도 추가 실행 전에 누적 횟수를 확인하고, 어느 한도를 소진했으면 그 이유를 보고하고 중단한다.
 - 재시도 때는 미해결 원인과 보완 내용을 기록하고, `최근 reject`에 사유·근거와 구현 재시도·근거 재검증의 누적 횟수를 기록한다. 재개 시 해당 횟수를 이어서 계산한다.
 - 재작업이 승인된 Task의 동작에 영향을 주면 해당 범위를 다시 검증한다.
 - Task가 승인되면 `최근 reject`를 제거한다.
@@ -34,11 +34,3 @@ description: "Coordinate implementation, verification, and retries for remaining
 
 ## 완료 보고
 - 최종 상태를 먼저 밝히고 승인된 Task, 재시도와 reject 사유를 요약한다. 중단한 경우 중단 Task·이유·재개 조건을 함께 보고한다.
-- 중단 이유는 다음 값과 해당 상황을 설명하는 문장으로 보고한다.
-  - `decision_needed`: 의미 변경·재분해·사용자 결정이 필요함
-  - `regression`: 이미 승인된 Task의 동작이 성립하지 않음
-  - `retry_exhausted`: 구현 재시도 한도 소진
-  - `evidence_exhausted`: 근거를 더 보완할 수 없음
-  - `manual_check`: 수동 확인이 필요해 자동으로 진행하지 않음
-  - `approval_needed`: 현재 승인 범위 밖의 되돌리기 어렵거나 외부에 영향을 주는 일에 사용자 확인이 필요함
-  - `blocked`: 그 밖의 사유로 구현이 blocked이거나 구현 문제의 원인을 현재 조건에서 해소할 수 없음

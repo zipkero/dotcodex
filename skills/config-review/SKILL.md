@@ -1,6 +1,6 @@
 ---
 name: config-review
-description: "Audit Codex configuration without edits for role boundaries, duplication, defensive rules, ambiguity, flow integrity, output-contract compatibility, and README accuracy; not for simple lookups."
+description: "Audit Codex configuration without edits for rule necessity, structure, role boundaries, duplication, ambiguity, flow integrity, output-contract compatibility, and README accuracy; not for simple lookups."
 ---
 
 # Config Review
@@ -12,14 +12,15 @@ description: "Audit Codex configuration without edits for role boundaries, dupli
 ## 관점
 1. 역할 — 각 파일이 자기 역할만 하고, 결정·파일 수정·상태 전환·최종 판정의 소유권을 침범하지 않는가. 호출 조건과 참조가 실제 설정에 맞고, 필요한 시점에 읽히는가.
 2. 중복 — 같은 뜻이 함께 읽히는 지침에 반복되는가. 하네스는 해당 agent에게 실제로 주입되는 실행 지침을 뜻하며, 전역 설정 전체와 구분해 중복을 판단한다.
-3. 방어 지침 — 오작동을 막기 위한 단서·경고·재진술·절차 나열은 기존 지침의 모호함을 해소하는 수정으로 대체할 수 있는지 먼저 판단한다. 필요한 제약은 유지하고, 강도만 높이거나 같은 뜻을 반복하는 문구는 삭제 제안으로 낸다.
+3. 필요성 — 기존 규칙도 유지 가치를 평가한다. 막는 실패와 적용 빈도, 다른 지침으로 대체 가능한지, 읽기·판단 비용과 산출물에 미치는 영향을 보고 유지·삭제·통합·이동을 제안한다.
 4. 명확성 — 룰이 충돌하거나 두 갈래로 읽혀 실행 주체·변경 범위·승인 조건이 달라지는가.
 5. 플로우 — 승인된 선행 문서와 관련 원본만으로 다음 단계·중단된 세션을 이어갈 수 있는가. 위임·상태 전환과 승인 무효화가 연결되는가. 출력·반환 계약의 필드 의미·생략 조건이 수신 측 입력·판단에 맞고, 사용자 보고에 필요한 정보를 읽기 쉽게 전달하는가.
 6. `README.md` — 관리 구조·역할·참조·링크가 현재 원본과 맞는가.
 
-제안은 기존 지침의 수정·삭제를 우선하고, 새 지침은 이 환경에서 관찰된 실패가 있을 때만 더한다.
+파일의 목적과 전체 구조를 먼저 평가한 뒤 문구를 점검한다. 제안은 기존 지침의 수정·삭제를 우선하고, 새 지침은 이 환경에서 관찰된 실패가 있을 때만 더한다.
 
 ## 출력
-- 확인 범위와 검증 한계를 적고, 발견마다 관점 번호·위치·before/after diff·줄 수 증감·함께 고칠 파일을 제시한다. 끝에 전체 줄 수 증감 합계를 적는다.
+- 확인 범위와 검증 한계를 적고, 제안은 의미와 의존 관계에 따라 묶는다. 각 안에 관점·위치·근거·달라지는 행동·함께 고칠 파일을 제시한다.
+- 변경 규모에 맞춰 before/after diff 또는 재작성 전문과 삭제·통합한 규칙을 제시한다. 줄 수 증감은 보조 정보로 보고한다.
 - 발견은 `문구`(동작 그대로)와 `동작`(행동이 달라짐)으로 나눈다. `동작`에는 달라지는 행동을 한두 줄로 붙인다.
 - 원본으로 판단한 내용과 실행으로 확인한 동작을 구분한다. 발견이 없으면 확인한 범위만 보고한다.
