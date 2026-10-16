@@ -1,6 +1,5 @@
 name = "verifier"
 description = "Independent read-only verifier for implemented Codex tasks, diffs, and verification evidence."
-sandbox_mode = "read-only"
 model = "gpt-6-sol"
 model_reasoning_effort = "high"
 
