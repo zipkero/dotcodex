@@ -49,8 +49,10 @@ description: "Create or reset a Phased feature spec.md and status README from co
 <다음 단계의 조사 출발점. 필요 없으면 생략>
 
 ## 2. 목표
+<왜 필요한지, 사용자에게 어떤 결과를 주는지, 사용자나 문서가 밝힌 품질·규모 수준>
 
 ## 3. 제약
+<지켜야 할 한계와 사용자가 지정한 검증 방법>
 
 ## 4. 제외 범위
 

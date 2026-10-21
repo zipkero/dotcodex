@@ -3,7 +3,7 @@
 ## 입력과 판정
 - 기능 문서가 모두 존재하고 `SPEC`과 `DESIGN`이 `[x]`여야 한다.
 - main이 대상 Task 하나를 확정한다. 검증 주체는 `~/.codex/skills/verify/SKILL.md`의 선택 기준을 따른다.
-- 대상 Task의 목적과 검증 조건, 관련 `SPEC §5.N`의 완료 조건·제약·제외 범위와 `design.md` 결정을 원본에서 확인한다.
+- 대상 Task의 목적과 검증 조건, 관련 spec의 목표 수준·완료 조건·제약·제외 범위와 `design.md` 결정을 원본에서 확인한다.
 - Task를 먼저 판정하고, 이번 승인으로 마지막 매핑 Task가 완료될 때만 매핑된 Task 전체의 변경을 합쳐 `SPEC §5.N` 자체를 판정한다.
 - 판정 절차와 출력은 `~/.codex/skills/verify/references/acceptance.md`를 따른다.
 
