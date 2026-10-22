@@ -24,4 +24,4 @@ description: "Implement one approved Phased Task or a scoped Per-Request change.
 ## 결과
 - 구현 결과의 변경과 검증 근거를 main이 검토한다.
 - Phased는 `verify` 또는 `implement-loop`로 이어가고, Per-Request는 요청되었거나 독립 검증이 필요한 경우 `verify`로 이어간다.
-- 사용자 보고는 결과를 먼저 밝히고 구현 완료와 검증 여부·판정을 구분한다. 변경 파일 정보는 worker 계약의 `Changed files` 정의를 따르고, 검증은 핵심 근거와 미실행 범위, 남은 위험과 범위 밖 발견을 요약한다.
+- 결과를 먼저 보고하고 구현 완료와 검증 결과를 구분한다. 상세는 worker 반환 항목을 요약한다.

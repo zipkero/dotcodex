@@ -17,7 +17,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 - main은 적용된 Task의 순서·참조·완료 조건 매핑을 확인하고 상태와 이력을 갱신한다. 부분 적용은 미완료 상태와 남은 작업을 인계한다.
 
 ## analyzer 반환
-- 변경 이유, 관련 `SPEC §5.N`·`DESIGN §X.Y`, 직접·의존 영향과 확인하지 못한 영향을 포함한다. patch는 적용 위치도 명시한다.
+- 관련 참조는 `SPEC §5.N`·`DESIGN §X.Y`로 적는다.
 
 ## Task 규칙
 - Task는 같은 확인으로 함께 판정할 수 있는 동작과 필요한 기반·연결 작업을 묶어, 한 번의 `verify`로 승인 또는 거절할 수 있는 결과 단위다. 의존 순서는 문서 항목 위치로 표현한다.
