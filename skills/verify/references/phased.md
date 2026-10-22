@@ -8,6 +8,8 @@
 - 판정 절차와 출력은 `~/.codex/skills/verify/references/acceptance.md`를 따른다.
 
 ## 상태 전환
+- main은 거절 시 문제·근거·수정 소유 단계 또는 `Resolution`을 Task의 `최근 reject`에 기록한다.
+- 승인 시 기존 `최근 reject`와 재시도 기록을 기능 `README.md` 이력에 보존한 뒤 제거한다.
 - `approved`이면 main이 대상 Task만 `[x]`로 바꾸고 적용 기준, 실제 결과, 검증 당시 코드 상태와 근거 식별자를 `승인 근거`에 간결히 기록한다.
 - Task 승인 후 공통 상태 계약에 따라 `IMPLEMENT`를 갱신하고 이력을 기록한다.
 - `rejected`이면 대상 Task를 `[ ]`로 유지한다. 승인된 Task의 재검증이 실패하면 공통 상태 계약에 따라 해당 Task와 영향받는 의존 Task의 승인을 취소하고 `IMPLEMENT`와 이력을 갱신한다.

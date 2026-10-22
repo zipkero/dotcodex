@@ -12,7 +12,7 @@ description: "Implement one approved Phased Task or a scoped Per-Request change.
 ## 구현과 worker 호출
 - main은 승인된 Phased Task 하나를 worker에게 맡긴다. 범위가 확정된 Per-Request는 worker 계약의 §구현 판단과 인계에 따라 직접 구현하거나 worker에게 맡긴다.
 - worker 호출에는 다음을 전달한다.
-  - 목적·범위·성공 기준
+  - 목적·범위·제약·성공 기준
   - 예상 수정 대상
   - 승인된 기준 문서와 상태
   - 기존 diff·검증·미해결 문제
