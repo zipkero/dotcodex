@@ -6,7 +6,7 @@ description: "Audit Codex instructions, agents, and skills for workflow gaps, du
 # Config Review
 
 ## 범위
-- main이 읽기 전용으로 감사한다. 전역 감사는 Git 추적 중인 운영 지침·agent·사용자 정의 skill·참조와 `README.md`, 대상을 지정한 감사는 해당 원본과 판단에 필요한 참조를 읽는다.
+- main이 읽기 전용으로 감사한다. 전역 감사는 Git 추적 중인 운영 지침·agent·사용자 정의 skill·참조·기능 문서와 `README.md`, 대상을 지정한 감사는 해당 원본과 판단에 필요한 참조를 읽는다.
 - 추적 밖의 로컬 설정은 해당 판단에 필요할 때 확인하고, 근거로 읽은 범위를 보고한다.
 
 ## 관점
