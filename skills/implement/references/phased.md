@@ -2,7 +2,7 @@
 
 ## 진입과 Task 선택
 - 승인 상태는 `~/.codex/docs/phased-state.md`를 따른다.
-- 기능 `README.md`, `spec.md`, `design.md`, `implement.md`가 있고 `SPEC`과 `DESIGN`이 `[x]`여야 한다.
+- 기능 `README.md`, `spec.md`, `design.md`가 있고 `SPEC`과 `DESIGN`이 `[x]`이며, `implement-init`의 작성 기준을 충족한 `implement.md`가 있어야 한다.
 - 사용자가 `task-<nnn>`을 지정하면 해당 Task, 지정하지 않으면 위에서부터 첫 `[ ]` Task를 선택한다. 여러 Task나 기능 전체 구현은 `implement-loop`로 진행한다.
 - 지정한 Task는 목적·접근·참조와 현재 원본으로 선행 작업 충족 여부를 확인한다. 미충족 선행 작업이 있으면 그 작업과 영향을 보고하고 먼저 해소한다.
 - 문서나 승인 상태가 부족하거나 대상을 하나로 확정할 수 없으면 구현하지 않고 필요한 소유 단계나 입력을 보고한다.

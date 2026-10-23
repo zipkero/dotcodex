@@ -15,7 +15,7 @@
 - `Status`: `approved` 또는 `rejected`
 - `Target`: Phased는 `task-<nnn>: <제목>`, Per-Request는 요청한 변경
 - `Requirements`: Phased에서 이번 승인으로 완료되는 적용 중인 `SPEC §5.N`별 판정과 관련 검증 기준. 해당 요구사항이 없으면 생략한다.
-- `Issues`: `rejected`일 때 문제별로 `Problem`에 문제와 근거, `Category`에 분류를 적는다.
+- `Issues`: `rejected`일 때 문제별로 `Problem`에 충족하지 못한 승인 기준·문제·근거, `Category`에 분류를 적는다.
   실제 문제는 `Repair stage`에 수정할 소유 단계를 적는다. Phased는 `implement`·`implement-init`·`design-init`·`spec-init`, Per-Request는 구현 수정에 `implement`, 프로젝트 기준 문서 수정에 `project-init`을 사용한다.
   근거 부족은 `Resolution`에 필요한 입력·환경·재검증 조건을 적는다.
 - `Validation`: 검증 기준별로 출처, 확인한 동작·실행 결과와 `충족`·`불충족`·`근거 부족` 판정을 설명한다.
@@ -30,4 +30,4 @@
   - `evidence`: 불충족을 확인한 것이 아니라 성립 여부를 확인할 근거가 없음
 
 Per-Request 결과 검토는 같은 판정 기준으로 결과·핵심 근거·미실행 검증만 간결하게 보고할 수 있다.
-판정 과정은 읽기 전용이다. 별도 검증 Markdown은 만들지 않는다.
+판정 중 대상 구현·테스트·승인 기준은 수정하지 않는다. 별도 검증 Markdown은 만들지 않는다.

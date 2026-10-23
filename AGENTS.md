@@ -13,10 +13,10 @@
 - 같은 근거로 사용자가 유지한 결정을 다시 묻지 않는다.
 
 ## 작업 흐름
-- 파일 변경의 기본값은 `implement`의 Per-Request다. 복원한 작업은 기존 mode를 따른다.
-- 분석·설명·검토·복원 요청은 해당 읽기 전용 skill에서 끝낸다.
+- 파일 변경의 기본값은 `implement`의 Per-Request다. main은 요청 범위를 완료·검증 단위로 나눠 전체 작업을 완료한다. 복원한 작업은 기존 mode를 따른다.
+- 분석·설명·검토·복원만 요청하면 해당 읽기 전용 skill에서 끝낸다.
 - 단계 사이의 설계·완료 조건을 문서로 고정해야 하면 이유와 산출물을 설명하고 Phased 선택을 확인한다.
-- 사용자가 `Phased`, Phased 전용 skill, 단계별 기능 문서 또는 `features/<feature-dir>/` 진행을 요청하면 `spec-init` → `design-init` → `implement-init` → `implement` → `verify` 순서로 진행한다. 여러 Task나 기능 전체 구현은 `implement-loop`가 조정한다.
+- 사용자가 `Phased`, Phased 전용 skill, 단계별 기능 문서 또는 `features/<feature-dir>/` 진행을 요청하면 현재 승인 상태에서 필요한 단계부터 `spec-init` → `design-init` → `implement-init` → `implement` → `verify` 순서로 진행한다. 여러 Task나 기능 전체 구현은 `implement-loop`가 조정한다.
 - 특정 단계나 산출물만 요청하면 그 범위에서 끝낸다. 다음 단계는 승인된 문서와 관련 원본만으로 이어갈 수 있게 한다.
 - main은 사용자 확인·후보 적용·최종 승인·상태 변경을 맡는다. analyzer와 verifier는 읽기 전용 후보를 반환하고, worker는 확정된 범위를 수정한다.
 

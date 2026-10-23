@@ -14,7 +14,7 @@ description: "Draft or revise Phased implement.md Tasks and verification criteri
 - main은 `analyzer`에게 `implement.md` 후보 작성을 맡긴다.
 - 호출에는 이번 요청의 목적·변경 범위, feature dir, 기능 문서, 적용되는 프로젝트 `AGENTS.md`, 코드 조사 출발점과 이 skill·공통 상태 계약의 절대 경로를 필요한 범위에서 전달한다.
 - main은 후보를 원본·승인 범위·작성 기준에 대조해 적용하거나 analyzer에게 수정을 요청한다.
-- main은 적용된 Task의 순서·참조·완료 조건 매핑을 확인하고 상태와 이력을 갱신한다. 부분 적용은 미완료 상태와 남은 작업을 인계한다.
+- main은 적용된 계획이 §Task 규칙을 모두 충족하면 계획 작성을 완료하고 상태와 이력을 갱신한다. 부분 적용은 작성 중인 계획과 남은 작업을 인계한다.
 
 ## analyzer 반환
 - 관련 참조는 `SPEC §5.N`·`DESIGN §X.Y`로 적는다.

@@ -8,7 +8,7 @@ description: "Approve or reject an implementation against requirements, diff, an
 main은 직접 검증과 verifier 결과 검토에 `~/.codex/skills/verify/references/acceptance.md`를 읽어 적용한다.
 
 ## 대상
-- Per-Request는 사용자가 검증을 요청했거나 독립 검증이 필요한 직전 구현 대상을 하나로 확정한다.
+- Per-Request 검증 대상은 사용자가 지정한 구현을 우선하며, 지정이 없으면 독립 검증이 필요한 직전 구현으로 확정한다.
 - Phased는 `~/.codex/skills/verify/references/phased.md`와 `~/.codex/docs/phased-state.md`의 입력·판정·상태 계약을 추가로 적용한다.
 - 변경 범위는 사용자가 지정한 범위, 직전 worker의 `Changed files`, `CONTEXT.md` 인계, 현재 작업 트리 순서로 확인한다. 대상을 확정할 수 없으면 필요한 입력을 보고하고 판정을 보류한다.
 
