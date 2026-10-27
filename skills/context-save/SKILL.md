@@ -8,7 +8,7 @@ description: "Save or prune project CONTEXT.md to resume work after clearing the
 ## 역할과 적용
 - 프로젝트 루트의 `CONTEXT.md`와 참조 원본만으로 clear 후 또는 다른 세션에서 기존 대화·compact 요약 없이 작업을 재개할 수 있게 저장한다.
 - Phased 원본에 있는 요구사항·설계·Task 상태·검증 근거·재시도 기록은 해당 위치로 링크하고, 원본에 없는 작업 맥락은 직접 기록한다.
-  Per-Request는 요청 범위, 변경 파일과 검증 결과를 직접 기록한다.
+  Per-Request는 요청 범위, 변경 파일과 `~/.codex/skills/verify/references/acceptance.md` §검증 근거의 요약을 직접 기록한다.
 
 ## 절차
 1. 기존 `CONTEXT.md` 전체를 읽고, 다른 활성 주제이면 갱신 대상을 사용자에게 확인한다.
