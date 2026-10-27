@@ -1,19 +1,19 @@
 ---
 name: context-save
-description: "Save or prune project CONTEXT.md for a session handoff."
+description: "Save or prune project CONTEXT.md to resume work after clearing the conversation or switching sessions."
 ---
 
 # Context Save
 
 ## 역할과 적용
-- 프로젝트 루트의 `CONTEXT.md`에 다음 세션이 대화 없이 작업을 재개하는 데 필요한 현재 상태와 다음 작업을 저장한다.
-- Phased 원본의 요구사항·설계·Task는 해당 문서로 링크한다.
-  Per-Request는 요청 범위, 변경 파일과 검증 결과를 기록한다.
+- 프로젝트 루트의 `CONTEXT.md`와 참조 원본만으로 clear 후 또는 다른 세션에서 기존 대화·compact 요약 없이 작업을 재개할 수 있게 저장한다.
+- Phased 원본에 있는 요구사항·설계·Task 상태·검증 근거·재시도 기록은 해당 위치로 링크하고, 원본에 없는 작업 맥락은 직접 기록한다.
+  Per-Request는 요청 범위, 변경 파일과 검증 결과를 직접 기록한다.
 
 ## 절차
 1. 기존 `CONTEXT.md` 전체를 읽고, 다른 활성 주제이면 갱신 대상을 사용자에게 확인한다.
 2. 실행 중인 worker·background 작업은 완료를 기다리거나 진행 상태로 인계한다.
-3. 대화·관련 원본·작업 트리·실행 결과를 대조해 §CONTEXT.md 형식으로 갱신한다.
+3. 대화·관련 원본·작업 트리·실행 결과를 대조해 §CONTEXT.md 형식으로 갱신하고, 저장 파일과 참조만으로 요청 범위·현재 상태·남은 작업을 복원할 수 있는지 확인한다. 확인할 수 없는 내용은 `미해결 사항`에 적는다.
 4. 활성 목표·미확정 판단·대기 중인 사용자 응답·다음 작업·문서 미반영 사항이 모두 없으면 사용자 확인 뒤 삭제할 수 있다.
 
 ## CONTEXT.md 형식
@@ -26,11 +26,11 @@ description: "Save or prune project CONTEXT.md for a session handoff."
 <사용자가 확정한 목표·요청 범위·전체 완료 기준>
 
 ## 현재 상태
-<완료된 범위, 멈춘 지점과 부분 변경>
+<완료된 범위, 멈춘 지점과 부분 변경. 구현·검증·승인 여부를 구분>
+- 작업 기준: <프로젝트 루트, 기존 mode, 활성 기능·Task 또는 읽기 전용 작업 종류>
 - 멈춤 원인과 재개 조건: <현재 원인과 해소 조건>
 - worker·background 작업: <완료·진행 상태, worker 결과 인수 여부, 결과를 받을 위치>
 - 마지막 검증: <실행 명령·실행 위치·검증 대상·결과와 근거 위치, 또는 실행한 적 없음>
-- 재시도: <진행 중인 Task의 구현 재시도·근거 재검증 누적 횟수>
 - Git: <현재 branch, 저장 시점 HEAD 커밋 해시, 커밋 안 된 변경 파일 목록과 상태 또는 없음>
 
 ## 확정된 결정과 제약
@@ -45,8 +45,7 @@ description: "Save or prune project CONTEXT.md for a session handoff."
 
 ## 다음 작업
 
-- 작업: <바로 시작할 작업 하나>
-- 완료 기준: <그 작업의 완료를 판단할 기준>
+<전체 남은 작업을 실행 순서대로 나열하고, 각 작업의 완료 기준·선행 조건을 적는다. 바로 시작할 작업을 첫 항목으로 둔다.>
 
 ## 먼저 읽을 파일
 <활성 기능·Task, 필수 원본과 변경 파일의 링크>
@@ -56,7 +55,7 @@ description: "Save or prune project CONTEXT.md for a session handoff."
 - 현재 유효한 상태로 갱신하고, 과거 기록은 재개에 필요한 근거만 남긴다.
 - 내용이 없는 항목과 섹션은 생략한다.
 - 기계·OS·git 밖 설정처럼 환경에 묶인 상태는 호스트 이름이나 절대경로로 대상을 밝혀 적는다.
-- Phased에서 구현을 마치고 verify 전에 멈췄으면 `다음 작업`은 해당 Task의 `verify`로 적는다.
+- Phased에서 구현을 마치고 verify 전에 멈췄으면 `다음 작업`의 첫 항목은 해당 Task의 `verify`로 적는다.
 - 파일 링크는 프로젝트 상대 경로로 적고, 전역 파일은 `~/.codex/...`로 적는다.
 - 소유 문서가 없는 결정은 내용을 직접 적고, 원본 반영이 필요하면 `미해결 사항`에 반영할 위치를 적는다.
 

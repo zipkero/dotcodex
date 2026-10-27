@@ -1,27 +1,27 @@
 ---
 name: context-restore
-description: "Restore work from project CONTEXT.md by checking its sources and current workspace, without edits."
+description: "Restore work after clearing the conversation or switching sessions from project CONTEXT.md, its sources, and the current workspace, without edits."
 ---
 
 # Context Restore
 
 ## 역할
-- 프로젝트 루트의 `CONTEXT.md`를 원본 문서와 현재 작업 트리에 대조해 읽기 전용으로 복원한다.
+- 기존 대화·compact 요약 없이 프로젝트 루트의 `CONTEXT.md`와 참조 원본을 읽고, 현재 작업 트리에 대조해 작업 맥락을 읽기 전용으로 복원한다.
 - Phased의 요구사항·설계·Task 상태는 기능 문서를, Per-Request는 저장된 범위와 현재 작업 트리를 기준으로 한다.
 
 ## 절차
 1. `CONTEXT.md` 전체를 읽는다.
    없으면 저장된 맥락이 없다고 보고한다.
-2. 섹션 제목 형식과 무관하게 기록된 작업 문서·확정된 결정·제약·미해결 사항을 확인하고, 필수·변경 파일과 원본 반영 대상을 읽는다.
+2. 섹션 제목 형식과 무관하게 목표·전체 요청 범위·기존 mode·활성 기능과 Task·확정된 결정·제약·미해결 사항·남은 작업을 확인하고, 필수·변경 파일과 원본 반영 대상을 읽는다.
    조건부 파일은 조건이 해당할 때만 읽는다.
    저장된 검증 근거가 현재 코드에 적용되는지 확인한다.
 3. worker·background 작업의 현재 실행 상태, 결과 접근 가능 여부와 인수 여부를 확인한다.
 4. Git 저장소이면 저장된 branch·기준 HEAD·커밋 안 된 변경 파일과 상태를 현재 `git status`와 실제 변경에 대조한다.
-5. 대조 결과를 바탕으로 다음 작업과 완료 기준, 먼저 해소할 사항을 정해 보고한다.
+5. 대조 결과를 §복원 보고에 따라 보고한다.
 
 ## 복원 보고
-- 현재 목표, 완료된 범위와 멈춘 지점을 짧은 문단으로 설명하고 다음 작업과 완료 기준을 제시한다.
-- 진행에 영향을 주는 제약·불일치·누락·대기 사항만 덧붙이며, 여러 쟁점이 있을 때 목록을 쓴다.
+- 현재 목표·전체 요청 범위·기존 mode, 완료된 범위와 멈춘 지점을 설명하고 전체 남은 작업 중 바로 시작할 작업과 완료 기준을 제시한다.
+- 진행에 영향을 주는 제약·불일치·복원하지 못한 정보·대기 사항을 덧붙이며, 여러 쟁점이 있을 때 목록을 쓴다.
 - 재개할 작업이 없으면 완료 상태를 보고한다.
 
 ## 경계

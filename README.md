@@ -42,8 +42,8 @@
 - `implement-loop`: 여러 Task의 순차 구현·검증·재시도 조정
 - `verify`: 구현의 승인·거절 판정
 - `config-review`: 설정의 역할·흐름·중복·충돌·요구사항 왜곡·불필요한 방어 지침과 README를 읽기 전용으로 감사
-- `context-save`: 작업 인수인계를 `CONTEXT.md`에 저장
-- `context-restore`: 저장된 맥락을 읽기 전용으로 복원
+- `context-save`: clear·세션 전환 후 재개할 작업 맥락을 `CONTEXT.md`와 참조 원본에 보존
+- `context-restore`: 저장 파일·참조 원본·현재 작업 트리로 작업 맥락을 읽기 전용으로 복원
 
 추적 허용 목록 밖의 로컬·Codex 제공·plugin skill은 이 저장소의 관리 대상이 아니다.
 
