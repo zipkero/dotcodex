@@ -6,8 +6,7 @@ description: "Initialize or restructure project README, ROADMAP, and supporting 
 # Project Init
 
 ## 역할
-- 프로젝트 루트의 `README.md`와 `ROADMAP.md`를 만들거나 재구성한다.
-- 확정된 사용자 관점 상세는 필요한 경우 `docs/product.md`, 프로젝트 수준 설계 상세는 `docs/design.md`에 둔다.
+- 프로젝트 루트의 필수 산출물인 `README.md`와 `ROADMAP.md`를 모두 만들거나 재구성한다.
 - 특정 기능 요구사항은 작성하지 않고 `spec-init`으로 넘긴다.
 
 ## 입력과 판단
@@ -22,7 +21,7 @@ description: "Initialize or restructure project README, ROADMAP, and supporting 
 - `docs/product.md`: README와 ROADMAP에 담기 어려운 확정된 사용자 흐름·정책이 있을 때만 생성 또는 갱신
 - `docs/design.md`: 확정된 프로젝트 수준 구조·경계·상태 흐름·인터페이스가 있을 때만 생성 또는 갱신
 
-`README.md`와 `ROADMAP.md`는 항상 존재해야 한다. 선택 문서는 필요한 상세가 있을 때만 만들고, 같은 상세를 여러 문서에 반복하지 않는다. 후속 기능 후보는 kebab-case로 적되 `features/`는 만들지 않는다.
+같은 상세는 한 문서에서 관리한다. 후속 기능 후보는 kebab-case로 적되 `features/`는 만들지 않는다.
 
 ## 완료
 - 생성·갱신하거나 변경 없이 확인한 파일과 각 문서의 책임을 보고한다.

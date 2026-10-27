@@ -16,9 +16,6 @@ description: "Draft or revise a Phased feature design.md from approved spec.md."
 - main은 후보를 원본·승인 범위·작성 기준에 대조해 적용하거나 analyzer에게 수정을 요청한다.
 - main은 적용된 전체 설계와 하위 영향을 확인하고 상태와 이력을 갱신한다. 부분 적용은 미완료 상태와 남은 작업을 인계한다.
 
-## analyzer 반환
-- 관련 참조는 `SPEC §5.N`으로 적는다.
-
 ## design.md 형식
 ```markdown
 # <기능명> 설계

@@ -34,7 +34,7 @@ description: "Save or prune project CONTEXT.md to resume work after clearing the
 - Git: <현재 branch, 저장 시점 HEAD 커밋 해시, 커밋 안 된 변경 파일 목록과 상태 또는 없음>
 
 ## 확정된 결정과 제약
-- <사용자가 확정했고 다음 작업의 전제가 되는 결정> — <그 결정의 값이나 이유가 적힌 문서 위치 링크>
+- <사용자가 확정했고 다음 작업의 전제가 되는 결정과 이유. 소유 문서가 있으면 해당 위치 링크>
 - <사용자가 이번 작업에 건 금지 사항, 범위 제한, 커밋·push 여부 등>
 
 ## 미해결 사항
@@ -57,7 +57,6 @@ description: "Save or prune project CONTEXT.md to resume work after clearing the
 - 기계·OS·git 밖 설정처럼 환경에 묶인 상태는 호스트 이름이나 절대경로로 대상을 밝혀 적는다.
 - Phased에서 구현을 마치고 verify 전에 멈췄으면 `다음 작업`의 첫 항목은 해당 Task의 `verify`로 적는다.
 - 파일 링크는 프로젝트 상대 경로로 적고, 전역 파일은 `~/.codex/...`로 적는다.
-- 소유 문서가 없는 결정은 내용을 직접 적고, 원본 반영이 필요하면 `미해결 사항`에 반영할 위치를 적는다.
 
 ## 완료 보고
 - CONTEXT 경로, 현재 상태, 다음 작업과 원본 반영이 필요한 사항을 보고한다.
