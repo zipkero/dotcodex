@@ -5,6 +5,7 @@
 ## 관리 대상
 
 - `AGENTS.md`: 전역 작업 흐름과 역할·승인 경계
+- `docs/code-comments.md`: Go·Rust 주석 작성·검토 시 적용하는 언어별 형식
 - `docs/phased-state.md`: Phased 승인 상태와 의미·의존 관계 기반 무효화
 - `agents/*.toml`: analyzer와 verifier 정의
 - `skills/*/`: 사용자 정의 skill과 필요한 참조
@@ -41,7 +42,7 @@
 - `implement`: Per-Request 직접 구현·위임 또는 Phased Task 구현 조정
 - `implement-loop`: 여러 Task의 순차 구현·검증·재시도 조정
 - `verify`: 구현의 승인·거절 판정
-- `config-review`: 설정의 역할·흐름·중복·충돌·요구사항 왜곡·불필요한 방어 지침과 README를 읽기 전용으로 감사
+- `config-review`: 설정의 역할·흐름·중복·충돌·요구사항 왜곡·불필요한 방어 지침·공식 문서 정합성·실행 비용과 README를 읽기 전용으로 감사
 - `context-save`: clear·세션 전환 후 재개할 작업 맥락을 `CONTEXT.md`와 참조 원본에 보존
 - `context-restore`: 저장 파일·참조 원본·현재 작업 트리로 작업 맥락을 읽기 전용으로 복원
 

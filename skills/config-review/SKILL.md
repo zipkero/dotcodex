@@ -1,6 +1,6 @@
 ---
 name: config-review
-description: "Audit Codex instructions, agents, and skills for workflow gaps, duplication, conflicts, intent loss, and unnecessary defensive rules without editing files; not for simple lookups."
+description: "Audit Codex instructions, agents, and skills for workflow gaps, duplication, conflicts, intent loss, unnecessary defensive rules, and avoidable work without editing files; not for simple lookups."
 ---
 
 # Config Review
@@ -10,14 +10,16 @@ description: "Audit Codex instructions, agents, and skills for workflow gaps, du
 - 추적 밖의 로컬 설정은 해당 판단에 필요할 때 확인하고, 근거로 읽은 범위를 보고한다.
 
 ## 관점
-평가 기준은 해당 지침을 읽는 모델이 의도한 판단과 행동을 정확히 수행할 수 있는가다.
+모든 관점과 제안하는 after 문장에 우선하는 기준은 해당 지침을 읽는 모델이 의도한 판단과 행동을 안정적으로 수행할 수 있는가다.
 
 1. 역할 — 결정·수정·판정·상태 변경의 담당자가 명확한가. 호출 조건과 참조가 실제 설정에 맞고 필요한 시점에 읽히는가.
 2. 중복 — 같은 주체가 함께 읽는 지침을 통합·삭제해도 적용 조건과 행동이 보존되는가. 하네스 중복은 해당 agent에게 실제 주입된 실행 지침과 대조한다.
-3. 필요성 — 실패 방지 효과와 추론·조사·실행을 제한하는 비용을 비교한다.
+3. 필요성 — 실패 방지 효과와 추론·조사·실행을 제한하는 비용을 비교한다. 방어 단서는 원 규칙의 모호함을 고쳐 흡수할 수 있는가.
 4. 명확성 — 충돌하거나 여러 뜻으로 읽혀 담당자·변경 범위·승인 조건이 달라지는가.
 5. 플로우 — 요청의 범위·품질·제약이 문서·구현·검증까지 보존되는가. 원본만으로 단계 진행·중단·복원·재시도와 승인 무효화를 처리할 수 있는가. 반환 정보가 다음 주체의 판단과 사용자 보고에 충분한가.
 6. `README.md` — 관리 구조·역할·참조·링크가 현재 원본과 맞는가.
+7. 공식 문서 — Codex 모델·도구·설정 키·skill 형식의 유효성을 판단할 때는 `openai-docs`로 공식 문서의 해당 본문과 대조한다.
+8. 성능 — 요청 범위·완료 조건·검증 결과를 유지하면서 중복 조사·이미 정한 결정의 재확인·불필요한 위임·산출물·테스트를 줄일 수 있는가.
 
 파일의 목적과 전체 구조를 먼저 평가한다. 모호함·충돌은 원래 지침을 고쳐 해소하고, 불필요한 규칙과 반복 표현은 삭제·통합한다.
 
@@ -25,4 +27,5 @@ description: "Audit Codex instructions, agents, and skills for workflow gaps, du
 - 요청한 점검 항목별 결과와 확인 범위·한계를 보고한다. 원본 검토와 실행 확인을 구분한다.
 - 관련 제안을 묶어 관점·위치·근거·함께 고칠 파일을 제시한다.
 - `문구`는 동작을 보존하는 수정, `동작`은 행동을 바꾸는 수정으로 구분하고 달라지는 행동을 설명한다.
+- 필요성·성능 관점의 `동작` 제안에는 같은 시나리오로 적용 전후의 결과 유지와 비용(턴·토큰·도구 호출·subagent 수) 감소를 확인할 방법을 붙인다.
 - before/after diff 또는 재작성 전문으로 삭제·통합할 부분을 보여준다. 발견이 없으면 제안은 생략한다.
