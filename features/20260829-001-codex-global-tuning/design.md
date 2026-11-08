@@ -4,7 +4,7 @@
 
 ### 확인한 사실
 
-- [spec.md](./spec.md)는 변경 소유자를 `AGENTS.md`, `skills/config-review/SKILL.md`, `skills/implement/SKILL.md`로 한정하고 Claude 경로 glob 규칙, `hooks.json`의 `PostCompact`, Orca 백엔드, Claude 전용 설정과 analyzer·verifier·explorer의 모델·추론 수준 변경을 제외한다.
+- [spec.md](./spec.md)는 변경 소유자를 `AGENTS.md`, `skills/config-review/SKILL.md`, `skills/implement/SKILL.md`로 한정하고 Claude 경로 glob 규칙, `hooks.json`의 `PostCompact`, Claude 전용 설정과 analyzer·verifier·explorer의 모델·추론 수준 변경을 제외한다.
 - 현재 `AGENTS.md`는 여러 독립적인 완료·검증 단위가 필요한 경우를 다른 설계·외부 영향 조건과 함께 `Phased` 권장 사유로 두고 있어, 단위 수만으로도 `Phased` 권장 조건이 성립할 수 있다.
 - 2026-08-28 Claude 전역 설정의 `CLAUDE.md`는 `Phased` 권장 조건을 구현 전에 확정해야 하는 설계 선택, 되돌리기 어려운 변경, 이후 확인할 완료 조건·영향 범위로 좁히고, 완료·검증 단위가 여럿인 것만으로는 `Phased`를 권장하지 않는 기준을 둔다.
 - 현재 `skills/config-review/SKILL.md`는 문서 내부 중복, 상위 권위 문서 반복, 컨텍스트 저하를 감사하지만, 같은 지침을 소비하는 주체의 실제 하네스 로딩 범위나 모델 역량 보상형 지침의 기존 실패 가설·대표 작업 비교를 요구하지 않는다.
@@ -148,7 +148,7 @@ reasoning_effort = "medium"
 ### 4.3 제외 경계
 
 - Claude `rules/feature-docs.md`와 같은 경로 glob 규칙
-- `hooks.json`의 `PostCompact`와 Orca 백엔드
+- `hooks.json`의 `PostCompact`
 - Claude 전용 model, plugin, permission, agent frontmatter
 - analyzer, verifier, explorer의 모델 또는 추론 수준
 - 대표 작업 실행 자동화용 새 harness, eval 저장소 또는 신규 workflow

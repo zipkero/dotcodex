@@ -21,7 +21,7 @@
 
 ## 4. 제외 범위
 - Claude의 `rules/feature-docs.md` 또는 같은 경로 glob 기반 규칙 체계 추가
-- `hooks.json`의 `PostCompact` 추가와 Orca 백엔드 변경
+- `hooks.json`의 `PostCompact` 추가
 - analyzer, verifier, explorer의 모델 또는 추론 수준 변경
 - Claude 전용 model, plugin, permission, agent frontmatter 이식
 
